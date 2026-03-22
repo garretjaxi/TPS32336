@@ -22,8 +22,8 @@ const parks = [
     color: "from-blue-900 to-blue-700",
     accentColor: "#1a56db",
     emoji: "🏰",
-    imageUrl: "https://images.unsplash.com/photo-1519331379826-f10be5486c6f?w=600&q=80",
-    ticketUrl: "#",
+    imageUrl: "https://d2xsxph8kpxj0f.cloudfront.net/310419663028408649/6MfrdHFh2Y824AHn9CEQNW/disney-world_4c070b8d.jpg",
+    ticketUrl: "https://kgstix.com/themeparkstays/walt-disney-world/",
   },
   {
     id: "universal",
@@ -37,8 +37,8 @@ const parks = [
     color: "from-yellow-800 to-yellow-600",
     accentColor: "#b45309",
     emoji: "🎬",
-    imageUrl: "https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=600&q=80",
-    ticketUrl: "#",
+    imageUrl: "https://d2xsxph8kpxj0f.cloudfront.net/310419663028408649/6MfrdHFh2Y824AHn9CEQNW/universal-studios_53dbe40a.webp",
+    ticketUrl: "https://kgstix.com/themeparkstays/universal-orlando/",
   },
   {
     id: "seaworld",
@@ -52,8 +52,8 @@ const parks = [
     color: "from-teal-900 to-teal-600",
     accentColor: "#0d9488",
     emoji: "🌊",
-    imageUrl: "https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=600&q=80",
-    ticketUrl: "#",
+    imageUrl: "https://d2xsxph8kpxj0f.cloudfront.net/310419663028408649/6MfrdHFh2Y824AHn9CEQNW/seaworld_2fc5c31a.webp",
+    ticketUrl: "https://kgstix.com/themeparkstays/seaworld-busch-gardens-aquatica-adventure-island-tickets/",
   },
   {
     id: "legoland",
@@ -67,8 +67,8 @@ const parks = [
     color: "from-red-800 to-red-600",
     accentColor: "#dc2626",
     emoji: "🧱",
-    imageUrl: "https://images.unsplash.com/photo-1563299796-17596ed6b017?w=600&q=80",
-    ticketUrl: "#",
+    imageUrl: "https://d2xsxph8kpxj0f.cloudfront.net/310419663028408649/6MfrdHFh2Y824AHn9CEQNW/legoland_e6e6fc7e.jpg",
+    ticketUrl: "https://kgstix.com/themeparkstays/legoland/",
   },
 ];
 
@@ -105,7 +105,7 @@ export default function TicketsSection() {
         className="absolute inset-0 bg-cover bg-center"
         style={{ backgroundImage: `url(${TICKETS_BG})` }}
       />
-      <div className="absolute inset-0 bg-gradient-to-b from-[oklch(0.08_0.01_240)]/90 via-[oklch(0.08_0.01_240)]/85 to-[oklch(0.08_0.01_240)]/90" />
+      <div className="absolute inset-0 bg-black/50" />
 
       <div className="relative z-10 container">
         {/* Header */}
@@ -137,7 +137,6 @@ export default function TicketsSection() {
                   alt={park.name}
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                 />
-                <div className={`absolute inset-0 bg-gradient-to-t ${park.color} opacity-60`} />
                 <div className="absolute top-3 left-3 text-3xl">{park.emoji}</div>
                 <div className="absolute bottom-3 right-3 flex items-center gap-1 bg-black/50 rounded-full px-2 py-1">
                   <Star size={11} className="text-yellow-400 fill-yellow-400" />

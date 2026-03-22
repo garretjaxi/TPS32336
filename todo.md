@@ -18,6 +18,8 @@
 - [x] Footer with contact information
 
 ## In Progress
+- [ ] Set up Stripe payment keys for production
+- [ ] Configure admin dashboard access
 - [ ] Make website permanent with custom domain
 
 ## Future Enhancements
@@ -34,6 +36,15 @@
 
 ## Known Issues
 - None currently
+
+## Latest GitHub Update (Mar 22, 2026)
+- [x] Pulled latest code from GitHub repository
+- [x] Applied database migrations (5 new tables)
+- [x] Fixed TypeScript errors
+- [x] Integrated Stripe payment system
+- [x] Added admin dashboard for property management
+- [x] Added guest add-ons/services system
+- [x] Verified all 13 homes and 12 rooms display correctly
 
 ## Notes
 - Website is built with React 19 + Tailwind CSS 4

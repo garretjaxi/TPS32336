@@ -8,6 +8,13 @@
       "when": 1773898766280,
       "tag": "0000_even_the_santerians",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "5",
+      "when": 1774156879367,
+      "tag": "0001_sticky_meteorite",
+      "breakpoints": true
     }
   ]
 }

@@ -14,8 +14,9 @@ const activities = [
     description: "Cheer on your knight while feasting on a four-course meal at this legendary dinner tournament show.",
     price: 67,
     duration: "2.5 hours",
-    image: "https://images.unsplash.com/photo-1501281668745-f7f57925c3b4?w=600&q=80",
+    image: "/medieval-times-dinner.jpg",
     emoji: "⚔️",
+    ticketUrl: "https://kgstix.com/themeparkstays/dinner-shows/details/293847/medieval-times-dinner-tournament/",
   },
   {
     id: 2,
@@ -24,38 +25,42 @@ const activities = [
     description: "Glide through the Florida Everglades on a thrilling airboat tour and spot alligators in their natural habitat.",
     price: 45,
     duration: "1 hour",
-    image: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=600&q=80",
+    image: "/wild-florida-airboat.jpg",
     emoji: "🐊",
+    ticketUrl: "https://kgstix.com/themeparkstays/outdoor-adventure/details/293501/wild-florida-gator-park/",
   },
   {
     id: 3,
-    name: "Pirate's Cove Mini Golf",
-    category: "Family Fun",
-    description: "Navigate 36 holes of adventure golf across two challenging courses with waterfalls, caves, and pirate ships.",
-    price: 16,
-    duration: "1-2 hours",
-    image: "https://images.unsplash.com/photo-1519331379826-f10be5486c6f?w=600&q=80",
-    emoji: "⛳",
+    name: "Kennedy Space Center",
+    category: "Space & Science",
+    description: "Walk among real rockets, meet astronauts, and experience the awe-inspiring Space Shuttle Atlantis exhibit at America's premier space exploration destination.",
+    price: 75,
+    duration: "Full Day",
+    image: "/kennedy-space-center.jpg",
+    emoji: "🚀",
+    ticketUrl: "https://kgstix.com/themeparkstays/outdoor-adventure/details/293490/kennedy-space-center-complex/",
   },
   {
     id: 4,
-    name: "Boggy Creek Airboat Adventures",
-    category: "Nature Adventure",
-    description: "Experience the thrill of Florida's wetlands on a high-speed airboat adventure through pristine nature preserves.",
+    name: "ICON Park",
+    category: "Entertainment Complex",
+    description: "Orlando's premier entertainment destination on International Drive — featuring The Wheel observation ride, Sea Life Aquarium, Madame Tussauds, dining, and live entertainment all in one vibrant complex.",
     price: 35,
-    duration: "30 min",
-    image: "https://images.unsplash.com/photo-1504701954957-2010ec3bcec1?w=600&q=80",
-    emoji: "🌿",
+    duration: "2-4 hours",
+    image: "/icon-park.webp",
+    emoji: "🎉",
+    ticketUrl: "https://kgstix.com/themeparkstays/indoor-adventure/details/293597/icon-park/",
   },
   {
     id: 5,
-    name: "Discovery Cove",
-    category: "Water Park",
-    description: "Swim with dolphins, snorkel with tropical fish, and relax on pristine beaches at this all-inclusive tropical paradise.",
-    price: 199,
-    duration: "Full Day",
-    image: "https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=600&q=80",
-    emoji: "🐬",
+    name: "Dinosaur World Florida",
+    category: "Family Fun",
+    description: "Walk among over 200 life-size dinosaur sculptures in a lush outdoor setting. Dig for fossils, explore a prehistoric playground, and discover the world of dinosaurs just a short drive from Orlando.",
+    price: 17,
+    duration: "2-3 hours",
+    image: "/dinosaur-world.jpg",
+    emoji: "🦕",
+    ticketUrl: "https://www.dinosaurworld.com/florida",
   },
   {
     id: 6,
@@ -64,8 +69,9 @@ const activities = [
     description: "The Alligator Capital of the World! See thousands of alligators and crocodiles, zip-line over gators, and more.",
     price: 30,
     duration: "3-4 hours",
-    image: "https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=600&q=80",
+    image: "/gatorland.jpg",
     emoji: "🦎",
+    ticketUrl: "https://kgstix.com/themeparkstays/outdoor-adventure/details/293314/gatorland/",
   },
   {
     id: 7,
@@ -74,18 +80,20 @@ const activities = [
     description: "Orlando's hometown amusement park featuring roller coasters, go-karts, arcade games, and family-friendly rides.",
     price: 42,
     duration: "3-5 hours",
-    image: "https://images.unsplash.com/photo-1563299796-17596ed6b017?w=600&q=80",
+    image: "/fun-spot-america.jpg",
     emoji: "🎡",
+    ticketUrl: "https://kgstix.com/themeparkstays/outdoor-adventure/details/293604/fun-spot-america/",
   },
   {
     id: 8,
-    name: "Andretti Indoor Karting",
-    category: "Racing",
-    description: "Race on multi-level indoor go-kart tracks, play laser tag, and enjoy bowling at this premier entertainment complex.",
-    price: 55,
+    name: "WonderWorks Orlando",
+    category: "Indoor Adventure",
+    description: "Step inside the famous upside-down building on International Drive for 35,000 sq ft of hands-on science experiments, a 4D XD motion theatre, laser tag, a glow-in-the-dark ropes course, and over 100 interactive exhibits for all ages.",
+    price: 35,
     duration: "2-3 hours",
-    image: "https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=600&q=80",
-    emoji: "🏎️",
+    image: "/wonderworks-orlando.jpg",
+    emoji: "🏛️",
+    ticketUrl: "https://kgstix.com/themeparkstays/indoor-adventure/details/293331/wonderworks-orlando/",
   },
 ];
 
@@ -135,14 +143,14 @@ export default function ActivitiesSection() {
   };
 
   return (
-    <section id="activities" ref={sectionRef} className="py-20 md:py-28 linen-bg overflow-hidden">
+    <section id="activities" ref={sectionRef} className="py-12 md:py-16 linen-bg overflow-hidden">
       <div className="container">
         {/* Header */}
-        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-12 fade-up">
+        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-8 fade-up">
           <div>
             <span className="section-label">Beyond the Parks</span>
             <div className="gold-rule w-16 my-4" />
-            <h2 className="display-heading text-4xl md:text-5xl text-[oklch(0.18_0.012_55)]">
+            <h2 className="display-heading text-3xl md:text-4xl text-[oklch(0.18_0.012_55)]">
               More Orlando<br />
               <span className="italic text-[oklch(0.58_0.16_55)]">Adventures</span>
             </h2>
@@ -183,51 +191,63 @@ export default function ActivitiesSection() {
           {activities.map((activity, i) => (
             <div
               key={activity.id}
-              className="fade-up card-hover flex-shrink-0 w-72 md:w-80 bg-white rounded-2xl overflow-hidden shadow-md border border-[oklch(0.92_0.015_75)] snap-start group"
+              className="fade-up card-hover flex-shrink-0 w-52 md:w-60 bg-white rounded-xl overflow-hidden shadow-md border border-[oklch(0.92_0.015_75)] snap-start group flex flex-col"
               style={{ transitionDelay: `${i * 60}ms` }}
             >
               {/* Image */}
-              <div className="relative aspect-[16/10] overflow-hidden">
+              <div className="relative aspect-[16/9] overflow-hidden">
                 <img
                   src={activity.image}
                   alt={activity.name}
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
-                <div className="absolute top-3 left-3 text-2xl">{activity.emoji}</div>
-                <div className="absolute bottom-3 left-3">
-                  <span className="bg-white/90 text-[oklch(0.58_0.16_55)] text-xs font-bold px-2.5 py-1 rounded-full">
+                <div className="absolute top-2 left-2 text-lg">{activity.emoji}</div>
+                <div className="absolute bottom-2 left-2">
+                  <span className="bg-white/90 text-[oklch(0.58_0.16_55)] text-xs font-bold px-2 py-0.5 rounded-full">
                     {activity.category}
                   </span>
                 </div>
               </div>
 
               {/* Content */}
-              <div className="p-5">
+              <div className="p-3 flex flex-col flex-1">
                 <h3
-                  className="text-lg font-bold text-[oklch(0.18_0.012_55)] mb-2 leading-tight"
+                  className="text-base font-bold text-[oklch(0.18_0.012_55)] mb-1 leading-tight"
                   style={{ fontFamily: "'Cormorant Garamond', serif" }}
                 >
                   {activity.name}
                 </h3>
-                <p className="text-[oklch(0.5_0.02_60)] text-xs leading-relaxed mb-4" style={{ fontFamily: "'Outfit', sans-serif" }}>
+                <p className="text-[oklch(0.5_0.02_60)] text-xs leading-relaxed mb-3 flex-1" style={{ fontFamily: "'Outfit', sans-serif" }}>
                   {activity.description}
                 </p>
 
-                <div className="flex items-center justify-between pt-3 border-t border-[oklch(0.92_0.015_75)]">
+                <div className="flex items-center justify-between pt-2 border-t border-[oklch(0.92_0.015_75)]">
                   <div>
-                    <span className="text-xl font-bold text-[oklch(0.18_0.012_55)]" style={{ fontFamily: "'Cormorant Garamond', serif" }}>
+                    <span className="text-base font-bold text-[oklch(0.18_0.012_55)]" style={{ fontFamily: "'Cormorant Garamond', serif" }}>
                       ${activity.price}
                     </span>
                     <span className="text-xs text-[oklch(0.5_0.02_60)]"> · {activity.duration}</span>
                   </div>
-                  <button
-                    onClick={() => handleGetTickets(activity.name)}
-                    className="btn-amber flex items-center gap-1.5 px-3 py-2 rounded-full text-xs font-semibold"
-                  >
-                    Get Tickets
-                    <ExternalLink size={11} />
-                  </button>
+                  {(activity as any).ticketUrl ? (
+                    <a
+                      href={(activity as any).ticketUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="btn-amber flex items-center gap-1.5 px-3 py-2 rounded-full text-xs font-semibold"
+                    >
+                      Get Tickets
+                      <ExternalLink size={11} />
+                    </a>
+                  ) : (
+                    <button
+                      onClick={() => handleGetTickets(activity.name)}
+                      className="btn-amber flex items-center gap-1.5 px-3 py-2 rounded-full text-xs font-semibold"
+                    >
+                      Get Tickets
+                      <ExternalLink size={11} />
+                    </button>
+                  )}
                 </div>
               </div>
             </div>

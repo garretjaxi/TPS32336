@@ -1,10 +1,3 @@
-/* =============================================================
-   THEME PARK STAYS — "Golden Hour Luxury" Design System
-   Design Movement: Contemporary Luxury Resort meets Florida Warmth
-   Color Philosophy: Warm cream base, deep charcoal text, rich amber accent, sky blue secondary
-   Typography: Cormorant Garamond (display) + Outfit (body/UI)
-   ============================================================= */
-
 @import "tailwindcss";
 @import "tw-animate-css";
 
@@ -12,6 +5,10 @@
 
 @theme inline {
   --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+--radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
@@ -55,6 +52,7 @@
   --color-charcoal: oklch(0.18 0.01 60);
   --color-sky-brand: oklch(0.62 0.13 230);
 }
+
 
 :root {
   /* Brand: Rich Amber as primary */

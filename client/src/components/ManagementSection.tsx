@@ -4,7 +4,7 @@
    ============================================================= */
 import { useEffect, useRef } from "react";
 import { TrendingUp, DollarSign, MapPin, Handshake, Star, BarChart3, ArrowRight } from "lucide-react";
-import { toast } from "sonner";
+import { useLocation } from "wouter";
 
 const MGMT_BG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663446287426/E83KvqYJ4TGqcmgXCyYT4P/property-mgmt-bg-8zHASx5W8qjwj6V648Mv23.webp";
 
@@ -74,10 +74,10 @@ export default function ManagementSection() {
     return () => observer.disconnect();
   }, []);
 
+  const [, navigate] = useLocation();
+
   const handleViewPage = () => {
-    toast.info("Property Management Page", {
-      description: "Our full management services page is coming soon. Call us at (407) 555-0100.",
-    });
+    navigate("/management");
   };
 
   return (

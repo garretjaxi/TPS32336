@@ -56,9 +56,9 @@ export default function Footer() {
               Premium vacation rentals in the heart of Orlando's theme park district. Book direct and experience the magic.
             </p>
             <div className="flex flex-col gap-3 text-sm text-white/60 mb-6">
-              <a href="tel:+14075550100" className="flex items-center gap-2 hover:text-[oklch(0.68_0.15_65)] transition-colors">
+              <a href="tel:+14078013030" className="flex items-center gap-2 hover:text-[oklch(0.68_0.15_65)] transition-colors">
                 <Phone size={14} className="text-[oklch(0.68_0.15_65)]" />
-                (407) 555-0100
+                (407) 801-3030
               </a>
               <a href="mailto:hello@themeparkstays.com" className="flex items-center gap-2 hover:text-[oklch(0.68_0.15_65)] transition-colors">
                 <Mail size={14} className="text-[oklch(0.68_0.15_65)]" />

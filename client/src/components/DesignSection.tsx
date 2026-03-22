@@ -3,8 +3,8 @@
    Golden Hour Luxury Design
    ============================================================= */
 import { useEffect, useRef } from "react";
-import { Paintbrush, Sparkles, Home, ArrowRight, CheckCircle } from "lucide-react";
-import { toast } from "sonner";
+import { Sparkles, Home, ArrowRight, CheckCircle } from "lucide-react";
+import { useLocation } from "wouter";
 
 const DESIGN_BG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663446287426/E83KvqYJ4TGqcmgXCyYT4P/design-services-bg-U8bKUjVNMTXkb7M4YMswgH.webp";
 
@@ -70,10 +70,10 @@ export default function DesignSection() {
     return () => observer.disconnect();
   }, []);
 
+  const [, navigate] = useLocation();
+
   const handleViewDesign = () => {
-    toast.info("Design Services Page", {
-      description: "Our full design portfolio is coming soon. Contact us at (407) 555-0100.",
-    });
+    navigate("/design");
   };
 
   return (

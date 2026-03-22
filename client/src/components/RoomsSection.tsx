@@ -4,8 +4,9 @@
    ============================================================= */
 import { useEffect, useRef } from "react";
 import { Bed, Users, Star, ExternalLink, Wifi, Coffee, Tv } from "lucide-react";
+import { trpc } from "@/lib/trpc";
 
-const rooms = [
+const staticRooms = [
   {
     id: 1,
     name: "The Castle Suite",
@@ -140,6 +141,7 @@ const rooms = [
     image: "https://images.unsplash.com/photo-1631049421450-348ccd7f8949?w=800&q=80",
     airbnbUrl: "#",
     featured: true,
+    comingSoon: true,
   },
   {
     id: 10,
@@ -155,6 +157,7 @@ const rooms = [
     image: "https://images.unsplash.com/photo-1596394516093-501ba68a0ba6?w=800&q=80",
     airbnbUrl: "#",
     featured: false,
+    comingSoon: true,
   },
   {
     id: 11,
@@ -170,6 +173,7 @@ const rooms = [
     image: "https://images.unsplash.com/photo-1618773928121-c32242e63f39?w=800&q=80",
     airbnbUrl: "#",
     featured: false,
+    comingSoon: true,
   },
   {
     id: 12,
@@ -185,11 +189,32 @@ const rooms = [
     image: "https://images.unsplash.com/photo-1611892440504-42a792e24d32?w=800&q=80",
     airbnbUrl: "#",
     featured: true,
+    comingSoon: true,
   },
 ];
 
 export default function RoomsSection() {
   const sectionRef = useRef<HTMLDivElement>(null);
+  const { data: dbRooms = [] } = trpc.listings.getActiveRooms.useQuery();
+
+  // Map DB rooms to the shape the card renderer expects
+  const rooms = dbRooms.length > 0 ? dbRooms.map((r) => ({
+    id: r.id,
+    name: r.name,
+    tagline: r.tagline,
+    location: r.location,
+    beds: r.beds,
+    guests: r.guests,
+    price: r.price,
+    rating: parseFloat(r.rating),
+    reviews: r.reviews,
+    amenities: Array.isArray(r.tags) ? r.tags : JSON.parse(r.tags as unknown as string || "[]"),
+    image: r.image,
+    airbnbUrl: r.houfy_url || "#",
+    featured: Boolean(r.featured),
+    comingSoon: Boolean((r as any).coming_soon),
+  })) : staticRooms;
+
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -221,17 +246,80 @@ export default function RoomsSection() {
               <span className="italic text-[oklch(0.82_0.14_70)]">Resort Suites</span>
             </h2>
             <p className="text-white/60 max-w-md leading-relaxed text-sm md:text-base" style={{ fontFamily: "'Outfit', sans-serif" }}>
-              From enchanted castle suites to wizard lofts, our individually styled rooms bring the magic of the parks right to your doorstep.
+              From shared home stays to family resort suites — our individually styled rooms bring the magic of the parks right to your doorstep.
             </p>
           </div>
         </div>
 
-        {/* Rooms grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        {/* Rooms — mobile snap-scroll carousel, desktop 4-col grid */}
+
+        {/* Mobile carousel */}
+        <div className="md:hidden flex gap-4 overflow-x-auto pb-4 snap-x snap-mandatory -mx-4 px-4" style={{ scrollbarWidth: "none", WebkitOverflowScrolling: "touch" as any }}>
           {rooms.map((room, i) => (
-            <div
+            <a
               key={room.id}
-              className="fade-up card-hover bg-[oklch(0.24_0.01_55)] rounded-2xl overflow-hidden border border-white/10 group"
+              href={(room as any).comingSoon ? undefined : (room.airbnbUrl || "#")}
+              target={!(room as any).comingSoon ? "_blank" : undefined}
+              rel={!(room as any).comingSoon ? "noopener noreferrer" : undefined}
+              onClick={(room as any).comingSoon ? (e) => e.preventDefault() : undefined}
+              className={`fade-up bg-[oklch(0.24_0.01_55)] rounded-2xl overflow-hidden border border-white/10 group flex flex-col flex-shrink-0 snap-start ${
+                (room as any).comingSoon ? "cursor-default opacity-80" : "card-hover cursor-pointer"
+              }`}
+              style={{ width: "72vw", minWidth: "260px", maxWidth: "320px", transitionDelay: `${i * 80}ms` }}
+            >
+              <div className="relative aspect-[4/3] overflow-hidden">
+                <img src={room.image} alt={room.name} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+                {(room as any).comingSoon && (
+                  <div className="absolute inset-0 bg-black/50 flex items-center justify-center z-10">
+                    <span className="bg-[oklch(0.58_0.16_55)] text-white text-sm font-bold px-5 py-2 rounded-full uppercase tracking-widest shadow-lg">Coming Soon</span>
+                  </div>
+                )}
+                {room.featured && !((room as any).comingSoon) && (
+                  <div className="absolute top-3 left-3 bg-[oklch(0.68_0.15_65)] text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">Top Pick</div>
+                )}
+                <div className="absolute top-3 right-3 bg-black/60 backdrop-blur-sm rounded-full px-3 py-1 flex items-center gap-1">
+                  <Star size={12} className="text-[oklch(0.82_0.14_70)] fill-[oklch(0.82_0.14_70)]" />
+                  <span className="text-xs font-bold text-white">{room.rating}</span>
+                  <span className="text-xs text-white/60">({room.reviews})</span>
+                </div>
+              </div>
+              <div className="p-4 flex flex-col flex-1">
+                <div className="text-xs text-[oklch(0.68_0.15_65)] font-medium mb-1" style={{ fontFamily: "'Outfit', sans-serif" }}>{room.location}</div>
+                <h3 className="text-lg font-bold text-white mb-1 leading-tight" style={{ fontFamily: "'Cormorant Garamond', serif" }}>{room.name}</h3>
+                <p className="text-white/60 text-xs mb-3" style={{ fontFamily: "'Outfit', sans-serif" }}>{room.tagline}</p>
+                <div className="flex items-center gap-3 text-xs text-white/50 mb-3" style={{ fontFamily: "'Outfit', sans-serif" }}>
+                  <span className="flex items-center gap-1"><Bed size={12} />{room.beds === 1 ? "1 Bed" : `${room.beds} Beds`}</span>
+                  <span className="flex items-center gap-1"><Users size={12} />Up to {room.guests}</span>
+                </div>
+                <div className="flex flex-wrap gap-1.5 mb-3 flex-1 content-start">
+                  {room.amenities.slice(0, 3).map((a: string) => (
+                    <span key={a} className="text-xs bg-white/10 text-white/70 px-2 py-0.5 rounded-full" style={{ fontFamily: "'Outfit', sans-serif" }}>{a}</span>
+                  ))}
+                </div>
+                <div className="flex items-center justify-between pt-3 border-t border-white/10 mt-auto">
+                  <div>
+                    <span className="text-xl font-bold text-white" style={{ fontFamily: "'Cormorant Garamond', serif" }}>${room.price}</span>
+                    <span className="text-xs text-white/50"> / night</span>
+                  </div>
+                  <span className="btn-amber flex items-center gap-1 px-3 py-1.5 rounded-full text-xs font-semibold">View Now <ExternalLink size={11} /></span>
+                </div>
+              </div>
+            </a>
+          ))}
+        </div>
+
+        {/* Desktop grid */}
+        <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+          {rooms.map((room, i) => (
+            <a
+              key={room.id}
+              href={(room as any).comingSoon ? undefined : (room.airbnbUrl || "#")}
+              target={!(room as any).comingSoon ? "_blank" : undefined}
+              rel={!(room as any).comingSoon ? "noopener noreferrer" : undefined}
+              onClick={(room as any).comingSoon ? (e) => e.preventDefault() : undefined}
+              className={`fade-up bg-[oklch(0.24_0.01_55)] rounded-2xl overflow-hidden border border-white/10 group flex flex-col ${
+                (room as any).comingSoon ? "cursor-default opacity-80" : "card-hover cursor-pointer"
+              }`}
               style={{ transitionDelay: `${i * 80}ms` }}
             >
               {/* Image */}
@@ -241,7 +329,14 @@ export default function RoomsSection() {
                   alt={room.name}
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                 />
-                {room.featured && (
+                {(room as any).comingSoon && (
+                  <div className="absolute inset-0 bg-black/50 flex items-center justify-center z-10">
+                    <span className="bg-[oklch(0.58_0.16_55)] text-white text-sm font-bold px-5 py-2 rounded-full uppercase tracking-widest shadow-lg">
+                      Coming Soon
+                    </span>
+                  </div>
+                )}
+                {room.featured && !((room as any).comingSoon) && (
                   <div className="absolute top-3 left-3 bg-[oklch(0.68_0.15_65)] text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">
                     Top Pick
                   </div>
@@ -254,7 +349,7 @@ export default function RoomsSection() {
               </div>
 
               {/* Content */}
-              <div className="p-5">
+              <div className="p-5 flex flex-col flex-1">
                 <div className="text-xs text-[oklch(0.68_0.15_65)] font-medium mb-1" style={{ fontFamily: "'Outfit', sans-serif" }}>
                   {room.location}
                 </div>
@@ -275,8 +370,8 @@ export default function RoomsSection() {
                 </div>
 
                 {/* Amenities */}
-                <div className="flex flex-wrap gap-2 mb-5">
-                  {room.amenities.map((a) => (
+                <div className="flex flex-wrap gap-2 mb-5 flex-1 content-start">
+                  {room.amenities.map((a: string) => (
                     <span
                       key={a}
                       className="text-xs bg-white/10 text-white/70 px-2.5 py-1 rounded-full"
@@ -288,7 +383,7 @@ export default function RoomsSection() {
                 </div>
 
                 {/* Price + CTA */}
-                <div className="flex items-center justify-between pt-4 border-t border-white/10">
+                <div className="flex items-center justify-between pt-4 border-t border-white/10 mt-auto">
                   <div>
                     <span
                       className="text-2xl font-bold text-white"
@@ -302,12 +397,12 @@ export default function RoomsSection() {
                     href={room.airbnbUrl}
                     className="btn-amber flex items-center gap-1.5 px-4 py-2 rounded-full text-sm font-semibold"
                   >
-                    Book Now
+                    View Now
                     <ExternalLink size={13} />
                   </a>
                 </div>
               </div>
-            </div>
+            </a>
           ))}
         </div>
       </div>
