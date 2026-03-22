@@ -51,3 +51,5 @@
 - Uses Manus webdev platform for hosting
 - All listings include ratings, reviews, and pricing
 - Responsive design works on mobile, tablet, and desktop
+- Vacation homes now use static fallback data when database is empty
+- All 13 homes and 12 rooms fully restored and displaying (Mar 22, 2026)

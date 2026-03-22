@@ -317,22 +317,23 @@ export default function HomesSection() {
   const [activeFilter, setActiveFilter] = useState("all");
   const { data: dbListings = [], isLoading } = trpc.listings.getActiveHomes.useQuery();
 
-  // Map DB listings to the shape the card renderer expects
-  const homes = dbListings.map((l) => ({
+  // Map DB listings to the shape the card renderer expects, or use static fallback if DB is empty
+  const listingsToUse = dbListings && dbListings.length > 0 ? dbListings : _homes_unused;
+  const homes = listingsToUse.map((l: any) => ({
     id: l.id,
     name: l.name,
     tagline: l.tagline,
     location: l.location,
     beds: l.beds,
-    baths: parseFloat(l.baths),
+    baths: typeof l.baths === 'string' ? parseFloat(l.baths) : l.baths,
     guests: l.guests,
     price: l.price,
-    rating: parseFloat(l.rating),
+    rating: typeof l.rating === 'string' ? parseFloat(l.rating) : l.rating,
     reviews: l.reviews,
-    tags: Array.isArray(l.tags) ? l.tags : JSON.parse(l.tags as unknown as string || "[]"),
-    badges: Array.isArray(l.badges) ? l.badges : JSON.parse(l.badges as unknown as string || "[]"),
+    tags: Array.isArray(l.tags) ? l.tags : (typeof l.tags === 'string' ? JSON.parse(l.tags) : []),
+    badges: Array.isArray(l.badges) ? l.badges : (typeof l.badges === 'string' ? JSON.parse(l.badges) : []),
     image: l.image,
-    airbnbUrl: l.houfy_url,
+    airbnbUrl: l.airbnbUrl || l.houfy_url,
     featured: Boolean(l.featured),
   }));
 
