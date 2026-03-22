@@ -393,13 +393,16 @@ export default function RoomsSection() {
                     </span>
                     <span className="text-sm text-white/50"> / night</span>
                   </div>
-                  <a
-                    href={room.airbnbUrl}
-                    className="btn-amber flex items-center gap-1.5 px-4 py-2 rounded-full text-sm font-semibold"
+                  <button
+                    onClick={(e) => {
+                      e.preventDefault();
+                      if (room.airbnbUrl) window.open(room.airbnbUrl, '_blank');
+                    }}
+                    className="btn-amber flex items-center gap-1.5 px-4 py-2 rounded-full text-sm font-semibold hover:opacity-90 transition-opacity"
                   >
                     View Now
                     <ExternalLink size={13} />
-                  </a>
+                  </button>
                 </div>
               </div>
             </a>

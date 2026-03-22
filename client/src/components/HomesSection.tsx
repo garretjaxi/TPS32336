@@ -592,13 +592,16 @@ export default function HomesSection() {
                       </span>
                       <span className="text-sm text-[oklch(0.5_0.02_60)]"> / night</span>
                     </div>
-                    <a
-                      href={home.airbnbUrl}
-                      className="btn-amber flex items-center gap-1.5 px-4 py-2 rounded-full text-sm font-semibold"
+                    <button
+                      onClick={(e) => {
+                        e.preventDefault();
+                        window.open(home.airbnbUrl, '_blank');
+                      }}
+                      className="btn-amber flex items-center gap-1.5 px-4 py-2 rounded-full text-sm font-semibold hover:opacity-90 transition-opacity"
                     >
                       View Now
                       <ExternalLink size={13} />
-                    </a>
+                    </button>
                   </div>
                 </div>
               </a>
