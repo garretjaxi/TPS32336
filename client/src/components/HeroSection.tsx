@@ -4,7 +4,7 @@
    ============================================================= */
 import { Star, ChevronDown } from "lucide-react";
 
-const HERO_IMG = "/hero-banner-new.png";
+const HERO_IMG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663450455662/9cFYW7E3ZSgdzZcVUYn2yx/hero-banner-new_3f2b54d6.png";
 
 export default function HeroSection() {
   return (

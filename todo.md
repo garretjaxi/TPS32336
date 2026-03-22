@@ -53,3 +53,5 @@
 - Responsive design works on mobile, tablet, and desktop
 - Vacation homes now use static fallback data when database is empty
 - All 13 homes and 12 rooms fully restored and displaying (Mar 22, 2026)
+- Hero banner image restored with luxury home and Disney Castle fireworks
+- All property images and activity images now displaying correctly
