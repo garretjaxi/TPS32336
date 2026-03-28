@@ -322,7 +322,9 @@ export default function HomesSection({ hideHeader = false }: { hideHeader?: bool
   const { data: dbListings = [], isLoading } = trpc.listings.getActiveHomes.useQuery();
 
   // Map DB listings to the shape the card renderer expects
-  const homes = dbListings.map((l) => ({
+  // Use static fallback if database is empty
+  const homesData = dbListings.length > 0 ? dbListings : _homes_unused;
+  const homes = homesData.map((l) => ({
     id: l.id,
     name: l.name,
     tagline: l.tagline,
