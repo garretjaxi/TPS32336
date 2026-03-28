@@ -1,0 +1,1 @@
+ALTER TABLE `listings` ADD `listing_type` varchar(20) DEFAULT 'home' NOT NULL;

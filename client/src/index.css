@@ -74,10 +74,10 @@
   --background: oklch(0.975 0.012 80);
   --foreground: oklch(0.18 0.012 55);
 
-  --card: oklch(1 0 0);
+  --card: oklch(0.98 0.008 80);
   --card-foreground: oklch(0.18 0.012 55);
 
-  --popover: oklch(1 0 0);
+  --popover: oklch(0.98 0.008 80);
   --popover-foreground: oklch(0.18 0.012 55);
 
   --secondary: oklch(0.93 0.02 75);
@@ -219,5 +219,20 @@
   .fade-up.visible {
     opacity: 1;
     transform: translateY(0);
+  }
+
+  /* Shop card enter animation — used when category filter changes */
+  @keyframes shopCardEnter {
+    from {
+      opacity: 0;
+      transform: translateY(18px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  .shop-card-enter {
+    animation: shopCardEnter 0.35s ease both;
   }
 }

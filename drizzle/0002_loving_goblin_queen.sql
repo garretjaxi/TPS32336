@@ -1,0 +1,22 @@
+CREATE TABLE `listings` (
+	`id` int AUTO_INCREMENT NOT NULL,
+	`name` varchar(256) NOT NULL,
+	`tagline` varchar(512) NOT NULL,
+	`location` varchar(256) NOT NULL,
+	`beds` int NOT NULL DEFAULT 1,
+	`baths` decimal(4,1) NOT NULL DEFAULT '1.0',
+	`guests` int NOT NULL DEFAULT 2,
+	`price` int NOT NULL DEFAULT 100,
+	`rating` decimal(3,2) NOT NULL DEFAULT '5.00',
+	`reviews` int NOT NULL DEFAULT 0,
+	`tags` json NOT NULL DEFAULT ('[]'),
+	`badges` json NOT NULL DEFAULT ('[]'),
+	`image` text NOT NULL,
+	`houfy_url` text NOT NULL DEFAULT (''),
+	`featured` tinyint NOT NULL DEFAULT 0,
+	`active` tinyint NOT NULL DEFAULT 1,
+	`sort_order` int NOT NULL DEFAULT 0,
+	`createdAt` timestamp NOT NULL DEFAULT (now()),
+	`updatedAt` timestamp NOT NULL DEFAULT (now()) ON UPDATE CURRENT_TIMESTAMP,
+	CONSTRAINT `listings_id` PRIMARY KEY(`id`)
+);

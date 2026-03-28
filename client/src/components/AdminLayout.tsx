@@ -8,10 +8,12 @@ import {
   Package,
   ShoppingCart,
   BarChart3,
+  Users,
   Home,
   ChevronLeft,
   Menu,
   X,
+  MessageSquare,
 } from "lucide-react";
 
 const navItems = [
@@ -42,6 +44,20 @@ const navItems = [
     icon: BarChart3,
     color: "text-purple-500",
     activeBg: "bg-purple-50 text-purple-700 border-l-2 border-purple-500",
+  },
+  {
+    label: "Inquiries",
+    href: "/admin/inquiries",
+    icon: MessageSquare,
+    color: "text-rose-500",
+    activeBg: "bg-rose-50 text-rose-700 border-l-2 border-rose-500",
+  },
+  {
+    label: "Users",
+    href: "/admin/users",
+    icon: Users,
+    color: "text-rose-500",
+    activeBg: "bg-rose-50 text-rose-700 border-l-2 border-rose-500",
   },
 ];
 

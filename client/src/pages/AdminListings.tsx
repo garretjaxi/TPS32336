@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { trpc } from "@/lib/trpc";
 import { useLocation } from "wouter";
 import AdminLayout from "@/components/AdminLayout";
@@ -445,15 +445,30 @@ export default function AdminListings() {
   const [badgesInput, setBadgesInput] = useState("");
   const [orderedListings, setOrderedListings] = useState<Listing[]>([]);
   const [orderChanged, setOrderChanged] = useState(false);
+  const [typeFilter, setTypeFilter] = useState<"all" | "home" | "room">("all");
 
   const { data: listings = [], isLoading } = trpc.listings.getAll.useQuery();
 
-  // Sync orderedListings when data arrives
+  // Sync orderedListings when data arrives — use a stable key to avoid
+  // infinite loops caused by React Query returning a new array reference
+  // on every render even when the underlying data hasn't changed.
+  const listingsKey = listings.map((l: Listing) => `${l.id}:${l.sort_order}:${l.active}:${l.featured}`).join(",");
+  const prevKeyRef = useRef("");
   useEffect(() => {
-    const sorted = [...listings].sort((a: Listing, b: Listing) => a.sort_order - b.sort_order);
+    // We re-filter and re-sort whenever listings or the type filter changes
+    let filtered = [...listings];
+    if (typeFilter !== "all") {
+      filtered = filtered.filter((l: Listing) => (l.listing_type || "home") === typeFilter);
+    }
+    
+    const sorted = filtered.sort((a: Listing, b: Listing) => a.sort_order - b.sort_order);
     setOrderedListings(sorted);
-    setOrderChanged(false);
-  }, [listings]);
+    // Only reset orderChanged if the underlying data changed, not just the filter
+    if (listingsKey !== prevKeyRef.current) {
+      prevKeyRef.current = listingsKey;
+      setOrderChanged(false);
+    }
+  }, [listingsKey, typeFilter]);
 
   const createMutation = trpc.listings.create.useMutation({
     onSuccess: () => {
@@ -534,9 +549,9 @@ export default function AdminListings() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    const data = { ...form, tags: parseCSV(tagsInput), badges: parseCSV(badgesInput), listing_type: (form.listing_type as "home" | "room") || "home" };
+    const data = { ...form, tags: parseCSV(tagsInput), badges: parseCSV(badgesInput), listing_type: form.listing_type as "home" | "room" };
     if (editingListing) {
-      updateMutation.mutate({ id: editingListing.id, data: data as any });
+      updateMutation.mutate({ id: editingListing.id, data });
     } else {
       createMutation.mutate(data as any);
     }
@@ -572,8 +587,36 @@ export default function AdminListings() {
     <AdminLayout title="Listings Manager">
     <div className="bg-gray-50">
       {/* Header */}
-      <div className="bg-white border-b border-gray-200 px-6 py-4 flex items-center justify-between">
-        <h1 className="text-lg font-semibold text-gray-900">Listings Manager</h1>
+      <div className="bg-white border-b border-gray-200 px-6 py-4 flex flex-wrap items-center justify-between gap-4">
+        <div className="flex items-center gap-4">
+          <h1 className="text-lg font-semibold text-gray-900">Listings Manager</h1>
+          <div className="flex bg-gray-100 p-1 rounded-lg">
+            <button
+              onClick={() => setTypeFilter("all")}
+              className={`px-3 py-1 text-xs font-medium rounded-md transition-colors ${
+                typeFilter === "all" ? "bg-white shadow-sm text-amber-600" : "text-gray-500 hover:text-gray-700"
+              }`}
+            >
+              All
+            </button>
+            <button
+              onClick={() => setTypeFilter("home")}
+              className={`px-3 py-1 text-xs font-medium rounded-md transition-colors ${
+                typeFilter === "home" ? "bg-white shadow-sm text-amber-600" : "text-gray-500 hover:text-gray-700"
+              }`}
+            >
+              🏠 Homes
+            </button>
+            <button
+              onClick={() => setTypeFilter("room")}
+              className={`px-3 py-1 text-xs font-medium rounded-md transition-colors ${
+                typeFilter === "room" ? "bg-white shadow-sm text-amber-600" : "text-gray-500 hover:text-gray-700"
+              }`}
+            >
+              🛏️ Rooms
+            </button>
+          </div>
+        </div>
         <div className="flex items-center gap-2">
           {orderChanged && (
             <Button

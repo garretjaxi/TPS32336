@@ -3,101 +3,101 @@
    Golden Hour Luxury Design
    ============================================================= */
 import { useEffect, useRef, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { ChevronLeft, ChevronRight, ExternalLink } from "lucide-react";
 import { toast } from "sonner";
 
-const activities = [
-  {
-    id: 1,
-    name: "Medieval Times Dinner & Tournament",
-    category: "Dinner Show",
-    description: "Cheer on your knight while feasting on a four-course meal at this legendary dinner tournament show.",
-    price: 67,
-    duration: "2.5 hours",
-    image: "/medieval-times-dinner.jpg",
-    emoji: "⚔️",
-    ticketUrl: "https://kgstix.com/themeparkstays/dinner-shows/details/293847/medieval-times-dinner-tournament/",
-  },
-  {
-    id: 2,
-    name: "Wild Florida Airboat Tours",
-    category: "Nature Adventure",
-    description: "Glide through the Florida Everglades on a thrilling airboat tour and spot alligators in their natural habitat.",
-    price: 45,
-    duration: "1 hour",
-    image: "/wild-florida-airboat.jpg",
-    emoji: "🐊",
-    ticketUrl: "https://kgstix.com/themeparkstays/outdoor-adventure/details/293501/wild-florida-gator-park/",
-  },
-  {
-    id: 3,
-    name: "Kennedy Space Center",
-    category: "Space & Science",
-    description: "Walk among real rockets, meet astronauts, and experience the awe-inspiring Space Shuttle Atlantis exhibit at America's premier space exploration destination.",
-    price: 75,
-    duration: "Full Day",
-    image: "/kennedy-space-center.jpg",
-    emoji: "🚀",
-    ticketUrl: "https://kgstix.com/themeparkstays/outdoor-adventure/details/293490/kennedy-space-center-complex/",
-  },
-  {
-    id: 4,
-    name: "ICON Park",
-    category: "Entertainment Complex",
-    description: "Orlando's premier entertainment destination on International Drive — featuring The Wheel observation ride, Sea Life Aquarium, Madame Tussauds, dining, and live entertainment all in one vibrant complex.",
-    price: 35,
-    duration: "2-4 hours",
-    image: "/icon-park.webp",
-    emoji: "🎉",
-    ticketUrl: "https://kgstix.com/themeparkstays/indoor-adventure/details/293597/icon-park/",
-  },
-  {
-    id: 5,
-    name: "Dinosaur World Florida",
-    category: "Family Fun",
-    description: "Walk among over 200 life-size dinosaur sculptures in a lush outdoor setting. Dig for fossils, explore a prehistoric playground, and discover the world of dinosaurs just a short drive from Orlando.",
-    price: 17,
-    duration: "2-3 hours",
-    image: "/dinosaur-world.jpg",
-    emoji: "🦕",
-    ticketUrl: "https://www.dinosaurworld.com/florida",
-  },
-  {
-    id: 6,
-    name: "Gatorland",
-    category: "Wildlife Park",
-    description: "The Alligator Capital of the World! See thousands of alligators and crocodiles, zip-line over gators, and more.",
-    price: 30,
-    duration: "3-4 hours",
-    image: "/gatorland.jpg",
-    emoji: "🦎",
-    ticketUrl: "https://kgstix.com/themeparkstays/outdoor-adventure/details/293314/gatorland/",
-  },
-  {
-    id: 7,
-    name: "Fun Spot America",
-    category: "Amusement Park",
-    description: "Orlando's hometown amusement park featuring roller coasters, go-karts, arcade games, and family-friendly rides.",
-    price: 42,
-    duration: "3-5 hours",
-    image: "/fun-spot-america.jpg",
-    emoji: "🎡",
-    ticketUrl: "https://kgstix.com/themeparkstays/outdoor-adventure/details/293604/fun-spot-america/",
-  },
-  {
-    id: 8,
-    name: "WonderWorks Orlando",
-    category: "Indoor Adventure",
-    description: "Step inside the famous upside-down building on International Drive for 35,000 sq ft of hands-on science experiments, a 4D XD motion theatre, laser tag, a glow-in-the-dark ropes course, and over 100 interactive exhibits for all ages.",
-    price: 35,
-    duration: "2-3 hours",
-    image: "/wonderworks-orlando.jpg",
-    emoji: "🏛️",
-    ticketUrl: "https://kgstix.com/themeparkstays/indoor-adventure/details/293331/wonderworks-orlando/",
-  },
-];
-
 export default function ActivitiesSection() {
+  const { t } = useTranslation();
+
+  const activities = [
+    {
+      id: 1,
+      name: t("medievalTimesDinnerTournament"),
+      category: t("dinnerShow"),
+      description: t("medievalTimesDescription"),
+      price: 67,
+      duration: t("twoPointFiveHours"),
+      image: "https://d2xsxph8kpxj0f.cloudfront.net/310419663028408712/RyzLQxSB3n3EenkWRBno5W/medieval-times-dinner_b0cb3673.jpg",
+      emoji: "⚔️",
+      ticketUrl: "https://kgstix.com/themeparkstays/dinner-shows/details/293847/medieval-times-dinner-tournament/",
+    },
+    {
+      id: 2,
+      name: t("wildFloridaAirboatTours"),
+      category: t("natureAdventure"),
+      description: t("wildFloridaDescription"),
+      price: 45,
+      duration: t("oneHour"),
+      image: "https://d2xsxph8kpxj0f.cloudfront.net/310419663028408712/RyzLQxSB3n3EenkWRBno5W/wild-florida-airboat_6d83e6ef.jpg",
+      emoji: "🐊",
+      ticketUrl: "https://kgstix.com/themeparkstays/outdoor-adventure/details/293501/wild-florida-gator-park/",
+    },
+    {
+      id: 3,
+      name: t("kennedySpaceCenter"),
+      category: t("spaceScience"),    description: t("kennedySpaceCenterDescription"),
+      price: 75,
+      duration: t("fullDay"),
+      image: "https://d2xsxph8kpxj0f.cloudfront.net/310419663028408712/RyzLQxSB3n3EenkWRBno5W/kennedy-space-center_d38ecf0b.jpg",
+      emoji: "🚀",
+      ticketUrl: "https://kgstix.com/themeparkstays/outdoor-adventure/details/293490/kennedy-space-center-complex/",
+    },
+    {
+      id: 4,
+      name: t("iconPark"),
+      category: t("entertainmentComplex"),    description: t("iconParkDescription"),
+      price: 35,
+      duration: t("twoToFourHours"),
+      image: "https://d2xsxph8kpxj0f.cloudfront.net/310419663028408712/RyzLQxSB3n3EenkWRBno5W/icon-park_e5c5e36a.webp",
+      emoji: "🎉",
+      ticketUrl: "https://kgstix.com/themeparkstays/indoor-adventure/details/293597/icon-park/",
+    },
+    {
+      id: 5,
+      name: t("dinosaurWorldFlorida"),
+      category: t("familyFun"),
+      description: t("dinosaurWorldDescription"),
+      price: 17,
+      duration: t("twoToThreeHours"),
+      image: "https://d2xsxph8kpxj0f.cloudfront.net/310419663028408712/RyzLQxSB3n3EenkWRBno5W/dinosaur-world_aa62ce3d.jpg",
+      emoji: "🦕",
+      ticketUrl: "https://www.dinosaurworld.com/florida",
+    },
+    {
+      id: 6,
+      name: t("gatorland"),
+      category: t("wildlifePark"),
+      description: t("gatorlandDescription"),
+      price: 30,
+      duration: t("threeToFourHours"),
+      image: "https://d2xsxph8kpxj0f.cloudfront.net/310419663028408712/RyzLQxSB3n3EenkWRBno5W/gatorland_98b699fd.jpg",
+      emoji: "🦎",
+      ticketUrl: "https://kgstix.com/themeparkstays/outdoor-adventure/details/293314/gatorland/",
+    },
+    {
+      id: 7,
+      name: t("funSpotAmerica"),
+      category: t("amusementPark"),
+      description: t("funSpotAmericaDescription"),    price: 42,
+      duration: t("threeToFiveHours"),
+      image: "https://d2xsxph8kpxj0f.cloudfront.net/310419663028408712/RyzLQxSB3n3EenkWRBno5W/fun-spot-america_fb7c9cd6.jpg",
+      emoji: "🎡",
+      ticketUrl: "https://kgstix.com/themeparkstays/outdoor-adventure/details/293604/fun-spot-america/",
+    },
+    {
+      id: 8,
+      name: t("wonderWorksOrlando"),
+      category: t("indoorAdventure"),
+      description: t("wonderWorksOrlandoDescription"),
+      price: 35,
+      duration: t("twoToThreeHours"),
+      image: "https://d2xsxph8kpxj0f.cloudfront.net/310419663028408694/WLK9HrnjKwqDRXug8CJMYa/wonderworks-orlando_21413ecf.jpg",
+      emoji: "🏛️",
+      ticketUrl: "https://kgstix.com/themeparkstays/indoor-adventure/details/293331/wonderworks-orlando/",
+    },
+  ];
+
   const sectionRef = useRef<HTMLDivElement>(null);
   const carouselRef = useRef<HTMLDivElement>(null);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
@@ -137,8 +137,8 @@ export default function ActivitiesSection() {
   };
 
   const handleGetTickets = (name: string) => {
-    toast.info(`Getting tickets for ${name}`, {
-      description: "We'll connect you with the best available prices.",
+    toast.info(`${t("gettingTicketsFor")}${name}`, {
+      description: t("connectYouWithBestPrices"),
     });
   };
 
@@ -148,11 +148,11 @@ export default function ActivitiesSection() {
         {/* Header */}
         <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-8 fade-up">
           <div>
-            <span className="section-label">Beyond the Parks</span>
+            <span className="section-label">{t("beyondTheParks")}</span>
             <div className="gold-rule w-16 my-4" />
             <h2 className="display-heading text-3xl md:text-4xl text-[oklch(0.18_0.012_55)]">
-              More Orlando<br />
-              <span className="italic text-[oklch(0.58_0.16_55)]">Adventures</span>
+              {t("moreOrlando")}<br />
+              <span className="italic text-[oklch(0.58_0.16_55)]">{t("adventures")}</span>
             </h2>
           </div>
           <div className="flex items-center gap-3">
@@ -227,7 +227,7 @@ export default function ActivitiesSection() {
                     <span className="text-base font-bold text-[oklch(0.18_0.012_55)]" style={{ fontFamily: "'Cormorant Garamond', serif" }}>
                       ${activity.price}
                     </span>
-                    <span className="text-xs text-[oklch(0.5_0.02_60)]"> · {activity.duration}</span>
+                    <span className="text-xs text-[oklch(0.5_0.02_60)]"> {t("separator")} {activity.duration}</span>
                   </div>
                   {(activity as any).ticketUrl ? (
                     <a
@@ -236,7 +236,7 @@ export default function ActivitiesSection() {
                       rel="noopener noreferrer"
                       className="btn-amber flex items-center gap-1.5 px-3 py-2 rounded-full text-xs font-semibold"
                     >
-                      Get Tickets
+                      {t("getTickets")}
                       <ExternalLink size={11} />
                     </a>
                   ) : (
@@ -244,7 +244,7 @@ export default function ActivitiesSection() {
                       onClick={() => handleGetTickets(activity.name)}
                       className="btn-amber flex items-center gap-1.5 px-3 py-2 rounded-full text-xs font-semibold"
                     >
-                      Get Tickets
+                      {t("getTickets")}
                       <ExternalLink size={11} />
                     </button>
                   )}

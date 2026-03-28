@@ -3,16 +3,23 @@
    Full-bleed hero with parallax overlay and park badges
    ============================================================= */
 import { Star, ChevronDown } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
-const HERO_IMG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663450455662/9cFYW7E3ZSgdzZcVUYn2yx/hero-banner-new_3f2b54d6.png";
+const HERO_IMG = "https://d2xsxph8kpxj0f.cloudfront.net/310419663028408712/RyzLQxSB3n3EenkWRBno5W/hero-banner-zoomed-out_1d4f91bb.png";
 
 export default function HeroSection() {
+  const { t } = useTranslation();
   return (
     <section className="relative min-h-[85vh] md:min-h-screen flex flex-col items-center justify-end overflow-hidden">
       {/* Background image */}
       <div
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-        style={{ backgroundImage: `url(${HERO_IMG})` }}
+        className="absolute inset-0"
+        style={{
+          backgroundImage: `url(${HERO_IMG})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center center",
+          backgroundRepeat: "no-repeat",
+        }}
       />
       {/* Gradient overlay */}
       <div className="absolute inset-0 bg-gradient-to-b from-black/5 via-transparent to-black/40" />
@@ -22,25 +29,24 @@ export default function HeroSection() {
 
         {/* Main heading */}
         <h1
-          className="text-white text-5xl md:text-7xl lg:text-8xl font-bold leading-[1.05] mb-6 max-w-5xl"
+          className="text-white text-[2.5rem] md:text-[3.675rem] lg:text-[4.2rem] font-bold leading-[1.05] mb-6 max-w-5xl"
           style={{ fontFamily: "'Cormorant Garamond', serif" }}
         >
-          Your Home Base for the{" "}
+          {t("heroTitlePart1")}{" "}
           <span
-            className="block italic font-extrabold text-7xl md:text-9xl lg:text-[11rem] leading-none drop-shadow-[0_4px_24px_rgba(255,200,60,0.55)]"
+            className="block italic font-extrabold text-[3.675rem] md:text-[4.725rem] lg:text-[9.25rem] leading-none drop-shadow-[0_4px_24px_rgba(255,200,60,0.55)]"
             style={{
               fontFamily: "'Playfair Display', serif",
               color: "#FFD700",
               WebkitTextStroke: "1px rgba(255,160,0,0.6)",
             }}
           >
-            Magic
+            {t("heroTitlePart2")}
           </span>
         </h1>
 
         <p className="text-white/85 text-lg md:text-xl max-w-2xl mb-4 leading-relaxed" style={{ fontFamily: "'Outfit', sans-serif" }}>
-          Close to Disney World, Universal Studios, LEGOLAND &amp; SeaWorld.
-          Book direct — no Airbnb fees, no surprises.
+          {t("heroSubtitle")}
         </p>
 
         {/* Star rating + trust line */}
@@ -52,11 +58,11 @@ export default function HeroSection() {
               ))}
             </div>
             <span className="text-white text-base font-semibold" style={{ fontFamily: "'Outfit', sans-serif" }}>
-              5-Star Rated · 5,000+ Happy Families
+              {t("fiveStarRated")} · {t("happyFamilies")}
             </span>
           </div>
           <span className="text-white/65 text-sm tracking-wide" style={{ fontFamily: "'Outfit', sans-serif" }}>
-            No booking fees · Instant confirmation · Cancel anytime
+            {t("noBookingFees")} · {t("instantConfirmation")} · {t("cancelAnytime")}
           </span>
         </div>
       </div>
@@ -67,7 +73,7 @@ export default function HeroSection() {
           className="text-white/80 text-base font-semibold tracking-widest uppercase"
           style={{ fontFamily: "'Outfit', sans-serif" }}
         >
-          Scroll
+          {t("scroll")}
         </span>
         <ChevronDown size={36} className="text-white/80" />
       </div>

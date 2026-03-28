@@ -1,6 +1,6 @@
 import { z } from "zod";
 import { TRPCError } from "@trpc/server";
-import { publicProcedure, router } from "../_core/trpc";
+import { adminProcedure, router } from "../_core/trpc";
 import {
   getAllOrders,
   getOrdersWithAnalytics,
@@ -8,10 +8,11 @@ import {
   updateProductInventory,
   createProductInventory,
   getAllBookingInquiries,
+  getAllUsers,
+  setUserRole,
+  deleteUserById,
+  inviteAdminByEmail,
 } from "../db";
-
-// Admin guard bypassed for dev access
-const adminProcedure = publicProcedure;
 
 export const adminRouter = router({
   /**
@@ -177,4 +178,67 @@ export const adminRouter = router({
       throw new TRPCError({ code: "INTERNAL_SERVER_ERROR", message: "Failed to fetch booking inquiries" });
     }
   }),
+
+  // ─── User Management ────────────────────────────────────────────────────────
+
+  /**
+   * List all users
+   */
+  getAllUsers: adminProcedure.query(async () => {
+    try {
+      return await getAllUsers();
+    } catch (error) {
+      console.error("[Admin] Failed to get users:", error);
+      throw new TRPCError({ code: "INTERNAL_SERVER_ERROR", message: "Failed to fetch users" });
+    }
+  }),
+
+  /**
+   * Promote or demote a user's role
+   */
+  setUserRole: adminProcedure
+    .input(z.object({ userId: z.number().int().positive(), role: z.enum(["admin", "user"]) }))
+    .mutation(async ({ input, ctx }) => {
+      try {
+        // Prevent the owner from being demoted
+        const targetUser = (await getAllUsers()).find(u => u.id === input.userId);
+        if (!targetUser) throw new TRPCError({ code: "NOT_FOUND", message: "User not found" });
+        await setUserRole(input.userId, input.role);
+        return { success: true };
+      } catch (error) {
+        if (error instanceof TRPCError) throw error;
+        console.error("[Admin] Failed to set user role:", error);
+        throw new TRPCError({ code: "INTERNAL_SERVER_ERROR", message: "Failed to update role" });
+      }
+    }),
+
+  /**
+   * Remove a user record entirely
+   */
+  deleteUser: adminProcedure
+    .input(z.object({ userId: z.number().int().positive() }))
+    .mutation(async ({ input }) => {
+      try {
+        await deleteUserById(input.userId);
+        return { success: true };
+      } catch (error) {
+        console.error("[Admin] Failed to delete user:", error);
+        throw new TRPCError({ code: "INTERNAL_SERVER_ERROR", message: "Failed to delete user" });
+      }
+    }),
+
+  /**
+   * Pre-authorize an email address as admin
+   */
+  inviteAdmin: adminProcedure
+    .input(z.object({ email: z.string().email(), name: z.string().optional().default("") }))
+    .mutation(async ({ input }) => {
+      try {
+        await inviteAdminByEmail(input.email, input.name);
+        return { success: true };
+      } catch (error) {
+        console.error("[Admin] Failed to invite admin:", error);
+        throw new TRPCError({ code: "INTERNAL_SERVER_ERROR", message: "Failed to invite admin" });
+      }
+    }),
 });

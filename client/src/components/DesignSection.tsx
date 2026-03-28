@@ -3,54 +3,57 @@
    Golden Hour Luxury Design
    ============================================================= */
 import { useEffect, useRef } from "react";
+import { useTranslation } from "react-i18next";
 import { Sparkles, Home, ArrowRight, CheckCircle } from "lucide-react";
 import { useLocation } from "wouter";
 
 const DESIGN_BG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663446287426/E83KvqYJ4TGqcmgXCyYT4P/design-services-bg-U8bKUjVNMTXkb7M4YMswgH.webp";
 
-const designStyles = [
-  {
-    icon: Sparkles,
-    title: "Themed Transformations",
-    tagline: "Go All Out with a Theme",
-    desc: "Transform your property into an immersive themed experience — Disney magic, Harry Potter wizardry, Star Wars adventure, or any world your guests can dream of. Our design team creates jaw-dropping, Instagram-worthy spaces that command premium nightly rates.",
-    features: [
-      "Custom wall murals & 3D installations",
-      "Themed furniture & bedding",
-      "Immersive lighting design",
-      "Character-inspired decor",
-      "Unique photo opportunities",
-    ],
-    color: "from-blue-900/80 to-purple-900/80",
-    accentColor: "text-blue-300",
-    image: "https://d2xsxph8kpxj0f.cloudfront.net/310519663446287426/E83KvqYJ4TGqcmgXCyYT4P/design-services-bg-U8bKUjVNMTXkb7M4YMswgH.webp",
-  },
-  {
-    icon: Home,
-    title: "Elegant Luxury Design",
-    tagline: "Sophisticated & Timeless",
-    desc: "Prefer a more refined, upscale aesthetic? Our luxury design service creates sophisticated spaces with premium materials, curated art, and timeless elegance that appeals to discerning travelers seeking a high-end resort experience.",
-    features: [
-      "Premium material sourcing",
-      "Custom furniture selection",
-      "Art curation & installation",
-      "Lighting & ambiance design",
-      "Professional staging & photography",
-    ],
-    color: "from-amber-900/80 to-stone-900/80",
-    accentColor: "text-amber-300",
-    image: "https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?w=600&q=80",
-  },
-];
-
-const process = [
-  { step: "01", title: "Free Consultation", desc: "We visit your property and discuss your vision, budget, and goals." },
-  { step: "02", title: "Design Proposal", desc: "Our team creates a detailed design plan with mood boards and cost estimates." },
-  { step: "03", title: "Transformation", desc: "Our skilled contractors and designers bring the vision to life." },
-  { step: "04", title: "Launch & List", desc: "Professional photography and listing optimization to maximize bookings." },
-];
-
 export default function DesignSection() {
+  const { t } = useTranslation();
+
+  const designStyles = [
+    {
+      icon: Sparkles,
+      title: t("themedTransformations"),
+      tagline: t("goAllOutWithATheme"),
+      desc: t("themedTransformationsDesc"),
+      features: [
+        t("customWallMurals"),
+        t("themedFurniture"),
+        t("immersiveLighting"),
+        t("characterInspiredDecor"),
+        t("uniquePhotoOpportunities"),
+      ],
+      color: "from-blue-900/80 to-purple-900/80",
+      accentColor: "text-blue-300",
+      image: "https://d2xsxph8kpxj0f.cloudfront.net/310519663446287426/E83KvqYJ4TGqcmgXCyYT4P/design-services-bg-U8bKUjVNMTXkb7M4YMswgH.webp",
+    },
+    {
+      icon: Home,
+      title: t("elegantLuxuryDesign"),
+      tagline: t("sophisticatedTimeless"),
+      desc: t("elegantLuxuryDesignDesc"),
+      features: [
+        t("premiumMaterialSourcing"),
+        t("customFurnitureSelection"),
+        t("artCurationInstallation"),
+        t("lightingAmbianceDesign"),
+        t("professionalStagingPhotography"),
+      ],
+      color: "from-amber-900/80 to-stone-900/80",
+      accentColor: "text-amber-300",
+      image: "/elegant-luxury-design.jpg",
+    },
+  ];
+
+  const process = [
+    { step: "01", title: t("freeConsultation"), desc: t("freeConsultationDesc") },
+    { step: "02", title: t("designProposal"), desc: t("designProposalDesc") },
+    { step: "03", title: t("transformation"), desc: t("transformationDesc") },
+    { step: "04", title: t("launchList"), desc: t("launchListDesc") }
+  ];
+
   const sectionRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -73,7 +76,7 @@ export default function DesignSection() {
   const [, navigate] = useLocation();
 
   const handleViewDesign = () => {
-    navigate("/design");
+    navigate("/design-services");
   };
 
   return (
@@ -81,16 +84,14 @@ export default function DesignSection() {
       <div className="container">
         {/* Header */}
         <div className="text-center mb-16 fade-up">
-          <span className="section-label">Design Services</span>
+          <span className="section-label">{t("designServices")}</span>
           <div className="gold-rule w-24 mx-auto my-4" />
           <h2 className="display-heading text-4xl md:text-5xl lg:text-6xl text-[oklch(0.18_0.012_55)] mb-6">
-            Thinking About a<br />
-            <span className="italic text-[oklch(0.58_0.16_55)]">Remodel?</span>
+            {t("thinkingAboutARemodel")}<br />
+            <span className="italic text-[oklch(0.58_0.16_55)]">{t("remodel")}</span>
           </h2>
           <p className="text-[oklch(0.4_0.02_60)] text-lg max-w-3xl mx-auto leading-relaxed" style={{ fontFamily: "'Outfit', sans-serif" }}>
-            Whether you want to go all out with an immersive theme or create a sleek, elegant retreat —
-            our in-house design team specializes in vacation rental transformations that dramatically
-            increase your property's appeal and nightly rates.
+            {t("designDescription")}
           </p>
         </div>
 
@@ -154,7 +155,7 @@ export default function DesignSection() {
             className="text-2xl md:text-3xl font-bold text-white text-center mb-10"
             style={{ fontFamily: "'Cormorant Garamond', serif" }}
           >
-            Our Simple 4-Step Process
+            {t("ourSimple4StepProcess")}
           </h3>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {process.map((step, i) => (
@@ -179,13 +180,13 @@ export default function DesignSection() {
         {/* CTA */}
         <div className="fade-up text-center">
           <p className="text-[oklch(0.4_0.02_60)] mb-6 text-lg" style={{ fontFamily: "'Outfit', sans-serif" }}>
-            Ready to transform your property and maximize your rental income?
+            {t("readyToTransform")}
           </p>
           <button
             onClick={handleViewDesign}
             className="btn-amber inline-flex items-center gap-2 px-10 py-4 rounded-full text-base font-semibold"
           >
-            View Design Services
+            {t("viewDesignServices")}
             <ArrowRight size={18} />
           </button>
         </div>

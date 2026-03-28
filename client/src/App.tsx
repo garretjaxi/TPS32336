@@ -4,43 +4,72 @@ import NotFound from "@/pages/NotFound";
 import { Route, Switch } from "wouter";
 import ErrorBoundary from "./components/ErrorBoundary";
 import { ThemeProvider } from "./contexts/ThemeContext";
+import { HelmetProvider } from "react-helmet-async";
 import Home from "./pages/Home";
+import AdminHome from "./pages/AdminHome";
+import AdminListings from "./pages/AdminListings";
+import AdminUsers from "./pages/AdminUsers";
+import AdminDashboard from "./pages/AdminDashboard";
+import PropertyManagement from "./pages/PropertyManagement";
+import DesignServices from "./pages/DesignServices";
 import OrderConfirmation from "./pages/OrderConfirmation";
-import AdminHome from "@/pages/AdminHome";
-import AdminDashboard from "@/pages/AdminDashboard";
-import PropertyManagement from "@/pages/PropertyManagement";
-import DesignServices from "@/pages/DesignServices";
-import AdminListings from "@/pages/AdminListings";
+import About from "./pages/About";
+import ThemeParkTickets from "./pages/Explore";
+import Community from "./pages/Community";
+import { AdminGuard } from "./components/AdminGuard";
+import LoadingDisplay from "./components/LoadingDisplay";
+import { useEffect, useState } from "react";
 
 function Router() {
   return (
     <Switch>
       <Route path={"/"} component={Home} />
-      <Route path={"/shop/success"} component={OrderConfirmation} />
-      {/* Main admin landing page */}
-      <Route path={"/admin"} component={AdminHome} />
-      {/* Admin sub-sections */}
-      <Route path={"/admin/listings"} component={AdminListings} />
-      <Route path={"/admin/inventory"} component={() => <AdminDashboard defaultTab="inventory" />} />
-      <Route path={"/admin/orders"} component={() => <AdminDashboard defaultTab="orders" />} />
-      <Route path={"/admin/analytics"} component={() => <AdminDashboard defaultTab="overview" />} />
-      <Route path={"/management"} component={PropertyManagement} />
-      <Route path={"/design"} component={DesignServices} />
+      <Route path={"/admin"} component={() => <AdminGuard><AdminHome /></AdminGuard>} />
+      <Route path={"/admin/listings"} component={() => <AdminGuard><AdminListings /></AdminGuard>} />
+      <Route path={"/admin/users"} component={() => <AdminGuard><AdminUsers /></AdminGuard>} />
+      <Route path={"/admin/orders"} component={() => <AdminGuard><AdminDashboard defaultTab="orders" /></AdminGuard>} />
+      <Route path={"/admin/analytics"} component={() => <AdminGuard><AdminDashboard defaultTab="overview" /></AdminGuard>} />
+      <Route path={"/admin/inventory"} component={() => <AdminGuard><AdminDashboard defaultTab="inventory" /></AdminGuard>} />
+      <Route path={"/admin/inquiries"} component={() => <AdminGuard><AdminDashboard defaultTab="inquiries" /></AdminGuard>} />
+      <Route path={"/property-management"} component={PropertyManagement} />
+      <Route path={"/design-services"} component={DesignServices} />
+      <Route path={"/order-confirmation"} component={OrderConfirmation} />
+      <Route path={"/about"} component={About} />
+        <Route path="/theme-park-tickets" component={ThemeParkTickets} />
+      <Route path="/explore" component={ThemeParkTickets} /> {/* Redirect for backwards compatibility */}
+      <Route path={"/community"} component={Community} />
       <Route path={"/404"} component={NotFound} />
+      {/* Final fallback route */}
       <Route component={NotFound} />
     </Switch>
   );
 }
 
 function App() {
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    // Hide loading screen after a short delay to allow page to render
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 1500);
+
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
     <ErrorBoundary>
-      <ThemeProvider defaultTheme="light">
-        <TooltipProvider>
-          <Toaster />
-          <Router />
-        </TooltipProvider>
-      </ThemeProvider>
+      <HelmetProvider>
+        <ThemeProvider
+          defaultTheme="light"
+        >
+          <TooltipProvider>
+            <Toaster />
+            {isLoading && <LoadingDisplay />}
+            <Router />
+          </TooltipProvider>
+        </ThemeProvider>
+      </HelmetProvider>
     </ErrorBoundary>
   );
 }

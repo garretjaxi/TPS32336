@@ -2,8 +2,6 @@ import { int, mysqlEnum, mysqlTable, text, timestamp, varchar, decimal, json, da
 
 /**
  * Core user table backing auth flow.
- * Extend this file with additional tables as your product grows.
- * Columns use camelCase to match both database fields and generated types.
  */
 export const users = mysqlTable("users", {
   id: int("id").autoincrement().primaryKey(),
@@ -96,8 +94,8 @@ export const listings = mysqlTable("listings", {
   price: int("price").notNull().default(100),
   rating: decimal("rating", { precision: 3, scale: 2 }).notNull().default("5.00"),
   reviews: int("reviews").notNull().default(0),
-  tags: json("tags").$type<string[]>().notNull().default([]),
-  badges: json("badges").$type<string[]>().notNull().default([]),
+  tags: json("tags").$type<string[]>().notNull(),
+  badges: json("badges").$type<string[]>().notNull(),
   image: text("image").notNull(),
   houfy_url: text("houfy_url").notNull().default(""),
   featured: tinyint("featured").notNull().default(0),
@@ -110,3 +108,19 @@ export const listings = mysqlTable("listings", {
 
 export type Listing = typeof listings.$inferSelect;
 export type InsertListing = typeof listings.$inferInsert;
+
+/**
+ * VIP subscribers for discount code distribution
+ */
+export const vipSubscribers = mysqlTable("vip_subscribers", {
+  id: int("id").autoincrement().primaryKey(),
+  email: varchar("email", { length: 320 }).notNull().unique(),
+  discountCode: varchar("discountCode", { length: 32 }).default("Online10").notNull(),
+  discountPercentage: int("discountPercentage").default(10).notNull(),
+  isActive: tinyint("isActive").default(1).notNull(),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+});
+
+export type VIPSubscriber = typeof vipSubscribers.$inferSelect;
+export type InsertVIPSubscriber = typeof vipSubscribers.$inferInsert;

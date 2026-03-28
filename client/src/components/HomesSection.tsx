@@ -3,8 +3,10 @@
    Golden Hour Luxury Design
    ============================================================= */
 import { useState, useEffect, useRef } from "react";
+import { useTranslation } from "react-i18next";
 import { Bed, Bath, Users, Waves, Gamepad2, PawPrint, Star, ExternalLink, Sparkles } from "lucide-react";
 import { trpc } from "@/lib/trpc";
+import OptimizedImage from "./OptimizedImage";
 
 // Legacy static homes array removed — data now comes from the database
 const _homes_unused = [
@@ -265,44 +267,6 @@ const _homes_unused = [
   },
 ];
 
-const filterOptions = [
-  {
-    id: "all",
-    label: "All Homes",
-    icon: null,
-    image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=400&q=80",
-  },
-  {
-    id: "pool",
-    label: "Pool Homes",
-    icon: <Waves size={20} />,
-    image: "https://d2xsxph8kpxj0f.cloudfront.net/310419663028408649/6MfrdHFh2Y824AHn9CEQNW/4238_Lana_Ave_Final-55_7ddf9ac1.jpg",
-  },
-  {
-    id: "gameroom",
-    label: "Game Rooms",
-    icon: <Gamepad2 size={20} />,
-    image: "https://d2xsxph8kpxj0f.cloudfront.net/310419663028408649/6MfrdHFh2Y824AHn9CEQNW/game-room-new_5b58befe.webp",
-  },
-  {
-    id: "pets",
-    label: "Pet Friendly",
-    icon: <PawPrint size={20} />,
-    image: "https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=400&q=80",
-  },
-  {
-    id: "themed",
-    label: "Themed Rooms",
-    icon: <Sparkles size={20} />,
-    image: "https://d2xsxph8kpxj0f.cloudfront.net/310419663028408649/6MfrdHFh2Y824AHn9CEQNW/themed-rooms-new_12889edf.webp",
-  },
-  {
-    id: "resort",
-    label: "Resort Stay",
-    icon: <Star size={20} />,
-    image: "https://d2xsxph8kpxj0f.cloudfront.net/310419663028408649/6MfrdHFh2Y824AHn9CEQNW/windsor_island_waterpark_aerial_317276259a_c6627b9b.webp",
-  },
-];
 
 const tagIcons: Record<string, React.ReactNode> = {
   pool: <Waves size={12} />,
@@ -312,28 +276,67 @@ const tagIcons: Record<string, React.ReactNode> = {
   resort: <Star size={12} />,
 };
 
-export default function HomesSection() {
+export default function HomesSection({ hideHeader = false }: { hideHeader?: boolean }) {
+  const { t } = useTranslation();
+
+  const filterOptions = [
+    {
+      id: "all",
+      label: t("allHomes"),
+      icon: null,
+      image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=400&q=80",
+    },
+    {
+      id: "pool",
+      label: t("poolHomes"),
+      icon: <Waves size={20} />,
+      image: "https://d2xsxph8kpxj0f.cloudfront.net/310419663028408649/6MfrdHFh2Y824AHn9CEQNW/4238_Lana_Ave_Final-55_7ddf9ac1.jpg",
+    },
+    {
+      id: "gameroom",
+      label: t("gameRooms"),
+      icon: <Gamepad2 size={20} />,
+      image: "https://d2xsxph8kpxj0f.cloudfront.net/310419663028408649/6MfrdHFh2Y824AHn9CEQNW/game-room-new_5b58befe.webp",
+    },
+    {
+      id: "pets",
+      label: t("petFriendly"),
+      icon: <PawPrint size={20} />,
+      image: "https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=400&q=80",
+    },
+    {
+      id: "themed",
+      label: t("themedRooms"),
+      icon: <Sparkles size={20} />,
+      image: "https://d2xsxph8kpxj0f.cloudfront.net/310419663028408649/6MfrdHFh2Y824AHn9CEQNW/themed-rooms-new_12889edf.webp",
+    },
+    {
+      id: "resort",
+      label: t("resortStay"),
+      icon: <Star size={20} />,
+      image: "https://d2xsxph8kpxj0f.cloudfront.net/310419663028408649/6MfrdHFh2Y824AHn9CEQNW/windsor_island_waterpark_aerial_317276259a_c6627b9b.webp",
+    },
+  ];
   const sectionRef = useRef<HTMLDivElement>(null);
   const [activeFilter, setActiveFilter] = useState("all");
   const { data: dbListings = [], isLoading } = trpc.listings.getActiveHomes.useQuery();
 
-  // Map DB listings to the shape the card renderer expects, or use static fallback if DB is empty
-  const listingsToUse = dbListings && dbListings.length > 0 ? dbListings : _homes_unused;
-  const homes = listingsToUse.map((l: any) => ({
+  // Map DB listings to the shape the card renderer expects
+  const homes = dbListings.map((l) => ({
     id: l.id,
     name: l.name,
     tagline: l.tagline,
     location: l.location,
     beds: l.beds,
-    baths: typeof l.baths === 'string' ? parseFloat(l.baths) : l.baths,
+    baths: parseFloat(l.baths),
     guests: l.guests,
     price: l.price,
-    rating: typeof l.rating === 'string' ? parseFloat(l.rating) : l.rating,
+    rating: parseFloat(l.rating),
     reviews: l.reviews,
-    tags: Array.isArray(l.tags) ? l.tags : (typeof l.tags === 'string' ? JSON.parse(l.tags) : []),
-    badges: Array.isArray(l.badges) ? l.badges : (typeof l.badges === 'string' ? JSON.parse(l.badges) : []),
+    tags: Array.isArray(l.tags) ? l.tags : JSON.parse(l.tags as unknown as string || "[]"),
+    badges: Array.isArray(l.badges) ? l.badges : JSON.parse(l.badges as unknown as string || "[]"),
     image: l.image,
-    airbnbUrl: l.airbnbUrl || l.houfy_url,
+    airbnbUrl: l.houfy_url,
     featured: Boolean(l.featured),
   }));
 
@@ -341,55 +344,44 @@ export default function HomesSection() {
     ? homes
     : homes.filter((home) => home.tags.includes(activeFilter) || (activeFilter === "resort" && home.badges.some((b: string) => b === "Resort Stay")) || (activeFilter === "themed" && home.badges.some((b: string) => b === "Themed Rooms")));
 
-  // Re-animate cards whenever the filter changes
+  // Re-animate cards whenever the filter changes or data loads
   useEffect(() => {
-    if (!sectionRef.current) return;
-    const cards = sectionRef.current.querySelectorAll(".home-card");
-    cards.forEach((el) => el.classList.remove("visible"));
-    cards.forEach((el, i) => {
-      setTimeout(() => el.classList.add("visible"), i * 80);
-    });
-  }, [activeFilter]);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.querySelectorAll(".fade-up").forEach((el, i) => {
-              setTimeout(() => el.classList.add("visible"), i * 100);
-            });
-          }
-        });
-      },
-      { threshold: 0.05 }
-    );
-    if (sectionRef.current) observer.observe(sectionRef.current);
-    return () => observer.disconnect();
-  }, []);
+    if (!sectionRef.current || isLoading) return;
+    
+    // Small delay to ensure DOM is ready after loading state changes
+    const timer = setTimeout(() => {
+      const cards = sectionRef.current?.querySelectorAll(".fade-up");
+      cards?.forEach((el, i) => {
+        setTimeout(() => el.classList.add("visible"), i * 50);
+      });
+    }, 100);
+    
+    return () => clearTimeout(timer);
+  }, [activeFilter, isLoading, hideHeader]);
 
   return (
-    <section id="homes" ref={sectionRef} className="py-20 md:py-28 bg-[oklch(0.14_0.012_55)]">
+    <section id="homes" ref={sectionRef} className={`py-20 md:py-28 bg-[oklch(0.14_0.012_55)] ${hideHeader ? "pt-0" : ""}`}>
       <div className="container">
         {/* Header */}
-        <div className="mb-14 fade-up">
-          <span className="text-[oklch(0.68_0.15_65)] text-xs font-bold uppercase tracking-[0.2em]">Vacation Homes</span>
-          <div className="w-16 h-px bg-[oklch(0.68_0.15_65)] my-4" />
-          <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4">
-            <h2 className="display-heading text-4xl md:text-5xl text-white">
-              Luxury Homes<br />
-              <span className="italic text-[oklch(0.82_0.14_70)]">Built for Families</span>
-            </h2>
-            <p className="text-white/60 max-w-md leading-relaxed text-sm md:text-base" style={{ fontFamily: "'Outfit', sans-serif" }}>
-              Spacious, fully-equipped vacation homes — many with private pools, game rooms, and themed bedrooms — all minutes from Orlando's world-famous theme parks.
-            </p>
+        {!hideHeader && (
+          <div className="mb-14 fade-up">
+            <span className="text-[oklch(0.68_0.15_65)] text-xs font-bold uppercase tracking-[0.2em]">Vacation Homes</span>
+            <div className="w-16 h-px bg-[oklch(0.68_0.15_65)] my-4" />
+            <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4">
+              <h2 className="display-heading text-4xl md:text-5xl text-white">
+                {t("luxuryHomesBuiltForFamilies")}
+              </h2>
+              <p className="text-white/60 max-w-md leading-relaxed text-sm md:text-base" style={{ fontFamily: "'Outfit', sans-serif" }}>
+                {t("homesDescription")}
+              </p>
+            </div>
           </div>
-        </div>
+        )}
 
         {/* Filter Section */}
         <div className="mb-16 fade-up">
           <p className="text-center text-white/60 font-medium mb-8" style={{ fontFamily: "'Outfit', sans-serif" }}>
-            Find your favorite vacation home
+            {t("findYourFavoriteVacationHome")}
           </p>
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 sm:gap-4">
             {filterOptions.map((option) => (
@@ -465,9 +457,12 @@ export default function HomesSection() {
               >
                 {/* Image */}
                 <div className="relative aspect-[4/3] overflow-hidden">
-                  <img
+                  <OptimizedImage
                     src={home.image}
-                    alt={home.name}
+                    alt={`${home.name} - ${home.beds} bedroom vacation rental in ${home.location}`}
+                    width={400}
+                    height={300}
+                    priority={false}
                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                   />
                   {home.featured && (
@@ -492,9 +487,9 @@ export default function HomesSection() {
                     {home.tagline}
                   </p>
                   <div className="flex items-center gap-3 text-xs text-[oklch(0.4_0.02_60)] mb-3" style={{ fontFamily: "'Outfit', sans-serif" }}>
-                    <span className="flex items-center gap-1"><Bed size={12} />{home.beds} Beds</span>
-                    <span className="flex items-center gap-1"><Bath size={12} />{home.baths} Baths</span>
-                    <span className="flex items-center gap-1"><Users size={12} />Up to {home.guests}</span>
+                    <span className="flex items-center gap-1"><Bed size={12} />{home.beds} {t("beds")}</span>
+                    <span className="flex items-center gap-1"><Bath size={12} />{home.baths} {t("baths")}</span>
+                    <span className="flex items-center gap-1"><Users size={12} />Up to {home.guests} {t("guests")}</span>
                   </div>
                   <div className="flex flex-wrap gap-1.5 mb-3 flex-1 content-start">
                     {home.badges.slice(0, 3).map((badge: string) => (
@@ -509,7 +504,7 @@ export default function HomesSection() {
                       <span className="text-xs text-[oklch(0.5_0.02_60)]"> / night</span>
                     </div>
                     <span className="btn-amber flex items-center gap-1 px-3 py-1.5 rounded-full text-xs font-semibold">
-                      View Now <ExternalLink size={11} />
+                      {t("viewDetails")} <ExternalLink size={11} />
                     </span>
                   </div>
                 </div>
@@ -529,9 +524,12 @@ export default function HomesSection() {
               >
                 {/* Image */}
                 <div className="relative aspect-[4/3] overflow-hidden">
-                  <img
+                  <OptimizedImage
                     src={home.image}
-                    alt={home.name}
+                    alt={`${home.name} - ${home.beds} bedroom vacation rental in ${home.location}`}
+                    width={400}
+                    height={300}
+                    priority={false}
                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                   />
                   {home.featured && (
@@ -563,9 +561,9 @@ export default function HomesSection() {
 
                   {/* Specs */}
                   <div className="flex items-center gap-4 text-sm text-[oklch(0.4_0.02_60)] mb-4" style={{ fontFamily: "'Outfit', sans-serif" }}>
-                    <span className="flex items-center gap-1.5"><Bed size={14} />{home.beds} Beds</span>
-                    <span className="flex items-center gap-1.5"><Bath size={14} />{home.baths} Baths</span>
-                    <span className="flex items-center gap-1.5"><Users size={14} />Up to {home.guests}</span>
+                    <span className="flex items-center gap-1"><Bed size={12} />{home.beds} {t("beds")}</span>
+                    <span className="flex items-center gap-1"><Bath size={12} />{home.baths} {t("baths")}</span>
+                    <span className="flex items-center gap-1"><Users size={12} />{t("upTo")} {home.guests} {t("guests")}</span>
                   </div>
 
                   {/* Badges */}
@@ -592,16 +590,10 @@ export default function HomesSection() {
                       </span>
                       <span className="text-sm text-[oklch(0.5_0.02_60)]"> / night</span>
                     </div>
-                    <button
-                      onClick={(e) => {
-                        e.preventDefault();
-                        window.open(home.airbnbUrl, '_blank');
-                      }}
-                      className="btn-amber flex items-center gap-1.5 px-4 py-2 rounded-full text-sm font-semibold hover:opacity-90 transition-opacity"
-                    >
+                    <span className="btn-amber flex items-center gap-1.5 px-4 py-2 rounded-full text-sm font-semibold">
                       View Now
                       <ExternalLink size={13} />
-                    </button>
+                    </span>
                   </div>
                 </div>
               </a>

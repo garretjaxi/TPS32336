@@ -11,6 +11,7 @@ import {
   BarChart3,
   ArrowRight,
   Home,
+  MessageSquare,
 } from "lucide-react";
 
 const adminSections = [
@@ -53,6 +54,16 @@ const adminSections = [
     bgLight: "bg-purple-50",
     iconColor: "text-purple-600",
     stats: "View Reports",
+  },
+  {
+    title: "Inquiries",
+    description: "View and manage booking inquiries, design requests, and property management estimates from potential guests.",
+    icon: MessageSquare,
+    href: "/admin/inquiries",
+    color: "from-rose-500 to-orange-500",
+    bgLight: "bg-rose-50",
+    iconColor: "text-rose-600",
+    stats: "View Inquiries",
   },
 ];
 
@@ -140,6 +151,12 @@ export default function AdminHome() {
               className="px-4 py-2 text-sm bg-blue-50 text-blue-700 rounded-lg hover:bg-blue-100 transition-colors font-medium"
             >
               View Recent Orders
+            </button>
+            <button
+              onClick={() => navigate("/admin/inquiries")}
+              className="px-4 py-2 text-sm bg-rose-50 text-rose-700 rounded-lg hover:bg-rose-100 transition-colors font-medium"
+            >
+              View Inquiries
             </button>
             <button
               onClick={() => navigate("/")}

@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# Sitemaps
+Sitemap: https://3000-i8zyf1kicwdqj7uwtx8l4-1afcc478.sg1.manus.computer/sitemap.xml

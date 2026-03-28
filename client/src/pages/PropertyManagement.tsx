@@ -7,8 +7,11 @@ import { useLocation } from "wouter";
 import {
   TrendingUp, DollarSign, Camera, HeadphonesIcon, CheckCircle2,
   ArrowRight, Star, BarChart3, Home, ClipboardList, Rocket, Settings,
-  PhoneCall, Mail, ChevronDown, ChevronUp, Shield, Clock, Award, Users
+  PhoneCall, Mail, ChevronDown, ChevronUp, Shield, Clock, Award, Users, Loader2
 } from "lucide-react";
+import { trpc } from "@/lib/trpc";
+import { toast } from "sonner";
+import SEO from "@/components/SEO";
 
 const HERO_BG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663446287426/E83KvqYJ4TGqcmgXCyYT4P/property-mgmt-bg-8zHASx5W8qjwj6V648Mv23.webp";
 
@@ -106,7 +109,7 @@ const pricingTiers = [
   {
     name: "Full Service",
     tagline: "Hands-free ownership with local, on-the-ground management at industry-low fees",
-    rate: "18%",
+    rate: "15%",
     rateLabel: "management fee",
     setupRate: "",
     setupLabel: "",
@@ -246,6 +249,35 @@ function FaqItem({ q, a }: { q: string; a: string }) {
 /* ── Main Component ── */
 export default function PropertyManagement() {
   const [, navigate] = useLocation();
+  const [formData, setFormData] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    phone: "",
+    location: "",
+    message: ""
+  });
+
+  const submitInquiry = trpc.booking.submitInquiry.useMutation({
+    onSuccess: () => {
+      toast.success("Estimate Request Sent", {
+        description: "We've received your request and will get back to you within 24 hours.",
+      });
+      setFormData({
+        firstName: "",
+        lastName: "",
+        email: "",
+        phone: "",
+        location: "",
+        message: ""
+      });
+    },
+    onError: (error) => {
+      toast.error("Submission Failed", {
+        description: error.message || "Something went wrong. Please try again.",
+      });
+    }
+  });
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -255,8 +287,30 @@ export default function PropertyManagement() {
     document.querySelector("#contact-form")?.scrollIntoView({ behavior: "smooth" });
   };
 
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!formData.firstName || !formData.email) {
+      toast.error("Missing Information", {
+        description: "Please provide at least your name and email address.",
+      });
+      return;
+    }
+
+    submitInquiry.mutate({
+      propertyName: "Property Management",
+      guestName: `${formData.firstName} ${formData.lastName}`.trim(),
+      guestEmail: formData.email,
+      guestPhone: formData.phone,
+      message: `Location: ${formData.location}\n\nProperty Details: ${formData.message}`,
+    });
+  };
+
   return (
     <div className="min-h-screen bg-[oklch(0.98_0.005_75)]" style={{ fontFamily: "'Outfit', sans-serif" }}>
+      <SEO 
+        title="Full-Service Orlando Property Management"
+        description="Earn more with Orlando's best property manager. We offer full-service management with lower commission rates and dynamic pricing."
+      />
 
       {/* ── Navbar strip ── */}
       <div className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md shadow-sm border-b border-[oklch(0.92_0.015_75)] h-16 flex items-center px-6">
@@ -401,7 +455,7 @@ export default function PropertyManagement() {
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {whyFeatures.map((f) => (
-              <div key={f.title} className="group p-8 rounded-2xl border border-[oklch(0.92_0.015_75)] hover:border-[oklch(0.82_0.14_70)] hover:shadow-lg transition-all duration-300">
+              <div key={f.title} className="group p-8 rounded-2xl bg-[oklch(0.96_0.014_75)] border border-[oklch(0.88_0.03_75)] shadow-[0_2px_12px_oklch(0.82_0.14_70/0.18)] hover:border-[oklch(0.72_0.14_70)] hover:shadow-[0_6px_24px_oklch(0.72_0.14_70/0.28)] hover:bg-white transition-all duration-300">
                 <div className="w-14 h-14 rounded-full border-2 border-[oklch(0.82_0.14_70)] flex items-center justify-center mb-5 group-hover:bg-[oklch(0.82_0.14_70)]/10 transition-colors">
                   <f.icon size={24} className="text-[oklch(0.58_0.16_55)]" />
                 </div>
@@ -610,36 +664,87 @@ export default function PropertyManagement() {
                 Tell us about your property and we'll show you exactly how much it could earn.
               </p>
             </div>
-            <div className="bg-white rounded-2xl p-8 border border-[oklch(0.92_0.015_75)] shadow-sm">
+            <form onSubmit={handleSubmit} className="bg-white rounded-2xl p-8 border border-[oklch(0.92_0.015_75)] shadow-sm">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mb-5">
                 <div>
                   <label className="block text-[oklch(0.35_0.012_55)] text-xs font-semibold uppercase tracking-wider mb-2">First Name</label>
-                  <input type="text" placeholder="John" className="w-full border border-[oklch(0.88_0.015_75)] rounded-xl px-4 py-3 text-[oklch(0.18_0.012_55)] placeholder-[oklch(0.7_0.01_55)] text-sm outline-none focus:border-[oklch(0.58_0.16_55)] transition-colors" />
+                  <input
+                    type="text"
+                    required
+                    value={formData.firstName}
+                    onChange={(e) => setFormData({ ...formData, firstName: e.target.value })}
+                    placeholder="John"
+                    className="w-full border border-[oklch(0.88_0.015_75)] rounded-xl px-4 py-3 text-[oklch(0.18_0.012_55)] placeholder-[oklch(0.7_0.01_55)] text-sm outline-none focus:border-[oklch(0.58_0.16_55)] transition-colors"
+                  />
                 </div>
                 <div>
                   <label className="block text-[oklch(0.35_0.012_55)] text-xs font-semibold uppercase tracking-wider mb-2">Last Name</label>
-                  <input type="text" placeholder="Smith" className="w-full border border-[oklch(0.88_0.015_75)] rounded-xl px-4 py-3 text-[oklch(0.18_0.012_55)] placeholder-[oklch(0.7_0.01_55)] text-sm outline-none focus:border-[oklch(0.58_0.16_55)] transition-colors" />
+                  <input
+                    type="text"
+                    value={formData.lastName}
+                    onChange={(e) => setFormData({ ...formData, lastName: e.target.value })}
+                    placeholder="Smith"
+                    className="w-full border border-[oklch(0.88_0.015_75)] rounded-xl px-4 py-3 text-[oklch(0.18_0.012_55)] placeholder-[oklch(0.7_0.01_55)] text-sm outline-none focus:border-[oklch(0.58_0.16_55)] transition-colors"
+                  />
                 </div>
               </div>
               <div className="mb-5">
                 <label className="block text-[oklch(0.35_0.012_55)] text-xs font-semibold uppercase tracking-wider mb-2">Email Address</label>
-                <input type="email" placeholder="john@example.com" className="w-full border border-[oklch(0.88_0.015_75)] rounded-xl px-4 py-3 text-[oklch(0.18_0.012_55)] placeholder-[oklch(0.7_0.01_55)] text-sm outline-none focus:border-[oklch(0.58_0.16_55)] transition-colors" />
+                <input
+                  type="email"
+                  required
+                  value={formData.email}
+                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                  placeholder="john@example.com"
+                  className="w-full border border-[oklch(0.88_0.015_75)] rounded-xl px-4 py-3 text-[oklch(0.18_0.012_55)] placeholder-[oklch(0.7_0.01_55)] text-sm outline-none focus:border-[oklch(0.58_0.16_55)] transition-colors"
+                />
               </div>
               <div className="mb-5">
                 <label className="block text-[oklch(0.35_0.012_55)] text-xs font-semibold uppercase tracking-wider mb-2">Phone Number</label>
-                <input type="tel" placeholder="(407) 801-3030" className="w-full border border-[oklch(0.88_0.015_75)] rounded-xl px-4 py-3 text-[oklch(0.18_0.012_55)] placeholder-[oklch(0.7_0.01_55)] text-sm outline-none focus:border-[oklch(0.58_0.16_55)] transition-colors" />
+                <input
+                  type="tel"
+                  value={formData.phone}
+                  onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                  placeholder="(407) 801-3030"
+                  className="w-full border border-[oklch(0.88_0.015_75)] rounded-xl px-4 py-3 text-[oklch(0.18_0.012_55)] placeholder-[oklch(0.7_0.01_55)] text-sm outline-none focus:border-[oklch(0.58_0.16_55)] transition-colors"
+                />
               </div>
               <div className="mb-5">
                 <label className="block text-[oklch(0.35_0.012_55)] text-xs font-semibold uppercase tracking-wider mb-2">Property Location</label>
-                <input type="text" placeholder="e.g. Kissimmee, FL" className="w-full border border-[oklch(0.88_0.015_75)] rounded-xl px-4 py-3 text-[oklch(0.18_0.012_55)] placeholder-[oklch(0.7_0.01_55)] text-sm outline-none focus:border-[oklch(0.58_0.16_55)] transition-colors" />
+                <input
+                  type="text"
+                  value={formData.location}
+                  onChange={(e) => setFormData({ ...formData, location: e.target.value })}
+                  placeholder="e.g. Kissimmee, FL"
+                  className="w-full border border-[oklch(0.88_0.015_75)] rounded-xl px-4 py-3 text-[oklch(0.18_0.012_55)] placeholder-[oklch(0.7_0.01_55)] text-sm outline-none focus:border-[oklch(0.58_0.16_55)] transition-colors"
+                />
               </div>
               <div className="mb-6">
                 <label className="block text-[oklch(0.35_0.012_55)] text-xs font-semibold uppercase tracking-wider mb-2">Tell Us About Your Property</label>
-                <textarea rows={4} placeholder="Number of bedrooms, current management situation, questions..." className="w-full border border-[oklch(0.88_0.015_75)] rounded-xl px-4 py-3 text-[oklch(0.18_0.012_55)] placeholder-[oklch(0.7_0.01_55)] text-sm outline-none focus:border-[oklch(0.58_0.16_55)] transition-colors resize-none" />
+                <textarea
+                  rows={4}
+                  value={formData.message}
+                  onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                  placeholder="Number of bedrooms, current management situation, questions..."
+                  className="w-full border border-[oklch(0.88_0.015_75)] rounded-xl px-4 py-3 text-[oklch(0.18_0.012_55)] placeholder-[oklch(0.7_0.01_55)] text-sm outline-none focus:border-[oklch(0.58_0.16_55)] transition-colors resize-none"
+                />
               </div>
-              <button className="btn-amber w-full py-4 rounded-xl font-semibold text-base flex items-center justify-center gap-2">
-                Get My Free Estimate <ArrowRight size={18} />
+              <button
+                type="submit"
+                disabled={submitInquiry.isPending}
+                className="btn-amber w-full py-4 rounded-xl font-semibold text-base flex items-center justify-center gap-2 disabled:opacity-70"
+              >
+                {submitInquiry.isPending ? (
+                  <>
+                    <Loader2 className="animate-spin" size={20} /> Sending...
+                  </>
+                ) : (
+                  <>
+                    Get My Free Estimate <ArrowRight size={18} />
+                  </>
+                )}
               </button>
+            </form>
               <p className="text-center text-[oklch(0.6_0.01_55)] text-xs mt-4">No commitment required. We'll respond within 24 hours.</p>
             </div>
             <div className="flex flex-wrap items-center justify-center gap-6 mt-8 text-[oklch(0.5_0.015_55)] text-sm">
@@ -651,7 +756,6 @@ export default function PropertyManagement() {
               </a>
             </div>
           </div>
-        </div>
       </section>
 
       {/* ── Footer strip ── */}

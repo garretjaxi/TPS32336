@@ -2,7 +2,7 @@ import { z } from "zod";
 import { TRPCError } from "@trpc/server";
 import { publicProcedure, protectedProcedure, router } from "../_core/trpc";
 import { SHOP_PRODUCTS } from "../../shared/products";
-import { createOrder, getOrderByStripeSession, getUserOrders, updateUserStripeCustomerId } from "../db";
+import { createOrder, getOrderByStripeSession, getProductInventory, getUserOrders, updateUserStripeCustomerId } from "../db";
 import { nanoid } from "nanoid";
 
 // Lazy-load Stripe to avoid errors when key is not set
@@ -17,8 +17,25 @@ export const shopRouter = router({
   /**
    * Get all active products
    */
-  getProducts: publicProcedure.query(() => {
-    return SHOP_PRODUCTS;
+  getProducts: publicProcedure.query(async () => {
+    const dbProducts = await getProductInventory();
+    
+    // Fallback to SHOP_PRODUCTS if DB is empty or fails
+    if (!dbProducts || dbProducts.length === 0) {
+      return SHOP_PRODUCTS;
+    }
+
+    // Map DB schema to ShopProduct interface expected by frontend
+    return dbProducts.map(p => ({
+      id: p.productId,
+      name: p.name,
+      category: p.category,
+      description: p.description,
+      price: p.price, // Database stores cents
+      icon: p.icon || "📦",
+      image: p.image || "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=400&q=80",
+      active: p.isActive === 1
+    }));
   }),
 
   /**
@@ -39,10 +56,13 @@ export const shopRouter = router({
     )
     .mutation(async ({ input, ctx }) => {
       const stripe = getStripe();
+      const dbProducts = await getProductInventory();
 
       // Validate and build line items
       const lineItems = input.items.map((item) => {
-        const product = SHOP_PRODUCTS.find((p) => p.id === item.productId);
+        // Search in DB products first, then fallback to SHOP_PRODUCTS
+        const product = dbProducts.find(p => p.productId === item.productId) || 
+                        SHOP_PRODUCTS.find((p) => p.id === item.productId);
         if (!product) {
           throw new TRPCError({ code: "BAD_REQUEST", message: `Product not found: ${item.productId}` });
         }

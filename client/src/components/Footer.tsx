@@ -2,6 +2,7 @@
    Footer — Golden Hour Luxury Design
    ============================================================= */
 import { Phone, Mail, MapPin, Instagram, Facebook, Youtube } from "lucide-react";
+import { useLocation } from "wouter";
 
 const footerLinks = {
   "Rentals": [
@@ -14,8 +15,8 @@ const footerLinks = {
   "Services": [
     { label: "Theme Park Tickets", href: "#tickets" },
     { label: "Activities & Excursions", href: "#activities" },
-    { label: "Property Management", href: "#management" },
-    { label: "Design Services", href: "#design" },
+    { label: "Property Management", href: "/property-management" },
+    { label: "Design Services", href: "/design-services" },
     { label: "Concierge Service", href: "#" },
   ],
   "Company": [
@@ -28,10 +29,17 @@ const footerLinks = {
 };
 
 export default function Footer() {
+  const [, navigate] = useLocation();
+
   const handleNavClick = (href: string) => {
     if (href === "#") return;
-    const el = document.querySelector(href);
-    if (el) el.scrollIntoView({ behavior: "smooth" });
+    if (href.startsWith("#")) {
+      const el = document.querySelector(href);
+      if (el) el.scrollIntoView({ behavior: "smooth" });
+    } else {
+      navigate(href);
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
   };
 
   return (
@@ -60,9 +68,9 @@ export default function Footer() {
                 <Phone size={14} className="text-[oklch(0.68_0.15_65)]" />
                 (407) 801-3030
               </a>
-              <a href="mailto:hello@themeparkstays.com" className="flex items-center gap-2 hover:text-[oklch(0.68_0.15_65)] transition-colors">
+              <a href="mailto:admin@themeparkstays.com" className="flex items-center gap-2 hover:text-[oklch(0.68_0.15_65)] transition-colors">
                 <Mail size={14} className="text-[oklch(0.68_0.15_65)]" />
-                hello@themeparkstays.com
+                admin@themeparkstays.com
               </a>
               <span className="flex items-center gap-2">
                 <MapPin size={14} className="text-[oklch(0.68_0.15_65)]" />

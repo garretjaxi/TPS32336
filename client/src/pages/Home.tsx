@@ -1,41 +1,333 @@
 /* =============================================================
-   Home Page — Theme Park Stays
-   Composes all landing page sections
+   Home — Orlando Theme Park Stays
+   Main landing page with hero, listings, and shop sections
    ============================================================= */
-import Navbar from "@/components/Navbar";
+import { useEffect, useState } from "react";
+import { useLocation } from "wouter";
 import HeroSection from "@/components/HeroSection";
+import { VIPSignupModal } from "@/components/VIPSignupModal";
+import StayWithUsSection from "@/components/StayWithUsSection";
+import ManagementTeaser from "@/components/ManagementTeaser";
+import DesignTeaser from "@/components/DesignTeaser";
 import AboutSection from "@/components/AboutSection";
-import HomesSection from "@/components/HomesSection";
 import GuestAmenitiesSection from "@/components/GuestAmenitiesSection";
-import RoomsSection from "@/components/RoomsSection";
-import TicketsSection from "@/components/TicketsSection";
 import ActivitiesSection from "@/components/ActivitiesSection";
-import ManagementSection from "@/components/ManagementSection";
-import DesignSection from "@/components/DesignSection";
-import BlogSection from "@/components/BlogSection";
-import TestimonialsSection from "@/components/TestimonialsSection";
+import TicketsSection from "@/components/TicketsSection";
 import ShopSection from "@/components/ShopSection";
-import Footer from "@/components/Footer";
+import { ArrowRight } from "lucide-react";
+import { useAuth } from "@/_core/hooks/useAuth";
+import { Button } from "@/components/ui/button";
+import { Menu, X, LogOut } from "lucide-react";
+import { useTranslation } from "react-i18next";
+import { getLoginUrl } from "@/const";
+import LanguageSwitcher from "@/components/LanguageSwitcher";
+import SEO from "@/components/SEO";
+import SchemaMarkup from "@/components/SchemaMarkup";
 
 export default function Home() {
+  const { t } = useTranslation();
+  const { user, logout, loading } = useAuth();
+  const [, navigate] = useLocation();
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [vipModalOpen, setVipModalOpen] = useState(false);
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "instant" });
+    // Show VIP modal after 3 seconds
+    const timer = setTimeout(() => setVipModalOpen(true), 3000);
+    return () => clearTimeout(timer);
+  }, []);
+
+  const handleLogout = async () => {
+    await logout();
+    setMobileMenuOpen(false);
+  };
+
   return (
-    <div className="min-h-screen flex flex-col">
-      <Navbar />
-      <main>
+    <div className="min-h-screen bg-[oklch(0.98_0.008_80)] text-[oklch(0.18_0.012_55)]">
+      <SEO 
+        title="Orlando Vacation Rentals Near Disney World"
+        description="Premium vacation rentals in Orlando, FL — minutes from Disney World, Universal Studios, LEGOLAND, and SeaWorld. Book direct and save."
+        keywords="Orlando vacation rentals, Disney World vacation homes, Universal Studios rental, Orlando theme park stays, Orlando family vacation, short term rental Orlando, book direct Orlando, LEGOLAND vacation rental, SeaWorld Orlando rental, Orlando villa rental"
+        author="Theme Park Stays"
+        robots="index, follow"
+        twitterHandle="@themeparkstays"
+        ogLocale="en_US"
+        ogImage="https://d2xsxph8kpxj0f.cloudfront.net/310419663028408712/RyzLQxSB3n3EenkWRBno5W/hero-banner-v2_35fef47f.png"
+      />
+      <SchemaMarkup 
+        type="LocalBusiness"
+        data={{
+          "name": "Theme Park Stays",
+          "image": "https://d2xsxph8kpxj0f.cloudfront.net/310419663028408712/RyzLQxSB3n3EenkWRBno5W/hero-banner-v2_35fef47f.png",
+          "@id": "https://3000-i8zyf1kicwdqj7uwtx8l4-1afcc478.sg1.manus.computer",
+          "url": "https://3000-i8zyf1kicwdqj7uwtx8l4-1afcc478.sg1.manus.computer",
+          "telephone": "+1-321-939-2057",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "Four Corners",
+            "addressLocality": "Kissimmee",
+            "addressRegion": "FL",
+            "postalCode": "34747",
+            "addressCountry": "US"
+          },
+          "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": 28.3415,
+            "longitude": -81.6375
+          },
+          "openingHoursSpecification": {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": [
+              "Monday",
+              "Tuesday",
+              "Wednesday",
+              "Thursday",
+              "Friday"
+            ],
+            "opens": "08:00",
+            "closes": "14:00"
+          },
+          "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.9",
+            "reviewCount": "5000"
+          }
+        }}
+      />
+      <SchemaMarkup 
+        type="VacationRental"
+        data={{
+          "name": "Theme Park Stays Vacation Homes",
+          "description": "Premium vacation rentals in Orlando, FL — minutes from Disney World, Universal Studios, LEGOLAND, and SeaWorld.",
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Kissimmee",
+            "addressRegion": "FL",
+            "addressCountry": "US"
+          }
+        }}
+      />
+      {/* Navigation */}
+      <nav className="sticky top-0 z-50 bg-white/95 backdrop-blur-sm border-b border-[oklch(0.92_0.015_75)] shadow-sm" role="navigation" aria-label="Main navigation">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+          <div className="flex items-center gap-2">
+            <button
+              onClick={() => navigate("/")}
+              className="text-xl font-bold tracking-tight text-[oklch(0.18_0.012_55)] hover:text-[oklch(0.58_0.16_55)] transition-colors"
+            >
+              🏠 {t("themeParkStays")}
+            </button>
+          </div>
+
+          {/* Desktop menu */}
+          <div className="hidden md:flex items-center gap-6">
+            <LanguageSwitcher />
+            <button
+              onClick={() => document.getElementById("stay")?.scrollIntoView({ behavior: "smooth" })}
+              className="text-sm text-[oklch(0.4_0.015_55)] hover:text-[oklch(0.18_0.012_55)] transition-colors"
+            >
+              {t("stayWithUs")}
+            </button>
+            <button
+              onClick={() => navigate("/theme-park-tickets")}
+              className="text-sm text-[oklch(0.4_0.015_55)] hover:text-[oklch(0.18_0.012_55)] transition-colors"
+            >
+              Theme Park Tickets
+            </button>
+            <button
+              onClick={() => document.getElementById("management")?.scrollIntoView({ behavior: "smooth" })}
+              className="text-sm text-[oklch(0.4_0.015_55)] hover:text-[oklch(0.18_0.012_55)] transition-colors"
+            >
+              {t("management")}
+            </button>
+            <button
+              onClick={() => document.getElementById("design")?.scrollIntoView({ behavior: "smooth" })}
+              className="text-sm text-[oklch(0.4_0.015_55)] hover:text-[oklch(0.18_0.012_55)] transition-colors"
+            >
+              {t("design")}
+            </button>
+            <button
+              onClick={() => navigate("/admin")}
+              className="text-sm text-[oklch(0.4_0.015_55)] hover:text-[oklch(0.18_0.012_55)] transition-colors"
+            >
+              {t("admin")}
+            </button>
+            {user ? (
+              <div className="flex items-center gap-3">
+                <span className="text-sm text-[oklch(0.4_0.015_55)]">{user.name || user.email}</span>
+                <button
+                  onClick={handleLogout}
+                  className="flex items-center gap-1 px-3 py-1.5 text-sm bg-red-50 text-red-600 rounded-lg hover:bg-red-100 transition-colors"
+                >
+                  <LogOut size={14} /> {t("logout")}
+                </button>
+              </div>
+            ) : (
+              <a
+                href={getLoginUrl()}
+                className="px-4 py-2 rounded-full text-sm font-semibold bg-[oklch(0.18_0.012_55)] text-white hover:bg-[oklch(0.28_0.012_55)] transition-colors"
+              >
+                {t("login")}
+              </a>
+            )}
+          </div>
+
+          {/* Mobile menu button */}
+          <button
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            className="md:hidden p-2 text-[oklch(0.18_0.012_55)]"
+          >
+            {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+          </button>
+        </div>
+
+        {/* Mobile menu */}
+        {mobileMenuOpen && (
+          <div className="md:hidden border-t border-[oklch(0.92_0.015_75)] bg-white p-4 space-y-3">
+            <button
+              onClick={() => {
+                document.getElementById("stay")?.scrollIntoView({ behavior: "smooth" });
+                setMobileMenuOpen(false);
+              }}
+              className="block w-full text-left text-sm text-[oklch(0.4_0.015_55)] hover:text-[oklch(0.18_0.012_55)] py-2"
+            >
+              {t("stayWithUs")}
+            </button>
+            <button
+              onClick={() => {
+                navigate("/theme-park-tickets");
+                setMobileMenuOpen(false);
+              }}
+              className="block w-full text-left text-sm text-[oklch(0.4_0.015_55)] hover:text-[oklch(0.18_0.012_55)] py-2"
+            >
+              {t("explore")}
+            </button>
+            <button
+              onClick={() => {
+                document.getElementById("management")?.scrollIntoView({ behavior: "smooth" });
+                setMobileMenuOpen(false);
+              }}
+              className="block w-full text-left text-sm text-[oklch(0.4_0.015_55)] hover:text-[oklch(0.18_0.012_55)] py-2"
+            >
+              {t("management")}
+            </button>
+            <button
+              onClick={() => {
+                document.getElementById("design")?.scrollIntoView({ behavior: "smooth" });
+                setMobileMenuOpen(false);
+              }}
+              className="block w-full text-left text-sm text-[oklch(0.4_0.015_55)] hover:text-[oklch(0.18_0.012_55)] py-2"
+            >
+              {t("design")}
+            </button>
+            <button
+              onClick={() => {
+                navigate("/admin");
+                setMobileMenuOpen(false);
+              }}
+              className="block w-full text-left text-sm text-[oklch(0.4_0.015_55)] hover:text-[oklch(0.18_0.012_55)] py-2"
+            >
+              {t("admin")}
+            </button>
+            {user ? (
+              <button
+                onClick={handleLogout}
+                className="block w-full text-left text-sm text-red-600 py-2"
+              >
+                Logout
+              </button>
+            ) : (
+              <a
+                href={getLoginUrl()}
+                className="block w-full text-center px-4 py-2 rounded-full text-sm font-semibold bg-[oklch(0.18_0.012_55)] text-white"
+              >
+                {t("login")}
+              </a>
+            )}
+          </div>
+        )}
+      </nav>
+
+      {/* Main content */}
+      <main role="main">
         <HeroSection />
+        
+        {/* About Us Section */}
         <AboutSection />
-        <HomesSection />
         <GuestAmenitiesSection />
-        <RoomsSection />
+
+        <StayWithUsSection />
+
+        {/* Theme Park Tickets Section */}
         <TicketsSection />
         <ActivitiesSection />
         <ShopSection />
-        <ManagementSection />
-        <DesignSection />
-        <TestimonialsSection />
-        <BlogSection />
+
+        <ManagementTeaser />
+        <DesignTeaser />
+
+        {/* Community Teaser */}
+        <section className="py-16 bg-[oklch(0.98_0.005_75)]">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 className="display-heading text-4xl md:text-5xl text-[oklch(0.18_0.012_55)] mb-6">
+              Our Community
+            </h2>
+            <p className="text-[oklch(0.4_0.02_60)] text-lg max-w-2xl mx-auto mb-8">
+              See what our guests are saying and stay up to date with the latest Orlando news.
+            </p>
+            <Button 
+              onClick={() => navigate("/community")}
+              className="rounded-full px-8 py-6 text-lg bg-[oklch(0.18_0.012_55)] hover:bg-[oklch(0.28_0.012_55)]"
+            >
+              View Reviews & Blog <ArrowRight className="ml-2" size={20} />
+            </Button>
+          </div>
+        </section>
       </main>
-      <Footer />
+
+      {/* Footer */}
+      <footer className="bg-[oklch(0.18_0.012_55)] text-white py-12" role="contentinfo">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+            <div>
+              <h3 className="font-bold mb-4">{t("themeParkStays")}</h3>
+              <p className="text-white/70 text-sm">{t("yourHomeBase")}</p>
+            </div>
+            <div>
+              <h4 className="font-semibold mb-4">{t("quickLinks")}</h4>
+              <ul className="space-y-2 text-sm text-white/70">
+                <li><button onClick={() => navigate("/about")} className="hover:text-white">{t("aboutUs")}</button></li>
+                <li><button onClick={() => navigate("/theme-park-tickets")} className="hover:text-white">Theme Park Tickets</button></li>
+                <li><button onClick={() => navigate("/community")} className="hover:text-white">{t("community")}</button></li>
+                <li><button onClick={() => navigate("/property-management")} className="hover:text-white">{t("management")}</button></li>
+              </ul>
+            </div>
+            <div>
+              <h4 className="font-semibold mb-4">{t("support")}</h4>
+              <ul className="space-y-2 text-sm text-white/70">
+                <li><a href="#" className="hover:text-white">{t("contactUs")}</a></li>
+                <li><a href="#" className="hover:text-white">{t("faq")}</a></li>
+                <li><a href="#" className="hover:text-white">{t("bookingHelp")}</a></li>
+              </ul>
+            </div>
+            <div>
+              <h4 className="font-semibold mb-4">{t("legal")}</h4>
+              <ul className="space-y-2 text-sm text-white/70">
+                <li><a href="#" className="hover:text-white">{t("privacyPolicy")}</a></li>
+                <li><a href="#" className="hover:text-white">{t("termsOfService")}</a></li>
+                <li><a href="#" className="hover:text-white">{t("cancellationPolicy")}</a></li>
+              </ul>
+            </div>
+          </div>
+          <div className="border-t border-white/10 pt-8 text-center text-sm text-white/50">
+            <p>&copy; 2026 {t("themeParkStays")}. {t("allRightsReserved")}</p>
+          </div>
+        </div>
+      </footer>
+
+      {/* VIP Signup Modal */}
+      <VIPSignupModal isOpen={vipModalOpen} onClose={() => setVipModalOpen(false)} />
     </div>
   );
 }

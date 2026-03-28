@@ -3,6 +3,7 @@
    Two-column layout: icon highlights + tabbed category details
    ============================================================= */
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import {
   UtensilsCrossed,
   Bath,
@@ -16,109 +17,109 @@ import {
   ChevronDown,
 } from "lucide-react";
 
-const categories = [
-  {
-    icon: UtensilsCrossed,
-    title: "Kitchen",
-    color: "#c2800a",
-    items: [
-      "Fully equipped kitchen (pots, pans, utensils)",
-      "Dishwasher, stove, refrigerator, microwave",
-      "Tea kettle, toaster, blender & coffee maker",
-      "Coffee and coffee filters",
-      "Sugar, creamer, sweetener, salt, pepper & oil",
-      "Dish soap, sponge, paper towels & bin bags",
-    ],
-  },
-  {
-    icon: Bath,
-    title: "Bathroom",
-    color: "#2563eb",
-    items: [
-      "2 rolls of toilet paper per bathroom",
-      "2 hand towels & hand soap per bathroom",
-      "Conditioning shampoo, shower gel & hand lotion",
-      "1 bath towel & wash cloth per guest",
-      "1 pool/beach towel per guest",
-    ],
-  },
-  {
-    icon: Waves,
-    title: "Pool & Outdoor",
-    color: "#0891b2",
-    items: [
-      "Private screened-in pool (when notated)",
-      "Outdoor patio furniture",
-      "Pool/beach towels provided",
-      "BBQ grill (select homes)",
-    ],
-  },
-  {
-    icon: Wifi,
-    title: "Connectivity",
-    color: "#7c3aed",
-    items: [
-      "High-speed Wi-Fi throughout",
-      "Smart TVs in every bedroom",
-      "Streaming-ready (Netflix, Disney+, etc.)",
-    ],
-  },
-  {
-    icon: Shirt,
-    title: "Laundry",
-    color: "#059669",
-    items: [
-      "In-unit washer & dryer",
-      "2 laundry pods provided",
-      "Return home with clean clothes",
-    ],
-  },
-  {
-    icon: Gamepad2,
-    title: "Entertainment",
-    color: "#dc2626",
-    items: [
-      "Themed game rooms (select homes)",
-      "Board games & family activities",
-      "Smart TV with streaming apps",
-      "Outdoor recreation area (depending on location)",
-    ],
-  },
-];
-
-const highlights = [
-  { icon: UtensilsCrossed, label: "Fully Equipped Kitchen" },
-  { icon: Waves, label: "Private Pool" },
-  { icon: Wifi, label: "High-Speed Wi-Fi" },
-  { icon: Car, label: "Free Parking" },
-  { icon: Tv, label: "Smart TVs" },
-  { icon: Shirt, label: "Washer & Dryer" },
-];
-
 export default function GuestAmenitiesSection() {
+  const { t } = useTranslation();
+
+  const categories = [
+    {
+      icon: UtensilsCrossed,
+      title: t("kitchen"),
+      color: "#c2800a",
+      items: [
+        t("fullyEquippedKitchenPotsPansUtensils"),
+        t("dishwasherStoveRefrigeratorMicrowave"),
+        t("teaKettleToasterBlenderCoffeeMaker"),
+        t("coffeeAndCoffeeFilters"),
+        t("sugarCreamerSweetenerSaltPepperOil"),
+        t("dishSoapSpongePaperTowelsBinBags"),
+      ],
+    },
+    {
+      icon: Bath,
+      title: t("bathroom"),
+      color: "#2563eb",
+      items: [
+        t("twoRollsOfToiletPaperPerBathroom"),
+        t("twoHandTowelsHandSoapPerBathroom"),
+        t("conditioningShampooShowerGelHandLotion"),
+        t("oneBathTowelWashClothPerGuest"),
+        t("onePoolBeachTowelPerGuest"),
+      ],
+    },
+    {
+      icon: Waves,
+      title: t("poolOutdoor"),
+      color: "#0891b2",
+      items: [
+        t("privateScreenedInPoolWhenNotated"),
+        t("outdoorPatioFurniture"),
+        t("poolBeachTowelsProvided"),
+        t("bbqGrillSelectHomes"),
+      ],
+    },
+    {
+      icon: Wifi,
+      title: t("connectivity"),
+      color: "#7c3aed",
+      items: [
+        t("highSpeedWiFiThroughout"),
+        t("smartTVsInEveryBedroom"),
+        t("streamingReadyNetflixDisneyPlusEtc"),
+      ],
+    },
+    {
+      icon: Shirt,
+      title: t("laundry"),
+      color: "#059669",
+      items: [
+        t("inUnitWasherDryer"),
+        t("twoLaundryPodsProvided"),
+        t("returnHomeWithCleanClothes"),
+      ],
+    },
+    {
+      icon: Gamepad2,
+      title: t("entertainment"),
+      color: "#dc2626",
+      items: [
+        t("themedGameRoomsSelectHomes"),
+        t("boardGamesFamilyActivities"),
+        t("smartTVWithStreamingApps"),
+        t("outdoorRecreationAreaDependingOnLocation"),
+      ],
+    },
+  ];
+
+  const highlights = [
+    { icon: UtensilsCrossed, label: t("fullyEquippedKitchen") },
+    { icon: Waves, label: t("privatePool") },
+    { icon: Wifi, label: t("highSpeedWiFi") },
+    { icon: Car, label: t("freeParking") },
+    { icon: Tv, label: t("smartTVs") },
+    { icon: Shirt, label: t("washerDryer") },
+  ];
+
   const [openCategory, setOpenCategory] = useState<string | null>(null);
 
   const toggle = (title: string) =>
     setOpenCategory((prev) => (prev === title ? null : title));
 
   return (
-    <section className="py-16 md:py-20 bg-[oklch(0.975_0.012_80)]">
+    <section className="py-16 md:py-20 bg-[oklch(0.18_0.012_55)]">
       <div className="container max-w-6xl mx-auto px-4">
 
         {/* ── Section Header ── */}
         <div className="text-center mb-10">
-          <span className="section-label">Every Stay Includes</span>
+          <span className="section-label text-white">Every Home Stay Includes</span>
           <div className="gold-rule w-16 mx-auto my-4" />
-          <h2 className="display-heading text-4xl md:text-5xl text-[oklch(0.18_0.012_55)] mb-4">
-            Everything You Need,{" "}
-            <span className="italic text-[oklch(0.58_0.16_55)]">Ready on Arrival</span>
+          <h2 className="display-heading text-4xl md:text-5xl text-white mb-4">
+            {t("everythingYouNeedReadyOnArrival")}
           </h2>
           <p
-            className="text-[oklch(0.45_0.02_60)] text-base max-w-xl mx-auto leading-relaxed"
+            className="text-white/80 text-base max-w-xl mx-auto leading-relaxed"
             style={{ fontFamily: "'Outfit', sans-serif" }}
           >
-            Every home arrives stocked with complimentary starter supplies — so you can start
-            your vacation the moment you walk through the door.
+            {t("everyHomeArrivesStocked")}
           </p>
         </div>
 
@@ -128,10 +129,10 @@ export default function GuestAmenitiesSection() {
           {/* Left: highlight icons grid */}
           <div>
             <p
-              className="text-xs font-semibold uppercase tracking-widest text-[oklch(0.58_0.16_55)] mb-5"
+              className="text-xs font-semibold uppercase tracking-widest text-amber-400 mb-5"
               style={{ fontFamily: "'Outfit', sans-serif" }}
             >
-              Included in most homes
+              {t("includedInMostHomes")}
             </p>
             <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
               {highlights.map((h) => {
@@ -162,9 +163,8 @@ export default function GuestAmenitiesSection() {
                 className="text-[oklch(0.4_0.02_60)] text-xs leading-relaxed"
                 style={{ fontFamily: "'Outfit', sans-serif" }}
               >
-                <strong className="text-[oklch(0.25_0.012_55)]">Self-catering homes:</strong>{" "}
-                Starter supplies are complimentary. Guests are responsible for additional
-                groceries. Publix, Walmart & Winn-Dixie are all within minutes of every property.
+                <strong className="text-[oklch(0.25_0.012_55)]">{t("selfCateringHomes")}</strong>{" "}
+                {t("starterSuppliesAreComplimentary")}
               </p>
             </div>
           </div>
@@ -175,7 +175,7 @@ export default function GuestAmenitiesSection() {
               className="text-xs font-semibold uppercase tracking-widest text-[oklch(0.58_0.16_55)] mb-5"
               style={{ fontFamily: "'Outfit', sans-serif" }}
             >
-              What's stocked in each area
+              {t("whatsStockedInEachArea")}
             </p>
             <div className="space-y-2">
               {categories.map((cat) => {

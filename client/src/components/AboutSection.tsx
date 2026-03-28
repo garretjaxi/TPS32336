@@ -4,19 +4,22 @@
    ============================================================= */
 import { useEffect, useRef } from "react";
 import { MapPin, Car } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 const COLLAGE_IMG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663446287426/E83KvqYJ4TGqcmgXCyYT4P/hero-collage-5z4Huj4gy42cR322ox5qH9.webp";
 
-const distances = [
-  { place: "Walt Disney World", detail: "15 minutes" },
-  { place: "Universal Studios", detail: "25 minutes" },
-  { place: "LEGOLAND Florida", detail: "35 minutes" },
-  { place: "SeaWorld Orlando", detail: "30 minutes" },
-  { place: "Orlando International Airport", detail: "35 minutes" },
-  { place: "Orlando Premium Outlets", detail: "15 minutes" },
-];
-
 export default function AboutSection() {
+  const { t } = useTranslation();
+
+  const distances = [
+      { place: t("waltDisneyWorld"), detail: `15 ${t("minutes")}` },
+      { place: t("universalStudios"), detail: `25 ${t("minutes")}` },
+      { place: t("legolandFlorida"), detail: `35 ${t("minutes")}` },
+      { place: t("seaWorldOrlando"), detail: `30 ${t("minutes")}` },
+      { place: t("orlandoInternationalAirport"), detail: `35 ${t("minutes")}` },
+      { place: t("orlandoPremiumOutlets"), detail: `15 ${t("minutes")}` },
+  ];
+
   const sectionRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -41,35 +44,34 @@ export default function AboutSection() {
       <div className="container">
         {/* Two-column layout */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-          {/* Image */}
+          {/* Radius Box Image */}
           <div className="fade-up relative order-2 lg:order-1">
-            <div className="rounded-2xl overflow-hidden shadow-2xl aspect-[4/3]">
+            <div className="rounded-2xl overflow-hidden shadow-2xl aspect-[4/3] bg-white border border-[oklch(0.92_0.015_75)]">
               <img
-                src={COLLAGE_IMG}
-                alt="Four Corners area near Disney World Orlando"
+                src="https://d2xsxph8kpxj0f.cloudfront.net/310419663028408712/RyzLQxSB3n3EenkWRBno5W/8000-iwri2d7f35orhya_2026-03-23_21-23-08_6711_4b2499c0.webp"
+                alt="Theme Park Stays Location Radius Map"
                 className="w-full h-full object-cover"
               />
             </div>
             {/* Floating badge */}
-            <div className="absolute -bottom-6 -right-4 md:-right-8 bg-[oklch(0.58_0.16_55)] text-white rounded-2xl px-6 py-4 shadow-xl">
-              <div className="text-3xl font-bold" style={{ fontFamily: "'Cormorant Garamond', serif" }}>98%</div>
-              <div className="text-xs uppercase tracking-wider opacity-90">5-Star Reviews</div>
+            <div className="absolute -bottom-6 -right-4 md:-right-8 bg-[oklch(0.58_0.16_55)] text-white rounded-2xl px-6 py-4 shadow-xl z-10">
+              <div className="text-xs uppercase tracking-wider opacity-90">15 Mile {t("radiusFromMagic")}</div>
             </div>
           </div>
 
           {/* Content */}
           <div className="order-1 lg:order-2">
             <div className="fade-up mb-8">
-              <span className="section-label">Four Corners / Kissimmee</span>
+              <span className="section-label">{t("fourCornersKissimmee")}</span>
               <div className="gold-rule w-24 my-4" />
               <h2
                 className="display-heading text-4xl md:text-5xl text-[oklch(0.18_0.012_55)] mb-5"
               >
-                Your Basecamp<br />
-                <span className="italic text-[oklch(0.58_0.16_55)]">for Magic.</span>
+                {t("yourBasecamp")}<br />
+                <span className="italic text-[oklch(0.58_0.16_55)]">{t("forMagic")}</span>
               </h2>
               <p className="text-[oklch(0.4_0.02_60)] text-base leading-relaxed" style={{ fontFamily: "'Outfit', sans-serif" }}>
-                Located in the heart of Kissimmee, our homes are designed for families who refuse to choose between luxury and fun. The Four Corners area puts you seconds from Disney — some of the closest non-resort accommodation to the parks.
+                {t("aboutDescription")}
               </p>
             </div>
 
@@ -94,7 +96,7 @@ export default function AboutSection() {
               ))}
             </div>
             <p className="mt-4 text-[oklch(0.55_0.015_60)] text-xs italic leading-relaxed" style={{ fontFamily: "'Outfit', sans-serif" }}>
-              * Travel times are approximate and will vary depending on the time of year, local events, and traffic conditions.
+              {t("travelTimesDisclaimer")}
             </p>
           </div>
         </div>

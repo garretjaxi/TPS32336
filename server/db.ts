@@ -1,6 +1,6 @@
 import { eq, desc, and, like, asc } from "drizzle-orm";
 import { drizzle } from "drizzle-orm/mysql2";
-import { InsertUser, users, orders, productInventory, bookingInquiries, listings, InsertOrder, InsertBookingInquiry, InsertListing } from "../drizzle/schema";
+import { InsertUser, users, orders, productInventory, bookingInquiries, listings, vipSubscribers, InsertOrder, InsertBookingInquiry, InsertListing, InsertVIPSubscriber } from "../drizzle/schema";
 import { ENV } from './_core/env';
 
 let _db: ReturnType<typeof drizzle> | null = null;
@@ -56,6 +56,51 @@ export async function getUserByOpenId(openId: string) {
   if (!db) { console.warn("[Database] Cannot get user: database not available"); return undefined; }
   const result = await db.select().from(users).where(eq(users.openId, openId)).limit(1);
   return result.length > 0 ? result[0] : undefined;
+}
+
+export async function getAdminByEmail(email: string | null): Promise<boolean> {
+  if (!email) return false;
+  const db = await getDb();
+  if (!db) return false;
+  const result = await db.select().from(users).where(and(eq(users.email, email), eq(users.role, 'admin'))).limit(1);
+  return result.length > 0;
+}
+
+export async function getAllUsers() {
+  const db = await getDb();
+  if (!db) return [];
+  return db.select({
+    id: users.id,
+    openId: users.openId,
+    name: users.name,
+    email: users.email,
+    role: users.role,
+    loginMethod: users.loginMethod,
+    lastSignedIn: users.lastSignedIn,
+    createdAt: users.createdAt,
+  }).from(users).orderBy(desc(users.createdAt));
+}
+
+export async function setUserRole(userId: number, role: 'admin' | 'user'): Promise<void> {
+  const db = await getDb();
+  if (!db) throw new Error('Database not available');
+  await db.update(users).set({ role }).where(eq(users.id, userId));
+}
+
+export async function deleteUserById(userId: number): Promise<void> {
+  const db = await getDb();
+  if (!db) throw new Error('Database not available');
+  await db.delete(users).where(eq(users.id, userId));
+}
+
+export async function inviteAdminByEmail(email: string, name: string): Promise<void> {
+  const db = await getDb();
+  if (!db) throw new Error('Database not available');
+  // Create a placeholder record — role will be confirmed on first OAuth login
+  const openId = `invited-admin-${email.replace(/[^a-z0-9]/gi, '-')}-${Date.now()}`;
+  await db.insert(users)
+    .values({ openId, name: name || null, email, role: 'admin', loginMethod: 'invited', lastSignedIn: new Date() })
+    .onDuplicateKeyUpdate({ set: { role: 'admin', name: name || null } });
 }
 
 export async function updateUserStripeCustomerId(userId: number, stripeCustomerId: string): Promise<void> {
@@ -173,39 +218,52 @@ export async function getAllBookingInquiries(): Promise<any[]> {
 
 // ─── Listings helpers ─────────────────────────────────────────────────────────
 
+function parseListingJson(l: any) {
+  if (!l) return l;
+  return {
+    ...l,
+    tags: typeof l.tags === 'string' ? JSON.parse(l.tags) : l.tags,
+    badges: typeof l.badges === 'string' ? JSON.parse(l.badges) : l.badges,
+  };
+}
+
 export async function getAllListings(): Promise<any[]> {
   const db = await getDb();
   if (!db) return [];
-  return await db.select().from(listings).orderBy(asc(listings.sort_order), asc(listings.id));
+  const results = await db.select().from(listings).orderBy(asc(listings.sort_order), asc(listings.id));
+  return results.map(parseListingJson);
 }
 
 export async function getActiveListings(): Promise<any[]> {
   const db = await getDb();
   if (!db) return [];
-  return await db.select().from(listings).where(eq(listings.active, 1)).orderBy(asc(listings.sort_order), asc(listings.id));
+  const results = await db.select().from(listings).where(eq(listings.active, 1)).orderBy(asc(listings.sort_order), asc(listings.id));
+  return results.map(parseListingJson);
 }
 
 export async function getActiveHomeListings(): Promise<any[]> {
   const db = await getDb();
   if (!db) return [];
-  return await db.select().from(listings)
+  const results = await db.select().from(listings)
     .where(and(eq(listings.active, 1), eq(listings.listing_type, "home")))
     .orderBy(asc(listings.sort_order), asc(listings.id));
+  return results.map(parseListingJson);
 }
 
 export async function getActiveRoomListings(): Promise<any[]> {
   const db = await getDb();
   if (!db) return [];
-  return await db.select().from(listings)
+  const results = await db.select().from(listings)
     .where(and(eq(listings.active, 1), eq(listings.listing_type, "room")))
     .orderBy(asc(listings.sort_order), asc(listings.id));
+  return results.map(parseListingJson);
 }
 
 export async function getListingById(id: number): Promise<any | undefined> {
   const db = await getDb();
   if (!db) return undefined;
   const result = await db.select().from(listings).where(eq(listings.id, id)).limit(1);
-  return result.length > 0 ? result[0] : undefined;
+  return result.length > 0 ? parseListingJson(result[0]) : undefined;
 }
 
 export async function createListing(listing: InsertListing): Promise<any> {
@@ -237,4 +295,42 @@ export async function countListings(): Promise<number> {
   if (!db) return 0;
   const result = await db.select().from(listings);
   return result.length;
+}
+
+// ─── VIP Subscriber helpers ──────────────────────────────────────────────────
+
+export async function signupVIPSubscriber(email: string): Promise<any> {
+  const db = await getDb();
+  if (!db) throw new Error("Database not available");
+  
+  try {
+    // Check if email already exists
+    const existing = await db.select().from(vipSubscribers).where(eq(vipSubscribers.email, email)).limit(1);
+    if (existing.length > 0) {
+      return existing[0]; // Return existing subscriber
+    }
+    
+    // Insert new VIP subscriber
+    const result = await db.insert(vipSubscribers).values({
+      email,
+      discountCode: "Online10",
+      discountPercentage: 10,
+      isActive: 1,
+    });
+    
+    const insertId = (result as any)[0]?.insertId;
+    if (!insertId) throw new Error("Failed to create VIP subscriber");
+    
+    const newSubscriber = await db.select().from(vipSubscribers).where(eq(vipSubscribers.id, insertId as number)).limit(1);
+    return newSubscriber[0];
+  } catch (error) {
+    console.error("[Database] Failed to signup VIP subscriber:", error);
+    throw error;
+  }
+}
+
+export async function getAllVIPSubscribers(): Promise<any[]> {
+  const db = await getDb();
+  if (!db) return [];
+  return await db.select().from(vipSubscribers).orderBy(desc(vipSubscribers.createdAt));
 }

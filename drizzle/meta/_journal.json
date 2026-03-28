@@ -5,15 +5,43 @@
     {
       "idx": 0,
       "version": "5",
-      "when": 1773898766280,
-      "tag": "0000_even_the_santerians",
+      "when": 1773932727842,
+      "tag": "0000_calm_lady_bullseye",
       "breakpoints": true
     },
     {
       "idx": 1,
       "version": "5",
-      "when": 1774156879367,
-      "tag": "0001_sticky_meteorite",
+      "when": 1773933551084,
+      "tag": "0001_pale_the_stranger",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "5",
+      "when": 1773979983038,
+      "tag": "0002_loving_goblin_queen",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "5",
+      "when": 1774066304704,
+      "tag": "0003_dry_bruce_banner",
+      "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "5",
+      "when": 1774398244948,
+      "tag": "0004_polite_white_tiger",
+      "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "5",
+      "when": 1774675796688,
+      "tag": "0005_slippery_serpent_society",
       "breakpoints": true
     }
   ]

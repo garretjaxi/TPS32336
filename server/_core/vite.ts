@@ -24,6 +24,11 @@ export async function setupVite(app: Express, server: Server) {
   app.use("*", async (req, res, next) => {
     const url = req.originalUrl;
 
+    // Define valid routes to handle 404s correctly
+    const validRoutes = ["/", "/property-management", "/design-services", "/order-confirmation", "/about", "/explore", "/community"];
+    const isAdminRoute = url.startsWith("/admin");
+    const isApiRoute = url.startsWith("/api");
+
     try {
       const clientTemplate = path.resolve(
         import.meta.dirname,
@@ -39,7 +44,15 @@ export async function setupVite(app: Express, server: Server) {
         `src="/src/main.tsx?v=${nanoid()}"`
       );
       const page = await vite.transformIndexHtml(url, template);
-      res.status(200).set({ "Content-Type": "text/html" }).end(page);
+
+      // Set 404 status if the route is not recognized
+      if (!validRoutes.includes(url) && !isAdminRoute && !isApiRoute) {
+        res.status(404);
+      } else {
+        res.status(200);
+      }
+
+      res.set({ "Content-Type": "text/html" }).end(page);
     } catch (e) {
       vite.ssrFixStacktrace(e as Error);
       next(e);

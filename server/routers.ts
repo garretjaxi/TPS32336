@@ -6,6 +6,7 @@ import { shopRouter } from "./routers/shop";
 import { adminRouter } from "./routers/admin";
 import { bookingRouter } from "./routers/booking";
 import { listingsRouter } from "./routers/listings";
+import { vipRouter } from "./routers/vip";
 
 export const appRouter = router({
   system: systemRouter,
@@ -13,6 +14,7 @@ export const appRouter = router({
   admin: adminRouter,
   booking: bookingRouter,
   listings: listingsRouter,
+  vip: vipRouter,
   auth: router({
     me: publicProcedure.query(opts => opts.ctx.user),
     logout: publicProcedure.mutation(({ ctx }) => {

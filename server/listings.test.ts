@@ -21,6 +21,7 @@ vi.mock("./db", () => ({
       featured: 1,
       active: 1,
       sort_order: 0,
+      listing_type: "home",
       createdAt: new Date(),
       updatedAt: new Date(),
     },
@@ -44,6 +45,7 @@ vi.mock("./db", () => ({
       featured: 0,
       active: 1,
       sort_order: 1,
+      listing_type: "home",
       createdAt: new Date(),
       updatedAt: new Date(),
     },
@@ -126,5 +128,12 @@ describe("Listings data shape validation", () => {
     const listing = listings[0] as any;
     expect(Array.isArray(listing.tags)).toBe(true);
     expect(Array.isArray(listing.badges)).toBe(true);
+  });
+
+  it("listing has a listing_type field", async () => {
+    const listings = await getActiveListings();
+    const listing = listings[0] as any;
+    expect(listing).toHaveProperty("listing_type");
+    expect(["home", "room"]).toContain(listing.listing_type);
   });
 });

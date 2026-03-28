@@ -1,5 +1,9 @@
 import { Link } from "wouter";
-import { Paintbrush, Layers, Zap, Waves, Bath, ChefHat, ArrowLeft, Phone, Mail, CheckCircle2, Star } from "lucide-react";
+import { useEffect, useState } from "react";
+import { Paintbrush, Layers, Zap, Waves, Bath, ChefHat, ArrowLeft, Phone, Mail, CheckCircle2, Star, Loader2 } from "lucide-react";
+import { trpc } from "@/lib/trpc";
+import { toast } from "sonner";
+import SEO from "@/components/SEO";
 
 /* ── CDN image URLs ── */
 const IMAGES = {
@@ -40,13 +44,66 @@ const processSteps = [
 ];
 
 export default function DesignServices() {
+  const [formData, setFormData] = useState({
+    fullName: "",
+    email: "",
+    phone: "",
+    service: "",
+    message: ""
+  });
+
+  const submitInquiry = trpc.booking.submitInquiry.useMutation({
+    onSuccess: () => {
+      toast.success("Quote Request Sent", {
+        description: "We've received your request and will get back to you within 24 hours.",
+      });
+      setFormData({
+        fullName: "",
+        email: "",
+        phone: "",
+        service: "",
+        message: ""
+      });
+    },
+    onError: (error) => {
+      toast.error("Submission Failed", {
+        description: error.message || "Something went wrong. Please try again.",
+      });
+    }
+  });
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "instant" });
+  }, []);
+
   const scrollToContact = () => {
     document.getElementById("design-contact")?.scrollIntoView({ behavior: "smooth" });
   };
 
-  return (
-    <div className="min-h-screen bg-white text-[oklch(0.18_0.012_55)] font-sans">
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!formData.fullName || !formData.email) {
+      toast.error("Missing Information", {
+        description: "Please provide at least your name and email address.",
+      });
+      return;
+    }
 
+    submitInquiry.mutate({
+      propertyName: "Design Service",
+      guestName: formData.fullName,
+      guestEmail: formData.email,
+      guestPhone: formData.phone,
+      message: `Service: ${formData.service}\n\nProject Details: ${formData.message}`,
+    });
+  };
+
+  return (
+    <div className="min-h-screen bg-[oklch(0.98_0.008_80)] text-[oklch(0.18_0.012_55)]">
+      <SEO 
+        title="Themed Room Design & Vacation Rental Remodeling"
+        description="Transform your property with Orlando's premier vacation rental design team. We specialize in themed bedrooms, luxury remodels, and turnkey renovations."
+      />
       {/* ── Navbar ── */}
       <nav className="sticky top-0 z-50 bg-white/95 backdrop-blur-sm border-b border-[oklch(0.92_0.015_75)] shadow-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
@@ -322,23 +379,47 @@ export default function DesignServices() {
               Tell us about your property and project goals. We'll get back to you within 24 hours with a personalized estimate.
             </p>
           </div>
-          <div className="bg-[oklch(0.98_0.006_75)] rounded-3xl p-8 sm:p-10 border border-[oklch(0.92_0.015_75)]">
+          <form onSubmit={handleSubmit} className="bg-[oklch(0.98_0.006_75)] rounded-3xl p-8 sm:p-10 border border-[oklch(0.92_0.015_75)]">
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 mb-5">
               <div>
                 <label className="block text-sm font-semibold text-[oklch(0.3_0.012_55)] mb-2">Full Name</label>
-                <input type="text" placeholder="John Smith" className="w-full border border-[oklch(0.88_0.015_75)] rounded-xl px-4 py-3 text-[oklch(0.18_0.012_55)] placeholder-[oklch(0.7_0.01_55)] text-sm outline-none focus:border-[oklch(0.58_0.16_55)] transition-colors bg-white" />
+                <input
+                  type="text"
+                  required
+                  value={formData.fullName}
+                  onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
+                  placeholder="John Smith"
+                  className="w-full border border-[oklch(0.88_0.015_75)] rounded-xl px-4 py-3 text-[oklch(0.18_0.012_55)] placeholder-[oklch(0.7_0.01_55)] text-sm outline-none focus:border-[oklch(0.58_0.16_55)] transition-colors bg-white"
+                />
               </div>
               <div>
                 <label className="block text-sm font-semibold text-[oklch(0.3_0.012_55)] mb-2">Email Address</label>
-                <input type="email" placeholder="john@example.com" className="w-full border border-[oklch(0.88_0.015_75)] rounded-xl px-4 py-3 text-[oklch(0.18_0.012_55)] placeholder-[oklch(0.7_0.01_55)] text-sm outline-none focus:border-[oklch(0.58_0.16_55)] transition-colors bg-white" />
+                <input
+                  type="email"
+                  required
+                  value={formData.email}
+                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                  placeholder="john@example.com"
+                  className="w-full border border-[oklch(0.88_0.015_75)] rounded-xl px-4 py-3 text-[oklch(0.18_0.012_55)] placeholder-[oklch(0.7_0.01_55)] text-sm outline-none focus:border-[oklch(0.58_0.16_55)] transition-colors bg-white"
+                />
               </div>
               <div>
                 <label className="block text-sm font-semibold text-[oklch(0.3_0.012_55)] mb-2">Phone Number</label>
-                <input type="tel" placeholder="(407) 000-0000" className="w-full border border-[oklch(0.88_0.015_75)] rounded-xl px-4 py-3 text-[oklch(0.18_0.012_55)] placeholder-[oklch(0.7_0.01_55)] text-sm outline-none focus:border-[oklch(0.58_0.16_55)] transition-colors bg-white" />
+                <input
+                  type="tel"
+                  value={formData.phone}
+                  onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                  placeholder="(407) 000-0000"
+                  className="w-full border border-[oklch(0.88_0.015_75)] rounded-xl px-4 py-3 text-[oklch(0.18_0.012_55)] placeholder-[oklch(0.7_0.01_55)] text-sm outline-none focus:border-[oklch(0.58_0.16_55)] transition-colors bg-white"
+                />
               </div>
               <div>
                 <label className="block text-sm font-semibold text-[oklch(0.3_0.012_55)] mb-2">Service Interested In</label>
-                <select className="w-full border border-[oklch(0.88_0.015_75)] rounded-xl px-4 py-3 text-[oklch(0.18_0.012_55)] text-sm outline-none focus:border-[oklch(0.58_0.16_55)] transition-colors bg-white">
+                <select
+                  value={formData.service}
+                  onChange={(e) => setFormData({ ...formData, service: e.target.value })}
+                  className="w-full border border-[oklch(0.88_0.015_75)] rounded-xl px-4 py-3 text-[oklch(0.18_0.012_55)] text-sm outline-none focus:border-[oklch(0.58_0.16_55)] transition-colors bg-white"
+                >
                   <option value="">Select a service…</option>
                   <option>Themed Bedroom</option>
                   <option>Elegant Bedroom</option>
@@ -358,13 +439,26 @@ export default function DesignServices() {
               <label className="block text-sm font-semibold text-[oklch(0.3_0.012_55)] mb-2">Tell Us About Your Project</label>
               <textarea
                 rows={4}
+                value={formData.message}
+                onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                 placeholder="Describe your property, what you'd like done, and any specific ideas or inspiration you have…"
                 className="w-full border border-[oklch(0.88_0.015_75)] rounded-xl px-4 py-3 text-[oklch(0.18_0.012_55)] placeholder-[oklch(0.7_0.01_55)] text-sm outline-none focus:border-[oklch(0.58_0.16_55)] transition-colors resize-none bg-white"
               />
             </div>
-            <button className="w-full py-4 rounded-xl font-bold text-white bg-[oklch(0.18_0.012_55)] hover:bg-[oklch(0.28_0.012_55)] transition-colors text-base">
-              Send My Free Quote Request
+            <button
+              type="submit"
+              disabled={submitInquiry.isPending}
+              className="w-full py-4 rounded-xl font-bold text-white bg-[oklch(0.18_0.012_55)] hover:bg-[oklch(0.28_0.012_55)] transition-colors text-base flex items-center justify-center gap-2 disabled:opacity-70"
+            >
+              {submitInquiry.isPending ? (
+                <>
+                  <Loader2 className="animate-spin" size={20} /> Sending...
+                </>
+              ) : (
+                "Send My Free Quote Request"
+              )}
             </button>
+          </form>
             <div className="mt-6 flex flex-col sm:flex-row items-center justify-center gap-4 text-sm text-[oklch(0.5_0.015_55)]">
               <a href="tel:+14078013030" className="flex items-center gap-2 hover:text-[oklch(0.58_0.16_55)] transition-colors">
                 <Phone size={15} /> (407) 801-3030
@@ -375,7 +469,6 @@ export default function DesignServices() {
               </a>
             </div>
           </div>
-        </div>
       </section>
 
       {/* ── Footer ── */}

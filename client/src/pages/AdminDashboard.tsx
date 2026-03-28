@@ -19,11 +19,12 @@ import {
   Loader2,
   Eye,
   EyeOff,
+  MessageSquare,
 } from "lucide-react";
 
-export default function AdminDashboard({ defaultTab = "overview" }: { defaultTab?: "overview" | "orders" | "inventory" }) {
+export default function AdminDashboard({ defaultTab = "overview" }: { defaultTab?: "overview" | "orders" | "inventory" | "inquiries" }) {
   const [, navigate] = useLocation();
-  const [activeTab, setActiveTab] = useState<"overview" | "orders" | "inventory">(defaultTab);
+  const [activeTab, setActiveTab] = useState<"overview" | "orders" | "inventory" | "inquiries">(defaultTab);
   const [showEditProduct, setShowEditProduct] = useState<string | null>(null);
   const [editFormData, setEditFormData] = useState<any>({});
 
@@ -37,6 +38,9 @@ export default function AdminDashboard({ defaultTab = "overview" }: { defaultTab
 
   // Fetch inventory
   const { data: inventory, isLoading: inventoryLoading } = trpc.admin.getProductInventory.useQuery(undefined);
+
+  // Fetch inquiries
+  const { data: inquiriesData, isLoading: inquiriesLoading } = trpc.booking.getInquiries.useQuery();
 
   // Fetch revenue summary
   const { data: revenueSummary } = trpc.admin.getRevenueSummary.useQuery(
@@ -93,7 +97,7 @@ export default function AdminDashboard({ defaultTab = "overview" }: { defaultTab
 
           {/* Tabs */}
           <div className="flex gap-2 mb-8 border-b border-[oklch(0.92_0.015_75)]">
-            {["overview", "orders", "inventory"].map(tab => (
+            {["overview", "orders", "inventory", "inquiries"].map(tab => (
               <button
                 key={tab}
                 onClick={() => setActiveTab(tab as any)}
@@ -107,6 +111,7 @@ export default function AdminDashboard({ defaultTab = "overview" }: { defaultTab
                 {tab === "overview" && "Overview"}
                 {tab === "orders" && "Orders"}
                 {tab === "inventory" && "Inventory"}
+                {tab === "inquiries" && "Inquiries"}
               </button>
             ))}
           </div>
@@ -284,6 +289,74 @@ export default function AdminDashboard({ defaultTab = "overview" }: { defaultTab
                               }`}
                             >
                               {order.status}
+                            </span>
+                          </td>
+                        </tr>
+                      ))
+                    )}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          )}
+
+          {/* Inquiries Tab */}
+          {activeTab === "inquiries" && (
+            <div className="bg-white rounded-2xl border border-[oklch(0.92_0.015_75)] overflow-hidden">
+              <div className="overflow-x-auto">
+                <table className="w-full">
+                  <thead>
+                    <tr className="border-b border-[oklch(0.92_0.015_75)] bg-[oklch(0.93_0.025_75)]">
+                      <th className="px-6 py-4 text-left text-sm font-semibold text-[oklch(0.18_0.012_55)]">
+                        Guest
+                      </th>
+                      <th className="px-6 py-4 text-left text-sm font-semibold text-[oklch(0.18_0.012_55)]">
+                        Property / Service
+                      </th>
+                      <th className="px-6 py-4 text-left text-sm font-semibold text-[oklch(0.18_0.012_55)]">
+                        Date
+                      </th>
+                      <th className="px-6 py-4 text-left text-sm font-semibold text-[oklch(0.18_0.012_55)]">
+                        Message
+                      </th>
+                      <th className="px-6 py-4 text-left text-sm font-semibold text-[oklch(0.18_0.012_55)]">
+                        Status
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {inquiriesLoading ? (
+                      <tr>
+                        <td colSpan={5} className="px-6 py-8 text-center">
+                          <Loader2 className="w-6 h-6 animate-spin mx-auto text-[oklch(0.58_0.16_55)]" />
+                        </td>
+                      </tr>
+                    ) : !inquiriesData || inquiriesData.length === 0 ? (
+                      <tr>
+                        <td colSpan={5} className="px-6 py-8 text-center text-[oklch(0.5_0.02_60)]">
+                          No inquiries yet
+                        </td>
+                      </tr>
+                    ) : (
+                      inquiriesData.map((inquiry: any) => (
+                        <tr key={inquiry.id} className="border-b border-[oklch(0.92_0.015_75)] hover:bg-[oklch(0.98_0.01_75)]">
+                          <td className="px-6 py-4">
+                            <div className="font-semibold text-[oklch(0.18_0.012_55)]">{inquiry.guestName}</div>
+                            <div className="text-xs text-[oklch(0.5_0.02_60)]">{inquiry.guestEmail}</div>
+                            {inquiry.guestPhone && <div className="text-xs text-[oklch(0.5_0.02_60)]">{inquiry.guestPhone}</div>}
+                          </td>
+                          <td className="px-6 py-4 text-sm text-[oklch(0.18_0.012_55)]">
+                            {inquiry.propertyName || "General Inquiry"}
+                          </td>
+                          <td className="px-6 py-4 text-sm text-[oklch(0.5_0.02_60)]">
+                            {new Date(inquiry.createdAt).toLocaleDateString()}
+                          </td>
+                          <td className="px-6 py-4 text-sm text-[oklch(0.5_0.02_60)] max-w-xs truncate">
+                            {inquiry.message}
+                          </td>
+                          <td className="px-6 py-4">
+                            <span className="px-3 py-1 rounded-full text-xs font-semibold bg-blue-100 text-blue-800">
+                              {inquiry.status}
                             </span>
                           </td>
                         </tr>
