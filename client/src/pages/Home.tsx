@@ -31,9 +31,9 @@ export default function Home() {
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "instant" });
-    // Show VIP modal after 3 seconds
-    const timer = setTimeout(() => setVipModalOpen(true), 3000);
-    return () => clearTimeout(timer);
+    // VIP modal is disabled to prevent infinite loop error
+    // const timer = setTimeout(() => setVipModalOpen(true), 3000);
+    // return () => clearTimeout(timer);
   }, []);
 
   const handleLogout = async () => {

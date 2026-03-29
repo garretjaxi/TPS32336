@@ -2,7 +2,7 @@
    HomesSection — Vacation Home Listings
    Golden Hour Luxury Design
    ============================================================= */
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import { Bed, Bath, Users, Waves, Gamepad2, PawPrint, Star, ExternalLink, Sparkles, ChevronDown } from "lucide-react";
 import { trpc } from "@/lib/trpc";
@@ -342,9 +342,11 @@ export default function HomesSection({ hideHeader = false }: { hideHeader?: bool
     featured: Boolean(l.featured),
   }));
 
-  const filtered = activeFilter === "all"
-    ? homes
-    : homes.filter((home) => home.tags.includes(activeFilter) || (activeFilter === "resort" && home.badges.some((b: string) => b === "Resort Stay")) || (activeFilter === "themed" && home.badges.some((b: string) => b === "Themed Rooms")));
+  const filtered = useMemo(() => {
+    return activeFilter === "all"
+      ? homes
+      : homes.filter((home) => home.tags.includes(activeFilter) || (activeFilter === "resort" && home.badges.some((b: string) => b === "Resort Stay")) || (activeFilter === "themed" && home.badges.some((b: string) => b === "Themed Rooms")));
+  }, [activeFilter, homes]);
 
   // Initialize default parks for each home
   useEffect(() => {
@@ -356,7 +358,7 @@ export default function HomesSection({ hideHeader = false }: { hideHeader?: bool
       }
     });
     setSelectedParkByHome(defaults);
-  }, [filtered]);
+  }, [activeFilter, homes.length]);
 
   // Re-animate cards whenever the filter changes or data loads
   useEffect(() => {
@@ -371,7 +373,7 @@ export default function HomesSection({ hideHeader = false }: { hideHeader?: bool
     }, 100);
     
     return () => clearTimeout(timer);
-  }, [activeFilter, isLoading, hideHeader]);
+  }, [activeFilter, isLoading, hideHeader, homes.length]);
 
   return (
     <section id="homes" ref={sectionRef} className={`py-20 md:py-28 bg-[oklch(0.14_0.012_55)] ${hideHeader ? "pt-0" : ""}`}>

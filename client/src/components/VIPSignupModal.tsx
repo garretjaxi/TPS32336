@@ -12,21 +12,25 @@ export const VIPSignupModal: React.FC<VIPSignupModalProps> = ({ isOpen, onClose 
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState('');
   const [shouldShow, setShouldShow] = useState(true);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   useEffect(() => {
     // Check if user has already dismissed or signed up
+    if (!isOpen) return;
+    
     const vipDismissed = localStorage.getItem('vipModalDismissed');
     const vipSignedUp = localStorage.getItem('vipModalSignedUp');
     
     if (vipDismissed || vipSignedUp) {
       setShouldShow(false);
     }
-  }, []);
+  }, [isOpen]);
 
   const signupMutation = trpc.vip.signup.useMutation({
     onSuccess: () => {
       setSubmitted(true);
       setEmail('');
+      setIsSubmitting(false);
       // Remember that user signed up
       localStorage.setItem('vipModalSignedUp', 'true');
       
@@ -39,16 +43,20 @@ export const VIPSignupModal: React.FC<VIPSignupModalProps> = ({ isOpen, onClose 
     onError: (err: any) => {
       const errorMessage = err?.message || 'Failed to sign up. Please try again.';
       setError(errorMessage);
+      setIsSubmitting(false);
     },
   });
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError('');
+    setIsSubmitting(true);
     signupMutation.mutate({ email });
   };
 
-  if (!isOpen || !shouldShow) return null;
+  // Don't render if modal is closed or already shown
+  if (!isOpen) return null;
+  if (!shouldShow) return null;
 
   const handleClose = () => {
     // Remember that user dismissed the modal
@@ -127,10 +135,10 @@ export const VIPSignupModal: React.FC<VIPSignupModalProps> = ({ isOpen, onClose 
 
               <button
                 type="submit"
-                disabled={signupMutation.isPending}
+                disabled={isSubmitting}
                 className="w-full bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 disabled:opacity-50 disabled:cursor-not-allowed text-white font-semibold py-3 rounded-lg transition-all duration-200 transform hover:scale-105"
               >
-                {signupMutation.isPending ? 'Signing Up...' : 'Get My 10% Discount'}
+                {isSubmitting ? 'Signing Up...' : 'Get My 10% Discount'}
               </button>
 
               <p className="text-xs text-gray-500 text-center">
