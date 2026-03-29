@@ -18,14 +18,12 @@ import { ArrowRight } from "lucide-react";
 import { useAuth } from "@/_core/hooks/useAuth";
 import { Button } from "@/components/ui/button";
 import { Menu, X, LogOut } from "lucide-react";
-import { useTranslation } from "react-i18next";
 import { getLoginUrl } from "@/const";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
 import SEO from "@/components/SEO";
 import SchemaMarkup from "@/components/SchemaMarkup";
 
 export default function Home() {
-  const { t } = useTranslation();
   const { user, logout, loading } = useAuth();
   const [, navigate] = useLocation();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -116,7 +114,7 @@ export default function Home() {
               onClick={() => navigate("/")}
               className="text-xl font-bold tracking-tight text-[oklch(0.18_0.012_55)] hover:text-[oklch(0.58_0.16_55)] transition-colors"
             >
-              🏠 {t("themeParkStays")}
+              🏠 Theme Park Stays
             </button>
           </div>
 
@@ -127,7 +125,7 @@ export default function Home() {
               onClick={() => document.getElementById("stay")?.scrollIntoView({ behavior: "smooth" })}
               className="text-sm text-[oklch(0.4_0.015_55)] hover:text-[oklch(0.18_0.012_55)] transition-colors"
             >
-              {t("stayWithUs")}
+              Stay With Us
             </button>
             <button
               onClick={() => navigate("/theme-park-tickets")}
@@ -139,19 +137,19 @@ export default function Home() {
               onClick={() => document.getElementById("management")?.scrollIntoView({ behavior: "smooth" })}
               className="text-sm text-[oklch(0.4_0.015_55)] hover:text-[oklch(0.18_0.012_55)] transition-colors"
             >
-              {t("management")}
+              Management
             </button>
             <button
               onClick={() => document.getElementById("design")?.scrollIntoView({ behavior: "smooth" })}
               className="text-sm text-[oklch(0.4_0.015_55)] hover:text-[oklch(0.18_0.012_55)] transition-colors"
             >
-              {t("design")}
+              Design
             </button>
             <button
               onClick={() => navigate("/admin")}
               className="text-sm text-[oklch(0.4_0.015_55)] hover:text-[oklch(0.18_0.012_55)] transition-colors"
             >
-              {t("admin")}
+              Admin
             </button>
             {user ? (
               <div className="flex items-center gap-3">
@@ -160,7 +158,7 @@ export default function Home() {
                   onClick={handleLogout}
                   className="flex items-center gap-1 px-3 py-1.5 text-sm bg-red-50 text-red-600 rounded-lg hover:bg-red-100 transition-colors"
                 >
-                  <LogOut size={14} /> {t("logout")}
+                  <LogOut size={14} /> Logout
                 </button>
               </div>
             ) : (
@@ -168,7 +166,7 @@ export default function Home() {
                 href={getLoginUrl()}
                 className="px-4 py-2 rounded-full text-sm font-semibold bg-[oklch(0.18_0.012_55)] text-white hover:bg-[oklch(0.28_0.012_55)] transition-colors"
               >
-                {t("login")}
+                Login
               </a>
             )}
           </div>
@@ -192,7 +190,7 @@ export default function Home() {
               }}
               className="block w-full text-left text-sm text-[oklch(0.4_0.015_55)] hover:text-[oklch(0.18_0.012_55)] py-2"
             >
-              {t("stayWithUs")}
+              Stay With Us
             </button>
             <button
               onClick={() => {
@@ -201,7 +199,7 @@ export default function Home() {
               }}
               className="block w-full text-left text-sm text-[oklch(0.4_0.015_55)] hover:text-[oklch(0.18_0.012_55)] py-2"
             >
-              {t("explore")}
+              Explore
             </button>
             <button
               onClick={() => {
@@ -210,7 +208,7 @@ export default function Home() {
               }}
               className="block w-full text-left text-sm text-[oklch(0.4_0.015_55)] hover:text-[oklch(0.18_0.012_55)] py-2"
             >
-              {t("management")}
+              Management
             </button>
             <button
               onClick={() => {
@@ -219,7 +217,7 @@ export default function Home() {
               }}
               className="block w-full text-left text-sm text-[oklch(0.4_0.015_55)] hover:text-[oklch(0.18_0.012_55)] py-2"
             >
-              {t("design")}
+              Design
             </button>
             <button
               onClick={() => {
@@ -228,7 +226,7 @@ export default function Home() {
               }}
               className="block w-full text-left text-sm text-[oklch(0.4_0.015_55)] hover:text-[oklch(0.18_0.012_55)] py-2"
             >
-              {t("admin")}
+              Admin
             </button>
             {user ? (
               <button
@@ -242,7 +240,7 @@ export default function Home() {
                 href={getLoginUrl()}
                 className="block w-full text-center px-4 py-2 rounded-full text-sm font-semibold bg-[oklch(0.18_0.012_55)] text-white"
               >
-                {t("login")}
+                Login
               </a>
             )}
           </div>
@@ -291,37 +289,37 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
             <div>
-              <h3 className="font-bold mb-4">{t("themeParkStays")}</h3>
-              <p className="text-white/70 text-sm">{t("yourHomeBase")}</p>
+              <h3 className="font-bold mb-4">Theme Park Stays</h3>
+              <p className="text-white/70 text-sm">Your Home Base for the Magic</p>
             </div>
             <div>
-              <h4 className="font-semibold mb-4">{t("quickLinks")}</h4>
+              <h4 className="font-semibold mb-4">Quick Links</h4>
               <ul className="space-y-2 text-sm text-white/70">
-                <li><button onClick={() => navigate("/about")} className="hover:text-white">{t("aboutUs")}</button></li>
+                <li><button onClick={() => navigate("/about")} className="hover:text-white">About Us</button></li>
                 <li><button onClick={() => navigate("/theme-park-tickets")} className="hover:text-white">Theme Park Tickets</button></li>
-                <li><button onClick={() => navigate("/community")} className="hover:text-white">{t("community")}</button></li>
-                <li><button onClick={() => navigate("/property-management")} className="hover:text-white">{t("management")}</button></li>
+                <li><button onClick={() => navigate("/community")} className="hover:text-white">Community</button></li>
+                <li><button onClick={() => navigate("/property-management")} className="hover:text-white">Management</button></li>
               </ul>
             </div>
             <div>
-              <h4 className="font-semibold mb-4">{t("support")}</h4>
+              <h4 className="font-semibold mb-4">Support</h4>
               <ul className="space-y-2 text-sm text-white/70">
-                <li><a href="#" className="hover:text-white">{t("contactUs")}</a></li>
-                <li><a href="#" className="hover:text-white">{t("faq")}</a></li>
-                <li><a href="#" className="hover:text-white">{t("bookingHelp")}</a></li>
+                <li><a href="#" className="hover:text-white">Contact Us</a></li>
+                <li><a href="#" className="hover:text-white">FAQ</a></li>
+                <li><a href="#" className="hover:text-white">Booking Help</a></li>
               </ul>
             </div>
             <div>
-              <h4 className="font-semibold mb-4">{t("legal")}</h4>
+              <h4 className="font-semibold mb-4">Legal</h4>
               <ul className="space-y-2 text-sm text-white/70">
-                <li><a href="#" className="hover:text-white">{t("privacyPolicy")}</a></li>
-                <li><a href="#" className="hover:text-white">{t("termsOfService")}</a></li>
-                <li><a href="#" className="hover:text-white">{t("cancellationPolicy")}</a></li>
+                <li><a href="#" className="hover:text-white">Privacy Policy</a></li>
+                <li><a href="#" className="hover:text-white">Terms of Service</a></li>
+                <li><a href="#" className="hover:text-white">Cancellation Policy</a></li>
               </ul>
             </div>
           </div>
           <div className="border-t border-white/10 pt-8 text-center text-sm text-white/50">
-            <p>&copy; 2026 {t("themeParkStays")}. {t("allRightsReserved")}</p>
+            <p>&copy; 2026 Theme Park Stays. All rights reserved</p>
           </div>
         </div>
       </footer>

@@ -4,9 +4,10 @@
    ============================================================= */
 import { useState, useEffect, useRef } from "react";
 import { useTranslation } from "react-i18next";
-import { Bed, Bath, Users, Waves, Gamepad2, PawPrint, Star, ExternalLink, Sparkles } from "lucide-react";
+import { Bed, Bath, Users, Waves, Gamepad2, PawPrint, Star, ExternalLink, Sparkles, ChevronDown } from "lucide-react";
 import { trpc } from "@/lib/trpc";
 import OptimizedImage from "./OptimizedImage";
+import { THEME_PARKS, ParkKey, getClosestPark, calculateDrivingTime } from "@/lib/distanceCalculator";
 
 // Legacy static homes array removed — data now comes from the database
 const _homes_unused = [
@@ -278,6 +279,7 @@ const tagIcons: Record<string, React.ReactNode> = {
 
 export default function HomesSection({ hideHeader = false }: { hideHeader?: boolean }) {
   const { t } = useTranslation();
+  const [selectedParkByHome, setSelectedParkByHome] = useState<Record<number, ParkKey>>({});
 
   const filterOptions = [
     {
@@ -322,9 +324,7 @@ export default function HomesSection({ hideHeader = false }: { hideHeader?: bool
   const { data: dbListings = [], isLoading } = trpc.listings.getActiveHomes.useQuery();
 
   // Map DB listings to the shape the card renderer expects
-  // Use static fallback if database is empty
-  const homesData = dbListings.length > 0 ? dbListings : _homes_unused;
-  const homes = homesData.map((l) => ({
+  const homes = dbListings.map((l) => ({
     id: l.id,
     name: l.name,
     tagline: l.tagline,
@@ -345,6 +345,18 @@ export default function HomesSection({ hideHeader = false }: { hideHeader?: bool
   const filtered = activeFilter === "all"
     ? homes
     : homes.filter((home) => home.tags.includes(activeFilter) || (activeFilter === "resort" && home.badges.some((b: string) => b === "Resort Stay")) || (activeFilter === "themed" && home.badges.some((b: string) => b === "Themed Rooms")));
+
+  // Initialize default parks for each home
+  useEffect(() => {
+    const defaults: Record<number, ParkKey> = {};
+    filtered.forEach((home: any) => {
+      const closest = getClosestPark(home.location);
+      if (closest) {
+        defaults[home.id] = closest;
+      }
+    });
+    setSelectedParkByHome(defaults);
+  }, [filtered]);
 
   // Re-animate cards whenever the filter changes or data loads
   useEffect(() => {
@@ -479,7 +491,27 @@ export default function HomesSection({ hideHeader = false }: { hideHeader?: bool
                   </div>
                 </div>
                 <div className="p-4 flex flex-col flex-1">
-                  <div className="text-xs text-[oklch(0.58_0.16_55)] font-medium mb-1" style={{ fontFamily: "'Outfit', sans-serif" }}>
+                  {/* Park Distance Selector */}
+                  <div className="mb-2 flex items-center gap-2">
+                    <div className="relative inline-block">
+                      <select
+                        value={selectedParkByHome[home.id] || "magicKingdom"}
+                        onChange={(e) => setSelectedParkByHome(prev => ({ ...prev, [home.id]: e.target.value as ParkKey }))}
+                        className="appearance-none bg-[oklch(0.94_0.015_75)] text-[oklch(0.18_0.012_55)] text-xs font-medium px-2 py-1 rounded-lg pr-6 cursor-pointer hover:bg-[oklch(0.90_0.015_75)] transition-colors"
+                        style={{ fontFamily: "'Outfit', sans-serif" }}
+                      >
+                        <option value="magicKingdom">{THEME_PARKS.magicKingdom.icon} Magic Kingdom</option>
+                        <option value="universal">{THEME_PARKS.universal.icon} Universal</option>
+                        <option value="seaworld">{THEME_PARKS.seaworld.icon} SeaWorld</option>
+                        <option value="legoland">{THEME_PARKS.legoland.icon} LEGOLAND</option>
+                      </select>
+                      <ChevronDown size={14} className="absolute right-1.5 top-1.5 text-[oklch(0.58_0.16_55)] pointer-events-none" />
+                    </div>
+                    <div className="text-xs font-semibold text-[oklch(0.58_0.16_55)]">
+                      {calculateDrivingTime(home.location, selectedParkByHome[home.id] || "magicKingdom") || "Distance TBD"}
+                    </div>
+                  </div>
+                  <div className="text-xs text-[oklch(0.5_0.02_60)] font-medium mb-1" style={{ fontFamily: "'Outfit', sans-serif" }}>
                     {home.location}
                   </div>
                   <h3 className="text-lg font-bold text-[oklch(0.18_0.012_55)] mb-1 leading-tight" style={{ fontFamily: "'Cormorant Garamond', serif" }}>
@@ -548,7 +580,27 @@ export default function HomesSection({ hideHeader = false }: { hideHeader?: bool
 
                 {/* Content */}
                 <div className="p-5 flex flex-col flex-1">
-                  <div className="text-xs text-[oklch(0.58_0.16_55)] font-medium mb-1" style={{ fontFamily: "'Outfit', sans-serif" }}>
+                  {/* Park Distance Selector */}
+                  <div className="mb-2 flex items-center gap-2">
+                    <div className="relative inline-block">
+                      <select
+                        value={selectedParkByHome[home.id] || "magicKingdom"}
+                        onChange={(e) => setSelectedParkByHome(prev => ({ ...prev, [home.id]: e.target.value as ParkKey }))}
+                        className="appearance-none bg-[oklch(0.94_0.015_75)] text-[oklch(0.18_0.012_55)] text-xs font-medium px-2 py-1 rounded-lg pr-6 cursor-pointer hover:bg-[oklch(0.90_0.015_75)] transition-colors"
+                        style={{ fontFamily: "'Outfit', sans-serif" }}
+                      >
+                        <option value="magicKingdom">{THEME_PARKS.magicKingdom.icon} Magic Kingdom</option>
+                        <option value="universal">{THEME_PARKS.universal.icon} Universal</option>
+                        <option value="seaworld">{THEME_PARKS.seaworld.icon} SeaWorld</option>
+                        <option value="legoland">{THEME_PARKS.legoland.icon} LEGOLAND</option>
+                      </select>
+                      <ChevronDown size={14} className="absolute right-1.5 top-1.5 text-[oklch(0.58_0.16_55)] pointer-events-none" />
+                    </div>
+                    <div className="text-xs font-semibold text-[oklch(0.58_0.16_55)]">
+                      {calculateDrivingTime(home.location, selectedParkByHome[home.id] || "magicKingdom") || "Distance TBD"}
+                    </div>
+                  </div>
+                  <div className="text-xs text-[oklch(0.5_0.02_60)] font-medium mb-1" style={{ fontFamily: "'Outfit', sans-serif" }}>
                     {home.location}
                   </div>
                   <h3

@@ -1,0 +1,8 @@
+{
+  "query": "CREATE TABLE IF NOT EXISTS `booking_inquiries` (\n\t`id` int AUTO_INCREMENT NOT NULL,\n\t`property_name` varchar(256),\n\t`guest_name` varchar(256) NOT NULL,\n\t`guest_email` varchar(320) NOT NULL,\n\t`guest_phone` varchar(32),\n\t`check_in` varchar(16),\n\t`check_out` varchar(16),\n\t`guests` int DEFAULT 1,\n\t`message` text,\n\t`status` enum('new','contacted','booked','closed') NOT NULL DEFAULT 'new',\n\t`createdAt` timestamp NOT NULL DEFAULT (now()),\n\tCONSTRAINT `booking_inquiries_id` PRIMARY KEY(`id`)\n);",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway04.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 3CR2Vs7kNFMCCuX.root --database RyzLQxSB3n3EenkWRBno5W --execute CREATE TABLE IF NOT EXISTS `booking_inquiries` (\n\t`id` int AUTO_INCREMENT NOT NULL,\n\t`property_name` varchar(256),\n\t`guest_name` varchar(256) NOT NULL,\n\t`guest_email` varchar(320) NOT NULL,\n\t`guest_phone` varchar(32),\n\t`check_in` varchar(16),\n\t`check_out` varchar(16),\n\t`guests` int DEFAULT 1,\n\t`message` text,\n\t`status` enum('new','contacted','booked','closed') NOT NULL DEFAULT 'new',\n\t`createdAt` timestamp NOT NULL DEFAULT (now()),\n\tCONSTRAINT `booking_inquiries_id` PRIMARY KEY(`id`)\n);",
+  "returncode": 1,
+  "logs": [
+    "ERROR 1105 (HY000): Connections using insecure transport are prohibited. See https://docs.pingcap.com/tidbcloud/secure-connections-to-serverless-tier-clusters"
+  ]
+}

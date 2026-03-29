@@ -5,8 +5,12 @@
 import { useEffect, useRef } from "react";
 import { MapPin, Car } from "lucide-react";
 import { useTranslation } from "react-i18next";
+import { MapView } from "./Map";
 
 const COLLAGE_IMG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663446287426/E83KvqYJ4TGqcmgXCyYT4P/hero-collage-5z4Huj4gy42cR322ox5qH9.webp";
+
+// Kissimmee/Four Corners center coordinates
+const KISSIMMEE_CENTER = { lat: 28.2917, lng: -81.4139 };
 
 export default function AboutSection() {
   const { t } = useTranslation();
@@ -21,6 +25,7 @@ export default function AboutSection() {
   ];
 
   const sectionRef = useRef<HTMLDivElement>(null);
+  const mapRef = useRef<google.maps.Map | null>(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -44,13 +49,16 @@ export default function AboutSection() {
       <div className="container">
         {/* Two-column layout */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-          {/* Radius Box Image */}
+          {/* Interactive Map */}
           <div className="fade-up relative order-2 lg:order-1">
             <div className="rounded-2xl overflow-hidden shadow-2xl aspect-[4/3] bg-white border border-[oklch(0.92_0.015_75)]">
-              <img
-                src="https://d2xsxph8kpxj0f.cloudfront.net/310419663028408712/RyzLQxSB3n3EenkWRBno5W/8000-iwri2d7f35orhya_2026-03-23_21-23-08_6711_4b2499c0.webp"
-                alt="Theme Park Stays Location Radius Map"
-                className="w-full h-full object-cover"
+              <MapView
+                initialCenter={KISSIMMEE_CENTER}
+                initialZoom={13}
+                className="rounded-2xl"
+                onMapReady={(map) => {
+                  mapRef.current = map;
+                }}
               />
             </div>
             {/* Floating badge */}

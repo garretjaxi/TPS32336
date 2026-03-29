@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { X, Mail, Gift, Check } from 'lucide-react';
 import { trpc } from '@/lib/trpc';
 
@@ -11,11 +11,24 @@ export const VIPSignupModal: React.FC<VIPSignupModalProps> = ({ isOpen, onClose 
   const [email, setEmail] = useState('');
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState('');
+  const [shouldShow, setShouldShow] = useState(true);
+
+  useEffect(() => {
+    // Check if user has already dismissed or signed up
+    const vipDismissed = localStorage.getItem('vipModalDismissed');
+    const vipSignedUp = localStorage.getItem('vipModalSignedUp');
+    
+    if (vipDismissed || vipSignedUp) {
+      setShouldShow(false);
+    }
+  }, []);
 
   const signupMutation = trpc.vip.signup.useMutation({
     onSuccess: () => {
       setSubmitted(true);
       setEmail('');
+      // Remember that user signed up
+      localStorage.setItem('vipModalSignedUp', 'true');
       
       // Auto-close after 5 seconds
       setTimeout(() => {
@@ -35,7 +48,13 @@ export const VIPSignupModal: React.FC<VIPSignupModalProps> = ({ isOpen, onClose 
     signupMutation.mutate({ email });
   };
 
-  if (!isOpen) return null;
+  if (!isOpen || !shouldShow) return null;
+
+  const handleClose = () => {
+    // Remember that user dismissed the modal
+    localStorage.setItem('vipModalDismissed', 'true');
+    onClose();
+  };
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm p-4">
@@ -43,8 +62,9 @@ export const VIPSignupModal: React.FC<VIPSignupModalProps> = ({ isOpen, onClose 
         {/* Header */}
         <div className="bg-gradient-to-r from-amber-50 to-amber-100 px-6 py-8 relative">
           <button
-            onClick={onClose}
+            onClick={handleClose}
             className="absolute top-4 right-4 p-1 hover:bg-white/20 rounded-lg transition-colors"
+            title="Close"
           >
             <X size={20} className="text-amber-900" />
           </button>
