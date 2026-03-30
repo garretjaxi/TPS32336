@@ -91,3 +91,13 @@
   - Moved castle from center to right side of the image
   - Maintained house, pool, and all ground elements in original positions
   - Fireworks remain vibrant against the darker sky background
+
+## Airtable Integration
+
+- [x] Set up Airtable API authentication and environment variables
+- [x] Implement distance calculation from addresses to theme parks (Magic Kingdom, Universal Studios, SeaWorld, LEGOLAND, Airport)
+- [x] Create Airtable sync procedure to populate listings database
+- [x] Update listings table schema to include address field (for distance calculations only, hidden from UI)
+- [ ] Implement distance display on listing cards
+- [ ] Test Airtable sync with homes and rooms/suites data
+- [ ] Run database migrations to apply schema changes

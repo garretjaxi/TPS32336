@@ -13,6 +13,7 @@ import {
   deleteUserById,
   inviteAdminByEmail,
 } from "../db";
+import { syncAirtableListings } from "../airtable";
 
 export const adminRouter = router({
   /**
@@ -241,4 +242,19 @@ export const adminRouter = router({
         throw new TRPCError({ code: "INTERNAL_SERVER_ERROR", message: "Failed to invite admin" });
       }
     }),
+
+  syncAirtableListings: adminProcedure.mutation(async () => {
+    try {
+      const result = await syncAirtableListings();
+      return {
+        success: true,
+        synced: result.synced,
+        errors: result.errors,
+        message: `Successfully synced ${result.synced} listings from Airtable`,
+      };
+    } catch (error) {
+      console.error("[Admin] Failed to sync Airtable listings:", error);
+      throw new TRPCError({ code: "INTERNAL_SERVER_ERROR", message: "Failed to sync Airtable listings" });
+    }
+  }),
 });

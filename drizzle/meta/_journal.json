@@ -43,6 +43,13 @@
       "when": 1774675796688,
       "tag": "0005_slippery_serpent_society",
       "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "5",
+      "when": 1774849526852,
+      "tag": "0006_chubby_screwball",
+      "breakpoints": true
     }
   ]
 }

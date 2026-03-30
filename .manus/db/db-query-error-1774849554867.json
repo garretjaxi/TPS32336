@@ -1,0 +1,18 @@
+{
+  "query": "CREATE TABLE IF NOT EXISTS `listings` (\n  `id` int AUTO_INCREMENT NOT NULL,\n  `name` varchar(256) NOT NULL,\n  `tagline` varchar(512) NOT NULL,\n  `location` varchar(256) NOT NULL,\n  `address` text,\n  `listing_type` varchar(20) NOT NULL DEFAULT 'home',\n  `beds` int NOT NULL DEFAULT 1,\n  `baths` decimal(4,1) NOT NULL DEFAULT '1.0',\n  `guests` int NOT NULL DEFAULT 2,\n  `price` int NOT NULL DEFAULT 100,\n  `rating` decimal(3,2) NOT NULL DEFAULT '5.00',\n  `reviews` int NOT NULL DEFAULT 0,\n  `tags` json NOT NULL,\n  `badges` json NOT NULL,\n  `image` text NOT NULL,\n  `houfy_url` text NOT NULL DEFAULT (''),\n  `featured` tinyint NOT NULL DEFAULT 0,\n  `active` tinyint NOT NULL DEFAULT 1,\n  `sort_order` int NOT NULL DEFAULT 0,\n  `distance_magic_kingdom` json,\n  `distance_universal` json,\n  `distance_seaworld` json,\n  `distance_legoland` json,\n  `distance_airport` json,\n  `createdAt` timestamp NOT NULL DEFAULT (now()),\n  `updatedAt` timestamp NOT NULL DEFAULT (now()) ON UPDATE CURRENT_TIMESTAMP,\n  CONSTRAINT `listings_id` PRIMARY KEY(`id`)\n);",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway04.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 22VUNhnLtUFbAdW.root --database 9cFYW7E3ZSgdzZcVUYn2yx --execute CREATE TABLE IF NOT EXISTS `listings` (\n  `id` int AUTO_INCREMENT NOT NULL,\n  `name` varchar(256) NOT NULL,\n  `tagline` varchar(512) NOT NULL,\n  `location` varchar(256) NOT NULL,\n  `address` text,\n  `listing_type` varchar(20) NOT NULL DEFAULT 'home',\n  `beds` int NOT NULL DEFAULT 1,\n  `baths` decimal(4,1) NOT NULL DEFAULT '1.0',\n  `guests` int NOT NULL DEFAULT 2,\n  `price` int NOT NULL DEFAULT 100,\n  `rating` decimal(3,2) NOT NULL DEFAULT '5.00',\n  `reviews` int NOT NULL DEFAULT 0,\n  `tags` json NOT NULL,\n  `badges` json NOT NULL,\n  `image` text NOT NULL,\n  `houfy_url` text NOT NULL DEFAULT (''),\n  `featured` tinyint NOT NULL DEFAULT 0,\n  `active` tinyint NOT NULL DEFAULT 1,\n  `sort_order` int NOT NULL DEFAULT 0,\n  `distance_magic_kingdom` json,\n  `distance_universal` json,\n  `distance_seaworld` json,\n  `distance_legoland` json,\n  `distance_airport` json,\n  `createdAt` timestamp NOT NULL DEFAULT (now()),\n  `updatedAt` timestamp NOT NULL DEFAULT (now()) ON UPDATE CURRENT_TIMESTAMP,\n  CONSTRAINT `listings_id` PRIMARY KEY(`id`)\n);",
+  "returncode": 1,
+  "logs": [
+    "ERROR 1064 (42000) at line 1: You have an error in your SQL syntax; check the manual that corresponds to your TiDB version for the right syntax to use line 17 column 40 near \"''),",
+    "  `featured` tinyint NOT NULL DEFAULT 0,",
+    "  `active` tinyint NOT NULL DEFAULT 1,",
+    "  `sort_order` int NOT NULL DEFAULT 0,",
+    "  `distance_magic_kingdom` json,",
+    "  `distance_universal` json,",
+    "  `distance_seaworld` json,",
+    "  `distance_legoland` json,",
+    "  `distance_airport` json,",
+    "  `createdAt` timestamp NOT NULL DEFAULT (now()),",
+    "  `updatedAt` timestamp NOT NULL DEFAULT (now()"
+  ]
+}
