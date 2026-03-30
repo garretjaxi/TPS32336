@@ -112,3 +112,7 @@
 - [x] Create Terms of Service page component
 - [x] Add Terms of Service link to footer
 - [x] Test both legal pages and footer links
+
+## Bug Fixes
+
+- [x] Fix distance selector dropdown - restructured card to separate distance selector from link wrapper

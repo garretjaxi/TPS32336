@@ -463,16 +463,18 @@ export default function HomesSection({ hideHeader = false }: { hideHeader?: bool
           {/* Mobile: horizontal snap-scroll carousel. Desktop: 4-col grid */}
           <div className="md:hidden flex gap-4 overflow-x-auto pb-4 snap-x snap-mandatory -mx-4 px-4" style={{ scrollbarWidth: "none", WebkitOverflowScrolling: "touch" as any }}>
             {filtered.map((home, i) => (
-              <a
+              <div
                 key={home.id}
-                href={home.airbnbUrl || "#"}
-                target="_blank"
-                rel="noopener noreferrer"
                 className="home-card fade-up card-hover bg-white rounded-2xl overflow-hidden shadow-md border border-[oklch(0.92_0.015_75)] group flex flex-col cursor-pointer flex-shrink-0 snap-start"
                 style={{ width: "72vw", minWidth: "260px", maxWidth: "320px" }}
               >
                 {/* Image */}
-                <div className="relative aspect-[4/3] overflow-hidden">
+                <a
+                  href={home.airbnbUrl || "#"}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="relative aspect-[4/3] overflow-hidden block"
+                >
                   <OptimizedImage
                     src={home.image}
                     alt={`${home.name} - ${home.beds} bedroom vacation rental in ${home.location}`}
@@ -491,10 +493,10 @@ export default function HomesSection({ hideHeader = false }: { hideHeader?: bool
                     <span className="text-xs font-bold text-[oklch(0.18_0.012_55)]">{home.rating}</span>
                     <span className="text-xs text-gray-500">({home.reviews})</span>
                   </div>
-                </div>
+                </a>
                 <div className="p-4 flex flex-col flex-1">
                   {/* Park Distance Selector */}
-                  <div className="mb-2 flex items-center gap-2">
+                  <div className="mb-2 flex items-center gap-2" onClick={(e) => e.stopPropagation()}>
                     <div className="relative inline-block">
                       <select
                         value={selectedParkByHome[home.id] || "magicKingdom"}
@@ -544,22 +546,24 @@ export default function HomesSection({ hideHeader = false }: { hideHeader?: bool
                     </span>
                   </div>
                 </div>
-              </a>
+              </div>
             ))}
           </div>
 
           {/* Desktop grid — hidden on mobile */}
           <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {filtered.map((home, i) => (
-              <a
+              <div
                 key={home.id}
-                href={home.airbnbUrl || "#"}
-                target="_blank"
-                rel="noopener noreferrer"
                 className="home-card fade-up card-hover bg-white rounded-2xl overflow-hidden shadow-md border border-[oklch(0.92_0.015_75)] group flex flex-col cursor-pointer"
               >
                 {/* Image */}
-                <div className="relative aspect-[4/3] overflow-hidden">
+                <a
+                  href={home.airbnbUrl || "#"}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="relative aspect-[4/3] overflow-hidden block"
+                >
                   <OptimizedImage
                     src={home.image}
                     alt={`${home.name} - ${home.beds} bedroom vacation rental in ${home.location}`}
@@ -578,12 +582,12 @@ export default function HomesSection({ hideHeader = false }: { hideHeader?: bool
                     <span className="text-xs font-bold text-[oklch(0.18_0.012_55)]">{home.rating}</span>
                     <span className="text-xs text-gray-500">({home.reviews})</span>
                   </div>
-                </div>
+                </a>
 
                 {/* Content */}
                 <div className="p-5 flex flex-col flex-1">
                   {/* Park Distance Selector */}
-                  <div className="mb-2 flex items-center gap-2">
+                  <div className="mb-2 flex items-center gap-2" onClick={(e) => e.stopPropagation()}>
                     <div className="relative inline-block">
                       <select
                         value={selectedParkByHome[home.id] || "magicKingdom"}
@@ -652,7 +656,7 @@ export default function HomesSection({ hideHeader = false }: { hideHeader?: bool
                     </span>
                   </div>
                 </div>
-              </a>
+              </div>
             ))}
           </div>
           </>
