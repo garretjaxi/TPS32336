@@ -1,0 +1,40 @@
+{
+  "query": "SELECT id, name, location, address FROM listings LIMIT 5",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway04.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 22VUNhnLtUFbAdW.root --database 9cFYW7E3ZSgdzZcVUYn2yx --execute SELECT id, name, location, address FROM listings LIMIT 5",
+  "rows": [
+    {
+      "id": "1",
+      "name": "The Mickey Suites",
+      "location": "Kissimmee, FL · Solara Resort",
+      "address": "1750 Sawyer Palm Pl, Kissimmee, FL 34747"
+    },
+    {
+      "id": "2",
+      "name": "Peaceful Retreat",
+      "location": "Clermont, FL — 5 mi to Downtown",
+      "address": "10715 Lake Ralph Dr, Clermont, FL 34711"
+    },
+    {
+      "id": "3",
+      "name": "Home Sweet Home",
+      "location": "Davenport, FL  — Azur     ",
+      "address": "224 Famagusta Dr, Davenport, Fl 33896"
+    },
+    {
+      "id": "4",
+      "name": "The Power-Up Pad",
+      "location": "Kissimmee, FL — Windsor Island",
+      "address": "4238 Lana Ave Davenport,Fl 33897"
+    },
+    {
+      "id": "5",
+      "name": "The Ocean Explorer Room",
+      "location": "Kissimmee, FL · Solara Resort",
+      "address": "1750 Sawyer Palm Pl, Kissimmee, FL 34747"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\tname\tlocation\taddress\n1\tThe Mickey Suites\tKissimmee, FL · Solara Resort\t1750 Sawyer Palm Pl, Kissimmee, FL 34747\n2\tPeaceful Retreat\tClermont, FL — 5 mi to Downtown\t10715 Lake Ralph Dr, Clermont, FL 34711\n3\tHome Sweet Home\tDavenport, FL  — Azur     \t224 Famagusta Dr, Davenport, Fl 33896\n4\tThe Power-Up Pad\tKissimmee, FL — Windsor Island\t4238 Lana Ave Davenport,Fl 33897\n5\tThe Ocean Explorer Room\tKissimmee, FL · Solara Resort\t1750 Sawyer Palm Pl, Kissimmee, FL 34747\n",
+  "stderr": "",
+  "execution_time_ms": 437
+}

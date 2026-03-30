@@ -116,3 +116,10 @@
 ## Bug Fixes
 
 - [x] Fix distance selector dropdown - restructured card to separate distance selector from link wrapper
+
+## Distance Calculator Improvements
+
+- [x] Map each property individually using its unique address coordinates (not city averages)
+- [x] Increase driving speed from 40 mph to 50 mph in distance calculations
+- [x] Integrate Google Maps Geocoding API to convert addresses to coordinates
+- [x] Test updated distance calculations against actual properties

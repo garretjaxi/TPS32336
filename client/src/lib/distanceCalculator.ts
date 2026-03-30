@@ -78,11 +78,11 @@ function haversineDistance(
 
 /**
  * Estimate driving time based on distance
- * Uses Orlando traffic patterns: ~35-45 mph average
+ * Uses Orlando traffic patterns: ~50 mph average
  */
 function estimateDrivingTime(distanceMiles: number): number {
-  // Orlando average speed with traffic: 40 mph
-  const averageSpeed = 40;
+  // Orlando average speed with traffic: 50 mph
+  const averageSpeed = 50;
   return Math.round((distanceMiles / averageSpeed) * 60); // Returns minutes
 }
 
