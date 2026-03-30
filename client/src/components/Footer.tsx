@@ -127,8 +127,8 @@ export default function Footer() {
             © 2025 Theme Park Stays. All rights reserved. Orlando, Florida.
           </p>
           <div className="flex items-center gap-4 text-xs text-white/40">
-            <button className="hover:text-white/70 transition-colors">Privacy Policy</button>
-            <button className="hover:text-white/70 transition-colors">Terms of Service</button>
+            <button onClick={() => navigate('/privacy-policy')} className="hover:text-white/70 transition-colors">Privacy Policy</button>
+            <button onClick={() => navigate('/terms-of-service')} className="hover:text-white/70 transition-colors">Terms of Service</button>
             <button className="hover:text-white/70 transition-colors">Sitemap</button>
           </div>
         </div>

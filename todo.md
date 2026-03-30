@@ -101,3 +101,14 @@
 - [ ] Implement distance display on listing cards
 - [ ] Test Airtable sync with homes and rooms/suites data
 - [ ] Run database migrations to apply schema changes
+
+
+## Privacy & Legal
+
+- [x] Create comprehensive privacy policy document
+- [x] Create privacy policy page component
+- [x] Add privacy policy link to footer
+- [x] Create comprehensive Terms of Service document
+- [x] Create Terms of Service page component
+- [x] Add Terms of Service link to footer
+- [x] Test both legal pages and footer links

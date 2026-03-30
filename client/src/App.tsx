@@ -16,6 +16,8 @@ import OrderConfirmation from "./pages/OrderConfirmation";
 import About from "./pages/About";
 import ThemeParkTickets from "./pages/Explore";
 import Community from "./pages/Community";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
+import TermsOfService from "./pages/TermsOfService";
 import { AdminGuard } from "./components/AdminGuard";
 import LoadingDisplay from "./components/LoadingDisplay";
 import { useEffect, useState } from "react";
@@ -35,9 +37,11 @@ function Router() {
       <Route path={"/design-services"} component={DesignServices} />
       <Route path={"/order-confirmation"} component={OrderConfirmation} />
       <Route path={"/about"} component={About} />
-        <Route path="/theme-park-tickets" component={ThemeParkTickets} />
+      <Route path="/theme-park-tickets" component={ThemeParkTickets} />
       <Route path="/explore" component={ThemeParkTickets} /> {/* Redirect for backwards compatibility */}
       <Route path={"/community"} component={Community} />
+      <Route path={"/privacy-policy"} component={PrivacyPolicy} />
+      <Route path={"/terms-of-service"} component={TermsOfService} />
       <Route path={"/404"} component={NotFound} />
       {/* Final fallback route */}
       <Route component={NotFound} />
