@@ -123,3 +123,12 @@
 - [x] Increase driving speed from 40 mph to 50 mph in distance calculations
 - [x] Integrate Google Maps Geocoding API to convert addresses to coordinates
 - [x] Test updated distance calculations against actual properties
+
+## Server-Side Distance Caching
+
+- [ ] Update database schema to add distance cache columns for each theme park
+- [ ] Create distance caching procedure using geocoding API
+- [ ] Add admin endpoint to trigger distance calculation for all properties
+- [ ] Update listings query to return cached distances
+- [ ] Update frontend distance selector to use cached distances
+- [ ] Test cached distances display correctly

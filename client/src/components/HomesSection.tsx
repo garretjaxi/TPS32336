@@ -324,7 +324,7 @@ export default function HomesSection({ hideHeader = false }: { hideHeader?: bool
   const { data: dbListings = [], isLoading } = trpc.listings.getActiveHomes.useQuery();
 
   // Map DB listings to the shape the card renderer expects
-  const homes = dbListings.map((l) => ({
+  const homes = dbListings.map((l: any) => ({
     id: l.id,
     name: l.name,
     tagline: l.tagline,
@@ -340,6 +340,11 @@ export default function HomesSection({ hideHeader = false }: { hideHeader?: bool
     image: l.image,
     airbnbUrl: l.houfy_url,
     featured: Boolean(l.featured),
+    distanceMagicKingdom: l.distanceMagicKingdom,
+    distanceUniversal: l.distanceUniversal,
+    distanceSeaworld: l.distanceSeaworld,
+    distanceLEGOLAND: l.distanceLEGOLAND,
+    distanceAirport: l.distanceAirport,
   }));
 
   const filtered = useMemo(() => {
@@ -512,7 +517,15 @@ export default function HomesSection({ hideHeader = false }: { hideHeader?: bool
                       <ChevronDown size={14} className="absolute right-1.5 top-1.5 text-[oklch(0.58_0.16_55)] pointer-events-none" />
                     </div>
                     <div className="text-xs font-semibold text-[oklch(0.58_0.16_55)]">
-                      {calculateDrivingTime(home.location, selectedParkByHome[home.id] || "magicKingdom") || "Distance TBD"}
+                      {(() => {
+                        const selectedPark = selectedParkByHome[home.id] || "magicKingdom";
+                        const distanceKey = `distance${selectedPark === 'magicKingdom' ? 'MagicKingdom' : selectedPark === 'universal' ? 'Universal' : selectedPark === 'seaworld' ? 'Seaworld' : 'LEGOLAND'}`;
+                        const distanceData = (home as any)[distanceKey];
+                        if (distanceData && typeof distanceData === 'object' && 'minutes' in distanceData) {
+                          return `${distanceData.minutes} mins`;
+                        }
+                        return "Distance TBD";
+                      })()}
                     </div>
                   </div>
                   <div className="text-xs text-[oklch(0.5_0.02_60)] font-medium mb-1" style={{ fontFamily: "'Outfit', sans-serif" }}>
@@ -603,7 +616,15 @@ export default function HomesSection({ hideHeader = false }: { hideHeader?: bool
                       <ChevronDown size={14} className="absolute right-1.5 top-1.5 text-[oklch(0.58_0.16_55)] pointer-events-none" />
                     </div>
                     <div className="text-xs font-semibold text-[oklch(0.58_0.16_55)]">
-                      {calculateDrivingTime(home.location, selectedParkByHome[home.id] || "magicKingdom") || "Distance TBD"}
+                      {(() => {
+                        const selectedPark = selectedParkByHome[home.id] || "magicKingdom";
+                        const distanceKey = `distance${selectedPark === 'magicKingdom' ? 'MagicKingdom' : selectedPark === 'universal' ? 'Universal' : selectedPark === 'seaworld' ? 'Seaworld' : 'LEGOLAND'}`;
+                        const distanceData = (home as any)[distanceKey];
+                        if (distanceData && typeof distanceData === 'object' && 'minutes' in distanceData) {
+                          return `${distanceData.minutes} mins`;
+                        }
+                        return "Distance TBD";
+                      })()}
                     </div>
                   </div>
                   <div className="text-xs text-[oklch(0.5_0.02_60)] font-medium mb-1" style={{ fontFamily: "'Outfit', sans-serif" }}>

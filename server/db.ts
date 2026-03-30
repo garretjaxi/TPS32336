@@ -224,6 +224,11 @@ function parseListingJson(l: any) {
     ...l,
     tags: typeof l.tags === 'string' ? JSON.parse(l.tags) : l.tags,
     badges: typeof l.badges === 'string' ? JSON.parse(l.badges) : l.badges,
+    distanceMagicKingdom: typeof l.distanceMagicKingdom === 'string' ? JSON.parse(l.distanceMagicKingdom) : l.distanceMagicKingdom,
+    distanceUniversal: typeof l.distanceUniversal === 'string' ? JSON.parse(l.distanceUniversal) : l.distanceUniversal,
+    distanceSeaworld: typeof l.distanceSeaworld === 'string' ? JSON.parse(l.distanceSeaworld) : l.distanceSeaworld,
+    distanceLEGOLAND: typeof l.distanceLEGOLAND === 'string' ? JSON.parse(l.distanceLEGOLAND) : l.distanceLEGOLAND,
+    distanceAirport: typeof l.distanceAirport === 'string' ? JSON.parse(l.distanceAirport) : l.distanceAirport,
   };
 }
 

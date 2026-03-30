@@ -14,6 +14,7 @@ import {
   inviteAdminByEmail,
 } from "../db";
 import { syncAirtableListings } from "../airtable";
+import { cacheAllDistances } from "../distanceCaching";
 
 export const adminRouter = router({
   /**
@@ -255,6 +256,22 @@ export const adminRouter = router({
     } catch (error) {
       console.error("[Admin] Failed to sync Airtable listings:", error);
       throw new TRPCError({ code: "INTERNAL_SERVER_ERROR", message: "Failed to sync Airtable listings" });
+    }
+  }),
+
+  cachePropertyDistances: adminProcedure.mutation(async () => {
+    try {
+      const result = await cacheAllDistances();
+      return {
+        success: true,
+        cached: result.success,
+        failed: result.failed,
+        total: result.total,
+        message: `Distance caching complete: ${result.success}/${result.total} properties cached`,
+      };
+    } catch (error) {
+      console.error("[Admin] Failed to cache distances:", error);
+      throw new TRPCError({ code: "INTERNAL_SERVER_ERROR", message: "Failed to cache distances" });
     }
   }),
 });
