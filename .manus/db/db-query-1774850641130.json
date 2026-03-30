@@ -1,0 +1,18 @@
+{
+  "query": "SELECT COUNT(*) as total, listing_type FROM listings GROUP BY listing_type;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway04.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 22VUNhnLtUFbAdW.root --database 9cFYW7E3ZSgdzZcVUYn2yx --execute SELECT COUNT(*) as total, listing_type FROM listings GROUP BY listing_type;",
+  "rows": [
+    {
+      "total": "17",
+      "listing_type": "Homes"
+    },
+    {
+      "total": "8",
+      "listing_type": "Rooms"
+    }
+  ],
+  "messages": [],
+  "stdout": "total\tlisting_type\n17\tHomes\n8\tRooms\n",
+  "stderr": "",
+  "execution_time_ms": 422
+}

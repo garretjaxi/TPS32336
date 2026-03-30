@@ -1,0 +1,40 @@
+{
+  "query": "SELECT id, name, listing_type, active FROM listings LIMIT 5;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway04.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 22VUNhnLtUFbAdW.root --database 9cFYW7E3ZSgdzZcVUYn2yx --execute SELECT id, name, listing_type, active FROM listings LIMIT 5;",
+  "rows": [
+    {
+      "id": "1",
+      "name": "The Mickey Suites",
+      "listing_type": "rooms",
+      "active": "1"
+    },
+    {
+      "id": "2",
+      "name": "Peaceful Retreat",
+      "listing_type": "homes",
+      "active": "1"
+    },
+    {
+      "id": "3",
+      "name": "Home Sweet Home",
+      "listing_type": "homes",
+      "active": "1"
+    },
+    {
+      "id": "4",
+      "name": "The Power-Up Pad",
+      "listing_type": "homes",
+      "active": "1"
+    },
+    {
+      "id": "5",
+      "name": "The Ocean Explorer Room",
+      "listing_type": "rooms",
+      "active": "1"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\tname\tlisting_type\tactive\n1\tThe Mickey Suites\trooms\t1\n2\tPeaceful Retreat\thomes\t1\n3\tHome Sweet Home\thomes\t1\n4\tThe Power-Up Pad\thomes\t1\n5\tThe Ocean Explorer Room\trooms\t1\n",
+  "stderr": "",
+  "execution_time_ms": 341
+}

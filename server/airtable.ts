@@ -82,9 +82,9 @@ export async function syncAirtableListings() {
       try {
         const fields = record.fields;
         
-        // Validate required fields
-        if (!fields.name || !fields.tagline || !fields.image) {
-          console.warn(`Skipping record ${record.id}: missing required fields`);
+        // Validate required fields - only name is mandatory
+        if (!fields.name) {
+          console.warn(`Skipping record ${record.id}: missing name field`);
           errors++;
           continue;
         }
@@ -95,8 +95,9 @@ export async function syncAirtableListings() {
 
         const listingData = {
           name: fields.name,
-          tagline: fields.tagline,
-          location: fields.address || "Orlando, FL",
+          tagline: fields.tagline || fields.name,
+          location: (fields as any).location || fields.address || "Orlando, FL",
+          address: fields.address,
           beds: fields.beds || 1,
           baths: String(fields.baths || 1),
           guests: fields.guests || 2,
@@ -105,7 +106,7 @@ export async function syncAirtableListings() {
           reviews: fields.reviews || 0,
           tags: fields.tags || [],
           badges: fields.badges || [],
-          image: fields.image,
+          image: (fields as any).image || "https://via.placeholder.com/400x300?text=" + encodeURIComponent(fields.name),
           houfy_url: fields.houfy_url || "",
           featured: fields.featured ? 1 : 0,
           active: fields.active !== false ? 1 : 0,

@@ -1,0 +1,9 @@
+{
+  "query": "CREATE TABLE `productInventory` (\n  `id` int AUTO_INCREMENT NOT NULL,\n  `productId` varchar(256) NOT NULL,\n  `name` varchar(256) NOT NULL,\n  `category` varchar(256) NOT NULL,\n  `price` int NOT NULL DEFAULT 0,\n  `isActive` tinyint NOT NULL DEFAULT 1,\n  `maxQuantityPerOrder` int NOT NULL DEFAULT 10,\n  `description` text,\n  `createdAt` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,\n  `updatedAt` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,\n  PRIMARY KEY (`id`),\n  UNIQUE KEY `productId` (`productId`)\n);",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway04.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 22VUNhnLtUFbAdW.root --database 9cFYW7E3ZSgdzZcVUYn2yx --execute CREATE TABLE `productInventory` (\n  `id` int AUTO_INCREMENT NOT NULL,\n  `productId` varchar(256) NOT NULL,\n  `name` varchar(256) NOT NULL,\n  `category` varchar(256) NOT NULL,\n  `price` int NOT NULL DEFAULT 0,\n  `isActive` tinyint NOT NULL DEFAULT 1,\n  `maxQuantityPerOrder` int NOT NULL DEFAULT 10,\n  `description` text,\n  `createdAt` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,\n  `updatedAt` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,\n  PRIMARY KEY (`id`),\n  UNIQUE KEY `productId` (`productId`)\n);",
+  "rows": [],
+  "messages": [],
+  "stdout": "",
+  "stderr": "",
+  "execution_time_ms": 436
+}

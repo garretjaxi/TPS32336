@@ -1,0 +1,25 @@
+{
+  "query": "SELECT id, name, image FROM listings WHERE listing_type = 'home' LIMIT 3;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway04.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 22VUNhnLtUFbAdW.root --database 9cFYW7E3ZSgdzZcVUYn2yx --execute SELECT id, name, image FROM listings WHERE listing_type = 'home' LIMIT 3;",
+  "rows": [
+    {
+      "id": "2",
+      "name": "Peaceful Retreat",
+      "image": "https://via.placeholder.com/400x300?text=Peaceful%20Retreat"
+    },
+    {
+      "id": "3",
+      "name": "Home Sweet Home",
+      "image": "https://via.placeholder.com/400x300?text=Home%20Sweet%20Home"
+    },
+    {
+      "id": "4",
+      "name": "The Power-Up Pad",
+      "image": "https://via.placeholder.com/400x300?text=The%20Power-Up%20Pad"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\tname\timage\n2\tPeaceful Retreat\thttps://via.placeholder.com/400x300?text=Peaceful%20Retreat\n3\tHome Sweet Home\thttps://via.placeholder.com/400x300?text=Home%20Sweet%20Home\n4\tThe Power-Up Pad\thttps://via.placeholder.com/400x300?text=The%20Power-Up%20Pad\n",
+  "stderr": "",
+  "execution_time_ms": 356
+}
