@@ -5,7 +5,7 @@
 import { useEffect, useRef } from "react";
 import { MapPin, Car } from "lucide-react";
 import { useTranslation } from "react-i18next";
-import { MapView } from "./Map";
+import { PropertyMapWithPins } from "./PropertyMapWithPins";
 
 const COLLAGE_IMG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663446287426/E83KvqYJ4TGqcmgXCyYT4P/hero-collage-5z4Huj4gy42cR322ox5qH9.webp";
 
@@ -25,7 +25,6 @@ export default function AboutSection() {
   ];
 
   const sectionRef = useRef<HTMLDivElement>(null);
-  const mapRef = useRef<google.maps.Map | null>(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -52,13 +51,9 @@ export default function AboutSection() {
           {/* Interactive Map */}
           <div className="fade-up relative order-2 lg:order-1">
             <div className="rounded-2xl overflow-hidden shadow-2xl aspect-[4/3] bg-white border border-[oklch(0.92_0.015_75)]">
-              <MapView
-                initialCenter={KISSIMMEE_CENTER}
+              <PropertyMapWithPins
                 initialZoom={13}
                 className="rounded-2xl"
-                onMapReady={(map) => {
-                  mapRef.current = map;
-                }}
               />
             </div>
             {/* Floating badge */}
