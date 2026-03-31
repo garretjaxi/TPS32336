@@ -448,31 +448,31 @@ export default function PropertyManagement() {
       </section>
 
       {/* ── Why Choose Us ── */}
-      <section className="py-20 md:py-28 bg-white">
+      <section className="py-12 md:py-16 bg-white">
         <div className="container">
-          <div className="text-center mb-16">
-            <span className="text-xs font-semibold tracking-[0.25em] uppercase text-[oklch(0.58_0.16_55)] mb-3 block">Why Partner With Us</span>
-            <h2 className="text-4xl md:text-5xl font-bold text-[oklch(0.18_0.012_55)] mb-4" style={{ fontFamily: "'Cormorant Garamond', serif" }}>
+          <div className="text-center mb-10">
+            <span className="text-xs font-semibold tracking-[0.25em] uppercase text-[oklch(0.58_0.16_55)] mb-2 block">Why Partner With Us</span>
+            <h2 className="text-3xl md:text-4xl font-bold text-[oklch(0.18_0.012_55)] mb-3" style={{ fontFamily: "'Cormorant Garamond', serif" }}>
               Benefits of Our <span className="italic text-[oklch(0.58_0.16_55)]">Management Services</span>
             </h2>
-            <p className="text-[oklch(0.45_0.015_55)] text-lg max-w-2xl mx-auto">
+            <p className="text-[oklch(0.45_0.015_55)] text-base max-w-2xl mx-auto">
               As a locally owned Orlando company, we bring a personal touch that national chains simply can't match.
             </p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
             {whyFeatures.map((f) => (
-              <div key={f.title} className="group p-8 rounded-2xl bg-[oklch(0.96_0.014_75)] border border-[oklch(0.88_0.03_75)] shadow-[0_2px_12px_oklch(0.82_0.14_70/0.18)] hover:border-[oklch(0.72_0.14_70)] hover:shadow-[0_6px_24px_oklch(0.72_0.14_70/0.28)] hover:bg-white transition-all duration-300">
-                <div className="w-14 h-14 rounded-full border-2 border-[oklch(0.82_0.14_70)] flex items-center justify-center mb-5 group-hover:bg-[oklch(0.82_0.14_70)]/10 transition-colors">
-                  <f.icon size={24} className="text-[oklch(0.58_0.16_55)]" />
+              <div key={f.title} className="group p-5 rounded-xl bg-[oklch(0.96_0.014_75)] border border-[oklch(0.88_0.03_75)] shadow-[0_2px_12px_oklch(0.82_0.14_70/0.18)] hover:border-[oklch(0.72_0.14_70)] hover:shadow-[0_6px_24px_oklch(0.72_0.14_70/0.28)] hover:bg-white transition-all duration-300">
+                <div className="w-12 h-12 rounded-full border-2 border-[oklch(0.82_0.14_70)] flex items-center justify-center mb-3 group-hover:bg-[oklch(0.82_0.14_70)]/10 transition-colors">
+                  <f.icon size={20} className="text-[oklch(0.58_0.16_55)]" />
                 </div>
-                <h3 className="text-xl font-bold text-[oklch(0.18_0.012_55)] mb-3" style={{ fontFamily: "'Cormorant Garamond', serif" }}>{f.title}</h3>
-                <p className="text-[oklch(0.45_0.015_55)] leading-relaxed text-sm">{f.desc}</p>
+                <h3 className="text-lg font-bold text-[oklch(0.18_0.012_55)] mb-2" style={{ fontFamily: "'Cormorant Garamond', serif" }}>{f.title}</h3>
+                <p className="text-[oklch(0.45_0.015_55)] leading-relaxed text-xs">{f.desc}</p>
               </div>
             ))}
           </div>
-          <div className="text-center mt-12">
-            <button onClick={scrollToContact} className="btn-amber flex items-center gap-2 px-8 py-4 rounded-full text-base font-semibold mx-auto">
-              Get Your Free Estimate <ArrowRight size={18} />
+          <div className="text-center mt-8">
+            <button onClick={scrollToContact} className="btn-amber flex items-center gap-2 px-6 py-3 rounded-full text-sm font-semibold mx-auto">
+              Get Your Free Estimate <ArrowRight size={16} />
             </button>
           </div>
         </div>
