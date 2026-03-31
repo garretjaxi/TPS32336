@@ -4,7 +4,7 @@ export async function sendEmail(to: string, subject: string, html: string) {
   const smtpHost = process.env.SMTP_HOST ?? "";
   const smtpPort = process.env.SMTP_PORT ?? "";
   const smtpUser = process.env.SMTP_USER ?? "";
-  const smtpPass = process.env.SMTP_PASS ?? "";
+  const smtpPass = process.env.SMTP_PASSWORD ?? "";
 
   if (!smtpHost || !smtpPort || !smtpUser || !smtpPass) {
     console.warn("SMTP environment variables are not fully configured. Skipping email sending.");
@@ -22,8 +22,12 @@ export async function sendEmail(to: string, subject: string, html: string) {
   });
 
   try {
+    const fromEmail = process.env.SMTP_FROM_EMAIL ?? smtpUser;
+    const fromName = process.env.SMTP_FROM_NAME ?? "";
+    const fromAddress = fromName ? `${fromName} <${fromEmail}>` : fromEmail;
+
     await transporter.sendMail({
-      from: smtpUser,
+      from: fromAddress,
       to: to,
       subject: subject,
       html: html,
