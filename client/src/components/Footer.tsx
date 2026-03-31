@@ -43,7 +43,7 @@ export default function Footer() {
   };
 
   return (
-    <footer className="bg-gradient-to-r from-[oklch(0.12_0.01_55)] to-[oklch(0.15_0.012_50)] text-white gradient-animated">
+    <footer className="bg-gradient-to-r from-[oklch(0.12_0.01_55)] via-[oklch(0.35_0.15_55)] to-[oklch(0.75_0.15_240)] text-white gradient-animated">
       {/* Main footer */}
       <div className="container py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10">

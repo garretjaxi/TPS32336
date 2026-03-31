@@ -52,7 +52,7 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[oklch(0.98_0.008_80)] via-[oklch(0.96_0.01_70)] to-[oklch(0.94_0.012_60)] text-[oklch(0.18_0.012_55)] gradient-animated-subtle">
+    <div className="min-h-screen bg-gradient-to-br from-[oklch(0.98_0.008_80)] via-[oklch(0.85_0.12_65)] to-[oklch(0.75_0.15_240)] text-[oklch(0.18_0.012_55)] gradient-animated-subtle">
       <SEO 
         title="Orlando Vacation Rentals Near Disney World"
         description="Premium vacation rentals in Orlando, FL — minutes from Disney World, Universal Studios, LEGOLAND, and SeaWorld. Book direct and save."
@@ -276,7 +276,7 @@ export default function Home() {
         <DesignTeaser />
 
         {/* Community Teaser */}
-        <section className="py-16 bg-gradient-to-r from-[oklch(0.98_0.005_75)] to-[oklch(0.95_0.008_70)] gradient-animated">
+        <section className="py-16 bg-gradient-to-r from-[oklch(0.98_0.005_75)] via-[oklch(0.85_0.12_65)] to-[oklch(0.75_0.15_240)] gradient-animated">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <h2 className="display-heading text-4xl md:text-5xl text-[oklch(0.18_0.012_55)] mb-6">
               Our Community
