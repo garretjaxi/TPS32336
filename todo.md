@@ -211,3 +211,4 @@
 - [x] Apply glassmorphism to listing cards (homes, activities, shop, tickets)
 - [x] Apply glassmorphism to Property Management page sections
 - [x] Apply glassmorphism to Design Services page sections
+- [x] Increase contrast of "Why Partner With Us" feature cards with solid white background
