@@ -133,12 +133,12 @@ export default function ContactUs() {
               <div>
                 <h3 className="text-lg font-semibold text-foreground mb-2">Phone</h3>
                 <p className="text-foreground/70">
-                  <a href="tel:321-939-2057" className="hover:text-amber-600 transition">
-                    321-939-2057
+                  <a href="tel:407-801-3030" className="hover:text-amber-600 transition">
+                    407-801-3030
                   </a>
                 </p>
                 <p className="text-sm text-foreground/60 mt-2">
-                  Monday – Friday: 8AM – 2PM EST<br />
+                  Monday – Friday: 10AM – 8PM EST<br />
                   Saturday & Sunday: Closed
                 </p>
               </div>
@@ -146,8 +146,8 @@ export default function ContactUs() {
               <div>
                 <h3 className="text-lg font-semibold text-foreground mb-2">Email</h3>
                 <p className="text-foreground/70">
-                  <a href="mailto:info@themeparkstays.com" className="hover:text-amber-600 transition">
-                    info@themeparkstays.com
+                  <a href="mailto:admin@themeparkstays.com" className="hover:text-amber-600 transition">
+                    admin@themeparkstays.com
                   </a>
                 </p>
               </div>

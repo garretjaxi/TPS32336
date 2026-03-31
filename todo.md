@@ -187,3 +187,10 @@
 
 - [x] Create vip_subscribers table in database schema
 - [x] Test VIP signup form submission
+
+## Bug Fixes
+
+- [x] Fix Google Maps API multiple load error on homepage
+- [x] Update Contact Us page with new phone number (407-801-3030)
+- [x] Update Contact Us page with new business hours (10AM - 8PM EST)
+- [x] Update Contact Us page with new email (admin@themeparkstays.com)
