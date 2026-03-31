@@ -465,12 +465,12 @@ export default function PropertyManagement() {
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
             {whyFeatures.map((f) => (
-              <div key={f.title} className="group p-5 rounded-xl bg-white border border-[oklch(0.82_0.14_70)]/30 shadow-lg hover:shadow-xl hover:border-[oklch(0.82_0.14_70)]/60 transition-all duration-300">
+              <div key={f.title} className="group p-5 rounded-xl bg-[oklch(0.18_0.012_55)]/40 backdrop-blur-md border border-white/20 shadow-lg hover:shadow-xl hover:border-white/40 transition-all duration-300">
                 <div className="w-12 h-12 rounded-full border-2 border-[oklch(0.82_0.14_70)] flex items-center justify-center mb-3 bg-[oklch(0.82_0.14_70)]/10 group-hover:bg-[oklch(0.82_0.14_70)]/20 transition-colors">
                   <f.icon size={20} className="text-[oklch(0.58_0.16_55)]" />
                 </div>
-                <h3 className="text-lg font-bold text-[oklch(0.18_0.012_55)] mb-2" style={{ fontFamily: "'Cormorant Garamond', serif" }}>{f.title}</h3>
-                <p className="text-[oklch(0.45_0.015_55)] leading-relaxed text-xs">{f.desc}</p>
+                <h3 className="text-lg font-bold text-white mb-2" style={{ fontFamily: "'Cormorant Garamond', serif" }}>{f.title}</h3>
+                <p className="text-white/70 leading-relaxed text-xs">{f.desc}</p>
               </div>
             ))}
           </div>

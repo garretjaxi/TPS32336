@@ -212,3 +212,4 @@
 - [x] Apply glassmorphism to Property Management page sections
 - [x] Apply glassmorphism to Design Services page sections
 - [x] Increase contrast of "Why Partner With Us" feature cards with solid white background
+- [x] Apply dark semi-transparent glassmorphism (Glassify 2.0) to "Why Partner With Us" feature cards
