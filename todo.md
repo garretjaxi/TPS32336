@@ -194,3 +194,5 @@
 - [x] Update Contact Us page with new phone number (407-801-3030)
 - [x] Update Contact Us page with new business hours (10AM - 8PM EST)
 - [x] Update Contact Us page with new email (admin@themeparkstays.com)
+- [x] Update location description to 15-25 minutes from parks
+- [x] Update amenities list with comprehensive details (AC, heating, cable TV, pool info)
