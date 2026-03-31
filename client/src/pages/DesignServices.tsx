@@ -1,5 +1,6 @@
 import { Link } from "wouter";
 import { useEffect, useState } from "react";
+import { useLocation } from "wouter";
 import { Paintbrush, Layers, Zap, Waves, Bath, ChefHat, ArrowLeft, Phone, Mail, CheckCircle2, Star, Loader2 } from "lucide-react";
 import { trpc } from "@/lib/trpc";
 import { toast } from "sonner";
@@ -98,8 +99,18 @@ export default function DesignServices() {
     });
   };
 
+  const [, navigate] = useLocation();
+
   return (
     <div className="min-h-screen bg-[oklch(0.98_0.008_80)] text-[oklch(0.18_0.012_55)]">
+      {/* Floating Back to Site Button */}
+      <button
+        onClick={() => navigate("/")}
+        className="fixed bottom-8 right-8 z-40 flex items-center gap-2 px-6 py-3 rounded-full text-base font-semibold bg-[oklch(0.82_0.14_70)] text-white shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-200 ease-out"
+        title="Return to home page"
+      >
+        ← Back to Site
+      </button>
       <SEO 
         title="Themed Room Design & Vacation Rental Remodeling"
         description="Transform your property with Orlando's premier vacation rental design team. We specialize in themed bedrooms, luxury remodels, and turnkey renovations."
@@ -107,12 +118,8 @@ export default function DesignServices() {
       {/* ── Navbar ── */}
       <nav className="sticky top-0 z-50 bg-white/95 backdrop-blur-sm border-b border-[oklch(0.92_0.015_75)] shadow-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-          <div className="flex items-center gap-4">
-            <Link href="/" className="flex items-center gap-1.5 text-sm text-[oklch(0.5_0.015_55)] hover:text-[oklch(0.3_0.012_55)] transition-colors">
-              <ArrowLeft size={16} /> Back to Theme Park Stays
-            </Link>
-          </div>
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-4" />
+          <div className="flex items-center gap-2 flex-1 justify-center">
             <span className="text-xl font-bold tracking-tight text-[oklch(0.18_0.012_55)]">NorthTec</span>
             <span className="text-sm text-[oklch(0.5_0.015_55)] hidden sm:block">Interior Design Services</span>
           </div>

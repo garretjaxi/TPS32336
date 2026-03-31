@@ -202,3 +202,5 @@
 - [x] Configure SMTP credentials for email notifications
 - [x] Add "Back to Site" button to Property Management page hero section
 - [x] Convert "Back to Site" button to floating button that stays visible while scrolling
+- [x] Add floating "Back to Site" button to Design Services page
+- [x] Remove "Back to Site" link from Design Services header

@@ -343,12 +343,7 @@ export default function PropertyManagement() {
           <a href="tel:+14078013030" className="hidden md:flex items-center gap-1.5 text-sm text-[oklch(0.4_0.015_55)] hover:text-[oklch(0.58_0.16_55)] transition-colors">
             <PhoneCall size={14} /> (407) 801-3030
           </a>
-          <button
-            onClick={() => navigate("/")}
-            className="text-sm text-[oklch(0.4_0.015_55)] hover:text-[oklch(0.58_0.16_55)] transition-colors"
-          >
-            ← Back to Site
-          </button>
+
           <button
             onClick={scrollToContact}
             className="btn-amber px-5 py-2 rounded-full text-sm font-semibold shadow-md"
