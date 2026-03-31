@@ -51,7 +51,7 @@ interface PropertyMapProps {
 
 export function PropertyMapWithPins({
   className,
-  initialZoom = 11,
+  initialZoom = 12,
 }: PropertyMapProps) {
   const mapRef = useRef<google.maps.Map | null>(null);
   const markersRef = useRef<google.maps.marker.AdvancedMarkerElement[]>([]);
