@@ -308,6 +308,14 @@ export default function PropertyManagement() {
 
   return (
     <div className="min-h-screen bg-[oklch(0.98_0.005_75)]" style={{ fontFamily: "'Outfit', sans-serif" }}>
+      {/* Floating Back to Site Button */}
+      <button
+        onClick={() => navigate("/")}
+        className="fixed bottom-8 right-8 z-40 flex items-center gap-2 px-6 py-3 rounded-full text-base font-semibold bg-[oklch(0.82_0.14_70)] text-white shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-200 ease-out"
+        title="Return to home page"
+      >
+        ← Back to Site
+      </button>
       <SEO 
         title="Full-Service Orlando Property Management"
         description="Earn more with Orlando's best property manager. We offer full-service management with lower commission rates and dynamic pricing."
@@ -384,9 +392,7 @@ export default function PropertyManagement() {
               <a href="tel:+14078013030" className="flex items-center gap-2 px-8 py-4 rounded-full text-base font-semibold border border-white/30 text-white hover:bg-white/10 transition-colors">
                 <PhoneCall size={18} /> (407) 801-3030
               </a>
-              <button onClick={() => navigate("/")} className="flex items-center gap-2 px-8 py-4 rounded-full text-base font-semibold border border-white/30 text-white hover:bg-white/10 transition-colors">
-                ← Back to Site
-              </button>
+
             </div>
             {/* Social proof */}
             <div className="flex items-center gap-3 mt-8">

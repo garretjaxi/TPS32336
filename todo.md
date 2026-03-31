@@ -201,3 +201,4 @@
 - [x] Update Premium and Full Service plan fees to 18% on Property Management page
 - [x] Configure SMTP credentials for email notifications
 - [x] Add "Back to Site" button to Property Management page hero section
+- [x] Convert "Back to Site" button to floating button that stays visible while scrolling
