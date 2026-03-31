@@ -25,7 +25,7 @@ export async function setupVite(app: Express, server: Server) {
     const url = req.originalUrl;
 
     // Define valid routes to handle 404s correctly
-    const validRoutes = ["/", "/property-management", "/design-services", "/order-confirmation", "/about", "/explore", "/community"];
+    const validRoutes = ["/", "/property-management", "/design-services", "/order-confirmation", "/about", "/explore", "/community", "/privacy-policy", "/terms-of-service", "/theme-park-tickets"];
     const isAdminRoute = url.startsWith("/admin");
     const isApiRoute = url.startsWith("/api");
 
@@ -46,7 +46,8 @@ export async function setupVite(app: Express, server: Server) {
       const page = await vite.transformIndexHtml(url, template);
 
       // Set 404 status if the route is not recognized
-      if (!validRoutes.includes(url) && !isAdminRoute && !isApiRoute) {
+      // For routes that start with /admin/, always serve index.html (client-side routing)
+      if (!validRoutes.includes(url) && !isAdminRoute && !isApiRoute && !url.startsWith("/")) {
         res.status(404);
       } else {
         res.status(200);

@@ -22,7 +22,7 @@ import { AdminGuard } from "./components/AdminGuard";
 import LoadingDisplay from "./components/LoadingDisplay";
 import { useEffect, useState } from "react";
 
-function Router() {
+function AppRouter() {
   return (
     <Switch>
       <Route path={"/"} component={Home} />
@@ -70,7 +70,7 @@ function App() {
           <TooltipProvider>
             <Toaster />
             {isLoading && <LoadingDisplay />}
-            <Router />
+            <AppRouter />
           </TooltipProvider>
         </ThemeProvider>
       </HelmetProvider>
