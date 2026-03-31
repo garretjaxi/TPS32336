@@ -1,0 +1,15 @@
+{
+  "query": "UPDATE listings SET listing_type = 'room' WHERE id = 1; SELECT id, name, listing_type FROM listings WHERE id = 1;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway04.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 22VUNhnLtUFbAdW.root --database 9cFYW7E3ZSgdzZcVUYn2yx --execute UPDATE listings SET listing_type = 'room' WHERE id = 1; SELECT id, name, listing_type FROM listings WHERE id = 1;",
+  "rows": [
+    {
+      "id": "1",
+      "name": "The Mickey Suites",
+      "listing_type": "room"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\tname\tlisting_type\n1\tThe Mickey Suites\troom\n",
+  "stderr": "",
+  "execution_time_ms": 413
+}

@@ -1,0 +1,50 @@
+{
+  "query": "SELECT id, name FROM listings WHERE name LIKE '%Mickey%' OR name LIKE '%Ocean%' OR name LIKE '%Sea%' OR name LIKE '%Radiator%' OR name LIKE '%Escape%' OR name LIKE '%Palace%' OR name LIKE '%Comfy%' OR name LIKE '%Cozy%';",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway04.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 22VUNhnLtUFbAdW.root --database 9cFYW7E3ZSgdzZcVUYn2yx --execute SELECT id, name FROM listings WHERE name LIKE '%Mickey%' OR name LIKE '%Ocean%' OR name LIKE '%Sea%' OR name LIKE '%Radiator%' OR name LIKE '%Escape%' OR name LIKE '%Palace%' OR name LIKE '%Comfy%' OR name LIKE '%Cozy%';",
+  "rows": [
+    {
+      "id": "1",
+      "name": "The Mickey Suites"
+    },
+    {
+      "id": "5",
+      "name": "The Ocean Explorer Room"
+    },
+    {
+      "id": "6",
+      "name": "The Mickey Escape"
+    },
+    {
+      "id": "8",
+      "name": "The Sea Shanty"
+    },
+    {
+      "id": "9",
+      "name": "The Royal Palace"
+    },
+    {
+      "id": "12",
+      "name": "Radiator Springs"
+    },
+    {
+      "id": "14",
+      "name": "The Peaceful Palace"
+    },
+    {
+      "id": "17",
+      "name": "The Comfy Corner"
+    },
+    {
+      "id": "21",
+      "name": "The Resort Escape"
+    },
+    {
+      "id": "25",
+      "name": "The Cozy Suite"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\tname\n1\tThe Mickey Suites\n5\tThe Ocean Explorer Room\n6\tThe Mickey Escape\n8\tThe Sea Shanty\n9\tThe Royal Palace\n12\tRadiator Springs\n14\tThe Peaceful Palace\n17\tThe Comfy Corner\n21\tThe Resort Escape\n25\tThe Cozy Suite\n",
+  "stderr": "",
+  "execution_time_ms": 354
+}

@@ -1,0 +1,135 @@
+{
+  "query": "SELECT id, name, listing_type FROM listings ORDER BY id;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway04.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 22VUNhnLtUFbAdW.root --database 9cFYW7E3ZSgdzZcVUYn2yx --execute SELECT id, name, listing_type FROM listings ORDER BY id;",
+  "rows": [
+    {
+      "id": "1",
+      "name": "The Mickey Suites",
+      "listing_type": "home"
+    },
+    {
+      "id": "2",
+      "name": "Peaceful Retreat",
+      "listing_type": "home"
+    },
+    {
+      "id": "3",
+      "name": "Home Sweet Home",
+      "listing_type": "home"
+    },
+    {
+      "id": "4",
+      "name": "The Power-Up Pad",
+      "listing_type": "home"
+    },
+    {
+      "id": "5",
+      "name": "The Ocean Explorer Room",
+      "listing_type": "home"
+    },
+    {
+      "id": "6",
+      "name": "The Mickey Escape",
+      "listing_type": "home"
+    },
+    {
+      "id": "7",
+      "name": "The Serenity Springs",
+      "listing_type": "home"
+    },
+    {
+      "id": "8",
+      "name": "The Sea Shanty",
+      "listing_type": "home"
+    },
+    {
+      "id": "9",
+      "name": "The Royal Palace",
+      "listing_type": "home"
+    },
+    {
+      "id": "10",
+      "name": "The Hidden Gem",
+      "listing_type": "home"
+    },
+    {
+      "id": "11",
+      "name": "The Waterside Resort Villa",
+      "listing_type": "home"
+    },
+    {
+      "id": "12",
+      "name": "Radiator Springs",
+      "listing_type": "home"
+    },
+    {
+      "id": "13",
+      "name": "The Lakeside Manor",
+      "listing_type": "home"
+    },
+    {
+      "id": "14",
+      "name": "The Peaceful Palace",
+      "listing_type": "home"
+    },
+    {
+      "id": "15",
+      "name": "The Spacious Retreat",
+      "listing_type": "home"
+    },
+    {
+      "id": "16",
+      "name": "The Castle Keep",
+      "listing_type": "home"
+    },
+    {
+      "id": "17",
+      "name": "The Comfy Corner",
+      "listing_type": "home"
+    },
+    {
+      "id": "18",
+      "name": "The Tropical Oasis",
+      "listing_type": "home"
+    },
+    {
+      "id": "19",
+      "name": "The Sunset Villa",
+      "listing_type": "home"
+    },
+    {
+      "id": "20",
+      "name": "The Disney Retreat",
+      "listing_type": "home"
+    },
+    {
+      "id": "21",
+      "name": "The Resort Escape",
+      "listing_type": "home"
+    },
+    {
+      "id": "22",
+      "name": "The Enchanted Storybook",
+      "listing_type": "home"
+    },
+    {
+      "id": "23",
+      "name": "The Modern Getaway",
+      "listing_type": "home"
+    },
+    {
+      "id": "24",
+      "name": "Disney Adventure Estate",
+      "listing_type": "home"
+    },
+    {
+      "id": "25",
+      "name": "The Cozy Suite",
+      "listing_type": "home"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\tname\tlisting_type\n1\tThe Mickey Suites\thome\n2\tPeaceful Retreat\thome\n3\tHome Sweet Home\thome\n4\tThe Power-Up Pad\thome\n5\tThe Ocean Explorer Room\thome\n6\tThe Mickey Escape\thome\n7\tThe Serenity Springs\thome\n8\tThe Sea Shanty\thome\n9\tThe Royal Palace\thome\n10\tThe Hidden Gem\thome\n11\tThe Waterside Resort Villa\thome\n12\tRadiator Springs\thome\n13\tThe Lakeside Manor\thome\n14\tThe Peaceful Palace\thome\n15\tThe Spacious Retreat\thome\n16\tThe Castle Keep\thome\n17\tThe Comfy Corner\thome\n18\tThe Tropical Oasis\thome\n19\tThe Sunset Villa\thome\n20\tThe Disney Retreat\thome\n21\tThe Resort Escape\thome\n22\tThe Enchanted Storybook\thome\n23\tThe Modern Getaway\thome\n24\tDisney Adventure Estate\thome\n25\tThe Cozy Suite\thome\n",
+  "stderr": "",
+  "execution_time_ms": 683
+}
