@@ -176,3 +176,9 @@
 - [ ] Add breadcrumbs to Design Services page
 - [ ] Add breadcrumbs to Contact Us page
 - [ ] Add breadcrumbs to FAQ page
+
+## VIP Modal Features
+
+- [x] Re-enable VIP email signup modal with cookie tracking
+- [x] Test modal shows only once per session
+- [x] Test modal reappears after cookie clear

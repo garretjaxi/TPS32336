@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import { useLocation } from "wouter";
 import HeroSection from "@/components/HeroSection";
 import { VIPSignupModal } from "@/components/VIPSignupModal";
+import { hasVIPModalBeenShown, markVIPModalAsShown } from "@/lib/vipCookie";
 import StayWithUsSection from "@/components/StayWithUsSection";
 import ManagementTeaser from "@/components/ManagementTeaser";
 import DesignTeaser from "@/components/DesignTeaser";
@@ -31,9 +32,18 @@ export default function Home() {
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "instant" });
-    // VIP modal is disabled to prevent infinite loop error
-    // const timer = setTimeout(() => setVipModalOpen(true), 3000);
-    // return () => clearTimeout(timer);
+  }, []);
+
+  useEffect(() => {
+    // Check if VIP modal has already been shown to this user
+    if (!hasVIPModalBeenShown()) {
+      // Show modal after 3 seconds
+      const timer = setTimeout(() => {
+        setVipModalOpen(true);
+        markVIPModalAsShown();
+      }, 3000);
+      return () => clearTimeout(timer);
+    }
   }, []);
 
   const handleLogout = async () => {
@@ -323,7 +333,10 @@ export default function Home() {
       </footer>
 
       {/* VIP Signup Modal */}
-      <VIPSignupModal isOpen={vipModalOpen} onClose={() => setVipModalOpen(false)} />
+      <VIPSignupModal 
+        isOpen={vipModalOpen} 
+        onClose={() => setVipModalOpen(false)} 
+      />
     </div>
   );
 }
