@@ -45,6 +45,8 @@ export interface AirtableListing {
     Badges?: string[];
     image?: string;
     Image?: string;
+    "Image URL"?: string;
+    image_url?: string;
     houfy_url?: string;
     "Houfy URL"?: string;
     featured?: boolean;
@@ -114,7 +116,7 @@ export async function syncAirtableListings() {
         const getReviews = () => fields.reviews || fields.Reviews || 0;
         const getTags = () => fields.tags || fields.Tags || [];
         const getBadges = () => fields.badges || fields.Badges || [];
-        const getImage = () => fields.houfy_url || fields["Houfy URL"] || fields.image || fields.Image || "https://via.placeholder.com/400x300?text=" + encodeURIComponent(getName());
+        const getImage = () => fields["Image URL"] || fields.image_url || fields.houfy_url || fields["Houfy URL"] || fields.image || fields.Image || "https://via.placeholder.com/400x300?text=" + encodeURIComponent(getName());
         const getHoufyUrl = () => fields.houfy_url || fields["Houfy URL"] || "";
         const getFeatured = () => fields.featured || fields.Featured ? 1 : 0;
         const getActive = () => fields.active !== false && fields.Active !== false ? 1 : 0;
@@ -204,22 +206,5 @@ export async function syncAirtableListings() {
   } catch (error) {
     console.error("Airtable sync failed:", error);
     throw error;
-  }
-}
-
-/**
- * Test Airtable connection
- */
-export async function testAirtableConnection(): Promise<boolean> {
-  if (!AIRTABLE_API_KEY || !AIRTABLE_BASE_ID || !AIRTABLE_LISTINGS_TABLE_ID) {
-    throw new Error("Airtable credentials not configured");
-  }
-
-  try {
-    const response = await airtableClient.get(`/${AIRTABLE_LISTINGS_TABLE_ID}?maxRecords=1`);
-    return response.status === 200;
-  } catch (error) {
-    console.error("Airtable connection test failed:", error);
-    return false;
   }
 }
