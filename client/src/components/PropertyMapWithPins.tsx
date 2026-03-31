@@ -154,7 +154,7 @@ export function PropertyMapWithPins({
               🏠
             </div>
             <div class="absolute bottom-full mb-2 bg-white text-xs font-semibold px-2 py-1 rounded shadow-lg whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-10">
-              ${listing.address}
+              ${listing.name}
             </div>
           `;
 
