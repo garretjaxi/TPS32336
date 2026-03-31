@@ -132,3 +132,11 @@
 - [ ] Update listings query to return cached distances
 - [ ] Update frontend distance selector to use cached distances
 - [ ] Test cached distances display correctly
+
+## Footer Pages
+
+- [x] Create Contact Us page component
+- [x] Create FAQ page component
+- [x] Update footer links to remove Booking Help and Cancellation Policy
+- [x] Update footer links to add Contact Us and FAQ links
+- [x] Test all footer links navigate correctly

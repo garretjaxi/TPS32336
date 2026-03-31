@@ -304,9 +304,8 @@ export default function Home() {
             <div>
               <h4 className="font-semibold mb-4">Support</h4>
               <ul className="space-y-2 text-sm text-white/70">
-                <li><a href="#" className="hover:text-white">Contact Us</a></li>
-                <li><a href="#" className="hover:text-white">FAQ</a></li>
-                <li><a href="#" className="hover:text-white">Booking Help</a></li>
+                <li><a href="/contact-us" className="hover:text-white">Contact Us</a></li>
+                <li><a href="/faq" className="hover:text-white">FAQ</a></li>
               </ul>
             </div>
             <div>
@@ -314,7 +313,6 @@ export default function Home() {
               <ul className="space-y-2 text-sm text-white/70">
                 <li><a href="/privacy-policy" className="hover:text-white">Privacy Policy</a></li>
                 <li><a href="/terms-of-service" className="hover:text-white">Terms of Service</a></li>
-                <li><a href="/cancellation-policy" className="hover:text-white">Cancellation Policy</a></li>
               </ul>
             </div>
           </div>

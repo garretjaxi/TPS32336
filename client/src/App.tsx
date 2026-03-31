@@ -18,6 +18,8 @@ import ThemeParkTickets from "./pages/Explore";
 import Community from "./pages/Community";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import TermsOfService from "./pages/TermsOfService";
+import ContactUs from "./pages/ContactUs";
+import FAQ from "./pages/FAQ";
 import { AdminGuard } from "./components/AdminGuard";
 import LoadingDisplay from "./components/LoadingDisplay";
 import { useEffect, useState } from "react";
@@ -39,9 +41,10 @@ function AppRouter() {
       <Route path={"/about"} component={About} />
       <Route path="/theme-park-tickets" component={ThemeParkTickets} />
       <Route path="/explore" component={ThemeParkTickets} /> {/* Redirect for backwards compatibility */}
-      <Route path={"/community"} component={Community} />
-      <Route path={"/privacy-policy"} component={PrivacyPolicy} />
+      <Route path={"/community"} component={Community} />      <Route path={"/privacy-policy"} component={PrivacyPolicy} />
       <Route path={"/terms-of-service"} component={TermsOfService} />
+      <Route path={"/contact-us"} component={ContactUs} />
+      <Route path={"/faq"} component={FAQ} />
       <Route path={"/404"} component={NotFound} />
       {/* Final fallback route */}
       <Route component={NotFound} />

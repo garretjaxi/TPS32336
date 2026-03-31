@@ -25,7 +25,7 @@ export async function setupVite(app: Express, server: Server) {
     const url = req.originalUrl;
 
     // Define valid routes to handle 404s correctly
-    const validRoutes = ["/", "/property-management", "/design-services", "/order-confirmation", "/about", "/explore", "/community", "/privacy-policy", "/terms-of-service", "/theme-park-tickets"];
+    const validRoutes = ["/", "/property-management", "/design-services", "/order-confirmation", "/about", "/explore", "/community", "/privacy-policy", "/terms-of-service", "/theme-park-tickets", "/contact-us", "/faq"];
     const isAdminRoute = url.startsWith("/admin");
     const isApiRoute = url.startsWith("/api");
 
