@@ -144,3 +144,7 @@
 ## Map Adjustments
 
 - [x] Zoom out the map on home page to show wider Orlando area view
+
+## Layout Improvements
+
+- [x] Compact "Your Basecamp for Magic" section by combining elements side-by-side

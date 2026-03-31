@@ -44,10 +44,10 @@ export default function AboutSection() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="py-20 md:py-28 linen-bg">
+    <section ref={sectionRef} className="py-12 md:py-16 linen-bg">
       <div className="container">
-        {/* Two-column layout */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+        {/* Two-column layout - more compact */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-start">
           {/* Interactive Map */}
           <div className="fade-up relative order-2 lg:order-1">
             <div className="rounded-2xl overflow-hidden shadow-2xl aspect-[4/3] bg-white border border-[oklch(0.92_0.015_75)]">
@@ -56,41 +56,41 @@ export default function AboutSection() {
                 className="rounded-2xl"
               />
             </div>
-            {/* Floating badge */}
-            <div className="absolute -bottom-6 -right-4 md:-right-8 bg-[oklch(0.58_0.16_55)] text-white rounded-2xl px-6 py-4 shadow-xl z-10">
+            {/* Floating badge - smaller */}
+            <div className="absolute -bottom-4 -right-2 md:-right-4 bg-[oklch(0.58_0.16_55)] text-white rounded-xl px-4 py-2 shadow-lg z-10">
               <div className="text-xs uppercase tracking-wider opacity-90">15 Mile {t("radiusFromMagic")}</div>
             </div>
           </div>
 
-          {/* Content */}
+          {/* Content - more compact */}
           <div className="order-1 lg:order-2">
-            <div className="fade-up mb-8">
-              <span className="section-label">{t("fourCornersKissimmee")}</span>
-              <div className="gold-rule w-24 my-4" />
+            <div className="fade-up mb-6">
+              <span className="section-label text-xs">{t("fourCornersKissimmee")}</span>
+              <div className="gold-rule w-20 my-3" />
               <h2
-                className="display-heading text-4xl md:text-5xl text-[oklch(0.18_0.012_55)] mb-5"
+                className="display-heading text-3xl md:text-4xl text-[oklch(0.18_0.012_55)] mb-3"
               >
                 {t("yourBasecamp")}<br />
                 <span className="italic text-[oklch(0.58_0.16_55)]">{t("forMagic")}</span>
               </h2>
-              <p className="text-[oklch(0.4_0.02_60)] text-base leading-relaxed" style={{ fontFamily: "'Outfit', sans-serif" }}>
+              <p className="text-[oklch(0.4_0.02_60)] text-sm leading-relaxed" style={{ fontFamily: "'Outfit', sans-serif" }}>
                 {t("aboutDescription")}
               </p>
             </div>
 
-            {/* Distance list */}
-            <div className="fade-up grid grid-cols-1 sm:grid-cols-2 gap-3">
-              {distances.map((d, i) => (
+            {/* Distance list - 3 columns, smaller cards */}
+            <div className="fade-up grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2">
+              {distances.slice(0, 6).map((d, i) => (
                 <div
                   key={d.place}
-                  className="flex items-center gap-3 bg-white rounded-xl px-4 py-3 shadow-sm border border-[oklch(0.92_0.015_75)] hover:shadow-md transition-shadow"
+                  className="flex items-center gap-2 bg-white rounded-lg px-3 py-2 shadow-sm border border-[oklch(0.92_0.015_75)] hover:shadow-md transition-shadow"
                   style={{ transitionDelay: `${i * 80}ms` }}
                 >
-                  <div className="w-8 h-8 rounded-full bg-[oklch(0.93_0.025_75)] flex items-center justify-center flex-shrink-0">
-                    <Car size={14} className="text-[oklch(0.58_0.16_55)]" />
+                  <div className="w-6 h-6 rounded-full bg-[oklch(0.93_0.025_75)] flex items-center justify-center flex-shrink-0">
+                    <Car size={12} className="text-[oklch(0.58_0.16_55)]" />
                   </div>
                   <div>
-                    <div className="text-[oklch(0.18_0.012_55)] text-sm font-semibold leading-tight" style={{ fontFamily: "'Outfit', sans-serif" }}>
+                    <div className="text-[oklch(0.18_0.012_55)] text-xs font-semibold leading-tight" style={{ fontFamily: "'Outfit', sans-serif" }}>
                       {d.place}
                     </div>
                     <div className="text-[oklch(0.58_0.16_55)] text-xs font-medium">{d.detail}</div>
@@ -98,7 +98,7 @@ export default function AboutSection() {
                 </div>
               ))}
             </div>
-            <p className="mt-4 text-[oklch(0.55_0.015_60)] text-xs italic leading-relaxed" style={{ fontFamily: "'Outfit', sans-serif" }}>
+            <p className="mt-2 text-[oklch(0.55_0.015_60)] text-xs italic leading-relaxed" style={{ fontFamily: "'Outfit', sans-serif" }}>
               {t("travelTimesDisclaimer")}
             </p>
           </div>
