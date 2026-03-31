@@ -34,7 +34,7 @@ const LANDMARKS = [
   },
   {
     name: "LEGOLAND Florida",
-    position: { lat: 28.3506, lng: -81.6686 },
+    position: { lat: 28.3735, lng: -81.5862 },
     icon: "🧱",
   },
   {

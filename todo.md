@@ -148,3 +148,7 @@
 ## Layout Improvements
 
 - [x] Compact "Your Basecamp for Magic" section by combining elements side-by-side
+
+## Map Pin Corrections
+
+- [x] Fix LEGOLAND pin location to correct coordinates
