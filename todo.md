@@ -223,3 +223,8 @@
 - [x] Add gradients to Property Management page backgrounds
 - [x] Add gradients to Design Services page backgrounds
 - [x] Add gradients to other component backgrounds (all major sections)
+
+## Animated Gradient Backgrounds
+
+- [x] Add CSS keyframe animations for gradient movement
+- [x] Apply animations to all gradient background sections

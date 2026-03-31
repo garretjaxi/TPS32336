@@ -141,7 +141,7 @@ export default function ShopSection() {
   };
 
   return (
-    <section ref={sectionRef} id="shop" className="py-20 md:py-28 bg-gradient-to-r from-[oklch(0.94_0.008_80)] to-[oklch(0.92_0.01_75)]">
+    <section ref={sectionRef} id="shop" className="py-20 md:py-28 bg-gradient-to-r from-[oklch(0.94_0.008_80)] to-[oklch(0.92_0.01_75)] gradient-animated">
       <div className="container">
         {/* Header */}
         <div className="text-center mb-14 fade-up">

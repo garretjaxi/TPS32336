@@ -80,7 +80,7 @@ export default function DesignSection() {
   };
 
   return (
-    <section id="design" ref={sectionRef} className="py-20 md:py-28 bg-gradient-to-r from-[oklch(0.975_0.012_80)] to-[oklch(0.95_0.015_75)]">
+    <section id="design" ref={sectionRef} className="py-20 md:py-28 bg-gradient-to-r from-[oklch(0.975_0.012_80)] to-[oklch(0.95_0.015_75)] gradient-animated">
       <div className="container">
         {/* Header */}
         <div className="text-center mb-16 fade-up">
