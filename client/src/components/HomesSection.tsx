@@ -381,7 +381,7 @@ export default function HomesSection({ hideHeader = false }: { hideHeader?: bool
   }, [activeFilter, isLoading, hideHeader, homes.length]);
 
   return (
-    <section id="homes" ref={sectionRef} className={`py-20 md:py-28 bg-gradient-to-r from-[oklch(0.14_0.012_55)] via-[oklch(0.18_0.012_55)] to-[oklch(0.25_0.012_55)] gradient-animated ${hideHeader ? "pt-0" : ""}`}>
+    <section id="homes" ref={sectionRef} className={`py-20 md:py-28 bg-gradient-to-r from-[oklch(0.25_0.18_50)] via-[oklch(0.35_0.18_55)] to-[oklch(0.45_0.18_60)] gradient-animated ${hideHeader ? "pt-0" : ""}`}>
       <div className="container">
         {/* Header */}
         {!hideHeader && (

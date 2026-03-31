@@ -233,3 +233,4 @@
 
 - [x] Replace subtle gradients with mixed warm and cool tone gradients
 - [x] Replace mixed gradients with monochromatic high-contrast gradients
+- [x] Replace monochromatic gradients with warm tone gradients (amber to orange to gold)
