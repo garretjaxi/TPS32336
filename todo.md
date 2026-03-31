@@ -198,3 +198,4 @@
 - [x] Update amenities list with comprehensive details (AC, heating, cable TV, pool info)
 - [x] Update management fee from 15% to 18%
 - [x] Make "Why Partner With Us" section more compact
+- [x] Update Premium and Full Service plan fees to 18% on Property Management page
