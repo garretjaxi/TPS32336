@@ -204,3 +204,10 @@
 - [x] Convert "Back to Site" button to floating button that stays visible while scrolling
 - [x] Add floating "Back to Site" button to Design Services page
 - [x] Remove "Back to Site" link from Design Services header
+
+## Glassmorphism (Glassify 2.0) Implementation
+
+- [x] Apply frosted/translucent glassmorphism to section dividers on home page
+- [x] Apply glassmorphism to listing cards (homes, activities, shop, tickets)
+- [x] Apply glassmorphism to Property Management page sections
+- [x] Apply glassmorphism to Design Services page sections

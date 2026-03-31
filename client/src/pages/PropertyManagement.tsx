@@ -422,7 +422,7 @@ export default function PropertyManagement() {
       </section>
 
       {/* ── Stats bar ── */}
-      <section className="bg-[oklch(0.18_0.012_55)] py-8">
+      <section className="bg-[oklch(0.18_0.012_55)]/90 backdrop-blur-sm py-8">
         <div className="container">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
             {stats.map((s) => (
@@ -436,7 +436,7 @@ export default function PropertyManagement() {
       </section>
 
       {/* ── Platform Logos ── */}
-      <section className="bg-[oklch(0.97_0.008_75)] py-8 border-b border-[oklch(0.92_0.015_75)]">
+      <section className="bg-[oklch(0.97_0.008_75)]/80 backdrop-blur-sm py-8 border-b border-[oklch(0.92_0.015_75)]/50">
         <div className="container">
           <p className="text-center text-xs font-semibold tracking-[0.2em] uppercase text-[oklch(0.55_0.015_55)] mb-6">
             Be Seen by Millions — Listed on All Top Platforms
@@ -452,7 +452,7 @@ export default function PropertyManagement() {
       </section>
 
       {/* ── Why Choose Us ── */}
-      <section className="py-12 md:py-16 bg-white">
+      <section className="py-12 md:py-16 bg-white/95 backdrop-blur-sm">
         <div className="container">
           <div className="text-center mb-10">
             <span className="text-xs font-semibold tracking-[0.25em] uppercase text-[oklch(0.58_0.16_55)] mb-2 block">Why Partner With Us</span>
@@ -465,7 +465,7 @@ export default function PropertyManagement() {
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
             {whyFeatures.map((f) => (
-              <div key={f.title} className="group p-5 rounded-xl bg-[oklch(0.96_0.014_75)] border border-[oklch(0.88_0.03_75)] shadow-[0_2px_12px_oklch(0.82_0.14_70/0.18)] hover:border-[oklch(0.72_0.14_70)] hover:shadow-[0_6px_24px_oklch(0.72_0.14_70/0.28)] hover:bg-white transition-all duration-300">
+              <div key={f.title} className="group p-5 rounded-xl bg-white/80 backdrop-blur-md border border-white/40 shadow-lg hover:shadow-xl hover:bg-white/90 transition-all duration-300">
                 <div className="w-12 h-12 rounded-full border-2 border-[oklch(0.82_0.14_70)] flex items-center justify-center mb-3 group-hover:bg-[oklch(0.82_0.14_70)]/10 transition-colors">
                   <f.icon size={20} className="text-[oklch(0.58_0.16_55)]" />
                 </div>
@@ -483,7 +483,7 @@ export default function PropertyManagement() {
       </section>
 
       {/* ── Pricing Tiers ── */}
-      <section className="py-20 md:py-28 bg-[oklch(0.97_0.008_75)]">
+      <section className="py-20 md:py-28 bg-[oklch(0.97_0.008_75)]/80 backdrop-blur-sm">
         <div className="container">
           <div className="text-center mb-16">
             <span className="text-xs font-semibold tracking-[0.25em] uppercase text-[oklch(0.58_0.16_55)] mb-3 block">Transparent Pricing</span>
@@ -498,10 +498,10 @@ export default function PropertyManagement() {
             {pricingTiers.map((tier) => (
               <div
                 key={tier.name}
-                className={`relative rounded-2xl p-8 flex flex-col ${
+                className={`relative rounded-2xl p-8 flex flex-col backdrop-blur-md shadow-lg ${
                   tier.popular
-                    ? "bg-[oklch(0.18_0.012_55)] text-white shadow-2xl scale-[1.03]"
-                    : "bg-white border border-[oklch(0.92_0.015_75)] text-[oklch(0.18_0.012_55)]"
+                    ? "bg-[oklch(0.18_0.012_55)]/80 border border-white/20 text-white shadow-2xl scale-[1.03]"
+                    : "bg-white/80 border border-white/40 text-[oklch(0.18_0.012_55)]"
                 }`}
               >
                 {tier.popular && (
@@ -553,7 +553,7 @@ export default function PropertyManagement() {
       </section>
 
       {/* ── Our Process ── */}
-      <section className="py-20 md:py-28 bg-white">
+      <section className="py-16 md:py-20 bg-white/95 backdrop-blur-sm">
         <div className="container">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <div>

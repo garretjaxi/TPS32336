@@ -189,7 +189,7 @@ export default function DesignServices() {
       </section>
 
       {/* ── Themed Bedrooms Gallery ── */}
-      <section className="py-20 bg-[oklch(0.98_0.006_75)]">
+      <section className="py-20 bg-white/95 backdrop-blur-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <p className="text-[oklch(0.58_0.14_65)] text-sm font-semibold tracking-widest uppercase mb-3">Gallery</p>
@@ -221,7 +221,7 @@ export default function DesignServices() {
       </section>
 
       {/* ── Elegant Bedrooms Gallery ── */}
-      <section className="py-20 bg-white">
+      <section className="py-20 bg-white/95 backdrop-blur-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <p className="text-[oklch(0.58_0.14_65)] text-sm font-semibold tracking-widest uppercase mb-3">Gallery</p>
@@ -292,9 +292,9 @@ export default function DesignServices() {
           </div>
         </div>
       </section>
-
-      {/* ── Services ── */}
-      <section className="py-20 bg-white">
+      {/* ── How It Works ── */}
+      {/* ── What We Do ── */}
+      <section className="py-20 bg-white/95 backdrop-blur-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-14">
             <p className="text-[oklch(0.58_0.14_65)] text-sm font-semibold tracking-widest uppercase mb-3">What We Do</p>
@@ -352,8 +352,8 @@ export default function DesignServices() {
         </div>
       </section>
 
-      {/* ── Process ── */}
-      <section className="py-20 bg-[oklch(0.98_0.006_75)]">
+      {/* ── How It Works ── */}
+      <section className="py-20 bg-white/95 backdrop-blur-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-14">
             <p className="text-[oklch(0.58_0.14_65)] text-sm font-semibold tracking-widest uppercase mb-3">How It Works</p>
@@ -377,7 +377,7 @@ export default function DesignServices() {
       </section>
 
       {/* ── Contact Form ── */}
-      <section id="design-contact" className="py-20 bg-white">
+      <section id="design-contact" className="py-20 bg-white/95 backdrop-blur-sm">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <p className="text-[oklch(0.58_0.14_65)] text-sm font-semibold tracking-widest uppercase mb-3">Get Started</p>
@@ -386,7 +386,7 @@ export default function DesignServices() {
               Tell us about your property and project goals. We'll get back to you within 24 hours with a personalized estimate.
             </p>
           </div>
-          <form onSubmit={handleSubmit} className="bg-[oklch(0.98_0.006_75)] rounded-3xl p-8 sm:p-10 border border-[oklch(0.92_0.015_75)]">
+            <form onSubmit={handleSubmit} className="bg-white/80 backdrop-blur-md rounded-3xl p-8 sm:p-10 border border-white/40 shadow-lg">
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 mb-5">
               <div>
                 <label className="block text-sm font-semibold text-[oklch(0.3_0.012_55)] mb-2">Full Name</label>

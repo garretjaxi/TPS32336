@@ -131,7 +131,7 @@ export default function TicketsSection() {
           {parks.map((park, i) => (
             <div
               key={park.id}
-              className="fade-up card-hover bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl overflow-hidden group flex-shrink-0 w-80 md:w-auto snap-center md:snap-none flex flex-col"
+              className="fade-up card-hover bg-white/20 backdrop-blur-md border border-white/40 rounded-2xl overflow-hidden group flex-shrink-0 w-80 md:w-auto snap-center md:snap-none flex flex-col shadow-lg"
               style={{ transitionDelay: `${i * 100}ms` }}
             >
               {/* Park image */}

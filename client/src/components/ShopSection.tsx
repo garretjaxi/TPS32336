@@ -188,7 +188,7 @@ export default function ShopSection() {
             {filteredProducts.map((product, i) => (
             <div
               key={`${animKey}-${product.id}`}
-              className="shop-card-enter bg-white rounded-2xl overflow-hidden border border-[oklch(0.92_0.015_75)] hover:shadow-lg transition-all flex flex-col flex-shrink-0 w-72 md:w-auto md:scale-100 snap-center md:snap-none"
+              className="shop-card-enter bg-white/80 backdrop-blur-md rounded-2xl overflow-hidden border border-white/40 hover:shadow-lg transition-all flex flex-col flex-shrink-0 w-72 md:w-auto md:scale-100 snap-center md:snap-none"
               style={{ animationDelay: `${i * 60}ms` }}
             >
               {/* Product image */}

@@ -470,7 +470,7 @@ export default function HomesSection({ hideHeader = false }: { hideHeader?: bool
             {filtered.map((home, i) => (
               <div
                 key={home.id}
-                className="home-card fade-up card-hover bg-white rounded-2xl overflow-hidden shadow-md border border-[oklch(0.92_0.015_75)] group flex flex-col cursor-pointer flex-shrink-0 snap-start"
+                className="home-card fade-up card-hover bg-white/80 backdrop-blur-md rounded-2xl overflow-hidden shadow-lg border border-white/40 group flex flex-col cursor-pointer flex-shrink-0 snap-start"
                 style={{ width: "72vw", minWidth: "260px", maxWidth: "320px" }}
               >
                 {/* Image */}
@@ -568,7 +568,7 @@ export default function HomesSection({ hideHeader = false }: { hideHeader?: bool
             {filtered.map((home, i) => (
               <div
                 key={home.id}
-                className="home-card fade-up card-hover bg-white rounded-2xl overflow-hidden shadow-md border border-[oklch(0.92_0.015_75)] group flex flex-col cursor-pointer"
+                className="home-card fade-up card-hover bg-white/80 backdrop-blur-md rounded-2xl overflow-hidden shadow-lg border border-white/40 group flex flex-col cursor-pointer"
               >
                 {/* Image */}
                 <a

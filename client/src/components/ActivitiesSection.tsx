@@ -191,7 +191,7 @@ export default function ActivitiesSection() {
           {activities.map((activity, i) => (
             <div
               key={activity.id}
-              className="fade-up card-hover flex-shrink-0 w-52 md:w-60 bg-white rounded-xl overflow-hidden shadow-md border border-[oklch(0.92_0.015_75)] snap-start group flex flex-col"
+              className="fade-up card-hover flex-shrink-0 w-52 md:w-60 bg-white/80 backdrop-blur-md rounded-xl overflow-hidden shadow-lg border border-white/40 snap-start group flex flex-col"
               style={{ transitionDelay: `${i * 60}ms` }}
             >
               {/* Image */}
