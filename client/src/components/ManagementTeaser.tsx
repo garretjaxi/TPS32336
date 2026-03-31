@@ -10,7 +10,7 @@ export default function ManagementTeaser() {
   const [, navigate] = useLocation();
 
   const stats = [
-    { value: "15%", label: t("avgCommissionRate") },
+    { value: "18%", label: t("avgCommissionRate") },
     { value: "87%", label: t("averageOccupancy") },
     { value: "5-9k", label: t("avgMonthlyRevenue") },
     { value: "4.9★", label: t("ownerSatisfaction") },

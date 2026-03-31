@@ -10,7 +10,7 @@ import { useLocation } from "wouter";
 const MGMT_BG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663446287426/E83KvqYJ4TGqcmgXCyYT4P/property-mgmt-bg-8zHASx5W8qjwj6V648Mv23.webp";
 
 const stats = [
-  { value: "15%", label: "avgCommissionRate", sub: "avgCommissionRateSub" },
+  { value: "18%", label: "avgCommissionRate", sub: "avgCommissionRateSub" },
   { value: "87%", label: "averageOccupancy", sub: "averageOccupancySub" },
   { value: "5-9k", label: "avgMonthlyRevenue", sub: "avgMonthlyRevenueSub" },
   { value: "4.9★", label: "ownerSatisfaction", sub: "ownerSatisfactionSub" },

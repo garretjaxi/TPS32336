@@ -196,3 +196,4 @@
 - [x] Update Contact Us page with new email (admin@themeparkstays.com)
 - [x] Update location description to 15-25 minutes from parks
 - [x] Update amenities list with comprehensive details (AC, heating, cable TV, pool info)
+- [x] Update management fee from 15% to 18%
