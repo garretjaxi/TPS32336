@@ -232,3 +232,4 @@
 ## Gradient Color Updates
 
 - [x] Replace subtle gradients with mixed warm and cool tone gradients
+- [x] Replace mixed gradients with monochromatic high-contrast gradients

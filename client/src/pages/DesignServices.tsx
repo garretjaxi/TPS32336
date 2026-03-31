@@ -102,7 +102,7 @@ export default function DesignServices() {
   const [, navigate] = useLocation();
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[oklch(0.98_0.008_80)] via-[oklch(0.85_0.12_65)] to-[oklch(0.75_0.15_240)] text-[oklch(0.18_0.012_55)]">
+    <div className="min-h-screen bg-gradient-to-br from-[oklch(0.98_0.008_80)] via-[oklch(0.92_0.008_80)] to-[oklch(0.85_0.008_80)] text-[oklch(0.18_0.012_55)]">
       {/* Floating Back to Site Button */}
       <button
         onClick={() => navigate("/")}
@@ -138,7 +138,7 @@ export default function DesignServices() {
       </nav>
 
       {/* ── Hero ── */}
-      <section className="relative min-h-[70vh] flex items-center overflow-hidden bg-gradient-to-r from-[oklch(0.12_0.015_240)] via-[oklch(0.35_0.15_55)] to-[oklch(0.75_0.15_240)]">
+      <section className="relative min-h-[70vh] flex items-center overflow-hidden bg-gradient-to-r from-[oklch(0.12_0.015_240)] via-[oklch(0.18_0.012_55)] to-[oklch(0.25_0.012_55)]">
         <div
           className="absolute inset-0 bg-cover bg-center"
           style={{ backgroundImage: `url(${IMAGES.elegantBedroom2})`, opacity: 0.35 }}
@@ -175,7 +175,7 @@ export default function DesignServices() {
       </section>
 
       {/* ── Trust bar ── */}
-      <section className="bg-gradient-to-r from-[oklch(0.18_0.012_55)] via-[oklch(0.35_0.15_55)] to-[oklch(0.65_0.15_240)] text-white py-5">
+      <section className="bg-gradient-to-r from-[oklch(0.18_0.012_55)] via-[oklch(0.22_0.012_55)] to-[oklch(0.28_0.012_55)] text-white py-5">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-wrap justify-center gap-x-10 gap-y-3 text-sm font-medium">
             {["Licensed & Insured", "Vacation Rental Specialists", "Free Consultations", "On-Time Delivery", "Turnkey Projects"].map((item) => (
@@ -253,7 +253,7 @@ export default function DesignServices() {
       </section>
 
       {/* ── Game Room + Living Room ── */}
-      <section className="py-20 bg-gradient-to-r from-[oklch(0.98_0.006_75)] via-[oklch(0.85_0.12_65)] to-[oklch(0.75_0.15_240)]">
+      <section className="py-20 bg-gradient-to-r from-[oklch(0.98_0.006_75)] via-[oklch(0.92_0.008_80)] to-[oklch(0.85_0.008_80)]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <p className="text-[oklch(0.58_0.14_65)] text-sm font-semibold tracking-widest uppercase mb-3">Gallery</p>
@@ -321,7 +321,7 @@ export default function DesignServices() {
       </section>
 
       {/* ── Why NorthTec ── */}
-      <section className="py-20 bg-gradient-to-r from-[oklch(0.12_0.015_240)] via-[oklch(0.35_0.15_55)] to-[oklch(0.75_0.15_240)] text-white">
+      <section className="py-20 bg-gradient-to-r from-[oklch(0.12_0.015_240)] via-[oklch(0.18_0.012_55)] to-[oklch(0.25_0.012_55)] text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <div>
@@ -479,7 +479,7 @@ export default function DesignServices() {
       </section>
 
       {/* ── Footer ── */}
-      <footer className="bg-gradient-to-r from-[oklch(0.12_0.015_240)] via-[oklch(0.35_0.15_55)] to-[oklch(0.75_0.15_240)] text-white/70 py-10">
+      <footer className="bg-gradient-to-r from-[oklch(0.12_0.015_240)] via-[oklch(0.18_0.012_55)] to-[oklch(0.25_0.012_55)] text-white/70 py-10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm">
           <div>
             <span className="font-bold text-white">NorthTec</span> — Interior Design Services for Vacation Rentals
