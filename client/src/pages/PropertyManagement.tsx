@@ -92,7 +92,7 @@ const pricingTiers = [
   {
     name: "Premium",
     tagline: "Enhanced performance oversight for owners focused on maximizing returns",
-    rate: "18%",
+    rate: "15%",
     rateLabel: "management fee",
     setupRate: "",
     setupLabel: "",

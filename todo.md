@@ -214,3 +214,4 @@
 - [x] Increase contrast of "Why Partner With Us" feature cards with solid white background
 - [x] Apply dark semi-transparent glassmorphism (Glassify 2.0) to "Why Partner With Us" feature cards
 - [x] Add subtle hover animations to glassmorphism cards
+- [x] Lock Premium plan fee to 15% (separate from Full Service 18%)
