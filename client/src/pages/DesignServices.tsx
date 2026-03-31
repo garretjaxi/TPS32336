@@ -471,8 +471,8 @@ export default function DesignServices() {
                 <Phone size={15} /> (407) 801-3030
               </a>
               <span className="hidden sm:block text-[oklch(0.8_0.01_55)]">|</span>
-              <a href="mailto:chad@themeparkstays.com" className="flex items-center gap-2 hover:text-[oklch(0.58_0.16_55)] transition-colors">
-                <Mail size={15} /> chad@themeparkstays.com
+              <a href="mailto:admin@themeparkstays.com" className="flex items-center gap-2 hover:text-[oklch(0.58_0.16_55)] transition-colors">
+                <Mail size={15} /> admin@themeparkstays.com
               </a>
             </div>
           </div>
@@ -486,7 +486,7 @@ export default function DesignServices() {
           </div>
           <div className="flex items-center gap-6">
             <a href="tel:+14078013030" className="hover:text-white transition-colors">(407) 801-3030</a>
-            <a href="mailto:chad@themeparkstays.com" className="hover:text-white transition-colors">chad@themeparkstays.com</a>
+            <a href="mailto:admin@themeparkstays.com" className="hover:text-white transition-colors">admin@themeparkstays.com</a>
           </div>
           <Link href="/" className="hover:text-white transition-colors">← Theme Park Stays</Link>
         </div>

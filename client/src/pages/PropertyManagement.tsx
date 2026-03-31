@@ -761,8 +761,8 @@ export default function PropertyManagement() {
               <a href="tel:+14078013030" className="flex items-center gap-2 hover:text-[oklch(0.58_0.16_55)] transition-colors">
                 <PhoneCall size={16} /> (407) 801-3030
               </a>
-              <a href="mailto:chad@themeparkstays.com" className="flex items-center gap-2 hover:text-[oklch(0.58_0.16_55)] transition-colors">
-                <Mail size={16} /> chad@themeparkstays.com
+              <a href="mailto:admin@themeparkstays.com" className="flex items-center gap-2 hover:text-[oklch(0.58_0.16_55)] transition-colors">
+                <Mail size={16} /> admin@themeparkstays.com
               </a>
             </div>
           </div>
