@@ -52,7 +52,7 @@ export default function AboutSection() {
           <div className="fade-up relative order-2 lg:order-1">
             <div className="rounded-2xl overflow-hidden shadow-2xl aspect-[4/3] bg-white border border-[oklch(0.92_0.015_75)]">
               <PropertyMapWithPins
-                initialZoom={13}
+                initialZoom={10}
                 className="rounded-2xl"
               />
             </div>

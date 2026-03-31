@@ -140,3 +140,7 @@
 - [x] Update footer links to remove Booking Help and Cancellation Policy
 - [x] Update footer links to add Contact Us and FAQ links
 - [x] Test all footer links navigate correctly
+
+## Map Adjustments
+
+- [x] Zoom out the map on home page to show wider Orlando area view
