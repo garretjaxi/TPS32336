@@ -12,6 +12,7 @@ import {
 import { trpc } from "@/lib/trpc";
 import { toast } from "sonner";
 import SEO from "@/components/SEO";
+import { Breadcrumbs, BREADCRUMB_CONFIGS } from "@/components/Breadcrumbs";
 
 const HERO_BG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663446287426/E83KvqYJ4TGqcmgXCyYT4P/property-mgmt-bg-8zHASx5W8qjwj6V648Mv23.webp";
 
@@ -349,8 +350,13 @@ export default function PropertyManagement() {
         </div>
       </div>
 
+      {/* ── Breadcrumbs ── */}
+      <div className="pt-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+        <Breadcrumbs items={BREADCRUMB_CONFIGS.propertyManagement} />
+      </div>
+
       {/* ── Hero ── */}
-      <section className="relative pt-16 min-h-[65vh] flex items-center overflow-hidden">
+      <section className="relative pt-0 min-h-[65vh] flex items-center overflow-hidden">
         <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: `url(${HERO_BG})` }} />
         <div className="absolute inset-0 bg-gradient-to-r from-[oklch(0.12_0.01_55)]/92 via-[oklch(0.12_0.01_55)]/75 to-[oklch(0.12_0.01_55)]/40" />
         <div className="relative z-10 container py-20">

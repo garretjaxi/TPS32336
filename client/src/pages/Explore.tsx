@@ -6,6 +6,7 @@ import TicketsSection from "@/components/TicketsSection";
 import SEO from "@/components/SEO";
 import { useTranslation } from "react-i18next";
 import { ArrowLeft } from "lucide-react";
+import { Breadcrumbs, BREADCRUMB_CONFIGS } from "@/components/Breadcrumbs";
 
 export default function ThemeParkTickets() {
   const { t } = useTranslation();
@@ -40,18 +41,21 @@ export default function ThemeParkTickets() {
 
       <main>
         <div className="py-12 bg-[oklch(0.98_0.005_75)]">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h1 className="display-heading text-5xl md:text-6xl text-[oklch(0.18_0.012_55)] mb-4">
-              Theme Park Tickets
-            </h1>
-            <p className="text-[oklch(0.4_0.02_60)] text-lg max-w-2xl mx-auto">
-              Book tickets for Disney World, Universal Studios, LEGOLAND, and SeaWorld. Shop exclusive vacation gear and discover the best activities in Orlando.
-            </p>
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <Breadcrumbs items={BREADCRUMB_CONFIGS.themeParks} />
+            <div className="text-center">
+              <h1 className="display-heading text-5xl md:text-6xl text-[oklch(0.18_0.012_55)] mb-4">
+                Theme Park Tickets
+              </h1>
+              <p className="text-[oklch(0.4_0.02_60)] text-lg max-w-2xl mx-auto">
+                Book tickets for Disney World, Universal Studios, LEGOLAND, and SeaWorld. Shop exclusive vacation gear and discover the best activities in Orlando.
+              </p>
+            </div>
           </div>
         </div>
-        
-        <ActivitiesSection />
+
         <TicketsSection />
+        <ActivitiesSection />
         <ShopSection />
       </main>
     </div>

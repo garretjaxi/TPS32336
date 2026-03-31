@@ -163,3 +163,16 @@
 - [ ] Add alt text to all images
 - [ ] Implement breadcrumb navigation
 - [ ] Add internal linking strategy
+
+## Accessibility & SEO Enhancements
+
+- [x] Add alt text to all property images
+- [x] Add alt text to all attraction/theme park images
+- [x] Add alt text to all hero and banner images
+- [x] Create breadcrumb navigation component
+- [x] Add breadcrumbs to About page
+- [x] Add breadcrumbs to Theme Park Tickets page
+- [x] Add breadcrumbs to Property Management page
+- [ ] Add breadcrumbs to Design Services page
+- [ ] Add breadcrumbs to Contact Us page
+- [ ] Add breadcrumbs to FAQ page

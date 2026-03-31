@@ -5,6 +5,7 @@ import GuestAmenitiesSection from "@/components/GuestAmenitiesSection";
 import SEO from "@/components/SEO";
 import { useTranslation } from "react-i18next";
 import { ArrowLeft } from "lucide-react";
+import { Breadcrumbs, BREADCRUMB_CONFIGS } from "@/components/Breadcrumbs";
 
 export default function About() {
   const { t } = useTranslation();
@@ -39,16 +40,19 @@ export default function About() {
 
       <main>
         <div className="py-12 bg-[oklch(0.98_0.005_75)]">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h1 className="display-heading text-5xl md:text-6xl text-[oklch(0.18_0.012_55)] mb-4">
-              {t("aboutUs")}
-            </h1>
-            <p className="text-[oklch(0.4_0.02_60)] text-lg max-w-2xl mx-auto">
-              Your home base for the magic. Discover why families choose Theme Park Stays for their Orlando vacation.
-            </p>
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <Breadcrumbs items={BREADCRUMB_CONFIGS.about} />
+            <div className="text-center">
+              <h1 className="display-heading text-5xl md:text-6xl text-[oklch(0.18_0.012_55)] mb-4">
+                {t("aboutUs")}
+              </h1>
+              <p className="text-[oklch(0.4_0.02_60)] text-lg max-w-2xl mx-auto">
+                Your home base for the magic. Discover why families choose Theme Park Stays for their Orlando vacation.
+              </p>
+            </div>
           </div>
         </div>
-        
+
         <AboutSection />
         <GuestAmenitiesSection />
       </main>
