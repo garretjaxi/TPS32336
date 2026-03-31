@@ -1,0 +1,218 @@
+{
+  "query": "DESCRIBE listings;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway04.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 22VUNhnLtUFbAdW.root --database 9cFYW7E3ZSgdzZcVUYn2yx --execute DESCRIBE listings;",
+  "rows": [
+    {
+      "Field": "id",
+      "Type": "int",
+      "Null": "NO",
+      "Key": "PRI",
+      "Default": "NULL",
+      "Extra": "auto_increment"
+    },
+    {
+      "Field": "name",
+      "Type": "varchar(256)",
+      "Null": "NO",
+      "Key": "",
+      "Default": "NULL",
+      "Extra": ""
+    },
+    {
+      "Field": "tagline",
+      "Type": "varchar(512)",
+      "Null": "NO",
+      "Key": "",
+      "Default": "NULL",
+      "Extra": ""
+    },
+    {
+      "Field": "location",
+      "Type": "varchar(256)",
+      "Null": "NO",
+      "Key": "",
+      "Default": "NULL",
+      "Extra": ""
+    },
+    {
+      "Field": "address",
+      "Type": "text",
+      "Null": "YES",
+      "Key": "",
+      "Default": "NULL",
+      "Extra": ""
+    },
+    {
+      "Field": "listing_type",
+      "Type": "varchar(20)",
+      "Null": "NO",
+      "Key": "",
+      "Default": "home",
+      "Extra": ""
+    },
+    {
+      "Field": "beds",
+      "Type": "int",
+      "Null": "NO",
+      "Key": "",
+      "Default": "1",
+      "Extra": ""
+    },
+    {
+      "Field": "baths",
+      "Type": "decimal(4,1)",
+      "Null": "NO",
+      "Key": "",
+      "Default": "1.0",
+      "Extra": ""
+    },
+    {
+      "Field": "guests",
+      "Type": "int",
+      "Null": "NO",
+      "Key": "",
+      "Default": "2",
+      "Extra": ""
+    },
+    {
+      "Field": "price",
+      "Type": "int",
+      "Null": "NO",
+      "Key": "",
+      "Default": "100",
+      "Extra": ""
+    },
+    {
+      "Field": "rating",
+      "Type": "decimal(3,2)",
+      "Null": "NO",
+      "Key": "",
+      "Default": "5.00",
+      "Extra": ""
+    },
+    {
+      "Field": "reviews",
+      "Type": "int",
+      "Null": "NO",
+      "Key": "",
+      "Default": "0",
+      "Extra": ""
+    },
+    {
+      "Field": "tags",
+      "Type": "json",
+      "Null": "NO",
+      "Key": "",
+      "Default": "NULL",
+      "Extra": ""
+    },
+    {
+      "Field": "badges",
+      "Type": "json",
+      "Null": "NO",
+      "Key": "",
+      "Default": "NULL",
+      "Extra": ""
+    },
+    {
+      "Field": "image",
+      "Type": "text",
+      "Null": "NO",
+      "Key": "",
+      "Default": "NULL",
+      "Extra": ""
+    },
+    {
+      "Field": "houfy_url",
+      "Type": "text",
+      "Null": "YES",
+      "Key": "",
+      "Default": "NULL",
+      "Extra": ""
+    },
+    {
+      "Field": "featured",
+      "Type": "tinyint",
+      "Null": "NO",
+      "Key": "",
+      "Default": "0",
+      "Extra": ""
+    },
+    {
+      "Field": "active",
+      "Type": "tinyint",
+      "Null": "NO",
+      "Key": "",
+      "Default": "1",
+      "Extra": ""
+    },
+    {
+      "Field": "sort_order",
+      "Type": "int",
+      "Null": "NO",
+      "Key": "",
+      "Default": "0",
+      "Extra": ""
+    },
+    {
+      "Field": "distance_magic_kingdom",
+      "Type": "json",
+      "Null": "YES",
+      "Key": "",
+      "Default": "NULL",
+      "Extra": ""
+    },
+    {
+      "Field": "distance_universal",
+      "Type": "json",
+      "Null": "YES",
+      "Key": "",
+      "Default": "NULL",
+      "Extra": ""
+    },
+    {
+      "Field": "distance_seaworld",
+      "Type": "json",
+      "Null": "YES",
+      "Key": "",
+      "Default": "NULL",
+      "Extra": ""
+    },
+    {
+      "Field": "distance_legoland",
+      "Type": "json",
+      "Null": "YES",
+      "Key": "",
+      "Default": "NULL",
+      "Extra": ""
+    },
+    {
+      "Field": "distance_airport",
+      "Type": "json",
+      "Null": "YES",
+      "Key": "",
+      "Default": "NULL",
+      "Extra": ""
+    },
+    {
+      "Field": "createdAt",
+      "Type": "timestamp",
+      "Null": "NO",
+      "Key": "",
+      "Default": "CURRENT_TIMESTAMP",
+      "Extra": ""
+    },
+    {
+      "Field": "updatedAt",
+      "Type": "timestamp",
+      "Null": "NO",
+      "Key": "",
+      "Default": "CURRENT_TIMESTAMP",
+      "Extra": "DEFAULT_GENERATED on update CURRENT_TIMESTAMP"
+    }
+  ],
+  "messages": [],
+  "stdout": "Field\tType\tNull\tKey\tDefault\tExtra\nid\tint\tNO\tPRI\tNULL\tauto_increment\nname\tvarchar(256)\tNO\t\tNULL\t\ntagline\tvarchar(512)\tNO\t\tNULL\t\nlocation\tvarchar(256)\tNO\t\tNULL\t\naddress\ttext\tYES\t\tNULL\t\nlisting_type\tvarchar(20)\tNO\t\thome\t\nbeds\tint\tNO\t\t1\t\nbaths\tdecimal(4,1)\tNO\t\t1.0\t\nguests\tint\tNO\t\t2\t\nprice\tint\tNO\t\t100\t\nrating\tdecimal(3,2)\tNO\t\t5.00\t\nreviews\tint\tNO\t\t0\t\ntags\tjson\tNO\t\tNULL\t\nbadges\tjson\tNO\t\tNULL\t\nimage\ttext\tNO\t\tNULL\t\nhoufy_url\ttext\tYES\t\tNULL\t\nfeatured\ttinyint\tNO\t\t0\t\nactive\ttinyint\tNO\t\t1\t\nsort_order\tint\tNO\t\t0\t\ndistance_magic_kingdom\tjson\tYES\t\tNULL\t\ndistance_universal\tjson\tYES\t\tNULL\t\ndistance_seaworld\tjson\tYES\t\tNULL\t\ndistance_legoland\tjson\tYES\t\tNULL\t\ndistance_airport\tjson\tYES\t\tNULL\t\ncreatedAt\ttimestamp\tNO\t\tCURRENT_TIMESTAMP\t\nupdatedAt\ttimestamp\tNO\t\tCURRENT_TIMESTAMP\tDEFAULT_GENERATED on update CURRENT_TIMESTAMP\n",
+  "stderr": "",
+  "execution_time_ms": 357
+}

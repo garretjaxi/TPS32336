@@ -1,0 +1,88 @@
+{
+  "query": "SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME='listings' ORDER BY ORDINAL_POSITION;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway04.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 22VUNhnLtUFbAdW.root --database 9cFYW7E3ZSgdzZcVUYn2yx --execute SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME='listings' ORDER BY ORDINAL_POSITION;",
+  "rows": [
+    {
+      "COLUMN_NAME": "id"
+    },
+    {
+      "COLUMN_NAME": "name"
+    },
+    {
+      "COLUMN_NAME": "tagline"
+    },
+    {
+      "COLUMN_NAME": "location"
+    },
+    {
+      "COLUMN_NAME": "address"
+    },
+    {
+      "COLUMN_NAME": "listing_type"
+    },
+    {
+      "COLUMN_NAME": "beds"
+    },
+    {
+      "COLUMN_NAME": "baths"
+    },
+    {
+      "COLUMN_NAME": "guests"
+    },
+    {
+      "COLUMN_NAME": "price"
+    },
+    {
+      "COLUMN_NAME": "rating"
+    },
+    {
+      "COLUMN_NAME": "reviews"
+    },
+    {
+      "COLUMN_NAME": "tags"
+    },
+    {
+      "COLUMN_NAME": "badges"
+    },
+    {
+      "COLUMN_NAME": "image"
+    },
+    {
+      "COLUMN_NAME": "houfy_url"
+    },
+    {
+      "COLUMN_NAME": "featured"
+    },
+    {
+      "COLUMN_NAME": "active"
+    },
+    {
+      "COLUMN_NAME": "sort_order"
+    },
+    {
+      "COLUMN_NAME": "distance_magic_kingdom"
+    },
+    {
+      "COLUMN_NAME": "distance_universal"
+    },
+    {
+      "COLUMN_NAME": "distance_seaworld"
+    },
+    {
+      "COLUMN_NAME": "distance_legoland"
+    },
+    {
+      "COLUMN_NAME": "distance_airport"
+    },
+    {
+      "COLUMN_NAME": "createdAt"
+    },
+    {
+      "COLUMN_NAME": "updatedAt"
+    }
+  ],
+  "messages": [],
+  "stdout": "COLUMN_NAME\nid\nname\ntagline\nlocation\naddress\nlisting_type\nbeds\nbaths\nguests\nprice\nrating\nreviews\ntags\nbadges\nimage\nhoufy_url\nfeatured\nactive\nsort_order\ndistance_magic_kingdom\ndistance_universal\ndistance_seaworld\ndistance_legoland\ndistance_airport\ncreatedAt\nupdatedAt\n",
+  "stderr": "",
+  "execution_time_ms": 345
+}

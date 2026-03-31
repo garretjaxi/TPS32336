@@ -114,19 +114,34 @@ export async function syncAirtableListings() {
         const getReviews = () => fields.reviews || fields.Reviews || 0;
         const getTags = () => fields.tags || fields.Tags || [];
         const getBadges = () => fields.badges || fields.Badges || [];
-        const getImage = () => fields.image || fields.Image || "https://via.placeholder.com/400x300?text=" + encodeURIComponent(getName());
+        const getImage = () => fields.houfy_url || fields["Houfy URL"] || fields.image || fields.Image || "https://via.placeholder.com/400x300?text=" + encodeURIComponent(getName());
         const getHoufyUrl = () => fields.houfy_url || fields["Houfy URL"] || "";
         const getFeatured = () => fields.featured || fields.Featured ? 1 : 0;
         const getActive = () => fields.active !== false && fields.Active !== false ? 1 : 0;
         const getSortOrder = () => fields.sort_order || fields["Sort Order"] || 0;
         const getListingType = () => fields.listing_type || fields["Listing Type"] || "home";
         
-        // Get distance values from Airtable
-        const getMagicKingdomDistance = () => fields["Distance to Magic Kingdom (mins)"] || null;
-        const getUniversalDistance = () => fields["Distance to Universal Studios (mins)"] || null;
-        const getSeaworldDistance = () => fields["Distance to SeaWorld (mins)"] || null;
-        const getLEGOLANDDistance = () => fields["Distance to LEGOLAND (mins)"] || null;
-        const getAirportDistance = () => fields["Distance to Orlando Airport (mins)"] || null;
+        // Get distance values from Airtable - handle both field name variations
+        const getMagicKingdomDistance = () => {
+          const val = fields["Distance to Magic Kingdom (mins)"] || fields["distance_magic_kingdom"];
+          return val && !isNaN(val) ? val : null;
+        };
+        const getUniversalDistance = () => {
+          const val = fields["Distance to Universal Studios (mins)"] || fields["distance_universal"];
+          return val && !isNaN(val) ? val : null;
+        };
+        const getSeaworldDistance = () => {
+          const val = fields["Distance to SeaWorld (mins)"] || fields["distance_seaworld"];
+          return val && !isNaN(val) ? val : null;
+        };
+        const getLEGOLANDDistance = () => {
+          const val = fields["Distance to LEGOLAND (mins)"] || fields["distance_legoland"];
+          return val && !isNaN(val) ? val : null;
+        };
+        const getAirportDistance = () => {
+          const val = fields["Distance to Orlando Airport (mins)"] || fields["distance_airport"];
+          return val && !isNaN(val) ? val : null;
+        };
 
         // Validate required fields - only name is mandatory
         const name = getName();
