@@ -384,6 +384,9 @@ export default function PropertyManagement() {
               <a href="tel:+14078013030" className="flex items-center gap-2 px-8 py-4 rounded-full text-base font-semibold border border-white/30 text-white hover:bg-white/10 transition-colors">
                 <PhoneCall size={18} /> (407) 801-3030
               </a>
+              <button onClick={() => navigate("/")} className="flex items-center gap-2 px-8 py-4 rounded-full text-base font-semibold border border-white/30 text-white hover:bg-white/10 transition-colors">
+                ← Back to Site
+              </button>
             </div>
             {/* Social proof */}
             <div className="flex items-center gap-3 mt-8">
