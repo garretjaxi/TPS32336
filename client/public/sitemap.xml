@@ -1,21 +1,63 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://3000-i8zyf1kicwdqj7uwtx8l4-1afcc478.sg1.manus.computer/</loc>
-    <lastmod>2026-03-24</lastmod>
+    <loc>https://orlandostay-9cfyw7e3.manus.space/</loc>
+    <lastmod>2026-03-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://3000-i8zyf1kicwdqj7uwtx8l4-1afcc478.sg1.manus.computer/property-management</loc>
-    <lastmod>2026-03-24</lastmod>
+    <loc>https://orlandostay-9cfyw7e3.manus.space/about</loc>
+    <lastmod>2026-03-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://3000-i8zyf1kicwdqj7uwtx8l4-1afcc478.sg1.manus.computer/design-services</loc>
-    <lastmod>2026-03-24</lastmod>
+    <loc>https://orlandostay-9cfyw7e3.manus.space/theme-park-tickets</loc>
+    <lastmod>2026-03-31</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://orlandostay-9cfyw7e3.manus.space/property-management</loc>
+    <lastmod>2026-03-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://orlandostay-9cfyw7e3.manus.space/design-services</loc>
+    <lastmod>2026-03-31</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://orlandostay-9cfyw7e3.manus.space/community</loc>
+    <lastmod>2026-03-31</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://orlandostay-9cfyw7e3.manus.space/privacy-policy</loc>
+    <lastmod>2026-03-31</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://orlandostay-9cfyw7e3.manus.space/terms-of-service</loc>
+    <lastmod>2026-03-31</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://orlandostay-9cfyw7e3.manus.space/contact-us</loc>
+    <lastmod>2026-03-31</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://orlandostay-9cfyw7e3.manus.space/faq</loc>
+    <lastmod>2026-03-31</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
   </url>
 </urlset>

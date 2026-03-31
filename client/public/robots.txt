@@ -1,5 +1,11 @@
 User-agent: *
 Allow: /
+Disallow: /admin/
+Disallow: /api/
+Disallow: /404
+
+# Crawl delay
+Crawl-delay: 1
 
 # Sitemaps
-Sitemap: https://3000-i8zyf1kicwdqj7uwtx8l4-1afcc478.sg1.manus.computer/sitemap.xml
+Sitemap: https://orlandostay-9cfyw7e3.manus.space/sitemap.xml
