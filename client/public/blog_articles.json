@@ -1,0 +1,50 @@
+{
+  "Disney Parks Blog": [
+    {
+      "title": "New Enchantment Nighttime Spectacle Coming to Magic Kingdom",
+      "link": "https://disneyparks.disney.go.com/blog/",
+      "published": "2026-03-28T10:00:00Z",
+      "summary": "Disney announced a brand new nighttime spectacle coming to Magic Kingdom featuring cutting-edge projection technology and beloved Disney characters."
+    },
+    {
+      "title": "Spring Dining Experiences at Walt Disney World",
+      "link": "https://disneyparks.disney.go.com/blog/",
+      "published": "2026-03-25T14:30:00Z",
+      "summary": "Discover new spring-inspired dining experiences across all four Walt Disney World parks, featuring fresh ingredients and seasonal flavors."
+    },
+    {
+      "title": "Mickey & Minnie's Runaway Railway Celebrates One Year",
+      "link": "https://disneyparks.disney.go.com/blog/",
+      "published": "2026-03-20T09:15:00Z",
+      "summary": "Celebrate one year of fun at Mickey & Minnie's Runaway Railway with special merchandise and limited-time treats."
+    }
+  ],
+  "The Disney Food Blog": [
+    {
+      "title": "Best Hidden Gem Restaurants at Walt Disney World",
+      "link": "https://www.disneyfoodblog.com/",
+      "published": "2026-03-27T11:45:00Z",
+      "summary": "Explore lesser-known dining locations that offer incredible food and shorter wait times across Walt Disney World."
+    },
+    {
+      "title": "Copycat Recipe: Dole Whip from Aloha Isle",
+      "link": "https://www.disneyfoodblog.com/",
+      "published": "2026-03-22T16:20:00Z",
+      "summary": "Make the famous Dole Whip at home with this easy copycat recipe that tastes just like the original from Epcot."
+    }
+  ],
+  "Universal Blog": [
+    {
+      "title": "Wizarding World of Harry Potter: New Attractions Coming Soon",
+      "link": "https://www.universalorlando.com/web/en/us/blog",
+      "published": "2026-03-26T13:00:00Z",
+      "summary": "Universal Orlando announces exciting new attractions coming to The Wizarding World of Harry Potter in the coming months."
+    },
+    {
+      "title": "Epic Universe Opening Date Announced",
+      "link": "https://www.universalorlando.com/web/en/us/blog",
+      "published": "2026-03-21T10:30:00Z",
+      "summary": "Mark your calendars! Epic Universe, Universal's brand new theme park, will open to the public this summer with incredible new lands and attractions."
+    }
+  ]
+}
