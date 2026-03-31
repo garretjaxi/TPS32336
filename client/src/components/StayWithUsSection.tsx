@@ -9,7 +9,7 @@ export default function StayWithUsSection() {
   const [activeTab, setActiveTab] = useState<"homes" | "rooms">("homes");
 
   return (
-    <section id="stay" className="py-20 md:py-28 bg-[oklch(0.94_0.008_80)]">
+    <section id="stay" className="py-20 md:py-28 bg-gradient-to-r from-[oklch(0.94_0.008_80)] to-[oklch(0.92_0.01_75)]">
       <div className="container">
         {/* Section Header */}
         <div className="text-center mb-12">

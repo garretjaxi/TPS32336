@@ -52,7 +52,7 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-[oklch(0.98_0.008_80)] text-[oklch(0.18_0.012_55)]">
+    <div className="min-h-screen bg-gradient-to-br from-[oklch(0.98_0.008_80)] via-[oklch(0.96_0.01_70)] to-[oklch(0.94_0.012_60)] text-[oklch(0.18_0.012_55)]">
       <SEO 
         title="Orlando Vacation Rentals Near Disney World"
         description="Premium vacation rentals in Orlando, FL — minutes from Disney World, Universal Studios, LEGOLAND, and SeaWorld. Book direct and save."
@@ -276,7 +276,7 @@ export default function Home() {
         <DesignTeaser />
 
         {/* Community Teaser */}
-        <section className="py-16 bg-[oklch(0.98_0.005_75)]">
+        <section className="py-16 bg-gradient-to-r from-[oklch(0.98_0.005_75)] to-[oklch(0.95_0.008_70)]">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <h2 className="display-heading text-4xl md:text-5xl text-[oklch(0.18_0.012_55)] mb-6">
               Our Community
@@ -295,7 +295,7 @@ export default function Home() {
       </main>
 
       {/* Footer */}
-      <footer className="bg-[oklch(0.18_0.012_55)] text-white py-12" role="contentinfo">
+      <footer className="bg-gradient-to-r from-[oklch(0.18_0.012_55)] to-[oklch(0.22_0.015_50)] text-white py-12" role="contentinfo">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
             <div>

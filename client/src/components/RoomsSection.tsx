@@ -236,7 +236,7 @@ export default function RoomsSection({ hideHeader = false }: { hideHeader?: bool
   }, [hideHeader, rooms.length]);
 
   return (
-    <section id="rooms" ref={sectionRef} className={`py-20 md:py-28 bg-[oklch(0.18_0.012_55)] ${hideHeader ? "pt-0" : ""}`}>
+    <section id="rooms" ref={sectionRef} className={`py-20 md:py-28 bg-gradient-to-r from-[oklch(0.18_0.012_55)] to-[oklch(0.22_0.015_50)] ${hideHeader ? "pt-0" : ""}`}>
       <div className="container">
         {/* Header */}
         {!hideHeader && (

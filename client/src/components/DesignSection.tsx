@@ -80,7 +80,7 @@ export default function DesignSection() {
   };
 
   return (
-    <section id="design" ref={sectionRef} className="py-20 md:py-28 bg-[oklch(0.975_0.012_80)]">
+    <section id="design" ref={sectionRef} className="py-20 md:py-28 bg-gradient-to-r from-[oklch(0.975_0.012_80)] to-[oklch(0.95_0.015_75)]">
       <div className="container">
         {/* Header */}
         <div className="text-center mb-16 fade-up">
@@ -150,7 +150,7 @@ export default function DesignSection() {
         </div>
 
         {/* Process */}
-        <div className="fade-up bg-[oklch(0.18_0.012_55)] rounded-2xl p-8 md:p-12 mb-12">
+        <div className="fade-up bg-gradient-to-r from-[oklch(0.18_0.012_55)] to-[oklch(0.22_0.015_50)] rounded-2xl p-8 md:p-12 mb-12">
           <h3
             className="text-2xl md:text-3xl font-bold text-white text-center mb-10"
             style={{ fontFamily: "'Cormorant Garamond', serif" }}

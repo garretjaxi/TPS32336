@@ -105,7 +105,7 @@ export default function GuestAmenitiesSection() {
     setOpenCategory((prev) => (prev === title ? null : title));
 
   return (
-    <section className="py-16 md:py-20 bg-[oklch(0.18_0.012_55)]">
+    <section className="py-16 md:py-20 bg-gradient-to-r from-[oklch(0.18_0.012_55)] to-[oklch(0.22_0.015_50)]">
       <div className="container max-w-6xl mx-auto px-4">
 
         {/* ── Section Header ── */}

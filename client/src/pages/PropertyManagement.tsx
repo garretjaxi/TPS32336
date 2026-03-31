@@ -307,7 +307,7 @@ export default function PropertyManagement() {
   };
 
   return (
-    <div className="min-h-screen bg-[oklch(0.98_0.005_75)]" style={{ fontFamily: "'Outfit', sans-serif" }}>
+    <div className="min-h-screen bg-gradient-to-br from-[oklch(0.98_0.005_75)] via-[oklch(0.96_0.008_70)] to-[oklch(0.94_0.01_65)]" style={{ fontFamily: "'Outfit', sans-serif" }}>
       {/* Floating Back to Site Button */}
       <button
         onClick={() => navigate("/")}
@@ -422,7 +422,7 @@ export default function PropertyManagement() {
       </section>
 
       {/* ── Stats bar ── */}
-      <section className="bg-[oklch(0.18_0.012_55)]/90 backdrop-blur-sm py-8">
+      <section className="bg-gradient-to-r from-[oklch(0.18_0.012_55)]/90 to-[oklch(0.22_0.015_50)]/90 backdrop-blur-sm py-8">
         <div className="container">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
             {stats.map((s) => (
@@ -436,7 +436,7 @@ export default function PropertyManagement() {
       </section>
 
       {/* ── Platform Logos ── */}
-      <section className="bg-[oklch(0.97_0.008_75)]/80 backdrop-blur-sm py-8 border-b border-[oklch(0.92_0.015_75)]/50">
+      <section className="bg-gradient-to-r from-[oklch(0.97_0.008_75)]/80 to-[oklch(0.95_0.01_70)]/80 backdrop-blur-sm py-8 border-b border-[oklch(0.92_0.015_75)]/50">
         <div className="container">
           <p className="text-center text-xs font-semibold tracking-[0.2em] uppercase text-[oklch(0.55_0.015_55)] mb-6">
             Be Seen by Millions — Listed on All Top Platforms
@@ -483,7 +483,7 @@ export default function PropertyManagement() {
       </section>
 
       {/* ── Pricing Tiers ── */}
-      <section className="py-20 md:py-28 bg-[oklch(0.97_0.008_75)]/80 backdrop-blur-sm">
+      <section className="py-20 md:py-28 bg-gradient-to-r from-[oklch(0.97_0.008_75)]/80 to-[oklch(0.95_0.01_70)]/80 backdrop-blur-sm">
         <div className="container">
           <div className="text-center mb-16">
             <span className="text-xs font-semibold tracking-[0.25em] uppercase text-[oklch(0.58_0.16_55)] mb-3 block">Transparent Pricing</span>
@@ -605,7 +605,7 @@ export default function PropertyManagement() {
       </section>
 
       {/* ── Testimonials ── */}
-      <section className="py-20 md:py-28 bg-[oklch(0.18_0.012_55)]">
+      <section className="py-20 md:py-28 bg-gradient-to-r from-[oklch(0.18_0.012_55)] to-[oklch(0.22_0.015_50)]">
         <div className="container">
           <div className="text-center mb-14">
             <span className="text-xs font-semibold tracking-[0.25em] uppercase text-[oklch(0.68_0.15_65)] mb-3 block">Owner Reviews</span>
@@ -662,7 +662,7 @@ export default function PropertyManagement() {
       </section>
 
       {/* ── Contact Form ── */}
-      <section id="contact-form" className="py-20 md:py-28 bg-[oklch(0.97_0.008_75)]">
+      <section id="contact-form" className="py-20 md:py-28 bg-gradient-to-r from-[oklch(0.97_0.008_75)] to-[oklch(0.95_0.01_70)]">
         <div className="container">
           <div className="max-w-2xl mx-auto">
             <div className="text-center mb-10">
@@ -769,7 +769,7 @@ export default function PropertyManagement() {
       </section>
 
       {/* ── Footer strip ── */}
-      <div className="bg-[oklch(0.12_0.01_55)] py-6 text-center text-white/40 text-sm">
+      <div className="bg-gradient-to-r from-[oklch(0.12_0.01_55)] to-[oklch(0.15_0.012_50)] py-6 text-center text-white/40 text-sm">
         © {new Date().getFullYear()} Theme Park Stays · Orlando, Florida ·{" "}
         <button onClick={() => navigate("/")} className="hover:text-white/70 transition-colors underline underline-offset-2">
           Back to Main Site
