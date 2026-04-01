@@ -238,9 +238,3 @@
 
 - [x] Apply monochromatic high-contrast gradients to navigation bar
 - [x] Verify footer has consistent monochromatic gradients
-
-## Parallax Effects for Section Transitions
-
-- [x] Create parallax scroll hook and utility functions
-- [x] Apply parallax effects to Home page sections
-- [x] Apply parallax effects to Property Management and Design Services pages

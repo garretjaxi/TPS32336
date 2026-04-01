@@ -4,7 +4,6 @@
    ============================================================= */
 import { useEffect, useState } from "react";
 import { useLocation } from "wouter";
-import { useParallax } from "@/hooks/useParallax";
 import HeroSection from "@/components/HeroSection";
 import { VIPSignupModal } from "@/components/VIPSignupModal";
 import { hasVIPModalBeenShown, markVIPModalAsShown } from "@/lib/vipCookie";
@@ -30,16 +29,6 @@ export default function Home() {
   const [, navigate] = useLocation();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [vipModalOpen, setVipModalOpen] = useState(false);
-  
-  // Parallax effects for sections
-  const aboutParallax = useParallax({ speed: 0.3 });
-  const amenitiesParallax = useParallax({ speed: 0.25 });
-  const stayParallax = useParallax({ speed: 0.35 });
-  const ticketsParallax = useParallax({ speed: 0.3 });
-  const activitiesParallax = useParallax({ speed: 0.25 });
-  const shopParallax = useParallax({ speed: 0.3 });
-  const managementParallax = useParallax({ speed: 0.35 });
-  const designParallax = useParallax({ speed: 0.3 });
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "instant" });
@@ -273,34 +262,18 @@ export default function Home() {
         <HeroSection />
         
         {/* About Us Section */}
-        <div ref={aboutParallax.ref} style={aboutParallax.style}>
-          <AboutSection />
-        </div>
-        <div ref={amenitiesParallax.ref} style={amenitiesParallax.style}>
-          <GuestAmenitiesSection />
-        </div>
+        <AboutSection />
+        <GuestAmenitiesSection />
 
-        <div ref={stayParallax.ref} style={stayParallax.style}>
-          <StayWithUsSection />
-        </div>
+        <StayWithUsSection />
 
         {/* Theme Park Tickets Section */}
-        <div ref={ticketsParallax.ref} style={ticketsParallax.style}>
-          <TicketsSection />
-        </div>
-        <div ref={activitiesParallax.ref} style={activitiesParallax.style}>
-          <ActivitiesSection />
-        </div>
-        <div ref={shopParallax.ref} style={shopParallax.style}>
-          <ShopSection />
-        </div>
+        <TicketsSection />
+        <ActivitiesSection />
+        <ShopSection />
 
-        <div ref={managementParallax.ref} style={managementParallax.style}>
-          <ManagementTeaser />
-        </div>
-        <div ref={designParallax.ref} style={designParallax.style}>
-          <DesignTeaser />
-        </div>
+        <ManagementTeaser />
+        <DesignTeaser />
 
         {/* Community Teaser */}
         <section className="py-16 bg-gradient-to-r from-[oklch(0.98_0.005_75)] via-[oklch(0.92_0.008_80)] to-[oklch(0.85_0.008_80)] gradient-animated">
