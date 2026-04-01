@@ -249,3 +249,7 @@
 
 - [x] Apply overlapping negative margins to Home page sections
 - [x] Apply overlapping negative margins to Property Management and Design Services pages
+
+## Homes Listing Cards Styling
+
+- [x] Change Homes listing cards background from black to light blue
