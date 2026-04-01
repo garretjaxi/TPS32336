@@ -23,6 +23,7 @@ import { getLoginUrl } from "@/const";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
 import SEO from "@/components/SEO";
 import SchemaMarkup from "@/components/SchemaMarkup";
+import CurvedDivider from "@/components/CurvedDivider";
 
 export default function Home() {
   const { user, logout, loading } = useAuth();
@@ -261,18 +262,29 @@ export default function Home() {
       <main role="main">
         <HeroSection />
         
+        <div className="text-[oklch(0.18_0.012_55)]"><CurvedDivider variant="wave" /></div>
+        
         {/* About Us Section */}
         <AboutSection />
         <GuestAmenitiesSection />
 
+        <div className="text-[oklch(0.95_0.01_70)]"><CurvedDivider variant="wave" flip /></div>
+        
         <StayWithUsSection />
 
+        <div className="text-[oklch(0.18_0.012_55)]"><CurvedDivider variant="curve" /></div>
+        
         {/* Theme Park Tickets Section */}
         <TicketsSection />
         <ActivitiesSection />
         <ShopSection />
 
+        <div className="text-[oklch(0.95_0.01_70)]"><CurvedDivider variant="wave" flip /></div>
+        
         <ManagementTeaser />
+        
+        <div className="text-[oklch(0.18_0.012_55)]"><CurvedDivider variant="diagonal" /></div>
+        
         <DesignTeaser />
 
         {/* Community Teaser */}

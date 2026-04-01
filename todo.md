@@ -238,3 +238,9 @@
 
 - [x] Apply monochromatic high-contrast gradients to navigation bar
 - [x] Verify footer has consistent monochromatic gradients
+
+## Curved/Diagonal Dividers for Section Transitions
+
+- [x] Remove parallax effects from Home and Property Management pages
+- [x] Create curved/diagonal divider SVG components
+- [x] Add dividers between all major sections on Home page
