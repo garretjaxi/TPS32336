@@ -400,7 +400,7 @@ export default function HomesSection({ hideHeader = false }: { hideHeader?: bool
         )}
 
         {/* Filter Section */}
-        <div className="mb-16 fade-up bg-gradient-to-r from-[oklch(0.35_0.12_15)] via-[oklch(0.38_0.14_20)] to-[oklch(0.32_0.11_10)] rounded-2xl p-8 md:p-12 border border-[oklch(0.45_0.15_25)]/50">
+        <div className="mb-16 fade-up bg-gradient-to-r from-[oklch(0.55_0.20_35)] via-[oklch(0.38_0.14_20)] to-[oklch(0.25_0.08_0)] rounded-2xl p-8 md:p-12 border border-[oklch(0.45_0.15_25)]/50">
           <p className="text-center text-white font-medium mb-8" style={{ fontFamily: "'Outfit', sans-serif" }}>
             {t("findYourFavoriteVacationHome")}
           </p>
@@ -470,7 +470,7 @@ export default function HomesSection({ hideHeader = false }: { hideHeader?: bool
             {filtered.map((home, i) => (
               <div
                 key={home.id}
-                className="home-card fade-up card-hover bg-[oklch(0.82_0.02_0)] backdrop-blur-md rounded-2xl overflow-hidden shadow-lg border border-white/40 group flex flex-col cursor-pointer flex-shrink-0 snap-start"
+                className="home-card fade-up card-hover bg-[oklch(0.70_0_0)] backdrop-blur-md rounded-2xl overflow-hidden shadow-lg border border-white/40 group flex flex-col cursor-pointer flex-shrink-0 snap-start"
                 style={{ width: "72vw", minWidth: "260px", maxWidth: "320px" }}
               >
                 {/* Image */}
@@ -568,7 +568,7 @@ export default function HomesSection({ hideHeader = false }: { hideHeader?: bool
             {filtered.map((home, i) => (
               <div
                 key={home.id}
-                className="home-card fade-up card-hover bg-[oklch(0.82_0.02_0)] backdrop-blur-md rounded-2xl overflow-hidden shadow-lg border border-white/40 group flex flex-col cursor-pointer"
+                className="home-card fade-up card-hover bg-[oklch(0.70_0_0)] backdrop-blur-md rounded-2xl overflow-hidden shadow-lg border border-white/40 group flex flex-col cursor-pointer"
               >
                 {/* Image */}
                 <a
