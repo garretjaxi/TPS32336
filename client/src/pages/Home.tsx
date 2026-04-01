@@ -261,18 +261,34 @@ export default function Home() {
         <HeroSection />
         
         {/* About Us Section */}
-        <AboutSection />
-        <GuestAmenitiesSection />
+        <div className="-mt-16 relative z-10">
+          <AboutSection />
+        </div>
+        <div className="-mt-16 relative z-20">
+          <GuestAmenitiesSection />
+        </div>
 
-        <StayWithUsSection />
+        <div className="-mt-16 relative z-10">
+          <StayWithUsSection />
+        </div>
 
         {/* Theme Park Tickets Section */}
-        <TicketsSection />
-        <ActivitiesSection />
-        <ShopSection />
+        <div className="-mt-16 relative z-20">
+          <TicketsSection />
+        </div>
+        <div className="-mt-16 relative z-10">
+          <ActivitiesSection />
+        </div>
+        <div className="-mt-16 relative z-20">
+          <ShopSection />
+        </div>
 
-        <ManagementTeaser />
-        <DesignTeaser />
+        <div className="-mt-16 relative z-10">
+          <ManagementTeaser />
+        </div>
+        <div className="-mt-16 relative z-20">
+          <DesignTeaser />
+        </div>
 
         {/* Community Teaser */}
         <section className="py-16 bg-gradient-to-r from-[oklch(0.98_0.005_75)] via-[oklch(0.92_0.008_80)] to-[oklch(0.85_0.008_80)] gradient-animated">

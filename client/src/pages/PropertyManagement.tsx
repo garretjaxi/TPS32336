@@ -403,7 +403,7 @@ export default function PropertyManagement() {
       </section>
 
       {/* ── Trust Badges ── */}
-      <section className="bg-white border-b border-[oklch(0.92_0.015_75)] py-6">
+      <section className="-mt-16 relative z-10 bg-white border-b border-[oklch(0.92_0.015_75)] py-6">
         <div className="container">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             {trustBadges.map((b) => (
@@ -422,7 +422,7 @@ export default function PropertyManagement() {
       </section>
 
       {/* ── Stats bar ── */}
-      <section className="bg-gradient-to-r from-[oklch(0.18_0.012_55)]/90 to-[oklch(0.22_0.015_50)]/90 backdrop-blur-sm py-8">
+      <section className="-mt-16 relative z-20 bg-gradient-to-r from-[oklch(0.18_0.012_55)]/90 to-[oklch(0.22_0.015_50)]/90 backdrop-blur-sm py-8">
         <div className="container">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
             {stats.map((s) => (
@@ -436,7 +436,7 @@ export default function PropertyManagement() {
       </section>
 
       {/* ── Platform Logos ── */}
-      <section className="bg-gradient-to-r from-[oklch(0.97_0.008_75)]/80 to-[oklch(0.95_0.01_70)]/80 backdrop-blur-sm py-8 border-b border-[oklch(0.92_0.015_75)]/50">
+      <section className="-mt-16 relative z-10 bg-gradient-to-r from-[oklch(0.97_0.008_75)]/80 to-[oklch(0.95_0.01_70)]/80 backdrop-blur-sm py-8 border-b border-[oklch(0.92_0.015_75)]/50">
         <div className="container">
           <p className="text-center text-xs font-semibold tracking-[0.2em] uppercase text-[oklch(0.55_0.015_55)] mb-6">
             Be Seen by Millions — Listed on All Top Platforms
@@ -452,7 +452,7 @@ export default function PropertyManagement() {
       </section>
 
       {/* ── Why Choose Us ── */}
-      <section className="py-12 md:py-16 bg-white/95 backdrop-blur-sm">
+      <section className="-mt-16 relative z-20 py-12 md:py-16 bg-white/95 backdrop-blur-sm">
         <div className="container">
           <div className="text-center mb-10">
             <span className="text-xs font-semibold tracking-[0.25em] uppercase text-[oklch(0.58_0.16_55)] mb-2 block">Why Partner With Us</span>
@@ -483,7 +483,7 @@ export default function PropertyManagement() {
       </section>
 
       {/* ── Pricing Tiers ── */}
-      <section className="py-20 md:py-28 bg-gradient-to-r from-[oklch(0.97_0.008_75)]/80 to-[oklch(0.95_0.01_70)]/80 backdrop-blur-sm">
+      <section className="-mt-16 relative z-10 py-20 md:py-28 bg-gradient-to-r from-[oklch(0.97_0.008_75)]/80 to-[oklch(0.95_0.01_70)]/80 backdrop-blur-sm">
         <div className="container">
           <div className="text-center mb-16">
             <span className="text-xs font-semibold tracking-[0.25em] uppercase text-[oklch(0.58_0.16_55)] mb-3 block">Transparent Pricing</span>
@@ -553,7 +553,7 @@ export default function PropertyManagement() {
       </section>
 
       {/* ── Our Process ── */}
-      <section className="py-16 md:py-20 bg-white/95 backdrop-blur-sm">
+      <section className="-mt-16 relative z-20 py-16 md:py-20 bg-white/95 backdrop-blur-sm">
         <div className="container">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <div>
@@ -605,7 +605,7 @@ export default function PropertyManagement() {
       </section>
 
       {/* ── Testimonials ── */}
-      <section className="py-20 md:py-28 bg-gradient-to-r from-[oklch(0.18_0.012_55)] to-[oklch(0.22_0.015_50)]">
+      <section className="-mt-16 relative z-10 py-20 md:py-28 bg-gradient-to-r from-[oklch(0.18_0.012_55)] to-[oklch(0.22_0.015_50)]">
         <div className="container">
           <div className="text-center mb-14">
             <span className="text-xs font-semibold tracking-[0.25em] uppercase text-[oklch(0.68_0.15_65)] mb-3 block">Owner Reviews</span>
@@ -639,7 +639,7 @@ export default function PropertyManagement() {
       </section>
 
       {/* ── FAQ ── */}
-      <section className="py-20 md:py-28 bg-white">
+      <section className="-mt-16 relative z-20 py-20 md:py-28 bg-white">
         <div className="container max-w-3xl">
           <div className="text-center mb-14">
             <span className="text-xs font-semibold tracking-[0.25em] uppercase text-[oklch(0.58_0.16_55)] mb-3 block">Questions & Answers</span>
@@ -662,7 +662,7 @@ export default function PropertyManagement() {
       </section>
 
       {/* ── Contact Form ── */}
-      <section id="contact-form" className="py-20 md:py-28 bg-gradient-to-r from-[oklch(0.97_0.008_75)] to-[oklch(0.95_0.01_70)]">
+      <section id="contact-form" className="-mt-16 relative z-10 py-20 md:py-28 bg-gradient-to-r from-[oklch(0.97_0.008_75)] to-[oklch(0.95_0.01_70)]">
         <div className="container">
           <div className="max-w-2xl mx-auto">
             <div className="text-center mb-10">

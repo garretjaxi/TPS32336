@@ -244,3 +244,8 @@
 - [x] Remove parallax effects from Home and Property Management pages
 - [x] Create curved/diagonal divider SVG components
 - [x] Add dividers between all major sections on Home page
+
+## Overlapping Sections for Seamless Transitions
+
+- [x] Apply overlapping negative margins to Home page sections
+- [x] Apply overlapping negative margins to Property Management and Design Services pages
