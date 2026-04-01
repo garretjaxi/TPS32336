@@ -400,8 +400,8 @@ export default function HomesSection({ hideHeader = false }: { hideHeader?: bool
         )}
 
         {/* Filter Section */}
-        <div className="mb-16 fade-up bg-white/10 backdrop-blur-sm rounded-2xl p-8 md:p-12 border border-white/20">
-          <p className="text-center text-[oklch(0.18_0.012_55)] font-medium mb-8" style={{ fontFamily: "'Outfit', sans-serif" }}>
+        <div className="mb-16 fade-up bg-gradient-to-r from-[oklch(0.35_0.12_15)] via-[oklch(0.38_0.14_20)] to-[oklch(0.32_0.11_10)] rounded-2xl p-8 md:p-12 border border-[oklch(0.45_0.15_25)]/50">
+          <p className="text-center text-white font-medium mb-8" style={{ fontFamily: "'Outfit', sans-serif" }}>
             {t("findYourFavoriteVacationHome")}
           </p>
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 sm:gap-4">
@@ -430,7 +430,7 @@ export default function HomesSection({ hideHeader = false }: { hideHeader?: bool
                   <div className={`text-center py-2 px-1 rounded-lg transition-all duration-300 text-xs sm:text-sm ${
                     activeFilter === option.id
                       ? "bg-[oklch(0.58_0.16_55)] text-white font-semibold"
-                      : "bg-[oklch(0.92_0.08_240)] text-[oklch(0.18_0.012_55)] group-hover:bg-[oklch(0.88_0.08_240)]"
+                      : "bg-white/20 text-white group-hover:bg-white/30"
                   }`}
                 style={{ fontFamily: "'Outfit', sans-serif" }}
                 >
