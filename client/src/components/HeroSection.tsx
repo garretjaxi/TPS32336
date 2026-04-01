@@ -16,8 +16,8 @@ export default function HeroSection() {
         className="absolute inset-0"
         style={{
           backgroundImage: `url(${HERO_IMG})`,
-          backgroundSize: "contain",
-          backgroundPosition: "center center",
+          backgroundSize: "cover",
+          backgroundPosition: "center 30%",
           backgroundRepeat: "no-repeat",
         }}
       />
