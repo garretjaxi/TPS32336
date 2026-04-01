@@ -5,7 +5,7 @@
 import { Star, ChevronDown } from "lucide-react";
 import { useTranslation } from "react-i18next";
 
-const HERO_IMG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663450455662/9cFYW7E3ZSgdzZcVUYn2yx/Gemini_Generated_Image_hlbby5hlbby5hlbb_b6f22e4b.webp";
+const HERO_IMG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663450455662/9cFYW7E3ZSgdzZcVUYn2yx/Gemini_Generated_Image_da1encda1encda1e_96a09b96.webp";
 
 export default function HeroSection() {
   const { t } = useTranslation();
