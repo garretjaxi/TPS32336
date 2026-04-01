@@ -528,9 +528,6 @@ export default function HomesSection({ hideHeader = false }: { hideHeader?: bool
                       })()}
                     </div>
                   </div>
-                  <div className="text-xs text-[oklch(0.5_0.02_60)] font-medium mb-1" style={{ fontFamily: "'Outfit', sans-serif" }}>
-                    {home.location}
-                  </div>
                   <h3 className="text-lg font-bold text-[oklch(0.18_0.012_55)] mb-1 leading-tight" style={{ fontFamily: "'Cormorant Garamond', serif" }}>
                     {home.name}
                   </h3>
@@ -626,9 +623,6 @@ export default function HomesSection({ hideHeader = false }: { hideHeader?: bool
                         return "Distance TBD";
                       })()}
                     </div>
-                  </div>
-                  <div className="text-xs text-[oklch(0.5_0.02_60)] font-medium mb-1" style={{ fontFamily: "'Outfit', sans-serif" }}>
-                    {home.location}
                   </div>
                   <h3
                     className="text-xl font-bold text-[oklch(0.18_0.012_55)] mb-1 leading-tight"
