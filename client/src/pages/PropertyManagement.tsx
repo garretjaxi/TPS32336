@@ -4,6 +4,7 @@
    ============================================================= */
 import { useState, useEffect } from "react";
 import { useLocation } from "wouter";
+import { useParallax } from "@/hooks/useParallax";
 import {
   TrendingUp, DollarSign, Camera, HeadphonesIcon, CheckCircle2,
   ArrowRight, Star, BarChart3, Home, ClipboardList, Rocket, Settings,
@@ -250,6 +251,12 @@ function FaqItem({ q, a }: { q: string; a: string }) {
 /* ── Main Component ── */
 export default function PropertyManagement() {
   const [, navigate] = useLocation();
+  
+  // Parallax effects for sections
+  const whyParallax = useParallax({ speed: 0.3 });
+  const pricingParallax = useParallax({ speed: 0.25 });
+  const faqParallax = useParallax({ speed: 0.3 });
+  
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -452,6 +459,7 @@ export default function PropertyManagement() {
       </section>
 
       {/* ── Why Choose Us ── */}
+      <div ref={whyParallax.ref} style={whyParallax.style}>
       <section className="py-12 md:py-16 bg-white/95 backdrop-blur-sm">
         <div className="container">
           <div className="text-center mb-10">
@@ -481,8 +489,10 @@ export default function PropertyManagement() {
           </div>
         </div>
       </section>
+      </div>
 
       {/* ── Pricing Tiers ── */}
+      <div ref={pricingParallax.ref} style={pricingParallax.style}>
       <section className="py-20 md:py-28 bg-gradient-to-r from-[oklch(0.97_0.008_75)]/80 to-[oklch(0.95_0.01_70)]/80 backdrop-blur-sm">
         <div className="container">
           <div className="text-center mb-16">
@@ -551,6 +561,7 @@ export default function PropertyManagement() {
           </div>
         </div>
       </section>
+      </div>
 
       {/* ── Our Process ── */}
       <section className="py-16 md:py-20 bg-white/95 backdrop-blur-sm">
@@ -639,6 +650,7 @@ export default function PropertyManagement() {
       </section>
 
       {/* ── FAQ ── */}
+      <div ref={faqParallax.ref} style={faqParallax.style}>
       <section className="py-20 md:py-28 bg-white">
         <div className="container max-w-3xl">
           <div className="text-center mb-14">
@@ -660,6 +672,7 @@ export default function PropertyManagement() {
           </div>
         </div>
       </section>
+      </div>
 
       {/* ── Contact Form ── */}
       <section id="contact-form" className="py-20 md:py-28 bg-gradient-to-r from-[oklch(0.97_0.008_75)] to-[oklch(0.95_0.01_70)]">
