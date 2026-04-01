@@ -253,3 +253,5 @@
 ## Homes Listing Cards Styling
 
 - [x] Change Homes listing cards background from black to light blue
+
+- [ ] Remove black overlay/backdrop behind Homes listing cards
