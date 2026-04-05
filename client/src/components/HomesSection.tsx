@@ -381,7 +381,7 @@ export default function HomesSection({ hideHeader = false }: { hideHeader?: bool
   }, [activeFilter, isLoading, hideHeader, homes.length]);
 
   return (
-    <section id="homes" ref={sectionRef} className={`py-20 md:py-28 ${hideHeader ? "pt-0" : ""}`}>
+    <section id="homes" ref={sectionRef} className={`py-20 md:py-28 bg-gradient-to-r from-[oklch(0.14_0.012_55)] via-[oklch(0.18_0.012_55)] to-[oklch(0.25_0.012_55)] gradient-animated ${hideHeader ? "pt-0" : ""}`}>
       <div className="container">
         {/* Header */}
         {!hideHeader && (
@@ -400,8 +400,8 @@ export default function HomesSection({ hideHeader = false }: { hideHeader?: bool
         )}
 
         {/* Filter Section */}
-        <div className="mb-16 fade-up bg-gradient-to-r from-[oklch(0.55_0.20_35)] via-[oklch(0.38_0.14_20)] to-[oklch(0.25_0.08_0)] rounded-2xl p-8 md:p-12 border border-[oklch(0.45_0.15_25)]/50">
-          <p className="text-center text-white font-medium mb-8" style={{ fontFamily: "'Outfit', sans-serif" }}>
+        <div className="mb-16 fade-up">
+          <p className="text-center text-white/60 font-medium mb-8" style={{ fontFamily: "'Outfit', sans-serif" }}>
             {t("findYourFavoriteVacationHome")}
           </p>
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 sm:gap-4">
@@ -427,11 +427,11 @@ export default function HomesSection({ hideHeader = false }: { hideHeader?: bool
                   }`} />
                 </div>
                 {/* Label */}
-                  <div className={`text-center py-2 px-1 rounded-lg transition-all duration-300 text-xs sm:text-sm ${
-                    activeFilter === option.id
-                      ? "bg-[oklch(0.58_0.16_55)] text-white font-semibold"
-                      : "bg-white/20 text-white group-hover:bg-white/30"
-                  }`}
+                <div className={`text-center py-2 px-1 rounded-lg transition-all duration-300 text-xs sm:text-sm ${
+                  activeFilter === option.id
+                    ? "bg-[oklch(0.58_0.16_55)] text-white font-semibold"
+                    : "bg-white/10 text-white/80 group-hover:bg-white/20"
+                }`}
                 style={{ fontFamily: "'Outfit', sans-serif" }}
                 >
                   <div className="flex items-center justify-center gap-1 flex-wrap">
@@ -470,7 +470,7 @@ export default function HomesSection({ hideHeader = false }: { hideHeader?: bool
             {filtered.map((home, i) => (
               <div
                 key={home.id}
-                className="home-card fade-up card-hover bg-[oklch(0.70_0_0)] backdrop-blur-xl rounded-2xl overflow-hidden shadow-2xl border border-white/30 group flex flex-col cursor-pointer flex-shrink-0 snap-start"
+                className="home-card fade-up card-hover bg-white/80 backdrop-blur-md rounded-2xl overflow-hidden shadow-lg border border-white/40 group flex flex-col cursor-pointer flex-shrink-0 snap-start"
                 style={{ width: "72vw", minWidth: "260px", maxWidth: "320px" }}
               >
                 {/* Image */}
@@ -528,6 +528,9 @@ export default function HomesSection({ hideHeader = false }: { hideHeader?: bool
                       })()}
                     </div>
                   </div>
+                  <div className="text-xs text-[oklch(0.5_0.02_60)] font-medium mb-1" style={{ fontFamily: "'Outfit', sans-serif" }}>
+                    {home.location}
+                  </div>
                   <h3 className="text-lg font-bold text-[oklch(0.18_0.012_55)] mb-1 leading-tight" style={{ fontFamily: "'Cormorant Garamond', serif" }}>
                     {home.name}
                   </h3>
@@ -565,7 +568,7 @@ export default function HomesSection({ hideHeader = false }: { hideHeader?: bool
             {filtered.map((home, i) => (
               <div
                 key={home.id}
-                className="home-card fade-up card-hover bg-[oklch(0.70_0_0)] backdrop-blur-xl rounded-2xl overflow-hidden shadow-2xl border border-white/30 group flex flex-col cursor-pointer"
+                className="home-card fade-up card-hover bg-white/80 backdrop-blur-md rounded-2xl overflow-hidden shadow-lg border border-white/40 group flex flex-col cursor-pointer"
               >
                 {/* Image */}
                 <a
@@ -623,6 +626,9 @@ export default function HomesSection({ hideHeader = false }: { hideHeader?: bool
                         return "Distance TBD";
                       })()}
                     </div>
+                  </div>
+                  <div className="text-xs text-[oklch(0.5_0.02_60)] font-medium mb-1" style={{ fontFamily: "'Outfit', sans-serif" }}>
+                    {home.location}
                   </div>
                   <h3
                     className="text-xl font-bold text-[oklch(0.18_0.012_55)] mb-1 leading-tight"

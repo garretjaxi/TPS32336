@@ -23,6 +23,7 @@ import { getLoginUrl } from "@/const";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
 import SEO from "@/components/SEO";
 import SchemaMarkup from "@/components/SchemaMarkup";
+
 export default function Home() {
   const { user, logout, loading } = useAuth();
   const [, navigate] = useLocation();
@@ -261,34 +262,18 @@ export default function Home() {
         <HeroSection />
         
         {/* About Us Section */}
-        <div className="-mt-16 relative z-10">
-          <AboutSection />
-        </div>
-        <div className="-mt-16 relative z-20">
-          <GuestAmenitiesSection />
-        </div>
+        <AboutSection />
+        <GuestAmenitiesSection />
 
-        <div className="-mt-16 relative z-10">
-          <StayWithUsSection />
-        </div>
+        <StayWithUsSection />
 
         {/* Theme Park Tickets Section */}
-        <div className="-mt-16 relative z-20">
-          <TicketsSection />
-        </div>
-        <div className="-mt-16 relative z-10">
-          <ActivitiesSection />
-        </div>
-        <div className="-mt-16 relative z-20">
-          <ShopSection />
-        </div>
+        <TicketsSection />
+        <ActivitiesSection />
+        <ShopSection />
 
-        <div className="-mt-16 relative z-10">
-          <ManagementTeaser />
-        </div>
-        <div className="-mt-16 relative z-20">
-          <DesignTeaser />
-        </div>
+        <ManagementTeaser />
+        <DesignTeaser />
 
         {/* Community Teaser */}
         <section className="py-16 bg-gradient-to-r from-[oklch(0.98_0.005_75)] via-[oklch(0.92_0.008_80)] to-[oklch(0.85_0.008_80)] gradient-animated">

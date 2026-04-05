@@ -31,7 +31,7 @@ export const shopRouter = router({
       name: p.name,
       category: p.category,
       description: p.description,
-      price: p.price, // Database stores cents
+      price: Math.round(Number(p.price) * 100), // Convert decimal dollars to cents for Stripe
       icon: p.icon || "📦",
       image: p.image || "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=400&q=80",
       active: p.isActive === 1
