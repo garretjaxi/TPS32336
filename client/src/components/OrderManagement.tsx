@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ChevronDown, Search, Filter, Eye, AlertCircle, CheckCircle, Clock } from "lucide-react";
+import { ChevronDown, Search, Filter, Eye, AlertCircle, CheckCircle, Clock, Loader2, Mail } from "lucide-react";
 import { trpc } from "@/lib/trpc";
 
 interface OrderFilters {
@@ -16,6 +16,32 @@ export function OrderManagement() {
   });
   const [selectedOrder, setSelectedOrder] = useState<any>(null);
   const [showDetails, setShowDetails] = useState(false);
+  const [statusUpdateOrder, setStatusUpdateOrder] = useState<any>(null);
+  const [newStatus, setNewStatus] = useState<string>("");
+  const [notifyCustomer, setNotifyCustomer] = useState(true);
+
+  // Update order status mutation
+  const updateStatusMutation = trpc.admin.updateOrderStatus.useMutation();
+
+  const handleUpdateStatus = async () => {
+    if (!statusUpdateOrder || !newStatus) return;
+
+    try {
+      await updateStatusMutation.mutateAsync({
+        orderId: statusUpdateOrder.id,
+        status: newStatus as "pending" | "completed" | "failed" | "cancelled",
+        notifyCustomer,
+      });
+      // Refresh orders
+      setStatusUpdateOrder(null);
+      setNewStatus("");
+      setNotifyCustomer(true);
+      // Trigger a refresh of the orders list
+      window.location.reload();
+    } catch (error) {
+      console.error("Failed to update order status:", error);
+    }
+  };
 
   // Fetch orders with filters
   const { data: ordersData, isLoading: ordersLoading } = trpc.admin.getAllOrders.useQuery({
@@ -335,9 +361,61 @@ export function OrderManagement() {
                 </div>
               )}
 
+              {/* Status Update Section */}
+              <div className="bg-[oklch(0.93_0.025_75)] rounded-lg p-4 border border-[oklch(0.92_0.015_75)]">
+                <h4 className="font-semibold text-[oklch(0.18_0.012_55)] mb-3">Update Order Status</h4>
+                <div className="space-y-3">
+                  <select
+                    value={statusUpdateOrder?.id === selectedOrder.id ? newStatus : selectedOrder.status}
+                    onChange={(e) => {
+                      setStatusUpdateOrder(selectedOrder);
+                      setNewStatus(e.target.value);
+                    }}
+                    className="w-full px-3 py-2 border border-[oklch(0.92_0.015_75)] rounded-lg focus:outline-none focus:ring-2 focus:ring-[oklch(0.58_0.16_55)]"
+                  >
+                    <option value="pending">Pending</option>
+                    <option value="completed">Completed</option>
+                    <option value="failed">Failed</option>
+                    <option value="cancelled">Cancelled</option>
+                  </select>
+                  <label className="flex items-center gap-2 cursor-pointer">
+                    <input
+                      type="checkbox"
+                      checked={notifyCustomer}
+                      onChange={(e) => setNotifyCustomer(e.target.checked)}
+                      className="w-4 h-4 rounded border-[oklch(0.92_0.015_75)] cursor-pointer"
+                    />
+                    <span className="text-sm text-[oklch(0.18_0.012_55)]">Notify customer via email</span>
+                  </label>
+                  {statusUpdateOrder?.id === selectedOrder.id && newStatus && newStatus !== selectedOrder.status && (
+                    <button
+                      onClick={handleUpdateStatus}
+                      disabled={updateStatusMutation.isPending}
+                      className="w-full px-4 py-2 rounded-lg bg-[oklch(0.58_0.16_55)] text-white font-medium hover:opacity-90 transition-opacity disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                    >
+                      {updateStatusMutation.isPending ? (
+                        <>
+                          <Loader2 className="w-4 h-4 animate-spin" />
+                          Updating...
+                        </>
+                      ) : (
+                        <>
+                          <Mail className="w-4 h-4" />
+                          Update Status
+                        </>
+                      )}
+                    </button>
+                  )}
+                </div>
+              </div>
+
               {/* Close Button */}
               <button
-                onClick={() => setShowDetails(false)}
+                onClick={() => {
+                  setShowDetails(false);
+                  setStatusUpdateOrder(null);
+                  setNewStatus("");
+                }}
                 className="w-full px-4 py-2 rounded-lg bg-[oklch(0.58_0.16_55)] text-white font-medium hover:opacity-90 transition-opacity"
               >
                 Close
@@ -348,4 +426,6 @@ export function OrderManagement() {
       )}
     </div>
   );
+
+
 }

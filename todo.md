@@ -238,3 +238,10 @@
 
 - [x] Apply monochromatic high-contrast gradients to navigation bar
 - [x] Verify footer has consistent monochromatic gradients
+
+## Order Status Update & Email Notifications
+
+- [x] Create orders table schema with status field
+- [x] Add updateOrderStatus tRPC procedure with email notification
+- [x] Integrate status update UI into admin panel
+- [x] Test order status updates and email notifications

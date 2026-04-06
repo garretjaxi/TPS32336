@@ -1,6 +1,7 @@
 import { z } from "zod";
 import { TRPCError } from "@trpc/server";
 import { adminProcedure, router } from "../_core/trpc";
+import { sendEmail } from "../_core/email";
 import {
   getAllOrders,
   getOrdersWithAnalytics,
@@ -12,6 +13,8 @@ import {
   setUserRole,
   deleteUserById,
   inviteAdminByEmail,
+  updateOrderStatus as dbUpdateOrderStatus,
+  getAllOrders as dbGetAllOrders,
 } from "../db";
 import { syncAirtableListings } from "../airtable";
 import { cacheAllDistances } from "../distanceCaching";
@@ -287,4 +290,78 @@ export const adminRouter = router({
       throw new TRPCError({ code: "INTERNAL_SERVER_ERROR", message: "Failed to cache distances" });
     }
   }),
+
+  /**
+   * Update order status and send notification email to customer
+   */
+  updateOrderStatus: adminProcedure
+    .input(
+      z.object({
+        orderId: z.number().int().positive(),
+        status: z.enum(["pending", "completed", "failed", "cancelled"]),
+        notifyCustomer: z.boolean().default(true),
+      })
+    )
+    .mutation(async ({ input }) => {
+      try {
+        // Get the order details
+        const allOrders = await dbGetAllOrders();
+        const order = allOrders.find((o) => o.id === input.orderId);
+        if (!order) {
+          throw new TRPCError({ code: "NOT_FOUND", message: "Order not found" });
+        }
+
+        // Update order status in database
+        await dbUpdateOrderStatus(input.orderId, input.status);
+
+        // Send notification email if enabled
+        if (input.notifyCustomer && order.guestEmail) {
+          const statusMessages: Record<string, { subject: string; message: string }> = {
+            pending: {
+              subject: "Order Received - Theme Park Stays",
+              message: "Your order has been received and is being processed.",
+            },
+            completed: {
+              subject: "Order Confirmed - Theme Park Stays",
+              message: "Your order has been confirmed and is ready for your stay!",
+            },
+            failed: {
+              subject: "Order Issue - Theme Park Stays",
+              message: "Unfortunately, there was an issue processing your order. Please contact us for assistance.",
+            },
+            cancelled: {
+              subject: "Order Cancelled - Theme Park Stays",
+              message: "Your order has been cancelled. If you have any questions, please contact us.",
+            },
+          };
+
+          const statusInfo = statusMessages[input.status];
+          const html = `
+            <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+              <h2 style="color: #8B4513;">Theme Park Stays</h2>
+              <p>Hello ${order.guestName || "Guest"},</p>
+              <p>${statusInfo.message}</p>
+              <div style="background-color: #f5f5f5; padding: 15px; border-radius: 5px; margin: 20px 0;">
+                <p><strong>Order ID:</strong> ${order.orderId}</p>
+                <p><strong>Amount:</strong> $${parseFloat(order.amount as string).toFixed(2)}</p>
+                <p><strong>Status:</strong> ${input.status.charAt(0).toUpperCase() + input.status.slice(1)}</p>
+              </div>
+              <p>If you have any questions, please contact us at admin@themeparkstays.com or call 407-801-3030.</p>
+              <p>Thank you for choosing Theme Park Stays!</p>
+            </div>
+          `;
+
+          await sendEmail(order.guestEmail, statusInfo.subject, html);
+        }
+
+        return {
+          success: true,
+          message: `Order status updated to ${input.status}${input.notifyCustomer ? " and customer notified" : ""}`,
+        };
+      } catch (error) {
+        if (error instanceof TRPCError) throw error;
+        console.error("[Admin] Failed to update order status:", error);
+        throw new TRPCError({ code: "INTERNAL_SERVER_ERROR", message: "Failed to update order status" });
+      }
+    }),
 });
