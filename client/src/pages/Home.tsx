@@ -23,6 +23,8 @@ import { getLoginUrl } from "@/const";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
 import SEO from "@/components/SEO";
 import SchemaMarkup from "@/components/SchemaMarkup";
+import DiagonalDivider from "@/components/DiagonalDivider";
+import LayeredSection from "@/components/LayeredSection";
 
 export default function Home() {
   const { user, logout, loading } = useAuth();
@@ -261,22 +263,86 @@ export default function Home() {
       <main role="main">
         <HeroSection />
         
-        {/* About Us Section */}
-        <AboutSection />
-        <GuestAmenitiesSection />
+        {/* Diagonal transition to About Section */}
+        <div className="diagonal-divider">
+          <DiagonalDivider direction="down" height={60} />
+        </div>
+        
+        {/* About Us Section with layering */}
+        <LayeredSection bgColor="bg-white" overlap zIndex={1}>
+          <AboutSection />
+        </LayeredSection>
 
-        <StayWithUsSection />
+        {/* Diagonal transition to Amenities */}
+        <div className="diagonal-divider">
+          <DiagonalDivider direction="up" height={50} />
+        </div>
 
-        {/* Theme Park Tickets Section */}
-        <TicketsSection />
-        <ActivitiesSection />
-        <ShopSection />
+        <LayeredSection bgColor="bg-[oklch(0.97_0.01_75)]" overlap zIndex={2}>
+          <GuestAmenitiesSection />
+        </LayeredSection>
 
-        <ManagementTeaser />
-        <DesignTeaser />
+        {/* Diagonal transition to Stay With Us */}
+        <div className="diagonal-divider">
+          <DiagonalDivider direction="down" height={60} />
+        </div>
+
+        <LayeredSection bgColor="bg-white" overlap zIndex={3}>
+          <StayWithUsSection />
+        </LayeredSection>
+
+        {/* Diagonal transition to Tickets */}
+        <div className="diagonal-divider">
+          <DiagonalDivider direction="up" height={50} />
+        </div>
+
+        <LayeredSection bgColor="bg-[oklch(0.92_0.008_80)]" overlap zIndex={4}>
+          <TicketsSection />
+        </LayeredSection>
+
+        {/* Diagonal transition to Activities */}
+        <div className="diagonal-divider">
+          <DiagonalDivider direction="down" height={60} />
+        </div>
+
+        <LayeredSection bgColor="bg-white" overlap zIndex={5}>
+          <ActivitiesSection />
+        </LayeredSection>
+
+        {/* Diagonal transition to Shop */}
+        <div className="diagonal-divider">
+          <DiagonalDivider direction="up" height={50} />
+        </div>
+
+        <LayeredSection bgColor="bg-[oklch(0.97_0.01_75)]" overlap zIndex={6}>
+          <ShopSection />
+        </LayeredSection>
+
+        {/* Diagonal transition to Management */}
+        <div className="diagonal-divider">
+          <DiagonalDivider direction="down" height={60} />
+        </div>
+
+        <LayeredSection bgColor="bg-white" overlap zIndex={7}>
+          <ManagementTeaser />
+        </LayeredSection>
+
+        {/* Diagonal transition to Design */}
+        <div className="diagonal-divider">
+          <DiagonalDivider direction="up" height={50} />
+        </div>
+
+        <LayeredSection bgColor="bg-[oklch(0.92_0.008_80)]" overlap zIndex={8}>
+          <DesignTeaser />
+        </LayeredSection>
+
+        {/* Diagonal transition to Community */}
+        <div className="diagonal-divider">
+          <DiagonalDivider direction="down" height={60} />
+        </div>
 
         {/* Community Teaser */}
-        <section className="py-16 bg-gradient-to-r from-[oklch(0.98_0.005_75)] via-[oklch(0.92_0.008_80)] to-[oklch(0.85_0.008_80)] gradient-animated">
+        <section className="py-16 bg-gradient-to-r from-[oklch(0.98_0.005_75)] via-[oklch(0.92_0.008_80)] to-[oklch(0.85_0.008_80)] gradient-animated transition-section layered-shadow">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <h2 className="display-heading text-4xl md:text-5xl text-[oklch(0.18_0.012_55)] mb-6">
               Our Community

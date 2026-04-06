@@ -288,3 +288,64 @@
     background-size: 300% 300%;
     animation: gradient-subtle-drift 20s ease-in-out infinite;
   }
+
+  /* ── Section Transition Styles ── */
+  
+  /* Layered section with overlap effect */
+  .layered-section {
+    position: relative;
+    transition: all 0.4s ease;
+  }
+
+  .layered-section.overlap {
+    margin-top: -40px;
+    padding-top: 64px;
+    box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.08);
+  }
+
+  /* Diagonal divider animation */
+  .diagonal-divider {
+    overflow: hidden;
+    position: relative;
+  }
+
+  .diagonal-divider svg {
+    display: block;
+    width: 100%;
+    height: auto;
+    transition: all 0.4s ease;
+  }
+
+  /* Section reveal animation on scroll */
+  @keyframes sectionReveal {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .section-reveal {
+    animation: sectionReveal 0.8s ease both;
+  }
+
+  /* Smooth transitions between different background colors */
+  .transition-section {
+    transition: background-color 0.6s ease, background-image 0.6s ease;
+  }
+
+  /* Layered shadow effect for depth */
+  .layered-shadow {
+    box-shadow: 
+      0 1px 3px rgba(0, 0, 0, 0.04),
+      0 4px 6px rgba(0, 0, 0, 0.06),
+      0 10px 20px rgba(0, 0, 0, 0.08);
+  }
+
+  /* Smooth scroll behavior */
+  html {
+    scroll-behavior: smooth;
+  }
