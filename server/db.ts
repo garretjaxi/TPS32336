@@ -161,16 +161,26 @@ export async function getAllOrders(): Promise<any[]> {
 
 export async function getOrdersWithAnalytics() {
   const db = await getDb();
-  if (!db) throw new Error("Database not available");
-  const allOrders = await db.select().from(orders).orderBy(desc(orders.createdAt));
-  const totalOrders = allOrders.length;
-  const completedOrders = allOrders.filter(o => o.status === "completed").length;
-  const failedOrders = allOrders.filter(o => o.status === "failed").length;
-  const totalRevenue = allOrders
-    .filter(o => o.status === "completed")
-    .reduce((sum, o) => sum + parseFloat(o.amount as string), 0)
-    .toFixed(2);
-  return { totalOrders, totalRevenue, completedOrders, failedOrders, orders: allOrders };
+  if (!db) {
+    // Return default analytics if database is not available
+    return { totalOrders: 0, totalRevenue: "0.00", completedOrders: 0, failedOrders: 0, orders: [] };
+  }
+  
+  try {
+    const allOrders = await db.select().from(orders).orderBy(desc(orders.createdAt));
+    const totalOrders = allOrders.length;
+    const completedOrders = allOrders.filter(o => o.status === "completed").length;
+    const failedOrders = allOrders.filter(o => o.status === "failed").length;
+    const totalRevenue = allOrders
+      .filter(o => o.status === "completed")
+      .reduce((sum, o) => sum + parseFloat(o.amount as string), 0)
+      .toFixed(2);
+    return { totalOrders, totalRevenue, completedOrders, failedOrders, orders: allOrders };
+  } catch (error) {
+    // If orders table doesn't exist, return default analytics
+    console.warn("[DB] Orders table not available, returning default analytics", error);
+    return { totalOrders: 0, totalRevenue: "0.00", completedOrders: 0, failedOrders: 0, orders: [] };
+  }
 }
 
 // ─── Product inventory helpers ────────────────────────────────────────────────
