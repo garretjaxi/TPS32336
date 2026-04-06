@@ -7,6 +7,7 @@ import { useState } from "react";
 import { useLocation } from "wouter";
 import { trpc } from "@/lib/trpc";
 import AdminLayout from "@/components/AdminLayout";
+import { OrderManagement } from "@/components/OrderManagement";
 import {
   BarChart3,
   DollarSign,
@@ -227,78 +228,7 @@ export default function AdminDashboard({ defaultTab = "overview" }: { defaultTab
           )}
 
           {/* Orders Tab */}
-          {activeTab === "orders" && (
-            <div className="bg-white rounded-2xl border border-[oklch(0.92_0.015_75)] overflow-hidden">
-              <div className="overflow-x-auto">
-                <table className="w-full">
-                  <thead>
-                    <tr className="border-b border-[oklch(0.92_0.015_75)] bg-[oklch(0.93_0.025_75)]">
-                      <th className="px-6 py-4 text-left text-sm font-semibold text-[oklch(0.18_0.012_55)]">
-                        Order ID
-                      </th>
-                      <th className="px-6 py-4 text-left text-sm font-semibold text-[oklch(0.18_0.012_55)]">
-                        Date
-                      </th>
-                      <th className="px-6 py-4 text-left text-sm font-semibold text-[oklch(0.18_0.012_55)]">
-                        Amount
-                      </th>
-                      <th className="px-6 py-4 text-left text-sm font-semibold text-[oklch(0.18_0.012_55)]">
-                        Items
-                      </th>
-                      <th className="px-6 py-4 text-left text-sm font-semibold text-[oklch(0.18_0.012_55)]">
-                        Status
-                      </th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {ordersLoading ? (
-                      <tr>
-                        <td colSpan={5} className="px-6 py-8 text-center">
-                          <Loader2 className="w-6 h-6 animate-spin mx-auto text-[oklch(0.58_0.16_55)]" />
-                        </td>
-                      </tr>
-                    ) : ordersData?.orders.length === 0 ? (
-                      <tr>
-                        <td colSpan={5} className="px-6 py-8 text-center text-[oklch(0.5_0.02_60)]">
-                          No orders yet
-                        </td>
-                      </tr>
-                    ) : (
-                      ordersData?.orders.map((order: any) => (
-                        <tr key={order.id} className="border-b border-[oklch(0.92_0.015_75)] hover:bg-[oklch(0.98_0.01_75)]">
-                          <td className="px-6 py-4 font-semibold text-[oklch(0.18_0.012_55)]">
-                            #{order.id.toString().padStart(6, "0")}
-                          </td>
-                          <td className="px-6 py-4 text-sm text-[oklch(0.5_0.02_60)]">
-                            {new Date(order.createdAt).toLocaleDateString()}
-                          </td>
-                          <td className="px-6 py-4 font-semibold text-[oklch(0.58_0.16_55)]">
-                            ${order.amount}
-                          </td>
-                          <td className="px-6 py-4 text-sm text-[oklch(0.5_0.02_60)]">
-                            {order.items.length} item(s)
-                          </td>
-                          <td className="px-6 py-4">
-                            <span
-                              className={`px-3 py-1 rounded-full text-xs font-semibold ${
-                                order.status === "completed"
-                                  ? "bg-green-100 text-green-800"
-                                  : order.status === "failed"
-                                  ? "bg-red-100 text-red-800"
-                                  : "bg-yellow-100 text-yellow-800"
-                              }`}
-                            >
-                              {order.status}
-                            </span>
-                          </td>
-                        </tr>
-                      ))
-                    )}
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          )}
+          {activeTab === "orders" && <OrderManagement />}
 
           {/* Inquiries Tab */}
           {activeTab === "inquiries" && (
