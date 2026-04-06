@@ -50,6 +50,13 @@
       "when": 1774849526852,
       "tag": "0006_chubby_screwball",
       "breakpoints": true
+    },
+    {
+      "idx": 7,
+      "version": "5",
+      "when": 1775491193455,
+      "tag": "0007_ambiguous_maverick",
+      "breakpoints": true
     }
   ]
 }

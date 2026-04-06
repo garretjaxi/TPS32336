@@ -245,3 +245,11 @@
 - [x] Add updateOrderStatus tRPC procedure with email notification
 - [x] Integrate status update UI into admin panel
 - [x] Test order status updates and email notifications
+
+## Reviews Section Under Listings
+
+- [x] Create reviews component with star ratings and guest testimonials
+- [x] Add reviews database schema and tRPC procedures
+- [x] Integrate reviews section into listings page
+- [x] Add sample reviews with styling and animations
+- [x] Test reviews display and interactivity

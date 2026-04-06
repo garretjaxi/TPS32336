@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import HomesSection from "./HomesSection";
 import RoomsSection from "./RoomsSection";
+import ReviewsSection from "./ReviewsSection";
 import { Home, Bed } from "lucide-react";
 
 export default function StayWithUsSection() {
@@ -58,6 +59,9 @@ export default function StayWithUsSection() {
           )}
         </div>
       </div>
+
+      {/* Reviews Section */}
+      <ReviewsSection />
     </section>
   );
 }

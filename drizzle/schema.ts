@@ -130,3 +130,23 @@ export const vipSubscribers = mysqlTable("vip_subscribers", {
 
 export type VIPSubscriber = typeof vipSubscribers.$inferSelect;
 export type InsertVIPSubscriber = typeof vipSubscribers.$inferInsert;
+
+/**
+ * Property reviews for building credibility and social proof
+ */
+export const reviews = mysqlTable("reviews", {
+  id: int("id").autoincrement().primaryKey(),
+  listingId: int("listing_id").notNull(),
+  guestName: varchar("guest_name", { length: 256 }).notNull(),
+  guestEmail: varchar("guest_email", { length: 320 }),
+  rating: int("rating").notNull().default(5),
+  title: varchar("title", { length: 256 }),
+  comment: text("comment").notNull(),
+  verified: tinyint("verified").notNull().default(0),
+  helpful: int("helpful").notNull().default(0),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+});
+
+export type Review = typeof reviews.$inferSelect;
+export type InsertReview = typeof reviews.$inferInsert;
