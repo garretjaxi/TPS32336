@@ -1,8 +1,9 @@
 /*
-   ReviewsSection — Guest reviews and testimonials for credibility
+   ReviewsSection — Interactive carousel of guest reviews with auto-rotation
    Golden Hour Luxury Design
    ============================================================= */
-import { Star, Quote, CheckCircle } from "lucide-react";
+import { useState, useEffect } from "react";
+import { Star, Quote, CheckCircle, ChevronLeft, ChevronRight } from "lucide-react";
 import { useTranslation } from "react-i18next";
 
 interface Review {
@@ -19,13 +20,20 @@ interface Review {
 interface ReviewsSectionProps {
   reviews?: Review[];
   isLoading?: boolean;
+  autoRotateInterval?: number;
 }
 
-export default function ReviewsSection({ reviews = [], isLoading = false }: ReviewsSectionProps) {
+export default function ReviewsSection({ 
+  reviews = [], 
+  isLoading = false,
+  autoRotateInterval = 6000 
+}: ReviewsSectionProps) {
   const { t } = useTranslation();
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [isAutoRotating, setIsAutoRotating] = useState(true);
 
-  // Sample reviews if none provided - only 4 reviews for single row display
-  const displayReviews = reviews.length > 0 ? reviews.slice(0, 4) : [
+  // Sample reviews if none provided
+  const allReviews = reviews.length > 0 ? reviews : [
     {
       id: 1,
       guestName: "Sarah M.",
@@ -66,7 +74,75 @@ export default function ReviewsSection({ reviews = [], isLoading = false }: Revi
       createdAt: "2026-02-28",
       listingName: "The Spacious Retreat",
     },
+    {
+      id: 5,
+      guestName: "Jessica L.",
+      rating: 5,
+      title: "Luxury Without the Hotel Price Tag",
+      comment: "This property felt like a luxury resort but at a fraction of the cost. The amenities were top-notch and the owner was very responsive.",
+      verified: true,
+      createdAt: "2026-02-20",
+      listingName: "The Disney Retreat",
+    },
+    {
+      id: 6,
+      guestName: "David K.",
+      rating: 5,
+      title: "Home Away from Home",
+      comment: "We've stayed at many vacation rentals, and this is by far the best. Everything was perfect from check-in to check-out.",
+      verified: true,
+      createdAt: "2026-02-15",
+      listingName: "Modern Winter Garden Getaway",
+    },
   ];
+
+  // Auto-rotate carousel
+  useEffect(() => {
+    if (!isAutoRotating || allReviews.length === 0) return;
+
+    const interval = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % allReviews.length);
+    }, autoRotateInterval);
+
+    return () => clearInterval(interval);
+  }, [isAutoRotating, allReviews.length, autoRotateInterval]);
+
+  // Get 4 reviews starting from current index
+  const getDisplayedReviews = () => {
+    const displayed = [];
+    for (let i = 0; i < 4; i++) {
+      displayed.push(allReviews[(currentIndex + i) % allReviews.length]);
+    }
+    return displayed;
+  };
+
+  const displayedReviews = getDisplayedReviews();
+
+  const handlePrevious = () => {
+    setIsAutoRotating(false);
+    setCurrentIndex((prev) => (prev - 1 + allReviews.length) % allReviews.length);
+  };
+
+  const handleNext = () => {
+    setIsAutoRotating(false);
+    setCurrentIndex((prev) => (prev + 1) % allReviews.length);
+  };
+
+  const handleDotClick = (index: number) => {
+    setIsAutoRotating(false);
+    setCurrentIndex(index);
+  };
+
+  // Resume auto-rotation after 8 seconds of inactivity
+  useEffect(() => {
+    if (isAutoRotating) return;
+
+    const timeout = setTimeout(() => {
+      setIsAutoRotating(true);
+    }, 8000);
+
+    return () => clearTimeout(timeout);
+  }, [isAutoRotating]);
 
   const renderStars = (rating: number) => {
     return (
@@ -114,63 +190,105 @@ export default function ReviewsSection({ reviews = [], isLoading = false }: Revi
           </p>
         </div>
 
-        {/* Reviews Grid */}
+        {/* Carousel Container */}
         {isLoading ? (
           <div className="text-center py-12">
             <div className="inline-block w-8 h-8 border-4 border-[oklch(0.58_0.16_55)] border-t-transparent rounded-full animate-spin" />
           </div>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {displayReviews.map((review) => (
-              <div
-                key={review.id}
-                className="bg-white rounded-2xl p-6 border border-[oklch(0.92_0.015_75)] hover:shadow-lg transition-all duration-300 flex flex-col"
-              >
-                {/* Quote Icon */}
-                <Quote className="text-[oklch(0.58_0.16_55)] mb-3 opacity-30" size={24} />
+          <div className="relative">
+            {/* Reviews Grid */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+              {displayedReviews.map((review, idx) => (
+                <div
+                  key={`${review.id}-${currentIndex}-${idx}`}
+                  className="bg-white rounded-2xl p-6 border border-[oklch(0.92_0.015_75)] hover:shadow-lg transition-all duration-300 flex flex-col animate-fadeIn"
+                >
+                  {/* Quote Icon */}
+                  <Quote className="text-[oklch(0.58_0.16_55)] mb-3 opacity-30" size={24} />
 
-                {/* Rating */}
-                <div className="mb-3">
-                  {renderStars(review.rating)}
-                </div>
+                  {/* Rating */}
+                  <div className="mb-3">
+                    {renderStars(review.rating)}
+                  </div>
 
-                {/* Title */}
-                {review.title && (
-                  <h3 className="font-semibold text-[oklch(0.18_0.012_55)] mb-2 text-sm">
-                    {review.title}
-                  </h3>
-                )}
+                  {/* Title */}
+                  {review.title && (
+                    <h3 className="font-semibold text-[oklch(0.18_0.012_55)] mb-2 text-sm">
+                      {review.title}
+                    </h3>
+                  )}
 
-                {/* Comment */}
-                <p className="text-[oklch(0.4_0.02_60)] text-sm leading-relaxed mb-4 flex-grow">
-                  "{review.comment}"
-                </p>
+                  {/* Comment */}
+                  <p className="text-[oklch(0.4_0.02_60)] text-sm leading-relaxed mb-4 flex-grow">
+                    "{review.comment}"
+                  </p>
 
-                {/* Guest Info */}
-                <div className="border-t border-[oklch(0.92_0.015_75)] pt-4">
-                  <div className="flex items-start justify-between gap-2">
-                    <div>
-                      <div className="flex items-center gap-2 mb-1">
-                        <p className="font-semibold text-[oklch(0.18_0.012_55)] text-sm">
-                          {review.guestName}
-                        </p>
-                        {review.verified && (
-                          <CheckCircle size={14} className="text-green-600 flex-shrink-0" />
+                  {/* Guest Info */}
+                  <div className="border-t border-[oklch(0.92_0.015_75)] pt-4">
+                    <div className="flex items-start justify-between gap-2">
+                      <div>
+                        <div className="flex items-center gap-2 mb-1">
+                          <p className="font-semibold text-[oklch(0.18_0.012_55)] text-sm">
+                            {review.guestName}
+                          </p>
+                          {review.verified && (
+                            <CheckCircle size={14} className="text-green-600 flex-shrink-0" />
+                          )}
+                        </div>
+                        {review.listingName && (
+                          <p className="text-xs text-[oklch(0.5_0.02_60)]">
+                            {review.listingName}
+                          </p>
                         )}
-                      </div>
-                      {review.listingName && (
                         <p className="text-xs text-[oklch(0.5_0.02_60)]">
-                          {review.listingName}
+                          {formatDate(review.createdAt)}
                         </p>
-                      )}
-                      <p className="text-xs text-[oklch(0.5_0.02_60)]">
-                        {formatDate(review.createdAt)}
-                      </p>
+                      </div>
                     </div>
                   </div>
                 </div>
+              ))}
+            </div>
+
+            {/* Navigation Controls */}
+            {allReviews.length > 4 && (
+              <div className="flex items-center justify-between">
+                {/* Previous Button */}
+                <button
+                  onClick={handlePrevious}
+                  className="p-3 rounded-full bg-white border border-[oklch(0.92_0.015_75)] hover:bg-[oklch(0.58_0.16_55)] hover:text-white hover:border-[oklch(0.58_0.16_55)] transition-all duration-300 flex items-center justify-center"
+                  aria-label="Previous reviews"
+                >
+                  <ChevronLeft size={20} />
+                </button>
+
+                {/* Dot Indicators */}
+                <div className="flex gap-2">
+                  {allReviews.map((_, idx) => (
+                    <button
+                      key={idx}
+                      onClick={() => handleDotClick(idx)}
+                      className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                        idx === currentIndex
+                          ? "bg-[oklch(0.58_0.16_55)] w-8"
+                          : "bg-[oklch(0.92_0.015_75)] hover:bg-[oklch(0.75_0.01_75)]"
+                      }`}
+                      aria-label={`Go to review ${idx + 1}`}
+                    />
+                  ))}
+                </div>
+
+                {/* Next Button */}
+                <button
+                  onClick={handleNext}
+                  className="p-3 rounded-full bg-white border border-[oklch(0.92_0.015_75)] hover:bg-[oklch(0.58_0.16_55)] hover:text-white hover:border-[oklch(0.58_0.16_55)] transition-all duration-300 flex items-center justify-center"
+                  aria-label="Next reviews"
+                >
+                  <ChevronRight size={20} />
+                </button>
               </div>
-            ))}
+            )}
           </div>
         )}
 
