@@ -274,3 +274,7 @@
 ## Remove Gaps Between Sections and Dividers
 
 - [x] Adjust section margins and divider spacing to eliminate gaps
+
+## Hide Shop Page
+
+- [x] Remove shop page from navigation and homepage sections

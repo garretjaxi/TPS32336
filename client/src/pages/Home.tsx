@@ -14,7 +14,7 @@ import AboutSection from "@/components/AboutSection";
 import GuestAmenitiesSection from "@/components/GuestAmenitiesSection";
 import ActivitiesSection from "@/components/ActivitiesSection";
 import TicketsSection from "@/components/TicketsSection";
-import ShopSection from "@/components/ShopSection";
+// import ShopSection from "@/components/ShopSection"; // Hidden until further notice
 import { ArrowRight } from "lucide-react";
 import { useAuth } from "@/_core/hooks/useAuth";
 import { Button } from "@/components/ui/button";
@@ -309,14 +309,7 @@ export default function Home() {
           <ActivitiesSection />
         </LayeredSection>
 
-        {/* Diagonal transition to Shop */}
-        <div className="diagonal-divider">
-          <DiagonalDivider direction="up" height={50} />
-        </div>
-
-        <LayeredSection bgColor="bg-[oklch(0.97_0.01_75)]" overlap zIndex={6}>
-          <ShopSection />
-        </LayeredSection>
+        {/* Shop section hidden until further notice */}
 
         {/* Diagonal transition to Management */}
         <div className="diagonal-divider">
