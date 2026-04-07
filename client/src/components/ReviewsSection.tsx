@@ -171,22 +171,15 @@ export default function ReviewsSection({
   };
 
   return (
-    <section className="py-16 md:py-20 bg-gradient-to-b from-[oklch(0.97_0.01_75)] to-[oklch(0.92_0.008_80)]">
+    <section className="py-8 md:py-10 bg-gradient-to-b from-[oklch(0.97_0.01_75)] to-[oklch(0.92_0.008_80)]">
       <div className="container max-w-7xl">
         {/* Header */}
-        <div className="text-center mb-12">
-          <div className="flex items-center justify-center gap-2 mb-3">
-            <div className="h-px w-12 bg-[oklch(0.58_0.16_55)]" />
-            <span className="section-label text-xs text-[oklch(0.58_0.16_55)] font-semibold tracking-widest">
-              GUEST TESTIMONIALS
-            </span>
-            <div className="h-px w-12 bg-[oklch(0.58_0.16_55)]" />
-          </div>
-          <h2 className="display-heading text-4xl md:text-5xl text-[oklch(0.18_0.012_55)] mb-4">
+        <div className="text-center mb-6">
+          <h2 className="display-heading text-2xl md:text-3xl text-[oklch(0.18_0.012_55)] mb-2">
             Loved by Our Guests
           </h2>
-          <p className="text-[oklch(0.4_0.02_60)] text-lg max-w-2xl mx-auto">
-            Real reviews from families who've experienced the magic of staying with us
+          <p className="text-[oklch(0.4_0.02_60)] text-sm max-w-2xl mx-auto">
+            Real reviews from families who've experienced the magic
           </p>
         </div>
 
@@ -198,52 +191,49 @@ export default function ReviewsSection({
         ) : (
           <div className="relative">
             {/* Reviews Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-4">
               {displayedReviews.map((review, idx) => (
                 <div
                   key={`${review.id}-${currentIndex}-${idx}`}
-                  className="bg-white rounded-2xl p-6 border border-[oklch(0.92_0.015_75)] hover:shadow-lg transition-all duration-300 flex flex-col animate-fadeIn"
+                  className="bg-white rounded-lg p-3 border border-[oklch(0.92_0.015_75)] hover:shadow-md transition-all duration-300 flex flex-col animate-fadeIn"
                 >
                   {/* Quote Icon */}
-                  <Quote className="text-[oklch(0.58_0.16_55)] mb-3 opacity-30" size={24} />
+                  <Quote className="text-[oklch(0.58_0.16_55)] mb-1.5 opacity-30" size={16} />
 
                   {/* Rating */}
-                  <div className="mb-3">
+                  <div className="mb-1.5">
                     {renderStars(review.rating)}
                   </div>
 
                   {/* Title */}
                   {review.title && (
-                    <h3 className="font-semibold text-[oklch(0.18_0.012_55)] mb-2 text-sm">
+                    <h3 className="font-semibold text-[oklch(0.18_0.012_55)] mb-1 text-xs line-clamp-2">
                       {review.title}
                     </h3>
                   )}
 
                   {/* Comment */}
-                  <p className="text-[oklch(0.4_0.02_60)] text-sm leading-relaxed mb-4 flex-grow">
+                  <p className="text-[oklch(0.4_0.02_60)] text-xs leading-snug mb-2 flex-grow line-clamp-3">
                     "{review.comment}"
                   </p>
 
                   {/* Guest Info */}
-                  <div className="border-t border-[oklch(0.92_0.015_75)] pt-4">
+                  <div className="border-t border-[oklch(0.92_0.015_75)] pt-1.5">
                     <div className="flex items-start justify-between gap-2">
                       <div>
-                        <div className="flex items-center gap-2 mb-1">
-                          <p className="font-semibold text-[oklch(0.18_0.012_55)] text-sm">
+                        <div className="flex items-center gap-1 mb-0.5">
+                          <p className="font-semibold text-[oklch(0.18_0.012_55)] text-xs">
                             {review.guestName}
                           </p>
                           {review.verified && (
-                            <CheckCircle size={14} className="text-green-600 flex-shrink-0" />
+                            <CheckCircle size={11} className="text-green-600 flex-shrink-0" />
                           )}
                         </div>
                         {review.listingName && (
-                          <p className="text-xs text-[oklch(0.5_0.02_60)]">
+                          <p className="text-xs text-[oklch(0.5_0.02_60)] line-clamp-1">
                             {review.listingName}
                           </p>
                         )}
-                        <p className="text-xs text-[oklch(0.5_0.02_60)]">
-                          {formatDate(review.createdAt)}
-                        </p>
                       </div>
                     </div>
                   </div>
@@ -253,25 +243,25 @@ export default function ReviewsSection({
 
             {/* Navigation Controls */}
             {allReviews.length > 4 && (
-              <div className="flex items-center justify-between">
+              <div className="flex items-center justify-between mt-3">
                 {/* Previous Button */}
                 <button
                   onClick={handlePrevious}
-                  className="p-3 rounded-full bg-white border border-[oklch(0.92_0.015_75)] hover:bg-[oklch(0.58_0.16_55)] hover:text-white hover:border-[oklch(0.58_0.16_55)] transition-all duration-300 flex items-center justify-center"
+                  className="p-1.5 rounded-full bg-white border border-[oklch(0.92_0.015_75)] hover:bg-[oklch(0.58_0.16_55)] hover:text-white hover:border-[oklch(0.58_0.16_55)] transition-all duration-300 flex items-center justify-center"
                   aria-label="Previous reviews"
                 >
-                  <ChevronLeft size={20} />
+                  <ChevronLeft size={16} />
                 </button>
 
                 {/* Dot Indicators */}
-                <div className="flex gap-2">
+                <div className="flex gap-1.5">
                   {allReviews.map((_, idx) => (
                     <button
                       key={idx}
                       onClick={() => handleDotClick(idx)}
-                      className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                      className={`w-1.5 h-1.5 rounded-full transition-all duration-300 ${
                         idx === currentIndex
-                          ? "bg-[oklch(0.58_0.16_55)] w-8"
+                          ? "bg-[oklch(0.58_0.16_55)] w-6"
                           : "bg-[oklch(0.92_0.015_75)] hover:bg-[oklch(0.75_0.01_75)]"
                       }`}
                       aria-label={`Go to review ${idx + 1}`}
@@ -282,10 +272,10 @@ export default function ReviewsSection({
                 {/* Next Button */}
                 <button
                   onClick={handleNext}
-                  className="p-3 rounded-full bg-white border border-[oklch(0.92_0.015_75)] hover:bg-[oklch(0.58_0.16_55)] hover:text-white hover:border-[oklch(0.58_0.16_55)] transition-all duration-300 flex items-center justify-center"
+                  className="p-1.5 rounded-full bg-white border border-[oklch(0.92_0.015_75)] hover:bg-[oklch(0.58_0.16_55)] hover:text-white hover:border-[oklch(0.58_0.16_55)] transition-all duration-300 flex items-center justify-center"
                   aria-label="Next reviews"
                 >
-                  <ChevronRight size={20} />
+                  <ChevronRight size={16} />
                 </button>
               </div>
             )}
@@ -293,30 +283,30 @@ export default function ReviewsSection({
         )}
 
         {/* Stats Bar */}
-        <div className="mt-16 bg-white rounded-2xl p-8 border border-[oklch(0.92_0.015_75)]">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+        <div className="mt-4 bg-white rounded-lg p-3 border border-[oklch(0.92_0.015_75)]">
+          <div className="grid grid-cols-3 gap-3 text-center">
             <div>
-              <div className="text-4xl font-bold text-[oklch(0.58_0.16_55)] mb-2">
+              <div className="text-xl font-bold text-[oklch(0.58_0.16_55)] mb-0.5">
                 4.9★
               </div>
-              <p className="text-[oklch(0.5_0.02_60)] text-sm">
-                Average Rating
+              <p className="text-[oklch(0.5_0.02_60)] text-xs">
+                Avg Rating
               </p>
             </div>
             <div>
-              <div className="text-4xl font-bold text-[oklch(0.58_0.16_55)] mb-2">
+              <div className="text-xl font-bold text-[oklch(0.58_0.16_55)] mb-0.5">
                 500+
               </div>
-              <p className="text-[oklch(0.5_0.02_60)] text-sm">
-                Verified Reviews
+              <p className="text-[oklch(0.5_0.02_60)] text-xs">
+                Reviews
               </p>
             </div>
             <div>
-              <div className="text-4xl font-bold text-[oklch(0.58_0.16_55)] mb-2">
+              <div className="text-xl font-bold text-[oklch(0.58_0.16_55)] mb-0.5">
                 98%
               </div>
-              <p className="text-[oklch(0.5_0.02_60)] text-sm">
-                Would Recommend
+              <p className="text-[oklch(0.5_0.02_60)] text-xs">
+                Recommend
               </p>
             </div>
           </div>
