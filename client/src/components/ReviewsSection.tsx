@@ -24,8 +24,8 @@ interface ReviewsSectionProps {
 export default function ReviewsSection({ reviews = [], isLoading = false }: ReviewsSectionProps) {
   const { t } = useTranslation();
 
-  // Sample reviews if none provided
-  const displayReviews = reviews.length > 0 ? reviews : [
+  // Sample reviews if none provided - only 4 reviews for single row display
+  const displayReviews = reviews.length > 0 ? reviews.slice(0, 4) : [
     {
       id: 1,
       guestName: "Sarah M.",
@@ -65,26 +65,6 @@ export default function ReviewsSection({ reviews = [], isLoading = false }: Revi
       verified: true,
       createdAt: "2026-02-28",
       listingName: "The Spacious Retreat",
-    },
-    {
-      id: 5,
-      guestName: "Jessica L.",
-      rating: 5,
-      title: "Luxury Without the Hotel Price Tag",
-      comment: "This property felt like a luxury resort but at a fraction of the cost. The amenities were top-notch and the owner was very responsive.",
-      verified: true,
-      createdAt: "2026-02-20",
-      listingName: "The Disney Retreat",
-    },
-    {
-      id: 6,
-      guestName: "David K.",
-      rating: 5,
-      title: "Home Away from Home",
-      comment: "We've stayed at many vacation rentals, and this is by far the best. Everything was perfect from check-in to check-out.",
-      verified: true,
-      createdAt: "2026-02-15",
-      listingName: "Modern Winter Garden Getaway",
     },
   ];
 
@@ -140,7 +120,7 @@ export default function ReviewsSection({ reviews = [], isLoading = false }: Revi
             <div className="inline-block w-8 h-8 border-4 border-[oklch(0.58_0.16_55)] border-t-transparent rounded-full animate-spin" />
           </div>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {displayReviews.map((review) => (
               <div
                 key={review.id}
