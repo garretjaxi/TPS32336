@@ -307,6 +307,9 @@
   .diagonal-divider {
     overflow: hidden;
     position: relative;
+    margin: 0;
+    padding: 0;
+    line-height: 0;
   }
 
   .diagonal-divider svg {
@@ -314,6 +317,8 @@
     width: 100%;
     height: auto;
     transition: all 0.4s ease;
+    margin: 0;
+    padding: 0;
   }
 
   /* Section reveal animation on scroll */
