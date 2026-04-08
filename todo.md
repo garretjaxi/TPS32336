@@ -278,3 +278,8 @@
 ## Hide Shop Page
 
 - [x] Remove shop page from navigation and homepage sections
+
+## Update Hero Image
+
+- [x] Upload new hero image with Disney castle and fireworks
+- [x] Update HeroSection component to use new image
