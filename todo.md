@@ -289,3 +289,7 @@
 - [x] Generate sample carousel images for Disney, Universal, and SeaWorld
 - [x] Create hero carousel component with auto-rotation
 - [x] Integrate carousel into homepage with navigation controls
+
+## Mobile Reviews Horizontal Scroll
+
+- [x] Update ReviewsSection to scroll horizontally on mobile

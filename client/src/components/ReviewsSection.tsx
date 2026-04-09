@@ -170,6 +170,51 @@ export default function ReviewsSection({
     }
   };
 
+  const ReviewCard = ({ review }: { review: Review }) => (
+    <div className="bg-white rounded-lg p-3 border border-[oklch(0.92_0.015_75)] hover:shadow-md transition-all duration-300 flex flex-col">
+      {/* Quote Icon */}
+      <Quote className="text-[oklch(0.58_0.16_55)] mb-1.5 opacity-30" size={16} />
+
+      {/* Rating */}
+      <div className="mb-1.5">
+        {renderStars(review.rating)}
+      </div>
+
+      {/* Title */}
+      {review.title && (
+        <h3 className="font-semibold text-[oklch(0.18_0.012_55)] mb-1 text-xs line-clamp-2">
+          {review.title}
+        </h3>
+      )}
+
+      {/* Comment */}
+      <p className="text-[oklch(0.4_0.02_60)] text-xs leading-snug mb-2 flex-grow line-clamp-3">
+        "{review.comment}"
+      </p>
+
+      {/* Guest Info */}
+      <div className="border-t border-[oklch(0.92_0.015_75)] pt-1.5">
+        <div className="flex items-start justify-between gap-2">
+          <div>
+            <div className="flex items-center gap-1 mb-0.5">
+              <p className="font-semibold text-[oklch(0.18_0.012_55)] text-xs">
+                {review.guestName}
+              </p>
+              {review.verified && (
+                <CheckCircle size={11} className="text-green-600 flex-shrink-0" />
+              )}
+            </div>
+            {review.listingName && (
+              <p className="text-xs text-[oklch(0.5_0.02_60)] line-clamp-1">
+                {review.listingName}
+              </p>
+            )}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+
   return (
     <section className="py-8 md:py-10 bg-gradient-to-b from-[oklch(0.97_0.01_75)] to-[oklch(0.92_0.008_80)]">
       <div className="container max-w-7xl">
@@ -190,60 +235,35 @@ export default function ReviewsSection({
           </div>
         ) : (
           <div className="relative">
-            {/* Reviews Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-4">
+            {/* Desktop: Grid Layout with 4 columns */}
+            <div className="hidden lg:grid grid-cols-4 gap-4 mb-4">
               {displayedReviews.map((review, idx) => (
                 <div
                   key={`${review.id}-${currentIndex}-${idx}`}
-                  className="bg-white rounded-lg p-3 border border-[oklch(0.92_0.015_75)] hover:shadow-md transition-all duration-300 flex flex-col animate-fadeIn"
+                  className="animate-fadeIn"
                 >
-                  {/* Quote Icon */}
-                  <Quote className="text-[oklch(0.58_0.16_55)] mb-1.5 opacity-30" size={16} />
-
-                  {/* Rating */}
-                  <div className="mb-1.5">
-                    {renderStars(review.rating)}
-                  </div>
-
-                  {/* Title */}
-                  {review.title && (
-                    <h3 className="font-semibold text-[oklch(0.18_0.012_55)] mb-1 text-xs line-clamp-2">
-                      {review.title}
-                    </h3>
-                  )}
-
-                  {/* Comment */}
-                  <p className="text-[oklch(0.4_0.02_60)] text-xs leading-snug mb-2 flex-grow line-clamp-3">
-                    "{review.comment}"
-                  </p>
-
-                  {/* Guest Info */}
-                  <div className="border-t border-[oklch(0.92_0.015_75)] pt-1.5">
-                    <div className="flex items-start justify-between gap-2">
-                      <div>
-                        <div className="flex items-center gap-1 mb-0.5">
-                          <p className="font-semibold text-[oklch(0.18_0.012_55)] text-xs">
-                            {review.guestName}
-                          </p>
-                          {review.verified && (
-                            <CheckCircle size={11} className="text-green-600 flex-shrink-0" />
-                          )}
-                        </div>
-                        {review.listingName && (
-                          <p className="text-xs text-[oklch(0.5_0.02_60)] line-clamp-1">
-                            {review.listingName}
-                          </p>
-                        )}
-                      </div>
-                    </div>
-                  </div>
+                  <ReviewCard review={review} />
                 </div>
               ))}
             </div>
 
-            {/* Navigation Controls */}
+            {/* Mobile: Horizontal Scrollable Container */}
+            <div className="lg:hidden overflow-x-auto pb-2 -mx-4 px-4 scrollbar-hide">
+              <div className="flex gap-3 min-w-min">
+                {allReviews.map((review) => (
+                  <div
+                    key={`${review.id}-mobile`}
+                    className="flex-shrink-0 w-72"
+                  >
+                    <ReviewCard review={review} />
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Navigation Controls - Desktop Only */}
             {allReviews.length > 4 && (
-              <div className="flex items-center justify-between mt-3">
+              <div className="hidden lg:flex items-center justify-between mt-3">
                 {/* Previous Button */}
                 <button
                   onClick={handlePrevious}
@@ -312,6 +332,16 @@ export default function ReviewsSection({
           </div>
         </div>
       </div>
+
+      <style>{`
+        .scrollbar-hide::-webkit-scrollbar {
+          display: none;
+        }
+        .scrollbar-hide {
+          -ms-overflow-style: none;
+          scrollbar-width: none;
+        }
+      `}</style>
     </section>
   );
 }
