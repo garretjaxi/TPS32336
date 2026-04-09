@@ -4,7 +4,7 @@
    ============================================================= */
 import { useEffect, useState } from "react";
 import { useLocation } from "wouter";
-import HeroSection from "@/components/HeroSection";
+import HeroCarousel from "@/components/HeroCarousel";
 import { VIPSignupModal } from "@/components/VIPSignupModal";
 import { hasVIPModalBeenShown, markVIPModalAsShown } from "@/lib/vipCookie";
 import StayWithUsSection from "@/components/StayWithUsSection";
@@ -261,7 +261,7 @@ export default function Home() {
 
       {/* Main content */}
       <main role="main">
-        <HeroSection />
+        <HeroCarousel />
         
         {/* Diagonal transition to About Section */}
         <div className="diagonal-divider">

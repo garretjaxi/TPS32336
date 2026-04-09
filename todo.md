@@ -283,3 +283,9 @@
 
 - [x] Upload new hero image with Disney castle and fireworks
 - [x] Update HeroSection component to use new image
+
+## Hero Section Carousel
+
+- [x] Generate sample carousel images for Disney, Universal, and SeaWorld
+- [x] Create hero carousel component with auto-rotation
+- [x] Integrate carousel into homepage with navigation controls
