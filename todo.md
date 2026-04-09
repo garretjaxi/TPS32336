@@ -298,3 +298,7 @@
 
 - [x] Generate new Universal Studios and SeaWorld theme park images (no homes)
 - [x] Update HeroCarousel with new images
+
+## Add Disney Castle with Homes Image Back to Carousel
+
+- [x] Upload image and add to HeroCarousel as first slide
