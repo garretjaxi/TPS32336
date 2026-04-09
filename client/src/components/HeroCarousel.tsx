@@ -8,19 +8,15 @@ import { useState, useEffect } from "react";
 
 const CAROUSEL_IMAGES = [
   {
-    url: "https://d2xsxph8kpxj0f.cloudfront.net/310519663450455662/9cFYW7E3ZSgdzZcVUYn2yx/hero-disney-castle_44dd94b3.webp",
+    url: "https://d2xsxph8kpxj0f.cloudfront.net/310519663450455662/9cFYW7E3ZSgdzZcVUYn2yx/carousel-disney-world-V3qdLFMaXSAhmx2CUNjZzu.webp",
     title: "Disney World",
   },
   {
-    url: "https://d2xsxph8kpxj0f.cloudfront.net/310519663450455662/9cFYW7E3ZSgdzZcVUYn2yx/carousel-disney-world-5QSwoaUUjwUQ9TALTmPTVM.webp",
-    title: "Disney Magic",
-  },
-  {
-    url: "https://d2xsxph8kpxj0f.cloudfront.net/310519663450455662/9cFYW7E3ZSgdzZcVUYn2yx/carousel-universal-studios-MnmtZmN9K3MzgXHhkPcnRr.webp",
+    url: "https://d2xsxph8kpxj0f.cloudfront.net/310519663450455662/9cFYW7E3ZSgdzZcVUYn2yx/carousel-universal-studios-W7SJJVdLGLoDavsxnxfKhw.webp",
     title: "Universal Studios",
   },
   {
-    url: "https://d2xsxph8kpxj0f.cloudfront.net/310519663450455662/9cFYW7E3ZSgdzZcVUYn2yx/carousel-seaworld-MpTM6WG6G68oGWrYFU5W2R.webp",
+    url: "https://d2xsxph8kpxj0f.cloudfront.net/310519663450455662/9cFYW7E3ZSgdzZcVUYn2yx/carousel-seaworld-iURz9bUAr2vPkXbYJKtxXP.webp",
     title: "SeaWorld",
   },
 ];

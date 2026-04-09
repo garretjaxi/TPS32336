@@ -293,3 +293,8 @@
 ## Mobile Reviews Horizontal Scroll
 
 - [x] Update ReviewsSection to scroll horizontally on mobile
+
+## Hero Carousel Update - Theme Parks Only
+
+- [x] Generate new Universal Studios and SeaWorld theme park images (no homes)
+- [x] Update HeroCarousel with new images
