@@ -302,3 +302,7 @@
 ## Add Disney Castle with Homes Image Back to Carousel
 
 - [x] Upload image and add to HeroCarousel as first slide
+
+## Remove Empty Background Image from Carousel
+
+- [x] Identify and remove the empty/broken image from HeroCarousel

@@ -12,10 +12,6 @@ const CAROUSEL_IMAGES = [
     title: "Your Home Base for the Magic",
   },
   {
-    url: "https://d2xsxph8kpxj0f.cloudfront.net/310519663450455662/9cFYW7E3ZSgdzZcVUYn2yx/carousel-disney-world-V3qdLFMaXSAhmx2CUNjZzu.webp",
-    title: "Disney World",
-  },
-  {
     url: "https://d2xsxph8kpxj0f.cloudfront.net/310519663450455662/9cFYW7E3ZSgdzZcVUYn2yx/carousel-universal-studios-W7SJJVdLGLoDavsxnxfKhw.webp",
     title: "Universal Studios",
   },
