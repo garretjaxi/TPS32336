@@ -1,6 +1,5 @@
 import { useEffect } from "react";
 import { useLocation } from "wouter";
-import TestimonialsSection from "@/components/TestimonialsSection";
 import BlogSection from "@/components/BlogSection";
 import SEO from "@/components/SEO";
 import { useTranslation } from "react-i18next";
@@ -49,7 +48,6 @@ export default function Community() {
           </div>
         </div>
         
-        <TestimonialsSection />
         <BlogSection />
       </main>
     </div>

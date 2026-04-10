@@ -306,3 +306,7 @@
 ## Remove Empty Background Image from Carousel
 
 - [x] Identify and remove the empty/broken image from HeroCarousel
+
+## Remove Reviews from Community Section
+
+- [x] Remove guest reviews from community section at bottom of page
