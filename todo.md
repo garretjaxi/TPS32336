@@ -310,3 +310,7 @@
 ## Remove Reviews from Community Section
 
 - [x] Remove guest reviews from community section at bottom of page
+
+## Update Button Text - Reviews and Blog to Blog
+
+- [x] Change "View reviews and blog" button to just "Blog"

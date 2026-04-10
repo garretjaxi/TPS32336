@@ -347,7 +347,7 @@ export default function Home() {
               onClick={() => navigate("/community")}
               className="rounded-full px-8 py-6 text-lg bg-[oklch(0.18_0.012_55)] hover:bg-[oklch(0.28_0.012_55)]"
             >
-              View Reviews & Blog <ArrowRight className="ml-2" size={20} />
+              Blog <ArrowRight className="ml-2" size={20} />
             </Button>
           </div>
         </section>
