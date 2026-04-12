@@ -314,3 +314,8 @@
 ## Update Button Text - Reviews and Blog to Blog
 
 - [x] Change "View reviews and blog" button to just "Blog"
+
+## Fix View Now Button and Card Links
+
+- [x] Debug and fix View Now button to open Houfy links
+- [x] Ensure card clicks navigate to Houfy URLs

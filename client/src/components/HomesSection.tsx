@@ -671,10 +671,16 @@ export default function HomesSection({ hideHeader = false }: { hideHeader?: bool
                       </span>
                       <span className="text-sm text-[oklch(0.5_0.02_60)]"> / night</span>
                     </div>
-                    <span className="btn-amber flex items-center gap-1.5 px-4 py-2 rounded-full text-sm font-semibold">
+                    <a
+                      href={home.airbnbUrl || "#"}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="btn-amber flex items-center gap-1.5 px-4 py-2 rounded-full text-sm font-semibold hover:opacity-80 transition-opacity"
+                      onClick={(e) => e.stopPropagation()}
+                    >
                       View Now
                       <ExternalLink size={13} />
-                    </span>
+                    </a>
                   </div>
                 </div>
               </div>
