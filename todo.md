@@ -326,3 +326,7 @@
 - [x] Update routing to handle property view mode
 - [x] Update View Now button to open in wrapper
 - [x] Test iframe wrapper functionality
+
+## Fix Iframe Wrapper - Houfy Blocks Embedding
+
+- [x] Revert iframe wrapper and restore direct link opening in new tab

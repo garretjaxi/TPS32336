@@ -3,7 +3,7 @@
    Golden Hour Luxury Design
    ============================================================= */
 import { useState, useEffect, useRef, useMemo } from "react";
-import { useLocation } from "wouter";
+
 import { useTranslation } from "react-i18next";
 import { Bed, Bath, Users, Waves, Gamepad2, PawPrint, Star, ExternalLink, Sparkles, ChevronDown } from "lucide-react";
 import { trpc } from "@/lib/trpc";
@@ -280,16 +280,7 @@ const tagIcons: Record<string, React.ReactNode> = {
 
 export default function HomesSection({ hideHeader = false }: { hideHeader?: boolean }) {
   const { t } = useTranslation();
-  const [, navigate] = useLocation();
   const [selectedParkByHome, setSelectedParkByHome] = useState<Record<number, ParkKey>>({});
-
-  const handleViewProperty = (url: string, name: string) => {
-    const params = new URLSearchParams({
-      url,
-      name,
-    });
-    navigate(`/property-view?${params.toString()}`);
-  };
 
   const filterOptions = [
     {
@@ -681,18 +672,16 @@ export default function HomesSection({ hideHeader = false }: { hideHeader?: bool
                       </span>
                       <span className="text-sm text-[oklch(0.5_0.02_60)]"> / night</span>
                     </div>
-                    <button
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        if (home.airbnbUrl) {
-                          handleViewProperty(home.airbnbUrl, home.name);
-                        }
-                      }}
-                      className="btn-amber flex items-center gap-1.5 px-4 py-2 rounded-full text-sm font-semibold hover:opacity-80 transition-opacity cursor-pointer"
+                    <a
+                      href={home.airbnbUrl || "#"}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="btn-amber flex items-center gap-1.5 px-4 py-2 rounded-full text-sm font-semibold hover:opacity-80 transition-opacity"
+                      onClick={(e) => e.stopPropagation()}
                     >
                       View Now
                       <ExternalLink size={13} />
-                    </button>
+                    </a>
                   </div>
                 </div>
               </div>
