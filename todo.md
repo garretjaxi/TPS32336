@@ -319,3 +319,10 @@
 
 - [x] Debug and fix View Now button to open Houfy links
 - [x] Ensure card clicks navigate to Houfy URLs
+
+## Iframe Wrapper for Houfy Listings
+
+- [x] Create PropertyViewer component with iframe and back button
+- [x] Update routing to handle property view mode
+- [x] Update View Now button to open in wrapper
+- [x] Test iframe wrapper functionality

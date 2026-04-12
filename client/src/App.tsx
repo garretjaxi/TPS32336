@@ -16,6 +16,7 @@ import OrderConfirmation from "./pages/OrderConfirmation";
 import About from "./pages/About";
 import ThemeParkTickets from "./pages/Explore";
 import Community from "./pages/Community";
+import PropertyView from "./pages/PropertyView";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import TermsOfService from "./pages/TermsOfService";
 import ContactUs from "./pages/ContactUs";
@@ -41,8 +42,9 @@ function AppRouter() {
       <Route path={"/about"} component={About} />
       <Route path="/theme-park-tickets" component={ThemeParkTickets} />
       <Route path="/explore" component={ThemeParkTickets} /> {/* Redirect for backwards compatibility */}
-      <Route path={"/community"} component={Community} />      <Route path={"/privacy-policy"} component={PrivacyPolicy} />
-      <Route path={"/terms-of-service"} component={TermsOfService} />
+      <Route path={"/community"} component={Community} />
+      <Route path={"/property-view"} component={PropertyView} />
+      <Route path={"/privacy-policy"} component={PrivacyPolicy} />      <Route path={"/terms-of-service"} component={TermsOfService} />
       <Route path={"/contact-us"} component={ContactUs} />
       <Route path={"/faq"} component={FAQ} />
       <Route path={"/404"} component={NotFound} />
