@@ -8,6 +8,7 @@ import { useLocation } from "wouter";
 import { trpc } from "@/lib/trpc";
 import AdminLayout from "@/components/AdminLayout";
 import { OrderManagement } from "@/components/OrderManagement";
+import OnboardingPage from "./OnboardingPage";
 import {
   BarChart3,
   DollarSign,
@@ -23,9 +24,9 @@ import {
   MessageSquare,
 } from "lucide-react";
 
-export default function AdminDashboard({ defaultTab = "overview" }: { defaultTab?: "overview" | "orders" | "inventory" | "inquiries" }) {
+export default function AdminDashboard({ defaultTab = "overview" }: { defaultTab?: "overview" | "orders" | "inventory" | "inquiries" | "onboarding" }) {
   const [, navigate] = useLocation();
-  const [activeTab, setActiveTab] = useState<"overview" | "orders" | "inventory" | "inquiries">(defaultTab);
+  const [activeTab, setActiveTab] = useState<"overview" | "orders" | "inventory" | "inquiries" | "onboarding">(defaultTab);
   const [showEditProduct, setShowEditProduct] = useState<string | null>(null);
   const [editFormData, setEditFormData] = useState<any>({});
 
@@ -98,7 +99,7 @@ export default function AdminDashboard({ defaultTab = "overview" }: { defaultTab
 
           {/* Tabs */}
           <div className="flex gap-2 mb-8 border-b border-[oklch(0.92_0.015_75)]">
-            {["overview", "orders", "inventory", "inquiries"].map(tab => (
+            {["onboarding", "overview", "orders", "inventory", "inquiries"].map(tab => (
               <button
                 key={tab}
                 onClick={() => setActiveTab(tab as any)}
@@ -109,6 +110,7 @@ export default function AdminDashboard({ defaultTab = "overview" }: { defaultTab
                 }`}
                 style={{ fontFamily: "'Outfit', sans-serif" }}
               >
+                {tab === "onboarding" && "Onboarding"}
                 {tab === "overview" && "Overview"}
                 {tab === "orders" && "Orders"}
                 {tab === "inventory" && "Inventory"}
@@ -116,6 +118,11 @@ export default function AdminDashboard({ defaultTab = "overview" }: { defaultTab
               </button>
             ))}
           </div>
+
+          {/* Onboarding Tab */}
+          {activeTab === "onboarding" && (
+            <OnboardingPage />
+          )}
 
           {/* Overview Tab */}
           {activeTab === "overview" && (
