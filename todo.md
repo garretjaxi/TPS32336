@@ -330,3 +330,8 @@
 ## Fix Iframe Wrapper - Houfy Blocks Embedding
 
 - [x] Revert iframe wrapper and restore direct link opening in new tab
+
+## Allow Property Owners to Access Onboarding
+
+- [x] Modify AdminGuard to allow property owners access to onboarding page
+- [x] Update OnboardingPage to display original HTML styling

@@ -12,9 +12,20 @@ import {
   ArrowRight,
   Home,
   MessageSquare,
+  BookOpen,
 } from "lucide-react";
 
 const adminSections = [
+  {
+    title: "Onboarding",
+    description: "New property onboarding guide with setup requirements, best practices, and optimization strategies for maximizing bookings.",
+    icon: BookOpen,
+    href: "/admin/onboarding",
+    color: "from-gold-500 to-amber-500",
+    bgLight: "bg-amber-50",
+    iconColor: "text-amber-600",
+    stats: "Property Setup",
+  },
   {
     title: "Listings",
     description: "Add, edit, delete, and manage all vacation home and room listings. Toggle active status, update pricing, and reorder properties.",

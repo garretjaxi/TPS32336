@@ -10,6 +10,7 @@ import AdminHome from "./pages/AdminHome";
 import AdminListings from "./pages/AdminListings";
 import AdminUsers from "./pages/AdminUsers";
 import AdminDashboard from "./pages/AdminDashboard";
+import OnboardingPage from "./pages/OnboardingPage";
 import PropertyManagement from "./pages/PropertyManagement";
 import DesignServices from "./pages/DesignServices";
 import OrderConfirmation from "./pages/OrderConfirmation";
@@ -35,8 +36,9 @@ function AppRouter() {
       <Route path={"/admin/orders"} component={() => <AdminGuard><AdminDashboard defaultTab="orders" /></AdminGuard>} />
       <Route path={"/admin/analytics"} component={() => <AdminGuard><AdminDashboard defaultTab="overview" /></AdminGuard>} />
       <Route path={"/admin/inventory"} component={() => <AdminGuard><AdminDashboard defaultTab="inventory" /></AdminGuard>} />
-      <Route path={"/admin/inquiries"} component={() => <AdminGuard><AdminDashboard defaultTab="inquiries" /></AdminGuard>} />
-      <Route path={"/property-management"} component={PropertyManagement} />
+        <Route path={"admin/inquiries"} component={() => <AdminGuard><AdminDashboard defaultTab="inquiries" /></AdminGuard>} />
+      <Route path={"admin/onboarding"} component={() => <AdminGuard allowOnboarding={true}><OnboardingPage /></AdminGuard>} />
+      <Route path={"property-management"} component={PropertyManagement} />
       <Route path={"/design-services"} component={DesignServices} />
       <Route path={"/order-confirmation"} component={OrderConfirmation} />
       <Route path={"/about"} component={About} />
