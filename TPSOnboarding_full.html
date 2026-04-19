@@ -1,0 +1,2025 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Theme Park Stays — New Property Onboarding</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy:       #0B1F45;
+      --navy-mid:   #122354;
+      --navy-light: #1A3370;
+      --orange:     #F47B20;
+      --gold:       #F5A623;
+      --gold-light: #FFF3E0;
+      --white:      #FFFFFF;
+      --off-white:  #F7F9FC;
+      --border:     #DDE3EE;
+      --text:       #1C2A45;
+      --muted:      #6B7A99;
+      --success:    #27AE60;
+      --error:      #E74C3C;
+      --shadow-sm:  0 2px 8px rgba(11,31,69,.07);
+      --shadow-md:  0 6px 24px rgba(11,31,69,.11);
+      --shadow-lg:  0 12px 40px rgba(11,31,69,.15);
+      --radius:     14px;
+      --radius-sm:  8px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: var(--off-white);
+      color: var(--text);
+      font-size: 15px;
+      line-height: 1.6;
+    }
+
+    /* ── STICKY HEADER ── */
+    .sticky-header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--navy);
+      box-shadow: var(--shadow-md);
+    }
+    .header-inner {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 0 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      height: 68px;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .brand-icon {
+      width: 40px;
+      height: 40px;
+      background: linear-gradient(135deg, var(--orange), var(--gold));
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      color: #fff;
+      flex-shrink: 0;
+    }
+    .brand-name {
+      font-size: 19px;
+      font-weight: 700;
+      color: #fff;
+      letter-spacing: -.3px;
+    }
+    .brand-name span {
+      color: var(--gold);
+    }
+    .header-badge {
+      background: rgba(245,166,35,.18);
+      border: 1px solid rgba(245,166,35,.35);
+      color: var(--gold);
+      font-size: 11.5px;
+      font-weight: 600;
+      padding: 4px 12px;
+      border-radius: 20px;
+      letter-spacing: .4px;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    /* ── HERO BANNER ── */
+    .hero {
+      background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%);
+      padding: 56px 24px 48px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -60px; right: -60px;
+      width: 320px; height: 320px;
+      background: radial-gradient(circle, rgba(244,123,32,.18) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: -80px; left: -40px;
+      width: 280px; height: 280px;
+      background: radial-gradient(circle, rgba(245,166,35,.12) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+    .hero-tag {
+      display: inline-block;
+      background: rgba(244,123,32,.2);
+      border: 1px solid rgba(244,123,32,.4);
+      color: var(--orange);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      padding: 5px 16px;
+      border-radius: 20px;
+      margin-bottom: 18px;
+    }
+    .hero h1 {
+      font-size: clamp(26px, 4vw, 38px);
+      font-weight: 800;
+      color: #fff;
+      letter-spacing: -.5px;
+      margin-bottom: 12px;
+      position: relative;
+    }
+    .hero h1 span { color: var(--gold); }
+    .hero p {
+      color: rgba(255,255,255,.72);
+      font-size: 15px;
+      max-width: 560px;
+      margin: 0 auto 28px;
+    }
+    .hero-stats {
+      display: flex;
+      justify-content: center;
+      gap: 36px;
+      flex-wrap: wrap;
+    }
+    .hero-stat {
+      text-align: center;
+    }
+    .hero-stat strong {
+      display: block;
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--gold);
+    }
+    .hero-stat span {
+      font-size: 12px;
+      color: rgba(255,255,255,.55);
+      text-transform: uppercase;
+      letter-spacing: .6px;
+    }
+
+    /* ── PROGRESS BAR ── */
+    .progress-wrap {
+      background: var(--white);
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 68px;
+      z-index: 90;
+      box-shadow: var(--shadow-sm);
+    }
+    .progress-inner {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+    .progress-bar-track {
+      height: 3px;
+      background: var(--border);
+      border-radius: 2px;
+      margin: 10px 0 6px;
+    }
+    .progress-bar-fill {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, var(--orange), var(--gold));
+      border-radius: 2px;
+      transition: width .4s ease;
+    }
+    .progress-sections {
+      display: flex;
+      gap: 4px;
+      overflow-x: auto;
+      padding-bottom: 10px;
+      scrollbar-width: none;
+    }
+    .progress-sections::-webkit-scrollbar { display: none; }
+    .prog-step {
+      flex-shrink: 0;
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--muted);
+      cursor: pointer;
+      padding: 3px 10px;
+      border-radius: 20px;
+      transition: all .2s;
+      white-space: nowrap;
+    }
+    .prog-step.active {
+      background: var(--navy);
+      color: #fff;
+    }
+    .prog-step:hover:not(.active) {
+      background: var(--off-white);
+      color: var(--navy);
+    }
+
+    /* ── MAIN WRAPPER ── */
+    .page-wrap {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 40px 24px 60px;
+    }
+
+    /* ── SECTION CARDS ── */
+    .form-section {
+      background: var(--white);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-sm);
+      margin-bottom: 28px;
+      border: 1px solid var(--border);
+      overflow: hidden;
+      transition: box-shadow .25s;
+    }
+    .form-section:hover {
+      box-shadow: var(--shadow-md);
+    }
+    .section-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 22px 28px;
+      cursor: pointer;
+      user-select: none;
+      border-bottom: 1px solid transparent;
+      transition: border-color .2s;
+      gap: 16px;
+    }
+    .section-header.open {
+      border-bottom-color: var(--border);
+      background: linear-gradient(135deg, rgba(11,31,69,.03) 0%, rgba(244,123,32,.04) 100%);
+    }
+    .section-header-left {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .section-num {
+      width: 44px;
+      height: 44px;
+      background: linear-gradient(135deg, var(--navy), var(--navy-light));
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--gold);
+      flex-shrink: 0;
+    }
+    .section-title-group h2 {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--navy);
+      letter-spacing: -.2px;
+    }
+    .section-title-group p {
+      font-size: 12.5px;
+      color: var(--muted);
+      margin-top: 2px;
+    }
+    .section-icon {
+      width: 36px;
+      height: 36px;
+      background: var(--gold-light);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--orange);
+      font-size: 15px;
+    }
+    .chevron {
+      color: var(--muted);
+      font-size: 14px;
+      transition: transform .3s;
+      flex-shrink: 0;
+    }
+    .chevron.open { transform: rotate(180deg); }
+
+    .section-body {
+      display: none;
+      padding: 28px 28px 32px;
+    }
+    .section-body.open { display: block; }
+
+    /* ── FORM GRID ── */
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px 24px;
+    }
+    .form-grid.cols-3 {
+      grid-template-columns: 1fr 1fr 1fr;
+    }
+    .col-span-2 { grid-column: span 2; }
+    .col-span-3 { grid-column: span 3; }
+    .col-span-full { grid-column: 1 / -1; }
+
+    /* ── FORM FIELDS ── */
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    label {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--navy);
+      letter-spacing: .1px;
+    }
+    label .req {
+      color: var(--error);
+      margin-left: 2px;
+    }
+    label .opt {
+      color: var(--muted);
+      font-weight: 400;
+      font-size: 11.5px;
+      margin-left: 4px;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"],
+    input[type="number"],
+    input[type="url"],
+    input[type="date"],
+    select,
+    textarea {
+      width: 100%;
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 10px 13px;
+      font-family: 'Poppins', sans-serif;
+      font-size: 14px;
+      color: var(--text);
+      background: var(--white);
+      transition: border-color .2s, box-shadow .2s;
+      outline: none;
+      -webkit-appearance: none;
+    }
+    input:focus, select:focus, textarea:focus {
+      border-color: var(--navy-light);
+      box-shadow: 0 0 0 3px rgba(26,51,112,.1);
+    }
+    input:invalid:not(:placeholder-shown),
+    select:invalid {
+      border-color: rgba(231,76,60,.4);
+    }
+    input::placeholder, textarea::placeholder {
+      color: #b0bcd4;
+      font-size: 13.5px;
+    }
+    textarea {
+      resize: vertical;
+      min-height: 90px;
+    }
+    select {
+      cursor: pointer;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%236B7A99' d='M1 1l5 5 5-5'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 13px center;
+      padding-right: 36px;
+    }
+
+    /* ── TOGGLE (YES/NO) ── */
+    .toggle-wrap {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-top: 4px;
+    }
+    .toggle {
+      position: relative;
+      width: 48px;
+      height: 26px;
+      flex-shrink: 0;
+    }
+    .toggle input { opacity: 0; width: 0; height: 0; }
+    .toggle-slider {
+      position: absolute;
+      inset: 0;
+      background: var(--border);
+      border-radius: 13px;
+      cursor: pointer;
+      transition: background .2s;
+    }
+    .toggle-slider::before {
+      content: '';
+      position: absolute;
+      left: 3px;
+      top: 3px;
+      width: 20px;
+      height: 20px;
+      background: #fff;
+      border-radius: 50%;
+      transition: transform .2s;
+      box-shadow: 0 1px 4px rgba(0,0,0,.2);
+    }
+    .toggle input:checked + .toggle-slider {
+      background: var(--success);
+    }
+    .toggle input:checked + .toggle-slider::before {
+      transform: translateX(22px);
+    }
+    .toggle-label {
+      font-size: 13.5px;
+      color: var(--text);
+      font-weight: 500;
+    }
+    .toggle-state {
+      font-size: 12px;
+      color: var(--muted);
+      margin-left: auto;
+    }
+
+    /* ── INLINE RADIO ── */
+    .radio-group {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 2px;
+    }
+    .radio-opt {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      cursor: pointer;
+    }
+    .radio-opt input[type="radio"] {
+      width: 16px;
+      height: 16px;
+      accent-color: var(--navy);
+      cursor: pointer;
+    }
+    .radio-opt span {
+      font-size: 13.5px;
+      color: var(--text);
+    }
+
+    /* ── CHECKBOX ── */
+    .checkbox-wrap {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      cursor: pointer;
+    }
+    .checkbox-wrap input[type="checkbox"] {
+      width: 18px;
+      height: 18px;
+      accent-color: var(--navy);
+      cursor: pointer;
+      margin-top: 2px;
+      flex-shrink: 0;
+    }
+    .checkbox-wrap span {
+      font-size: 13.5px;
+      color: var(--text);
+      line-height: 1.5;
+    }
+
+    /* ── SECTION DIVIDER ── */
+    .sub-divider {
+      border: none;
+      border-top: 1px dashed var(--border);
+      margin: 24px 0;
+    }
+    .sub-heading {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: .8px;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .sub-heading::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    /* ── NOTICE BANNER ── */
+    .notice {
+      background: var(--gold-light);
+      border: 1px solid rgba(245,166,35,.4);
+      border-radius: var(--radius-sm);
+      padding: 12px 16px;
+      font-size: 13px;
+      color: #7A4F00;
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      margin-bottom: 22px;
+    }
+    .notice i { color: var(--orange); margin-top: 2px; flex-shrink: 0; }
+
+    /* ── BEDROOM CARDS ── */
+    .bedroom-card {
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 18px 20px;
+      background: var(--off-white);
+      margin-bottom: 14px;
+    }
+    .bedroom-card-title {
+      font-size: 13.5px;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .bedroom-card-title i { color: var(--orange); }
+
+    /* ── SIGNATURE AREA ── */
+    .signature-row {
+      border-top: 2px solid var(--navy);
+      margin-top: 8px;
+      padding-top: 6px;
+    }
+    .signature-hint {
+      font-size: 11px;
+      color: var(--muted);
+      margin-top: 4px;
+    }
+
+    /* ── SUBMIT BUTTON ── */
+    .submit-wrap {
+      text-align: center;
+      padding: 36px 24px 24px;
+    }
+    .submit-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      background: linear-gradient(135deg, var(--orange) 0%, var(--gold) 100%);
+      color: #fff;
+      border: none;
+      border-radius: 50px;
+      padding: 17px 56px;
+      font-family: 'Poppins', sans-serif;
+      font-size: 16px;
+      font-weight: 700;
+      letter-spacing: .2px;
+      cursor: pointer;
+      box-shadow: 0 6px 24px rgba(244,123,32,.38);
+      transition: transform .2s, box-shadow .2s;
+    }
+    .submit-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 32px rgba(244,123,32,.48);
+    }
+    .submit-btn:active { transform: translateY(0); }
+    .submit-btn:disabled { cursor: not-allowed; opacity: 0.85; transform: none; }
+    .submit-note {
+      font-size: 12.5px;
+      color: var(--muted);
+      margin-top: 12px;
+    }
+    .submit-note i { color: var(--success); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--navy);
+      color: rgba(255,255,255,.5);
+      text-align: center;
+      padding: 20px 24px;
+      font-size: 12.5px;
+      letter-spacing: .2px;
+    }
+    footer strong { color: var(--gold); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 700px) {
+      .form-grid { grid-template-columns: 1fr; }
+      .form-grid.cols-3 { grid-template-columns: 1fr; }
+      .col-span-2, .col-span-3 { grid-column: span 1; }
+      .section-body { padding: 20px 18px 24px; }
+      .section-header { padding: 18px 18px; }
+      .header-badge { display: none; }
+      .hero-stats { gap: 20px; }
+      .hero { padding: 40px 20px 36px; }
+      .progress-inner { padding: 0 14px; }
+    }
+    @media (max-width: 420px) {
+      .brand-name { font-size: 16px; }
+      .submit-btn { padding: 15px 36px; font-size: 15px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══ STICKY HEADER ══ -->
+<header class="sticky-header" role="banner">
+  <div class="header-inner">
+    <div class="brand">
+      <div class="brand-icon"><i class="fa-solid fa-castle"></i></div>
+      <div class="brand-name">Theme Park <span>Stays</span></div>
+    </div>
+    <div class="header-badge"><i class="fa-solid fa-circle-check" style="margin-right:5px"></i>New Property Onboarding</div>
+  </div>
+</header>
+
+<!-- ══ PROGRESS BAR ══ -->
+<nav class="progress-wrap" role="navigation" aria-label="Form sections">
+  <div class="progress-inner">
+    <div class="progress-bar-track">
+      <div class="progress-bar-fill" id="progressFill"></div>
+    </div>
+    <div class="progress-sections" id="progSteps">
+      <div class="prog-step" onclick="scrollToSection(0)">1. Owner</div>
+      <div class="prog-step" onclick="scrollToSection(1)">2. Property</div>
+      <div class="prog-step" onclick="scrollToSection(2)">3. Access</div>
+      <div class="prog-step" onclick="scrollToSection(3)">4. Pool &amp; Outdoor</div>
+      <div class="prog-step" onclick="scrollToSection(4)">5. Utilities</div>
+      <div class="prog-step" onclick="scrollToSection(5)">6. Platforms</div>
+      <div class="prog-step" onclick="scrollToSection(6)">7. Inventory</div>
+      <div class="prog-step" onclick="scrollToSection(7)">8. Cleaning</div>
+      <div class="prog-step" onclick="scrollToSection(8)">9. Notes</div>
+    </div>
+  </div>
+</nav>
+
+<!-- ══ HERO ══ -->
+<section class="hero" aria-labelledby="hero-heading">
+  <div class="hero-tag"><i class="fa-solid fa-location-dot"></i> Kissimmee, FL</div>
+  <h1 id="hero-heading">New Property <span>Registration</span></h1>
+  <p>Complete the form below to get your property listed and managed by Kissimmee's premier short-term rental experts.</p>
+  <div class="hero-stats">
+    <div class="hero-stat"><strong>9</strong><span>Sections</span></div>
+    <div class="hero-stat"><strong>~15 min</strong><span>Avg. completion</span></div>
+    <div class="hero-stat"><strong>Secure</strong><span>Encrypted</span></div>
+  </div>
+</section>
+
+<!-- ══ MAIN FORM ══ -->
+<main class="page-wrap">
+<form id="onboardForm" novalidate>
+
+  <!-- ─── SECTION 1 ─── -->
+  <div class="form-section" id="sec0">
+    <div class="section-header open" onclick="toggleSection(this)">
+      <div class="section-header-left">
+        <div class="section-num">1</div>
+        <div class="section-title-group">
+          <h2>Owner Information</h2>
+          <p>Your personal details and preferred contact</p>
+        </div>
+      </div>
+      <div style="display:flex;align-items:center;gap:12px">
+        <div class="section-icon"><i class="fa-solid fa-user"></i></div>
+        <i class="fa-solid fa-chevron-down chevron open"></i>
+      </div>
+    </div>
+    <div class="section-body open">
+      <div class="form-grid">
+        <div class="field">
+          <label>First Name <span class="req">*</span></label>
+          <input type="text" name="first_name" placeholder="Jane" required />
+        </div>
+        <div class="field">
+          <label>Last Name <span class="req">*</span></label>
+          <input type="text" name="last_name" placeholder="Smith" required />
+        </div>
+        <div class="field">
+          <label>Email Address <span class="req">*</span></label>
+          <input type="email" name="email" placeholder="jane@example.com" required />
+        </div>
+        <div class="field">
+          <label>Primary Phone <span class="req">*</span></label>
+          <input type="tel" name="primary_phone" placeholder="(407) 555-0100" required />
+        </div>
+        <div class="field">
+          <label>Secondary / Emergency Phone</label>
+          <input type="tel" name="secondary_phone" placeholder="(407) 555-0101" />
+        </div>
+        <div class="field">
+          <label>Preferred Contact Method <span class="req">*</span></label>
+          <select name="preferred_contact" required>
+            <option value="" disabled selected>Select method…</option>
+            <option>Call</option>
+            <option>Text / SMS</option>
+            <option>Email</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Best Time to Reach You</label>
+          <input type="text" name="best_time_to_reach" placeholder="e.g. Weekdays 9am–5pm EST" />
+        </div>
+      </div>
+      <hr class="sub-divider" />
+      <div class="sub-heading"><i class="fa-solid fa-location-dot"></i> Mailing Address</div>
+      <div class="form-grid">
+        <div class="field col-span-2">
+          <label>Street Address <span class="req">*</span></label>
+          <input type="text" name="mailing_street" placeholder="123 Main Street" required />
+        </div>
+        <div class="field">
+          <label>City <span class="req">*</span></label>
+          <input type="text" name="mailing_city" placeholder="Kissimmee" required />
+        </div>
+        <div class="field">
+          <label>State <span class="req">*</span></label>
+          <input type="text" name="mailing_state" placeholder="FL" required />
+        </div>
+        <div class="field">
+          <label>ZIP Code <span class="req">*</span></label>
+          <input type="text" name="mailing_zip" placeholder="34747" required />
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── SECTION 2 ─── -->
+  <div class="form-section" id="sec1">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-header-left">
+        <div class="section-num">2</div>
+        <div class="section-title-group">
+          <h2>Property Details</h2>
+          <p>Address, type, HOA, and community info</p>
+        </div>
+      </div>
+      <div style="display:flex;align-items:center;gap:12px">
+        <div class="section-icon"><i class="fa-solid fa-house"></i></div>
+        <i class="fa-solid fa-chevron-down chevron"></i>
+      </div>
+    </div>
+    <div class="section-body">
+      <div class="sub-heading"><i class="fa-solid fa-map-pin"></i> Property Address</div>
+      <div class="form-grid">
+        <div class="field col-span-2">
+          <label>Street Address <span class="req">*</span></label>
+          <input type="text" name="property_street" placeholder="456 Vacation Drive" required />
+        </div>
+        <div class="field">
+          <label>City <span class="req">*</span></label>
+          <input type="text" name="property_city" placeholder="Kissimmee" required />
+        </div>
+        <div class="field">
+          <label>State <span class="req">*</span></label>
+          <input type="text" name="property_state" placeholder="FL" required />
+        </div>
+        <div class="field">
+          <label>ZIP Code <span class="req">*</span></label>
+          <input type="text" name="property_zip" placeholder="34747" required />
+        </div>
+      </div>
+      <hr class="sub-divider" />
+      <div class="sub-heading"><i class="fa-solid fa-building"></i> Property Specs</div>
+      <div class="form-grid cols-3">
+        <div class="field">
+          <label>Property Type <span class="req">*</span></label>
+          <select name="property_type" required>
+            <option value="" disabled selected>Select type…</option>
+            <option>House</option>
+            <option>Condo</option>
+            <option>Townhouse</option>
+            <option>Villa</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Bedrooms <span class="req">*</span></label>
+          <input type="number" name="bedrooms" min="1" placeholder="4" required />
+        </div>
+        <div class="field">
+          <label>Bathrooms <span class="req">*</span></label>
+          <input type="number" name="bathrooms" min="1" step="0.5" placeholder="3" required />
+        </div>
+        <div class="field">
+          <label>Max Occupancy / Sleeps <span class="req">*</span></label>
+          <input type="number" name="max_occupancy" min="1" placeholder="10" required />
+        </div>
+        <div class="field">
+          <label>Square Footage <span class="opt">(optional)</span></label>
+          <input type="number" name="square_footage" placeholder="2400" />
+        </div>
+        <div class="field">
+          <label>Year Built <span class="opt">(optional)</span></label>
+          <input type="number" name="year_built" placeholder="2018" min="1900" max="2026" />
+        </div>
+      </div>
+      <hr class="sub-divider" />
+      <div class="sub-heading"><i class="fa-solid fa-people-roof"></i> HOA &amp; Community</div>
+      <div class="form-grid">
+        <div class="field">
+          <label>HOA Name</label>
+          <input type="text" name="hoa_name" placeholder="Storey Lake HOA" />
+        </div>
+        <div class="field">
+          <label>HOA Contact Info</label>
+          <input type="text" name="hoa_contact" placeholder="Phone or email" />
+        </div>
+        <div class="field col-span-2">
+          <label>HOA Rules / Restrictions</label>
+          <textarea name="hoa_rules" placeholder="List any relevant HOA rules that affect guests or operations…"></textarea>
+        </div>
+        <div class="field">
+          <label>Community / Subdivision Name</label>
+          <input type="text" name="community_name" placeholder="Storey Lake Resort" />
+        </div>
+        <div class="field">
+          <label>Gate Code / Access Instructions</label>
+          <input type="text" name="gate_code" placeholder="Gate code or entry procedure" />
+        </div>
+        <div class="field col-span-2">
+          <label>Parking Details</label>
+          <textarea name="parking_details" placeholder="Number of spots, garage, driveway, permits needed…"></textarea>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── SECTION 3 ─── -->
+  <div class="form-section" id="sec2">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-header-left">
+        <div class="section-num">3</div>
+        <div class="section-title-group">
+          <h2>Access &amp; Security Codes</h2>
+          <p>Entry codes, locks, and alarm info</p>
+        </div>
+      </div>
+      <div style="display:flex;align-items:center;gap:12px">
+        <div class="section-icon"><i class="fa-solid fa-lock"></i></div>
+        <i class="fa-solid fa-chevron-down chevron"></i>
+      </div>
+    </div>
+    <div class="section-body">
+      <div class="form-grid">
+        <div class="field">
+          <label>Front Door Lock Brand <span class="req">*</span></label>
+          <select name="door_lock_brand" required>
+            <option value="" disabled selected>Select brand…</option>
+            <option>Schlage</option>
+            <option>Yale</option>
+            <option>August</option>
+            <option>Kwikset</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Front Door Code <span class="req">*</span></label>
+          <input type="text" name="front_door_code" placeholder="e.g. 1234" required />
+        </div>
+        <div class="field">
+          <label>Cleaner Closet Code</label>
+          <input type="text" name="cleaner_closet_code" placeholder="e.g. 5678" />
+        </div>
+        <div class="field">
+          <label>Lock Box Location &amp; Code</label>
+          <input type="text" name="lockbox_location_code" placeholder="Location: front gate post / Code: 9012" />
+        </div>
+        <div class="field">
+          <label>Garage Door Code</label>
+          <input type="text" name="garage_door_code" placeholder="e.g. 3456" />
+        </div>
+        <div class="field">
+          <label>Alarm System Provider</label>
+          <input type="text" name="alarm_provider" placeholder="ADT, Ring, SimpliSafe, etc." />
+        </div>
+        <div class="field col-span-2">
+          <label>Alarm Code &amp; Instructions</label>
+          <textarea name="alarm_code_instructions" placeholder="Entry code, disarm procedure, any timing details…" style="min-height:72px"></textarea>
+        </div>
+        <div class="field col-span-2">
+          <label>Additional Access Codes / Notes</label>
+          <textarea name="additional_access_notes" placeholder="Any other door codes, keypads, key locations…"></textarea>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── SECTION 4 ─── -->
+  <div class="form-section" id="sec3">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-header-left">
+        <div class="section-num">4</div>
+        <div class="section-title-group">
+          <h2>Pool &amp; Outdoor</h2>
+          <p>Pool, hot tub, grill, and landscaping details</p>
+        </div>
+      </div>
+      <div style="display:flex;align-items:center;gap:12px">
+        <div class="section-icon"><i class="fa-solid fa-water-ladder"></i></div>
+        <i class="fa-solid fa-chevron-down chevron"></i>
+      </div>
+    </div>
+    <div class="section-body">
+      <div class="form-grid">
+        <div class="field">
+          <label>Does the property have a pool? <span class="req">*</span></label>
+          <div class="toggle-wrap">
+            <label class="toggle">
+              <input type="checkbox" name="has_pool" id="poolToggle" onchange="document.getElementById('poolFields').style.display=this.checked?'block':'none'" />
+              <span class="toggle-slider"></span>
+            </label>
+            <span class="toggle-label">Pool present</span>
+          </div>
+        </div>
+        <div class="field">
+          <label>Hot Tub?</label>
+          <div class="toggle-wrap">
+            <label class="toggle">
+              <input type="checkbox" name="has_hot_tub" />
+              <span class="toggle-slider"></span>
+            </label>
+            <span class="toggle-label">Hot tub present</span>
+          </div>
+        </div>
+      </div>
+
+      <div id="poolFields" style="display:none; margin-top:20px">
+        <hr class="sub-divider" style="margin-top:0" />
+        <div class="sub-heading"><i class="fa-solid fa-droplet"></i> Pool Details</div>
+        <div class="form-grid">
+          <div class="field">
+            <label>Pool Heated?</label>
+            <div class="toggle-wrap">
+              <label class="toggle">
+                <input type="checkbox" name="pool_heated" />
+                <span class="toggle-slider"></span>
+              </label>
+              <span class="toggle-label">Yes, heated</span>
+            </div>
+          </div>
+          <div class="field">
+            <label>Pool Heater Code</label>
+            <input type="text" name="pool_heater_code" placeholder="e.g. 86°" />
+          </div>
+          <div class="field">
+            <label>Pool Panel Code</label>
+            <input type="text" name="pool_panel_code" placeholder="e.g. 7890" />
+          </div>
+          <div class="field col-span-2">
+            <label>Pool Maintenance Provider &amp; Contact</label>
+            <input type="text" name="pool_maintenance_contact" placeholder="Company name and phone/email" />
+          </div>
+        </div>
+      </div>
+
+      <hr class="sub-divider" />
+      <div class="sub-heading"><i class="fa-solid fa-fire-burner"></i> Outdoor Amenities</div>
+      <div class="form-grid">
+        <div class="field">
+          <label>Outdoor Grill Type</label>
+          <select name="grill_type">
+            <option value="" disabled selected>Select type…</option>
+            <option>Gas</option>
+            <option>Charcoal</option>
+            <option>Electric</option>
+            <option>None</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Lawn / Landscaping Provider &amp; Contact</label>
+          <input type="text" name="landscaping_contact" placeholder="Company name and phone/email" />
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── SECTION 5 ─── -->
+  <div class="form-section" id="sec4">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-header-left">
+        <div class="section-num">5</div>
+        <div class="section-title-group">
+          <h2>Utilities &amp; Connectivity</h2>
+          <p>WiFi, thermostat, water, and trash details</p>
+        </div>
+      </div>
+      <div style="display:flex;align-items:center;gap:12px">
+        <div class="section-icon"><i class="fa-solid fa-wifi"></i></div>
+        <i class="fa-solid fa-chevron-down chevron"></i>
+      </div>
+    </div>
+    <div class="section-body">
+      <div class="sub-heading"><i class="fa-solid fa-wifi"></i> Internet</div>
+      <div class="form-grid">
+        <div class="field">
+          <label>WiFi Network Name (SSID) <span class="req">*</span></label>
+          <input type="text" name="wifi_network" placeholder="ThemeParkStays_5G" required />
+        </div>
+        <div class="field">
+          <label>WiFi Password <span class="req">*</span></label>
+          <input type="text" name="wifi_password" placeholder="••••••••••" required />
+        </div>
+        <div class="field">
+          <label>Internet Provider</label>
+          <input type="text" name="internet_provider" placeholder="Spectrum, AT&amp;T, Xfinity, etc." />
+        </div>
+      </div>
+      <hr class="sub-divider" />
+      <div class="sub-heading"><i class="fa-solid fa-temperature-half"></i> Climate &amp; Systems</div>
+      <div class="form-grid">
+        <div class="field">
+          <label>Thermostat Brand / Type</label>
+          <select name="thermostat_type">
+            <option value="" disabled selected>Select…</option>
+            <option>Nest</option>
+            <option>Ecobee</option>
+            <option>Honeywell</option>
+            <option>Manual</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Thermostat Special Instructions</label>
+          <input type="text" name="thermostat_instructions" placeholder="e.g. Must not set below 72°F" />
+        </div>
+        <div class="field">
+          <label>Water Heater Type</label>
+          <select name="water_heater_type">
+            <option value="" disabled selected>Select…</option>
+            <option>Tank</option>
+            <option>Tankless</option>
+            <option>Heat Pump</option>
+            <option>Solar</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Emergency Water Shutoff Location</label>
+          <input type="text" name="water_shutoff_location" placeholder="e.g. Under kitchen sink / main meter" />
+        </div>
+        <div class="field">
+          <label>Electrical Panel Location</label>
+          <input type="text" name="electrical_panel_location" placeholder="e.g. Garage, left wall" />
+        </div>
+        <div class="field">
+          <label>Gas Shutoff Location <span class="opt">(if applicable)</span></label>
+          <input type="text" name="gas_shutoff_location" placeholder="e.g. Left side of house exterior" />
+        </div>
+      </div>
+      <hr class="sub-divider" />
+      <div class="sub-heading"><i class="fa-solid fa-trash-can"></i> Trash &amp; Recycling</div>
+      <div class="form-grid">
+        <div class="field">
+          <label>Trash Pickup Day(s)</label>
+          <input type="text" name="trash_pickup_days" placeholder="e.g. Tuesday &amp; Friday" />
+        </div>
+        <div class="field">
+          <label>Recycling Pickup Day(s)</label>
+          <input type="text" name="recycling_pickup_days" placeholder="e.g. Wednesday" />
+        </div>
+        <div class="field col-span-2">
+          <label>Trash / Recycling Bin Location</label>
+          <input type="text" name="trash_bin_location" placeholder="e.g. Left side of garage, bring to curb by 7am" />
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── SECTION 6 ─── -->
+  <div class="form-section" id="sec5">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-header-left">
+        <div class="section-num">6</div>
+        <div class="section-title-group">
+          <h2>Listing &amp; Booking Platforms</h2>
+          <p>Airbnb, VRBO, Booking.com, and rates</p>
+        </div>
+      </div>
+      <div style="display:flex;align-items:center;gap:12px">
+        <div class="section-icon"><i class="fa-solid fa-calendar-days"></i></div>
+        <i class="fa-solid fa-chevron-down chevron"></i>
+      </div>
+    </div>
+    <div class="section-body">
+      <div class="sub-heading"><i class="fa-brands fa-airbnb"></i> Airbnb</div>
+      <div class="form-grid">
+        <div class="field col-span-2">
+          <label>Airbnb Listing URL</label>
+          <input type="url" name="airbnb_url" placeholder="https://www.airbnb.com/rooms/…" />
+        </div>
+        <div class="field">
+          <label>Airbnb Account Email</label>
+          <input type="email" name="airbnb_email" placeholder="owner@email.com" />
+        </div>
+      </div>
+      <hr class="sub-divider" />
+      <div class="sub-heading"><i class="fa-solid fa-globe"></i> VRBO / HomeAway</div>
+      <div class="form-grid">
+        <div class="field col-span-2">
+          <label>VRBO / HomeAway Listing URL</label>
+          <input type="url" name="vrbo_url" placeholder="https://www.vrbo.com/…" />
+        </div>
+        <div class="field">
+          <label>VRBO Account Email</label>
+          <input type="email" name="vrbo_email" placeholder="owner@email.com" />
+        </div>
+      </div>
+      <hr class="sub-divider" />
+      <div class="sub-heading"><i class="fa-solid fa-globe"></i> Booking.com</div>
+      <div class="form-grid">
+        <div class="field col-span-2">
+          <label>Booking.com Listing URL</label>
+          <input type="url" name="booking_url" placeholder="https://www.booking.com/…" />
+        </div>
+        <div class="field">
+          <label>Booking.com Account Email</label>
+          <input type="email" name="booking_email" placeholder="owner@email.com" />
+        </div>
+      </div>
+      <hr class="sub-divider" />
+      <div class="sub-heading"><i class="fa-solid fa-layer-group"></i> Other Platforms &amp; Rates</div>
+      <div class="form-grid">
+        <div class="field col-span-2">
+          <label>Any Other Platforms</label>
+          <textarea name="other_platforms" placeholder="Platform name, listing URL, and account email…" style="min-height:72px"></textarea>
+        </div>
+        <div class="field">
+          <label>Nightly Rate — Low Season ($)</label>
+          <input type="number" name="rate_low_season" placeholder="150" min="0" />
+        </div>
+        <div class="field">
+          <label>Nightly Rate — High Season ($)</label>
+          <input type="number" name="rate_high_season" placeholder="350" min="0" />
+        </div>
+        <div class="field">
+          <label>Minimum Night Stay</label>
+          <input type="number" name="minimum_nights" placeholder="3" min="1" />
+        </div>
+        <div class="field">
+          <label>Current Calendar / Availability Notes</label>
+          <input type="text" name="calendar_notes" placeholder="Blocked dates, owner use, etc." />
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── SECTION 7 ─── -->
+  <div class="form-section" id="sec6">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-header-left">
+        <div class="section-num">7</div>
+        <div class="section-title-group">
+          <h2>Inventory &amp; Supplies Checklist</h2>
+          <p>Bedding, linens, kitchen essentials</p>
+        </div>
+      </div>
+      <div style="display:flex;align-items:center;gap:12px">
+        <div class="section-icon"><i class="fa-solid fa-bed"></i></div>
+        <i class="fa-solid fa-chevron-down chevron"></i>
+      </div>
+    </div>
+    <div class="section-body">
+      <div class="notice">
+        <i class="fa-solid fa-circle-exclamation"></i>
+        <div><strong>Minimum standard:</strong> A minimum of <strong>2 sets</strong> is required for all bedding and towels per sleeping area to ensure proper turnover between guest stays.</div>
+      </div>
+
+      <div class="sub-heading"><i class="fa-solid fa-bed"></i> Bedroom Inventory</div>
+
+      <!-- Bedroom 1 -->
+      <div class="bedroom-card" data-bedroom="1">
+        <div class="bedroom-card-title"><i class="fa-solid fa-moon"></i> Bedroom 1</div>
+        <div class="form-grid cols-3">
+          <div class="field">
+            <label>Bed Size</label>
+            <select name="br1_bed_size">
+              <option value="" disabled selected>Select…</option>
+              <option>King</option><option>Queen</option><option>Full / Double</option><option>Twin</option><option>Twin XL</option><option>Bunk Beds</option>
+            </select>
+          </div>
+          <div class="field">
+            <label>Sheet Sets <span style="font-size:11px;color:var(--muted)">(min 2)</span></label>
+            <input type="number" name="br1_sheets" min="0" placeholder="2" />
+          </div>
+          <div class="field">
+            <label>Pillow Sets <span style="font-size:11px;color:var(--muted)">(min 2)</span></label>
+            <input type="number" name="br1_pillows" min="0" placeholder="2" />
+          </div>
+          <div class="field">
+            <label>Comforter / Duvet Sets <span style="font-size:11px;color:var(--muted)">(min 2)</span></label>
+            <input type="number" name="br1_comforters" min="0" placeholder="2" />
+          </div>
+          <div class="field">
+            <label>Mattress Protector?</label>
+            <div class="toggle-wrap" style="margin-top:4px">
+              <label class="toggle"><input type="checkbox" name="br1_mattress_protector" /><span class="toggle-slider"></span></label>
+              <span class="toggle-label">Yes</span>
+            </div>
+          </div>
+          <div class="field">
+            <label>Bedbug Mattress Protector?</label>
+            <div class="toggle-wrap" style="margin-top:4px">
+              <label class="toggle"><input type="checkbox" name="br1_bedbug_protector" /><span class="toggle-slider"></span></label>
+              <span class="toggle-label">Yes</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bedroom 2 -->
+      <div class="bedroom-card" data-bedroom="2">
+        <div class="bedroom-card-title"><i class="fa-solid fa-moon"></i> Bedroom 2</div>
+        <div class="form-grid cols-3">
+          <div class="field">
+            <label>Bed Size</label>
+            <select name="br2_bed_size"><option value="" disabled selected>Select…</option><option>King</option><option>Queen</option><option>Full / Double</option><option>Twin</option><option>Twin XL</option><option>Bunk Beds</option></select>
+          </div>
+          <div class="field">
+            <label>Sheet Sets <span style="font-size:11px;color:var(--muted)">(min 2)</span></label>
+            <input type="number" name="br2_sheets" min="0" placeholder="2" />
+          </div>
+          <div class="field">
+            <label>Pillow Sets <span style="font-size:11px;color:var(--muted)">(min 2)</span></label>
+            <input type="number" name="br2_pillows" min="0" placeholder="2" />
+          </div>
+          <div class="field">
+            <label>Comforter / Duvet Sets <span style="font-size:11px;color:var(--muted)">(min 2)</span></label>
+            <input type="number" name="br2_comforters" min="0" placeholder="2" />
+          </div>
+          <div class="field">
+            <label>Mattress Protector?</label>
+            <div class="toggle-wrap" style="margin-top:4px">
+              <label class="toggle"><input type="checkbox" name="br2_mattress_protector" /><span class="toggle-slider"></span></label>
+              <span class="toggle-label">Yes</span>
+            </div>
+          </div>
+          <div class="field">
+            <label>Bedbug Mattress Protector?</label>
+            <div class="toggle-wrap" style="margin-top:4px">
+              <label class="toggle"><input type="checkbox" name="br2_bedbug_protector" /><span class="toggle-slider"></span></label>
+              <span class="toggle-label">Yes</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bedroom 3 -->
+      <div class="bedroom-card" data-bedroom="3">
+        <div class="bedroom-card-title"><i class="fa-solid fa-moon"></i> Bedroom 3</div>
+        <div class="form-grid cols-3">
+          <div class="field">
+            <label>Bed Size</label>
+            <select name="br3_bed_size"><option value="" disabled selected>Select…</option><option>King</option><option>Queen</option><option>Full / Double</option><option>Twin</option><option>Twin XL</option><option>Bunk Beds</option></select>
+          </div>
+          <div class="field">
+            <label>Sheet Sets <span style="font-size:11px;color:var(--muted)">(min 2)</span></label>
+            <input type="number" name="br3_sheets" min="0" placeholder="2" />
+          </div>
+          <div class="field">
+            <label>Pillow Sets <span style="font-size:11px;color:var(--muted)">(min 2)</span></label>
+            <input type="number" name="br3_pillows" min="0" placeholder="2" />
+          </div>
+          <div class="field">
+            <label>Comforter / Duvet Sets <span style="font-size:11px;color:var(--muted)">(min 2)</span></label>
+            <input type="number" name="br3_comforters" min="0" placeholder="2" />
+          </div>
+          <div class="field">
+            <label>Mattress Protector?</label>
+            <div class="toggle-wrap" style="margin-top:4px">
+              <label class="toggle"><input type="checkbox" name="br3_mattress_protector" /><span class="toggle-slider"></span></label>
+              <span class="toggle-label">Yes</span>
+            </div>
+          </div>
+          <div class="field">
+            <label>Bedbug Mattress Protector?</label>
+            <div class="toggle-wrap" style="margin-top:4px">
+              <label class="toggle"><input type="checkbox" name="br3_bedbug_protector" /><span class="toggle-slider"></span></label>
+              <span class="toggle-label">Yes</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bedroom 4 (if applicable) -->
+      <div class="bedroom-card" data-bedroom="4">
+        <div class="bedroom-card-title"><i class="fa-solid fa-moon"></i> Bedroom 4 <span style="font-size:12px;color:var(--muted);font-weight:400">(if applicable)</span></div>
+        <div class="form-grid cols-3">
+          <div class="field">
+            <label>Bed Size</label>
+            <select name="br4_bed_size"><option value="" disabled selected>Select…</option><option>King</option><option>Queen</option><option>Full / Double</option><option>Twin</option><option>Twin XL</option><option>Bunk Beds</option><option>N/A</option></select>
+          </div>
+          <div class="field">
+            <label>Sheet Sets</label>
+            <input type="number" name="br4_sheets" min="0" placeholder="2" />
+          </div>
+          <div class="field">
+            <label>Pillow Sets</label>
+            <input type="number" name="br4_pillows" min="0" placeholder="2" />
+          </div>
+          <div class="field">
+            <label>Comforter / Duvet Sets</label>
+            <input type="number" name="br4_comforters" min="0" placeholder="2" />
+          </div>
+          <div class="field">
+            <label>Mattress Protector?</label>
+            <div class="toggle-wrap" style="margin-top:4px">
+              <label class="toggle"><input type="checkbox" name="br4_mattress_protector" /><span class="toggle-slider"></span></label>
+              <span class="toggle-label">Yes</span>
+            </div>
+          </div>
+          <div class="field">
+            <label>Bedbug Mattress Protector?</label>
+            <div class="toggle-wrap" style="margin-top:4px">
+              <label class="toggle"><input type="checkbox" name="br4_bedbug_protector" /><span class="toggle-slider"></span></label>
+              <span class="toggle-label">Yes</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bedroom 5 (if applicable) -->
+      <div class="bedroom-card" data-bedroom="5">
+        <div class="bedroom-card-title"><i class="fa-solid fa-moon"></i> Bedroom 5 <span style="font-size:12px;color:var(--muted);font-weight:400">(if applicable)</span></div>
+        <div class="form-grid cols-3">
+          <div class="field">
+            <label>Bed Size</label>
+            <select name="br5_bed_size"><option value="" disabled selected>Select…</option><option>King</option><option>Queen</option><option>Full / Double</option><option>Twin</option><option>Twin XL</option><option>Bunk Beds</option><option>N/A</option></select>
+          </div>
+          <div class="field">
+            <label>Sheet Sets</label>
+            <input type="number" name="br5_sheets" min="0" placeholder="2" />
+          </div>
+          <div class="field">
+            <label>Pillow Sets</label>
+            <input type="number" name="br5_pillows" min="0" placeholder="2" />
+          </div>
+          <div class="field">
+            <label>Comforter / Duvet Sets</label>
+            <input type="number" name="br5_comforters" min="0" placeholder="2" />
+          </div>
+          <div class="field">
+            <label>Mattress Protector?</label>
+            <div class="toggle-wrap" style="margin-top:4px">
+              <label class="toggle"><input type="checkbox" name="br5_mattress_protector" /><span class="toggle-slider"></span></label>
+              <span class="toggle-label">Yes</span>
+            </div>
+          </div>
+          <div class="field">
+            <label>Bedbug Mattress Protector?</label>
+            <div class="toggle-wrap" style="margin-top:4px">
+              <label class="toggle"><input type="checkbox" name="br5_bedbug_protector" /><span class="toggle-slider"></span></label>
+              <span class="toggle-label">Yes</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bedroom 6 (if applicable) -->
+      <div class="bedroom-card" data-bedroom="6">
+        <div class="bedroom-card-title"><i class="fa-solid fa-moon"></i> Bedroom 6 <span style="font-size:12px;color:var(--muted);font-weight:400">(if applicable)</span></div>
+        <div class="form-grid cols-3">
+          <div class="field">
+            <label>Bed Size</label>
+            <select name="br6_bed_size"><option value="" disabled selected>Select…</option><option>King</option><option>Queen</option><option>Full / Double</option><option>Twin</option><option>Twin XL</option><option>Bunk Beds</option><option>N/A</option></select>
+          </div>
+          <div class="field">
+            <label>Sheet Sets</label>
+            <input type="number" name="br6_sheets" min="0" placeholder="2" />
+          </div>
+          <div class="field">
+            <label>Pillow Sets</label>
+            <input type="number" name="br6_pillows" min="0" placeholder="2" />
+          </div>
+          <div class="field">
+            <label>Comforter / Duvet Sets</label>
+            <input type="number" name="br6_comforters" min="0" placeholder="2" />
+          </div>
+          <div class="field">
+            <label>Mattress Protector?</label>
+            <div class="toggle-wrap" style="margin-top:4px">
+              <label class="toggle"><input type="checkbox" name="br6_mattress_protector" /><span class="toggle-slider"></span></label>
+              <span class="toggle-label">Yes</span>
+            </div>
+          </div>
+          <div class="field">
+            <label>Bedbug Mattress Protector?</label>
+            <div class="toggle-wrap" style="margin-top:4px">
+              <label class="toggle"><input type="checkbox" name="br6_bedbug_protector" /><span class="toggle-slider"></span></label>
+              <span class="toggle-label">Yes</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bedroom 7 (if applicable) -->
+      <div class="bedroom-card" data-bedroom="7">
+        <div class="bedroom-card-title"><i class="fa-solid fa-moon"></i> Bedroom 7 <span style="font-size:12px;color:var(--muted);font-weight:400">(if applicable)</span></div>
+        <div class="form-grid cols-3">
+          <div class="field">
+            <label>Bed Size</label>
+            <select name="br7_bed_size"><option value="" disabled selected>Select…</option><option>King</option><option>Queen</option><option>Full / Double</option><option>Twin</option><option>Twin XL</option><option>Bunk Beds</option><option>N/A</option></select>
+          </div>
+          <div class="field">
+            <label>Sheet Sets</label>
+            <input type="number" name="br7_sheets" min="0" placeholder="2" />
+          </div>
+          <div class="field">
+            <label>Pillow Sets</label>
+            <input type="number" name="br7_pillows" min="0" placeholder="2" />
+          </div>
+          <div class="field">
+            <label>Comforter / Duvet Sets</label>
+            <input type="number" name="br7_comforters" min="0" placeholder="2" />
+          </div>
+          <div class="field">
+            <label>Mattress Protector?</label>
+            <div class="toggle-wrap" style="margin-top:4px">
+              <label class="toggle"><input type="checkbox" name="br7_mattress_protector" /><span class="toggle-slider"></span></label>
+              <span class="toggle-label">Yes</span>
+            </div>
+          </div>
+          <div class="field">
+            <label>Bedbug Mattress Protector?</label>
+            <div class="toggle-wrap" style="margin-top:4px">
+              <label class="toggle"><input type="checkbox" name="br7_bedbug_protector" /><span class="toggle-slider"></span></label>
+              <span class="toggle-label">Yes</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bedroom 8 (if applicable) -->
+      <div class="bedroom-card" data-bedroom="8">
+        <div class="bedroom-card-title"><i class="fa-solid fa-moon"></i> Bedroom 8 <span style="font-size:12px;color:var(--muted);font-weight:400">(if applicable)</span></div>
+        <div class="form-grid cols-3">
+          <div class="field">
+            <label>Bed Size</label>
+            <select name="br8_bed_size"><option value="" disabled selected>Select…</option><option>King</option><option>Queen</option><option>Full / Double</option><option>Twin</option><option>Twin XL</option><option>Bunk Beds</option><option>N/A</option></select>
+          </div>
+          <div class="field">
+            <label>Sheet Sets</label>
+            <input type="number" name="br8_sheets" min="0" placeholder="2" />
+          </div>
+          <div class="field">
+            <label>Pillow Sets</label>
+            <input type="number" name="br8_pillows" min="0" placeholder="2" />
+          </div>
+          <div class="field">
+            <label>Comforter / Duvet Sets</label>
+            <input type="number" name="br8_comforters" min="0" placeholder="2" />
+          </div>
+          <div class="field">
+            <label>Mattress Protector?</label>
+            <div class="toggle-wrap" style="margin-top:4px">
+              <label class="toggle"><input type="checkbox" name="br8_mattress_protector" /><span class="toggle-slider"></span></label>
+              <span class="toggle-label">Yes</span>
+            </div>
+          </div>
+          <div class="field">
+            <label>Bedbug Mattress Protector?</label>
+            <div class="toggle-wrap" style="margin-top:4px">
+              <label class="toggle"><input type="checkbox" name="br8_bedbug_protector" /><span class="toggle-slider"></span></label>
+              <span class="toggle-label">Yes</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bedroom 9 (if applicable) -->
+      <div class="bedroom-card" data-bedroom="9">
+        <div class="bedroom-card-title"><i class="fa-solid fa-moon"></i> Bedroom 9 <span style="font-size:12px;color:var(--muted);font-weight:400">(if applicable)</span></div>
+        <div class="form-grid cols-3">
+          <div class="field">
+            <label>Bed Size</label>
+            <select name="br9_bed_size"><option value="" disabled selected>Select…</option><option>King</option><option>Queen</option><option>Full / Double</option><option>Twin</option><option>Twin XL</option><option>Bunk Beds</option><option>N/A</option></select>
+          </div>
+          <div class="field">
+            <label>Sheet Sets</label>
+            <input type="number" name="br9_sheets" min="0" placeholder="2" />
+          </div>
+          <div class="field">
+            <label>Pillow Sets</label>
+            <input type="number" name="br9_pillows" min="0" placeholder="2" />
+          </div>
+          <div class="field">
+            <label>Comforter / Duvet Sets</label>
+            <input type="number" name="br9_comforters" min="0" placeholder="2" />
+          </div>
+          <div class="field">
+            <label>Mattress Protector?</label>
+            <div class="toggle-wrap" style="margin-top:4px">
+              <label class="toggle"><input type="checkbox" name="br9_mattress_protector" /><span class="toggle-slider"></span></label>
+              <span class="toggle-label">Yes</span>
+            </div>
+          </div>
+          <div class="field">
+            <label>Bedbug Mattress Protector?</label>
+            <div class="toggle-wrap" style="margin-top:4px">
+              <label class="toggle"><input type="checkbox" name="br9_bedbug_protector" /><span class="toggle-slider"></span></label>
+              <span class="toggle-label">Yes</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <hr class="sub-divider" />
+      <div class="sub-heading"><i class="fa-solid fa-shower"></i> Bathroom Supplies</div>
+      <div class="form-grid">
+        <div class="field">
+          <label>Towel Sets per Bathroom <span style="font-size:11px;color:var(--muted)">(min 2)</span></label>
+          <input type="number" name="towel_sets_per_bathroom" min="0" placeholder="2" />
+        </div>
+        <div class="field">
+          <label>Bath Mats per Bathroom <span style="font-size:11px;color:var(--muted)">(min 2)</span></label>
+          <input type="number" name="bath_mats_per_bathroom" min="0" placeholder="2" />
+        </div>
+      </div>
+
+      <hr class="sub-divider" />
+      <div class="sub-heading"><i class="fa-solid fa-utensils"></i> Kitchen Essentials</div>
+      <div class="form-grid">
+        <div class="field">
+          <label>Dishes / Silverware for How Many Guests?</label>
+          <input type="number" name="dishes_for_guests" min="1" placeholder="10" />
+        </div>
+        <div class="field">
+          <label>Coffee Maker Type</label>
+          <input type="text" name="coffee_maker_type" placeholder="Keurig K-Select, Drip, etc." />
+        </div>
+        <div class="field">
+          <label>Pots, Pans &amp; Cooking Utensils Adequate?</label>
+          <div class="toggle-wrap" style="margin-top:4px">
+            <label class="toggle"><input type="checkbox" name="cooking_utensils_adequate" /><span class="toggle-slider"></span></label>
+            <span class="toggle-label">Yes, stocked</span>
+          </div>
+        </div>
+        <div class="field">
+          <label>Kitchen Towel Sets <span style="font-size:11px;color:var(--muted)">(min 2)</span></label>
+          <input type="number" name="kitchen_towel_sets" min="0" placeholder="2" />
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── SECTION 8 ─── -->
+  <div class="form-section" id="sec7">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-header-left">
+        <div class="section-num">8</div>
+        <div class="section-title-group">
+          <h2>Cleaning &amp; Maintenance Equipment</h2>
+          <p>Cleaning tools, laundry, and preferred cleaner</p>
+        </div>
+      </div>
+      <div style="display:flex;align-items:center;gap:12px">
+        <div class="section-icon"><i class="fa-solid fa-broom"></i></div>
+        <i class="fa-solid fa-chevron-down chevron"></i>
+      </div>
+    </div>
+    <div class="section-body">
+      <div class="form-grid">
+        <div class="field">
+          <label>Vacuum?</label>
+          <div class="toggle-wrap" style="margin-top:4px">
+            <label class="toggle"><input type="checkbox" name="has_vacuum" /><span class="toggle-slider"></span></label>
+            <span class="toggle-label">Present at property</span>
+          </div>
+        </div>
+        <div class="field">
+          <label>Vacuum Brand / Type</label>
+          <input type="text" name="vacuum_type" placeholder="Dyson V15, Roomba 960, etc." />
+        </div>
+        <div class="field">
+          <label>Mop?</label>
+          <div class="toggle-wrap" style="margin-top:4px">
+            <label class="toggle"><input type="checkbox" name="has_mop" /><span class="toggle-slider"></span></label>
+            <span class="toggle-label">Present at property</span>
+          </div>
+        </div>
+        <div class="field">
+          <label>Broom &amp; Dustpan?</label>
+          <div class="toggle-wrap" style="margin-top:4px">
+            <label class="toggle"><input type="checkbox" name="has_broom" /><span class="toggle-slider"></span></label>
+            <span class="toggle-label">Present at property</span>
+          </div>
+        </div>
+        <div class="field">
+          <label>Iron &amp; Ironing Board?</label>
+          <div class="toggle-wrap" style="margin-top:4px">
+            <label class="toggle"><input type="checkbox" name="has_iron" /><span class="toggle-slider"></span></label>
+            <span class="toggle-label">Present at property</span>
+          </div>
+        </div>
+        <div class="field">
+          <label>Washer &amp; Dryer?</label>
+          <select name="washer_dryer_status">
+            <option value="" disabled selected>Select…</option>
+            <option>Yes — In-Unit</option>
+            <option>Yes — Shared / Laundry Room</option>
+            <option>No</option>
+          </select>
+        </div>
+      </div>
+      <hr class="sub-divider" />
+      <div class="form-grid">
+        <div class="field">
+          <label>Cleaning Supply Storage Location</label>
+          <input type="text" name="cleaning_storage_location" placeholder="e.g. Cleaner's closet, hallway" />
+        </div>
+        <div class="field">
+          <label>Preferred Cleaning Company &amp; Contact</label>
+          <input type="text" name="cleaning_company_contact" placeholder="Company name and phone/email" />
+        </div>
+        <div class="field col-span-2">
+          <label>Cleaning Turnover Time Needed</label>
+          <input type="text" name="turnover_time" placeholder="e.g. 4 hours, check-out 10am → check-in 4pm" />
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── SECTION 9 ─── -->
+  <div class="form-section" id="sec8">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-header-left">
+        <div class="section-num">9</div>
+        <div class="section-title-group">
+          <h2>Repairs, Upgrades &amp; Special Notes</h2>
+          <p>Issues, policies, house rules, and more</p>
+        </div>
+      </div>
+      <div style="display:flex;align-items:center;gap:12px">
+        <div class="section-icon"><i class="fa-solid fa-screwdriver-wrench"></i></div>
+        <i class="fa-solid fa-chevron-down chevron"></i>
+      </div>
+    </div>
+    <div class="section-body">
+      <div class="form-grid">
+        <div class="field col-span-2">
+          <label>Known Repairs Needed</label>
+          <textarea name="repairs_needed" placeholder="List any repairs currently needed at the property…"></textarea>
+        </div>
+        <div class="field col-span-2">
+          <label>Planned Upgrades</label>
+          <textarea name="planned_upgrades" placeholder="Any improvements or renovations planned…"></textarea>
+        </div>
+        <div class="field">
+          <label>Pest Control Provider &amp; Schedule</label>
+          <input type="text" name="pest_control_info" placeholder="Company name, frequency, last service" />
+        </div>
+        <div class="field">
+          <label>Last Inspection Date</label>
+          <input type="date" name="last_inspection_date" />
+        </div>
+        <div class="field col-span-2">
+          <label>Appliance Quirks / Special Instructions</label>
+          <textarea name="appliance_quirks" placeholder="Any appliances with unusual operation, known glitches, etc.…"></textarea>
+        </div>
+        <div class="field col-span-2">
+          <label>Items Guests Should NOT Use</label>
+          <textarea name="guest_restricted_items" placeholder="Owner's personal belongings, locked areas, fragile items…"></textarea>
+        </div>
+        <div class="field col-span-2">
+          <label>House Rules / Special Policies</label>
+          <textarea name="house_rules" placeholder="No smoking, no pets, quiet hours, noise ordinances…"></textarea>
+        </div>
+        <div class="field col-span-2">
+          <label>Anything Else We Should Know</label>
+          <textarea name="additional_notes" placeholder="Any additional information that will help us manage your property…"></textarea>
+        </div>
+      </div>
+
+      <hr class="sub-divider" />
+      <div class="sub-heading"><i class="fa-solid fa-id-card"></i> Licensing &amp; Registration</div>
+      <div class="form-grid">
+        <div class="field">
+          <label>Registered with DBPR (Department of Business and Professional Regulation)?</label>
+          <div class="toggle-wrap" style="margin-top:4px">
+            <label class="toggle"><input type="checkbox" name="dpbr_registered" /><span class="toggle-slider"></span></label>
+            <span class="toggle-label">Yes</span>
+          </div>
+        </div>
+        <div class="field">
+          <label>DBPR License Number</label>
+          <input type="text" name="dpbr_license_number" placeholder="e.g. VR1234567" />
+        </div>
+        <div class="field">
+          <label>Property Located in Osceola County?</label>
+          <div class="toggle-wrap" style="margin-top:4px">
+            <label class="toggle"><input type="checkbox" name="osceola_county" /><span class="toggle-slider"></span></label>
+            <span class="toggle-label">Yes</span>
+          </div>
+        </div>
+        <div class="field">
+          <label>Osceola County Tourist Development Tax License Filed?</label>
+          <div class="toggle-wrap" style="margin-top:4px">
+            <label class="toggle"><input type="checkbox" name="tourist_tax_filed" /><span class="toggle-slider"></span></label>
+            <span class="toggle-label">Yes</span>
+          </div>
+        </div>
+        <div class="field">
+          <label>Tourist Tax License Number</label>
+          <input type="text" name="tourist_tax_license_number" placeholder="e.g. TDT-123456" />
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── SUBMIT ── -->
+  <div class="submit-wrap">
+    <button type="submit" class="submit-btn" id="submitBtn">
+      <i class="fa-solid fa-paper-plane"></i>
+      Submit Property Onboarding Form
+    </button>
+    <div class="submit-note">
+      <i class="fa-solid fa-lock"></i>
+      Your information is encrypted and securely stored. Fields marked <span style="color:var(--error)">*</span> are required.
+    </div>
+  </div>
+
+</form>
+</main>
+
+<!-- ══ FOOTER ══ -->
+<footer>
+  <div style="margin-bottom:6px">
+    <i class="fa-solid fa-castle" style="color:var(--gold);margin-right:6px"></i>
+    <strong>Theme Park Stays</strong>
+  </div>
+  <div>© 2026 Theme Park Stays — Kissimmee, FL &nbsp;|&nbsp; <em>The Theme Park Capital of the World</em></div>
+</footer>
+
+<script>
+  /* ── SECTION TOGGLE ── */
+  function toggleSection(header) {
+    const body = header.nextElementSibling;
+    const chevron = header.querySelector('.chevron');
+    const isOpen = body.classList.contains('open');
+    body.classList.toggle('open', !isOpen);
+    header.classList.toggle('open', !isOpen);
+    chevron.classList.toggle('open', !isOpen);
+    if (!isOpen) updateProgress();
+  }
+
+  /* ── SCROLL TO SECTION ── */
+  function scrollToSection(idx) {
+    const sec = document.getElementById('sec' + idx);
+    if (!sec) return;
+    const header = sec.querySelector('.section-header');
+    const body = sec.querySelector('.section-body');
+    const chevron = header.querySelector('.chevron');
+    body.classList.add('open');
+    header.classList.add('open');
+    chevron.classList.add('open');
+    sec.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    updateProgress();
+  }
+
+  /* ── PROGRESS BAR ── */
+  function updateProgress() {
+    const sections = document.querySelectorAll('.section-body');
+    const open = Array.from(sections).filter(s => s.classList.contains('open')).length;
+    const pct = Math.round((open / sections.length) * 100);
+    document.getElementById('progressFill').style.width = pct + '%';
+    const steps = document.querySelectorAll('.prog-step');
+    sections.forEach((s, i) => {
+      if (s.classList.contains('open')) steps[i].classList.add('active');
+      else steps[i].classList.remove('active');
+    });
+  }
+
+  /* ── ACTIVE SECTION HIGHLIGHT ON SCROLL ── */
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const id = entry.target.id;
+        const idx = parseInt(id.replace('sec', ''));
+        document.querySelectorAll('.prog-step').forEach((s, i) => {
+          s.classList.toggle('active', i === idx);
+        });
+      }
+    });
+  }, { threshold: 0.25 });
+
+  document.querySelectorAll('.form-section').forEach(s => observer.observe(s));
+
+  /* ── HELPER: get toggle value as Yes/No ── */
+  function getToggle(name) {
+    const el = document.querySelector('[name="' + name + '"]');
+    return el && el.checked ? 'Yes' : 'No';
+  }
+
+  /* ── HELPER: get text/select/number field value ── */
+  function getVal(name) {
+    const el = document.querySelector('[name="' + name + '"]');
+    return el ? (el.value || '') : '';
+  }
+
+  /* ── HELPER: build bedroom summary string ── */
+  function buildBedroomSummary(n) {
+    const bedSize   = getVal('br' + n + '_bed_size');
+    const sheets    = getVal('br' + n + '_sheets');
+    const pillows   = getVal('br' + n + '_pillows');
+    const comforters= getVal('br' + n + '_comforters');
+    const mattress  = getToggle('br' + n + '_mattress_protector');
+    const bedbug    = getToggle('br' + n + '_bedbug_protector');
+
+    // Only include if something was filled in
+    if (!bedSize && !sheets && !pillows && !comforters) return '';
+
+    return [
+      bedSize   ? bedSize               : 'N/A',
+      'Sheets: '     + (sheets     || '0'),
+      'Pillows: '    + (pillows    || '0'),
+      'Comforters: ' + (comforters || '0'),
+      'Mattress Protector: ' + mattress,
+      'Bedbug Protector: '   + bedbug
+    ].join(' | ');
+  }
+
+  /* ── FORM SUBMIT → AIRTABLE ── */
+  document.getElementById('onboardForm').addEventListener('submit', async function(e) {
+    e.preventDefault();
+
+    const btn = document.getElementById('submitBtn');
+
+    // ── Loading state ──
+    btn.disabled = true;
+    btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Submitting…';
+    btn.style.background = 'linear-gradient(135deg, #1A3370, #0B1F45)';
+    btn.style.boxShadow  = '0 6px 24px rgba(11,31,69,.35)';
+
+    // ── Collect fields ──
+    const fields = {
+      'First Name':                getVal('first_name'),
+      'Last Name':                 getVal('last_name'),
+      'Email':                     getVal('email'),
+      'Primary Phone':             getVal('primary_phone'),
+      'Secondary Phone':           getVal('secondary_phone'),
+      'Preferred Contact Method':  getVal('preferred_contact'),
+      'Best Time to Reach':        getVal('best_time_to_reach'),
+      'Mailing Street':            getVal('mailing_street'),
+      'Mailing City':              getVal('mailing_city'),
+      'Mailing State':             getVal('mailing_state'),
+      'Mailing ZIP':               getVal('mailing_zip'),
+
+      'Property Street':           getVal('property_street'),
+      'Property City':             getVal('property_city'),
+      'Property State':            getVal('property_state'),
+      'Property ZIP':              getVal('property_zip'),
+      'Property Type':             getVal('property_type'),
+      'Bedrooms':                  getVal('bedrooms'),
+      'Bathrooms':                 getVal('bathrooms'),
+      'Max Occupancy':             getVal('max_occupancy'),
+      'Square Footage':            getVal('square_footage'),
+      'Year Built':                getVal('year_built'),
+      'HOA Name':                  getVal('hoa_name'),
+      'HOA Contact':               getVal('hoa_contact'),
+      'HOA Rules':                 getVal('hoa_rules'),
+      'Community Name':            getVal('community_name'),
+      'Gate Code':                 getVal('gate_code'),
+      'Parking Details':           getVal('parking_details'),
+
+      'Door Lock Brand':           getVal('door_lock_brand'),
+      'Front Door Code':           getVal('front_door_code'),
+      'Cleaner Closet Code':       getVal('cleaner_closet_code'),
+      'Lockbox Location & Code':   getVal('lockbox_location_code'),
+      'Garage Door Code':          getVal('garage_door_code'),
+      'Alarm Provider':            getVal('alarm_provider'),
+      'Alarm Code & Instructions': getVal('alarm_code_instructions'),
+      'Additional Access Notes':   getVal('additional_access_notes'),
+
+      'Has Pool':                  getToggle('has_pool'),
+      'Has Hot Tub':               getToggle('has_hot_tub'),
+      'Pool Heated':               getToggle('pool_heated'),
+      'Pool Heater Code':          getVal('pool_heater_code'),
+      'Pool Panel Code':           getVal('pool_panel_code'),
+      'Pool Maintenance Contact':  getVal('pool_maintenance_contact'),
+      'Grill Type':                getVal('grill_type'),
+      'Landscaping Contact':       getVal('landscaping_contact'),
+
+      'WiFi Network':              getVal('wifi_network'),
+      'WiFi Password':             getVal('wifi_password'),
+      'Internet Provider':         getVal('internet_provider'),
+      'Thermostat Type':           getVal('thermostat_type'),
+      'Thermostat Instructions':   getVal('thermostat_instructions'),
+      'Water Heater Type':         getVal('water_heater_type'),
+      'Water Shutoff Location':    getVal('water_shutoff_location'),
+      'Electrical Panel Location': getVal('electrical_panel_location'),
+      'Gas Shutoff Location':      getVal('gas_shutoff_location'),
+      'Trash Pickup Days':         getVal('trash_pickup_days'),
+      'Recycling Pickup Days':     getVal('recycling_pickup_days'),
+      'Trash Bin Location':        getVal('trash_bin_location'),
+
+      'Airbnb URL':                getVal('airbnb_url'),
+      'Airbnb Email':              getVal('airbnb_email'),
+      'VRBO URL':                  getVal('vrbo_url'),
+      'VRBO Email':                getVal('vrbo_email'),
+      'Booking.com URL':           getVal('booking_url'),
+      'Booking.com Email':         getVal('booking_email'),
+      'Other Platforms':           getVal('other_platforms'),
+      'Rate Low Season':           getVal('rate_low_season'),
+      'Rate High Season':          getVal('rate_high_season'),
+      'Minimum Nights':            getVal('minimum_nights'),
+      'Calendar Notes':            getVal('calendar_notes'),
+
+      'Bedroom 1':  buildBedroomSummary(1),
+      'Bedroom 2':  buildBedroomSummary(2),
+      'Bedroom 3':  buildBedroomSummary(3),
+      'Bedroom 4':  buildBedroomSummary(4),
+      'Bedroom 5':  buildBedroomSummary(5),
+      'Bedroom 6':  buildBedroomSummary(6),
+      'Bedroom 7':  buildBedroomSummary(7),
+      'Bedroom 8':  buildBedroomSummary(8),
+      'Bedroom 9':  buildBedroomSummary(9),
+
+      'Towel Sets Per Bathroom':   getVal('towel_sets_per_bathroom'),
+      'Bath Mats Per Bathroom':    getVal('bath_mats_per_bathroom'),
+      'Dishes For Guests':         getVal('dishes_for_guests'),
+      'Coffee Maker Type':         getVal('coffee_maker_type'),
+      'Cooking Utensils Adequate': getToggle('cooking_utensils_adequate'),
+      'Kitchen Towel Sets':        getVal('kitchen_towel_sets'),
+
+      'Has Vacuum':                getToggle('has_vacuum'),
+      'Vacuum Type':               getVal('vacuum_type'),
+      'Has Mop':                   getToggle('has_mop'),
+      'Has Broom':                 getToggle('has_broom'),
+      'Has Iron':                  getToggle('has_iron'),
+      'Washer & Dryer':            getVal('washer_dryer_status'),
+      'Cleaning Storage Location': getVal('cleaning_storage_location'),
+      'Cleaning Company Contact':  getVal('cleaning_company_contact'),
+      'Turnover Time':             getVal('turnover_time'),
+
+      'Repairs Needed':            getVal('repairs_needed'),
+      'Planned Upgrades':          getVal('planned_upgrades'),
+      'Pest Control Info':         getVal('pest_control_info'),
+      'Last Inspection Date':      getVal('last_inspection_date'),
+      'Appliance Quirks':          getVal('appliance_quirks'),
+      'Guest Restricted Items':    getVal('guest_restricted_items'),
+      'House Rules':               getVal('house_rules'),
+      'Additional Notes':          getVal('additional_notes'),
+      'DPBR Registered':           getToggle('dpbr_registered'),
+      'DPBR License Number':       getVal('dpbr_license_number'),
+      'Osceola County':            getToggle('osceola_county'),
+      'Tourist Tax Filed':         getToggle('tourist_tax_filed'),
+      'Tourist Tax License Number':getVal('tourist_tax_license_number'),
+    };
+
+    // ── Remove empty strings to keep Airtable payload clean ──
+    const cleanFields = {};
+    for (const [key, val] of Object.entries(fields)) {
+      if (val !== '' && val !== null && val !== undefined) {
+        cleanFields[key] = val;
+      }
+    }
+
+    try {
+      const response = await fetch(
+        'https://api.airtable.com/v0/appttSCU5u68yVq0p/tbluX3DOgpxFIclwP',
+        {
+          method: 'POST',
+          headers: {
+            'Authorization': 'Bearer patiV4uEtzSBDSNah.73e974eb21b9d045e33c06e7d3b937e0930d333f338b01482b41df7b2f7af703',
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ fields: cleanFields })
+        }
+      );
+
+      if (!response.ok) {
+        const errData = await response.json().catch(() => ({}));
+        throw new Error(errData.error && errData.error.message ? errData.error.message : 'HTTP ' + response.status);
+      }
+
+      // ── Success ──
+      btn.disabled = false;
+      btn.innerHTML = '<i class="fa-solid fa-circle-check"></i> Form Submitted — Thank You!';
+      btn.style.background = 'linear-gradient(135deg, #27AE60, #2ECC71)';
+      btn.style.boxShadow  = '0 6px 24px rgba(39,174,96,.38)';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+
+    } catch (err) {
+      // ── Error ──
+      btn.disabled = false;
+      btn.innerHTML = '<i class="fa-solid fa-triangle-exclamation"></i> Submission Failed — Please Try Again';
+      btn.style.background = 'linear-gradient(135deg, #E74C3C, #C0392B)';
+      btn.style.boxShadow  = '0 6px 24px rgba(231,76,60,.38)';
+      console.error('Airtable submission error:', err);
+
+      // Reset button after 5 seconds so user can retry
+      setTimeout(() => {
+        btn.innerHTML = '<i class="fa-solid fa-paper-plane"></i> Submit Property Onboarding Form';
+        btn.style.background = 'linear-gradient(135deg, var(--orange) 0%, var(--gold) 100%)';
+        btn.style.boxShadow  = '0 6px 24px rgba(244,123,32,.38)';
+      }, 5000);
+    }
+  });
+
+  /* ── INIT: open first section ── */
+  updateProgress();
+</script>
+</body>
+</html>
