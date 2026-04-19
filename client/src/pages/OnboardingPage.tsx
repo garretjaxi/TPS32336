@@ -18,9 +18,10 @@ export default function OnboardingPage() {
 
     // Attach event listeners to progress steps
     const progSteps = document.querySelectorAll('.prog-step');
-    progSteps.forEach((step, index) => {
+    progSteps.forEach((step) => {
       step.addEventListener('click', () => {
-        scrollToSection(index);
+        const sectionIndex = parseInt(step.getAttribute('data-section') || '0', 10);
+        scrollToSection(sectionIndex);
       });
     });
 
