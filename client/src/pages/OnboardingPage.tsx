@@ -25,6 +25,15 @@ export default function OnboardingPage() {
       });
     });
 
+    // Attach pool toggle listener
+    const poolToggle = document.getElementById('poolToggle') as HTMLInputElement;
+    const poolFields = document.getElementById('poolFields') as HTMLElement;
+    if (poolToggle && poolFields) {
+      poolToggle.addEventListener('change', () => {
+        poolFields.style.display = poolToggle.checked ? 'block' : 'none';
+      });
+    }
+
     // Attach form submission handler
     form.addEventListener('submit', handleFormSubmit);
 
