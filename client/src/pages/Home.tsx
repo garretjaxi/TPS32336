@@ -157,12 +157,14 @@ export default function Home() {
             >
               Design
             </button>
-            <button
-              onClick={() => navigate("/admin")}
-              className="text-sm text-[oklch(0.4_0.015_55)] hover:text-[oklch(0.18_0.012_55)] transition-colors"
-            >
-              Admin
-            </button>
+            {user?.email && ["chadcorb@gmail.com", "themeparkstays@gmail.com"].includes(user.email) && (
+              <button
+                onClick={() => navigate("/admin")}
+                className="text-sm text-[oklch(0.4_0.015_55)] hover:text-[oklch(0.18_0.012_55)] transition-colors"
+              >
+                Admin
+              </button>
+            )}
             {user ? (
               <div className="flex items-center gap-3">
                 <span className="text-sm text-[oklch(0.4_0.015_55)]">{user.name || user.email}</span>
@@ -231,15 +233,17 @@ export default function Home() {
             >
               Design
             </button>
-            <button
-              onClick={() => {
-                navigate("/admin");
-                setMobileMenuOpen(false);
-              }}
-              className="block w-full text-left text-sm text-[oklch(0.4_0.015_55)] hover:text-[oklch(0.18_0.012_55)] py-2"
-            >
-              Admin
-            </button>
+            {user?.email && ["chadcorb@gmail.com", "themeparkstays@gmail.com"].includes(user.email) && (
+              <button
+                onClick={() => {
+                  navigate("/admin");
+                  setMobileMenuOpen(false);
+                }}
+                className="block w-full text-left text-sm text-[oklch(0.4_0.015_55)] hover:text-[oklch(0.18_0.012_55)] py-2"
+              >
+                Admin
+              </button>
+            )}
             {user ? (
               <button
                 onClick={handleLogout}
